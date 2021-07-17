@@ -142,11 +142,7 @@
         <h3 id="关于图床"><a href="#关于图床" class="headerlink" title="关于图床"></a>关于图床</h3><p>目前可以白嫖的有: 聚合图床 路过图床  sm.ms 随意云</p>
 <h3 id="关于log和dir和document-write"><a href="#关于log和dir和document-write" class="headerlink" title="关于log和dir和document.write"></a>关于log和dir和document.write</h3><p>console.log(): 用于控制台调试，可以打印对象的内容,无法看到标签对象的属性和方法,<br>能输出多个数据，可以识别数据类型(颜色有差异)<br>console.dir(): 以对象形式输出标签对象的属性和方法,不能直观识别数据类型</p>
 <p>document.write: 不用于调试，只能打印出对象类型,(在网页上写东西),Javascript 中只能在 HTML 输出流中使用 document.write(实际上文档加载时就是一边加载一边用 document.write 写出内容到屏幕上，而加载完成后，document 就关闭)，在文档已加载后(注意)使用它（比如在函数中），会覆盖整个文档(重写,html里只有空head和新body,故background也会被重置,)。</p>
-<p>hexo中插入图片的方式:配置文件中将post_asset_folder打开,这样hexo新建博客的时候，会生成相同名称的文件夹，将图片放到文件夹中，可以通过其相对位置进行直接引用。<br>比如</p>
-<p>这一步会报错Nunjucks Error,处理方式如下</p>
-//敏感内容前加上这个
-Hello {{ sensitive }}//敏感内容被包装在中间
-//敏感内容后加上这个
+<p>hexo中插入图片的方式: <img src="/.com//%E5%9B%BE%E7%89%87url" alt="Alt text" title="optional title"></p>
 
       </section>
 
