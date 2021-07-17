@@ -140,6 +140,23 @@
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
         <h3 id="第二天"><a href="#第二天" class="headerlink" title="第二天"></a>第二天</h3><p>关于数据结构算法 : 数据结构是计算机中 存储/组织数据 的方式,精心选择的数据结构通常可以带来最优效率的算法</p>
+<h3 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h3><p>添加模态框的几种方法: 1.在button里添加data 属性,为button绑定模态框<br>2.使用jquery语法, 先给模态框的div添加id,然后通过  $(‘#myModal’).modal(options) 调用</p>
+<h3 id="Web-Apis"><a href="#Web-Apis" class="headerlink" title="Web Apis"></a>Web Apis</h3><p>dom: 文档对象模型, 简单理解为处理文档的一些接口<br>1.对于JavaScript，为了能够使JavaScript操作HTML，JavaScript就有了一套自己的DOM编程接口。<br>　　2.对于HTML，DOM使得html形成一颗dom树，包含文档、元素、节点。<br>文档: 一个页面就是一个文档,DOM中使用document表示<br>元素: 页面中的所有标签都是元素,DOM中用element表示<br>节点: 网页中所有内容都是节点(标签/属性/文本/注释),DOM中用node表示<br> DOM把以上内容都看做对象(可以获取)</p>
+<h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><p>我们主要针对元素的操作。主要有创建、增、删、改、查、属性操作、事件操作。</p>
+<h3 id="DOM创建"><a href="#DOM创建" class="headerlink" title="DOM创建"></a>DOM创建</h3><p>document.write（）是直接将内容写入页面的内容流，但若是文档流执行完毕再进行document.write（），则它会导致页面全部重绘。<br>HTML 输出流：当前数据形式是 HTML 格式的数据，这部分数据正被导出、传输或显示，所以称为”流“。<br>innerHTML是将内容写入某个DOM节点，不会导致页面全部重绘，创建多个元素效率更高（不要拼接字符串，采取数组形式拼接），结构稍微复杂。<br>innerHTML获取标签所包含的HTML+文本信息,innerText只能获取文本信息</p>
+<p><img src="https://pic.imgdb.cn/item/60f2e9df5132923bf84e6055.gif" alt="Alt text"></p>
+<p>document.createElement() //创建多个元素 效率稍微低一些 但是结构会很清晰</p>
+<h3 id="DOM查询-获取元素"><a href="#DOM查询-获取元素" class="headerlink" title="DOM查询(获取元素)"></a>DOM查询(获取元素)</h3><p>DOM提供的API方法:getElementByid,getElementByTagName (老方法不推荐使用)<br>    H5新增的方法:querySelector、querySelectorAll (提倡使用)<br>    利用节点操作获取元素:父节点(parentNode)、子节点(children)、兄(previousElementSibling、nextElementSibling)提倡使用</p>
+<p>getElementByTagName: 根据类名返回元素对象合集<br>querySelector: 返回指定选择器的第一个元素对象,指定时需要加.或者#符号<br>querySelectorAll(): 返回指定选择器的所有元素对象,指定时需要加.或者#符号</p>
+<h3 id="DOM增加"><a href="#DOM增加" class="headerlink" title="DOM增加"></a>DOM增加</h3><p>appendChild() 方法向节点添加最后一个子节点。<br>insertBefore() 在前面增加</p>
+<h3 id="事件操作"><a href="#事件操作" class="headerlink" title="事件操作"></a>事件操作</h3><p>给元素注册事件，获取事件源(谁被触发) .事件类型(绑定事件,比如点击onclick) = 事件处理程序(函数赋值)<br>onclick  鼠标点击左键触发</p>
+<p>　　　　onmouseover  鼠标经过触发</p>
+<p>　　　　onmouseout    鼠标离开触发</p>
+<p>　　　　onfocus  获得鼠标焦点触发</p>
+<p>　　　　onblur    失去鼠标焦点触发</p>
+<p>　　　　onmousemove   鼠标移动触发</p>
+<p>　　　　onmouseup   鼠标弹起触发</p>
+<p>　　　　onmousedown   鼠标按下触发</p>
 
       </section>
 
