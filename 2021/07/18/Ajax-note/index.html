@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    webpack |
+                                                    Ajax.note |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -55,7 +55,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f3910d5132923bf8644f6d.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f439cb5132923bf8b3f12d.jpg)"></div>
   
 
   <!-- navbar -->
@@ -106,16 +106,18 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">webpack</h1>
+          <h1 class="title-wrap">Ajax.note</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-07-18T01:36:56.000Z" itemprop="datePublished">2021-07-18</time>
+            <time  class="article-date" datetime="2021-07-18T14:30:28.000Z" itemprop="datePublished">2021-07-18</time>
           </h2>
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/Ajax/">🏷️ Ajax</a></li>
   
 </ul>
         </div>
@@ -139,14 +141,32 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>Webpack是一种前端资源构建工具，一个静态模块打包器。在Webpack看来，前端的所有资源文件(js/json/css/img/less/…)都会作为模块处理，当Webpack处理应用程序时，它将根据模块的依赖关系进行静态分析,构建一个依赖关系图，打包生成对应的静态资源(bundle)。</p>
-<h3 id="Webpack五个核心概念"><a href="#Webpack五个核心概念" class="headerlink" title="Webpack五个核心概念"></a>Webpack五个核心概念</h3><p>入口(Entry): 指示Webpack以哪个文件作为入口起点分析构建内部依赖图并进行打包。<br>输出(Output): 指示Webpack打包后的资源bundles输出到哪里去，以及如何命名。<br>加载器(Loader)： 让 webpack 能够去处理那些 webpack 默认不支持的(非JavaScript语言的)文件，<br>比如样式文件、图片文件等等（Webpack 本身默认只支持JS以及JSON文件）。<br>插件(Plugins): 可以执行范围更广阔的任务，包括打包优化，压缩代码以及重新定义环境变量等等。<br>模式(Mode)指示Webpack使用相应模式的配置。分为development和production两种模式，下面分别进行简述。<br>development: 开发模式，能让代码本地调试运行的环境。<br>production: 生产模式，能让代码优化运行的环境。</p>
+        <h3 id="全局刷新和局部刷新"><a href="#全局刷新和局部刷新" class="headerlink" title="全局刷新和局部刷新"></a>全局刷新和局部刷新</h3><ul>
+<li>全局刷新: 使用form,href等发起的请求是全局刷新<br>用户发起请求,视图改变了,旋转试图,使用新的数据添加到页面<br>缺点:<ol>
+<li>传递数据量比较大,占用网络带宽</li>
+<li>浏览器需要重新渲染整个页面</li>
+<li>用户体验一般</li>
+</ol>
+</li>
+<li>局部刷新: 在当前页面中发起请求,获取数据,更新当前页面的部分dom对象,对视图部分刷新<br>特点:<ol>
+<li>数据量比较小,在网络中传播速度快</li>
+<li>更新部分的页面内容,浏览器不需要全部渲染视图</li>
+<li>在页面中,可以做多个局部刷新</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="异步请求对象"><a href="#异步请求对象" class="headerlink" title="异步请求对象"></a>异步请求对象</h3><p>在局部刷新中,使用异步请求对象,在浏览器内部发起请求,获取数据<br>异步对象可以向服务器端独立发起请求,传递参数,接受服务器返回的结果数据</p>
+<ul>
+<li>异步对象(XMLHttpRequest)是浏览器内部的一种js对象,各大浏览器都能支持异步对象的使用。</li>
+</ul>
 
       </section>
 
       
       
         <nav class="article-nav">
+          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
@@ -157,23 +177,6 @@
       
         <a href="/2021/07/18/%E5%BC%82%E6%AD%A5/" itemprop="url">
           <h2 class="card-text--title text-ellipsis">异步</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
-          
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f1777e5132923bf8ac2700.jpg"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2021/07/16/%E9%97%B2%E8%81%8A/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">闲聊</h2>
         </a>
       
       <div class="card-text--row">Older</div>

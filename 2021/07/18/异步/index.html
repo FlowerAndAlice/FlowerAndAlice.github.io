@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    webpack |
+                                                    异步 |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -55,7 +55,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f3910d5132923bf8644f6d.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f42d0d5132923bf85789ed.jpg)"></div>
   
 
   <!-- navbar -->
@@ -106,16 +106,18 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">webpack</h1>
+          <h1 class="title-wrap">异步</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-07-18T01:36:56.000Z" itemprop="datePublished">2021-07-18</time>
+            <time  class="article-date" datetime="2021-07-18T13:24:13.000Z" itemprop="datePublished">2021-07-18</time>
           </h2>
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/js%E5%9F%BA%E7%A1%80/">🏷️ js基础</a></li>
   
 </ul>
         </div>
@@ -139,8 +141,9 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>Webpack是一种前端资源构建工具，一个静态模块打包器。在Webpack看来，前端的所有资源文件(js/json/css/img/less/…)都会作为模块处理，当Webpack处理应用程序时，它将根据模块的依赖关系进行静态分析,构建一个依赖关系图，打包生成对应的静态资源(bundle)。</p>
-<h3 id="Webpack五个核心概念"><a href="#Webpack五个核心概念" class="headerlink" title="Webpack五个核心概念"></a>Webpack五个核心概念</h3><p>入口(Entry): 指示Webpack以哪个文件作为入口起点分析构建内部依赖图并进行打包。<br>输出(Output): 指示Webpack打包后的资源bundles输出到哪里去，以及如何命名。<br>加载器(Loader)： 让 webpack 能够去处理那些 webpack 默认不支持的(非JavaScript语言的)文件，<br>比如样式文件、图片文件等等（Webpack 本身默认只支持JS以及JSON文件）。<br>插件(Plugins): 可以执行范围更广阔的任务，包括打包优化，压缩代码以及重新定义环境变量等等。<br>模式(Mode)指示Webpack使用相应模式的配置。分为development和production两种模式，下面分别进行简述。<br>development: 开发模式，能让代码本地调试运行的环境。<br>production: 生产模式，能让代码优化运行的环境。</p>
+        <h3 id="用户空间和内核空间"><a href="#用户空间和内核空间" class="headerlink" title="用户空间和内核空间"></a>用户空间和内核空间</h3><p>操作系统为了支持多个应用同时运行,需要保证不同进程之间相对独立(一个进程的崩溃不会影响其他的进程,恶意进程不能直接读取和修改其他进程运行时的代码和数据),因此操作系统内核需要<strong>高于普通进程的权限</strong>,以此来调度和管理用户的应用程序</p>
+<h3 id="同步（Synchronous）"><a href="#同步（Synchronous）" class="headerlink" title="同步（Synchronous）"></a>同步（Synchronous）</h3><p>同步: 同一时间只能做一件事(one by one),比如排队(一条队伍)<br>优点:做任何事情都是依次执行,井然有序不存在大家同时抢一个资源的说法。<br>缺点:如果其中某一步画的时间比较长,后续动作一直在等待它的完成,影响效率。<br>需要所有的操作都做完，才返回给用户。这样用户在线等待的时间太长，<br>而且用户不能关闭界面，如果关闭了，即迁移程序就中断了。</p>
+<h3 id="异步-Asynchronous"><a href="#异步-Asynchronous" class="headerlink" title="异步( Asynchronous)"></a>异步( Asynchronous)</h3><p>异步: 系统中断,当前进程外部的实体可以触发代码执行</p>
 
       </section>
 
@@ -151,12 +154,12 @@
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f42d0d5132923bf85789ed.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f439cb5132923bf8b3f12d.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2021/07/18/%E5%BC%82%E6%AD%A5/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">异步</h2>
+        <a href="/2021/07/18/Ajax-note/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Ajax.note</h2>
         </a>
       
       <div class="card-text--row">Newer</div>
@@ -168,12 +171,12 @@
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f1777e5132923bf8ac2700.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f3910d5132923bf8644f6d.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2021/07/16/%E9%97%B2%E8%81%8A/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">闲聊</h2>
+        <a href="/2021/07/18/webpack/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">webpack</h2>
         </a>
       
       <div class="card-text--row">Older</div>
