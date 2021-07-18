@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    算法 |
+                                                    webpack配置 |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -55,7 +55,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f152f45132923bf8ee5966.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f3910d5132923bf8644f6d.jpg)"></div>
   
 
   <!-- navbar -->
@@ -106,11 +106,11 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">算法</h1>
+          <h1 class="title-wrap">webpack配置</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-07-16T01:29:57.000Z" itemprop="datePublished">2021-07-16</time>
+            <time  class="article-date" datetime="2021-07-18T01:36:56.000Z" itemprop="datePublished">2021-07-18</time>
           </h2>
           <ul class="wrap-list dark">
   
@@ -139,18 +139,13 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="数据结构大纲"><a href="#数据结构大纲" class="headerlink" title="数据结构大纲"></a>数据结构大纲</h3><p>数据结构：列表、栈、队列、链表、字典、散列、图和二叉查找树<br>排序算法：冒牌排序、选择排序、插入排序、希尔排序、归并排序和快速排序<br>查找算法：顺序查找和二分查找</p>
-<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>1.数组扩容,-&gt;性能低 (16位数组不够则直接获取新32位数组,然后copy完再free(释放内存))<br>2.数组在前面或中间插入(删除)元素的性能非常低,因为每个元素都需要位移<br>3.在数组中查找数据直接(index) O(1),查找性能高<br>深度了解数组: <a target="_blank" rel="noopener" href="https://www.voidcanvas.com/javascript-array-evolution-performance">https://www.voidcanvas.com/javascript-array-evolution-performance</a></p>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>在下面的条件下，选择列表作为数据结构就显得尤为有用：<br>数据结构较为简单<br>不需要在一个长序列中查找元素，或者对其进行排序</p>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>后入先出(LIFO),只能在栈顶添加或删除,并不去关心其内部的元素是什么，只是去操作栈顶元素。<br>（1）webpack进行栈的封装<br>（2）十进制转任意进制:(转换的本质——将目标值一次一次除以进制基数，得到的取整值为新目标值，记录下余数，直到目标值小于0，最后将余数逆序组合即可。利用栈，记录余数入栈，组合时出栈。)<br>只要数据的保存满足后入先出或先进后出的原理，都优先考虑使用栈</p>
-<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>队列是遵循先进先出（FIFO，也称为先来先服务）原则的一组有序的项。<br>队列在尾部(front)添加新元素，并从顶部移除元素。最新添加的元素必须排在队列的末尾(rear)。<br>类比：日常生活中的女厕所排队。<br>只要数据的保存满足先进先出、后入后出的原理，都优先考虑使用队列</p>
-<p>队列主要用在和时间有关的地方，特别是操作系统中，队列是实现多任务(多线程)的重要机制<br>消息机制可以通过队列来实现，进程调度也是使用队列来实现</p>
-
+        
       </section>
 
       
       
         <nav class="article-nav">
+          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
@@ -161,23 +156,6 @@
       
         <a href="/2021/07/16/%E9%97%B2%E8%81%8A/" itemprop="url">
           <h2 class="card-text--title text-ellipsis">闲聊</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
-          
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f153ba5132923bf8f2fde4.jpg"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2021/07/15/%E8%8A%9C%E6%B9%96/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">芜湖</h2>
         </a>
       
       <div class="card-text--row">Older</div>
