@@ -141,7 +141,9 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="全局刷新和局部刷新"><a href="#全局刷新和局部刷新" class="headerlink" title="全局刷新和局部刷新"></a>全局刷新和局部刷新</h3><ul>
+        <h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><p>Asynchronous Javascript And XML（异步JavaScript和XML），<br>ajax是一种无需重新加载整个网页的情况下，能够部分更新页面内容的新方法<br>ajax不是新的编程语言,而是多种技术的综合使用</p>
+<hr>
+<h3 id="全局刷新和局部刷新"><a href="#全局刷新和局部刷新" class="headerlink" title="全局刷新和局部刷新"></a>全局刷新和局部刷新</h3><ul>
 <li>全局刷新: 使用form,href等发起的请求是全局刷新<br>用户发起请求,视图改变了,旋转试图,使用新的数据添加到页面<br>缺点:<ol>
 <li>传递数据量比较大,占用网络带宽</li>
 <li>浏览器需要重新渲染整个页面</li>
@@ -160,6 +162,45 @@
 <ul>
 <li>异步对象(XMLHttpRequest)是浏览器内部的一种js对象,各大浏览器都能支持异步对象的使用。</li>
 </ul>
+<hr>
+<h3 id="异步对象XMLHttpRequest接收"><a href="#异步对象XMLHttpRequest接收" class="headerlink" title="异步对象XMLHttpRequest接收"></a>异步对象XMLHttpRequest接收</h3><p>js中的一种对象,使用js语法创建和使用这个对象。<br>var xhr = new XMLHttpRequest();<br>之后就可以使用xhr对象的属性或者函数,进行异步对象的操作<br>局部需要使用到的技术:</p>
+<blockquote>
+<p>1、<strong>js</strong>：创建XMLHttpRequest对象,调用它的属性或方法<br> 2、DOM：处理DOM，更新select的数据<br> 3、CSS：处理视图，更新、美化。<br> 4、sevlet：服务器端技术<br> 5、数据格式：<strong>json （之前是xml）</strong></p>
+</blockquote>
+<p>以上这些的综合使用就成为Ajax:<br>使用<strong>js</strong>操作<strong>xhr</strong>异步对象,和服务器端交换使用<strong>json</strong>数据格式</p>
+<hr>
+<h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><ul>
+<li><p>同步: 同一时间只能做一件事(one by one),不能关闭界面,否则会中断,比如打电话</p>
+</li>
+<li><p>异步: 系统中断,当前进程外部的实体可以触发代码执行,比如海王聊天(效率更高)</p>
+</li>
+</ul>
+<hr>
+<h3 id="异步对象XMLHttpRequest属性和方法"><a href="#异步对象XMLHttpRequest属性和方法" class="headerlink" title="异步对象XMLHttpRequest属性和方法"></a>异步对象XMLHttpRequest属性和方法</h3><ul>
+<li><p>创建异步对象,使用js的语法<br>var xhr= new XMLHttpRequest();</p>
+</li>
+<li><p>XMLHttpRequest方法</p>
+</li>
+</ul>
+<ol>
+<li><p>open(请求方式,服务端的访问地址,异步还是同步(布尔值))<br>例如 xhr.open(“get”,”loginServlet”,true) :<br>表示我们向 loginServlet地址发送一个异步请求,用的是get方式</p>
+</li>
+<li><p>send(): 使用异步对象发送请求</p>
+</li>
+</ol>
+<ul>
+<li>XMLHttpRequest属性<br>readyState属性:请求的状态<blockquote>
+<p>0: 表示 创建异步对象时,new XMLHttpRequest();<br>  1: 表示 初始异步对象的请求参数,执行open()方法。<br>  2: 表示 使用send()方法发送请求。<br>  3: 表示 使用异步对象从服务器端接收了数据<br>  4: 表示 异步对象接收了数据,并在异步对象内部处理完成后</p>
+</blockquote>
+</li>
+</ul>
+<p>status: 网络的状态,和Http的状态码对应</p>
+<blockquote>
+<p>200: 请求成功<br>    404:服务器资源没有找到<br>    500: 服务器内部代码有错误</p>
+</blockquote>
+<ul>
+<li>responsText属性: 表示 服务器端返回的数据</li>
+</ul>
 
       </section>
 
@@ -175,8 +216,8 @@
     
     <div class="card-text">
       
-        <a href="/2021/07/18/%E5%BC%82%E6%AD%A5/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">异步</h2>
+        <a href="/2021/07/18/target/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">target</h2>
         </a>
       
       <div class="card-text--row">Older</div>
@@ -275,7 +316,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 20px;" class="tags-cloud-10">js基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 10px;" class="tags-cloud-0">基础知识</a>
+      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 10px;" class="tags-cloud-0">基础知识</a>
     </div>
   </div>
 </section>
