@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    Ajax.note |
+                                                    DOM |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -55,7 +55,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f439cb5132923bf8b3f12d.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f153ba5132923bf8f2fde4.jpg)"></div>
   
 
   <!-- navbar -->
@@ -106,18 +106,18 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Ajax.note</h1>
+          <h1 class="title-wrap">DOM</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-07-18T14:30:28.000Z" itemprop="datePublished">2021-07-18</time>
+            <time  class="article-date" datetime="2021-07-15T02:05:46.000Z" itemprop="datePublished">2021-07-15</time>
           </h2>
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
   
-    <li><a href="/tags/Ajax/">🏷️ Ajax</a></li>
+    <li><a href="/tags/js%E5%9F%BA%E7%A1%80/">🏷️ js基础</a></li>
   
 </ul>
         </div>
@@ -141,66 +141,36 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><p>Asynchronous Javascript And XML（异步JavaScript和XML），<br>ajax是一种无需重新加载整个网页的情况下，能够部分更新页面内容的新方法<br>ajax不是新的编程语言,而是多种技术的综合使用</p>
-<hr>
-<h3 id="全局刷新和局部刷新"><a href="#全局刷新和局部刷新" class="headerlink" title="全局刷新和局部刷新"></a>全局刷新和局部刷新</h3><ul>
-<li>全局刷新: 使用form,href等发起的请求是全局刷新<br>用户发起请求,视图改变了,旋转试图,使用新的数据添加到页面<br>缺点:<ol>
-<li>传递数据量比较大,占用网络带宽</li>
-<li>浏览器需要重新渲染整个页面</li>
-<li>用户体验一般</li>
-</ol>
-</li>
-<li>局部刷新: 在当前页面中发起请求,获取数据,更新当前页面的部分dom对象,对视图部分刷新<br>特点:<ol>
-<li>数据量比较小,在网络中传播速度快</li>
-<li>更新部分的页面内容,浏览器不需要全部渲染视图</li>
-<li>在页面中,可以做多个局部刷新</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h3 id="异步请求对象"><a href="#异步请求对象" class="headerlink" title="异步请求对象"></a>异步请求对象</h3><p>在局部刷新中,使用异步请求对象,在浏览器内部发起请求,获取数据<br>异步对象可以向服务器端独立发起请求,传递参数,接受服务器返回的结果数据</p>
+        <h3 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h3><p>添加模态框的几种方法: 1.在button里添加data 属性,为button绑定模态框<br>2.使用jquery语法, 先给模态框的div添加id,然后通过  $(‘#myModal’).modal(options) 调用</p>
+<h3 id="Web-Apis"><a href="#Web-Apis" class="headerlink" title="Web Apis"></a>Web Apis</h3><p>dom: 文档对象模型, 简单理解为处理文档的一些接口<br>1.对于JavaScript，为了能够使JavaScript操作HTML，JavaScript就有了一套自己的DOM编程接口。<br>　　2.对于HTML，DOM使得html形成一颗dom树，包含文档、元素、节点。<br>文档: 一个页面就是一个文档,DOM中使用document表示<br>元素: 页面中的所有标签都是元素,DOM中用element表示<br>节点: 网页中所有内容都是节点(标签/属性/文本/注释),DOM中用node表示<br> DOM把以上内容都看做对象(可以获取)</p>
+<h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><p>我们主要针对元素的操作。主要有创建、增、删、改、查、属性操作、事件操作。</p>
 <ul>
-<li>异步对象(XMLHttpRequest)是浏览器内部的一种js对象,各大浏览器都能支持异步对象的使用。</li>
+<li>修改样式: 通过</li>
 </ul>
-<hr>
-<h3 id="异步对象XMLHttpRequest接收"><a href="#异步对象XMLHttpRequest接收" class="headerlink" title="异步对象XMLHttpRequest接收"></a>异步对象XMLHttpRequest接收</h3><p>js中的一种对象,使用js语法创建和使用这个对象。<br>var xhr = new XMLHttpRequest();<br>之后就可以使用xhr对象的属性或者函数,进行异步对象的操作<br>局部需要使用到的技术:</p>
 <blockquote>
-<p>1、<strong>js</strong>：创建XMLHttpRequest对象,调用它的属性或方法<br> 2、DOM：处理DOM，更新select的数据<br> 3、CSS：处理视图，更新、美化。<br> 4、sevlet：服务器端技术<br> 5、数据格式：<strong>json （之前是xml）</strong></p>
-</blockquote>
-<p>以上这些的综合使用就成为Ajax:<br>使用<strong>js</strong>操作<strong>xhr</strong>异步对象,和服务器端交换使用<strong>json</strong>数据格式</p>
-<hr>
-<h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><ul>
-<li><p>同步: 同一时间只能做一件事(one by one),不能关闭界面,否则会中断,比如打电话</p>
-</li>
-<li><p>异步: 系统中断,当前进程外部的实体可以触发代码执行,比如海王聊天(效率更高)</p>
-</li>
-</ul>
-<hr>
-<h3 id="异步对象XMLHttpRequest属性和方法"><a href="#异步对象XMLHttpRequest属性和方法" class="headerlink" title="异步对象XMLHttpRequest属性和方法"></a>异步对象XMLHttpRequest属性和方法</h3><ul>
-<li><p>创建异步对象,使用js的语法<br>var xhr= new XMLHttpRequest();</p>
-</li>
-<li><p>XMLHttpRequest方法</p>
-</li>
-</ul>
-<ol>
-<li><p>open(请求方式,服务端的访问地址,异步还是同步(布尔值))<br>例如 xhr.open(“get”,”loginServlet”,true) :<br>表示我们向 loginServlet地址发送一个异步请求,用的是get方式</p>
-</li>
-<li><p>send(): 使用异步对象发送请求</p>
-</li>
-</ol>
-<ul>
-<li>XMLHttpRequest属性<br>readyState属性:请求的状态<blockquote>
-<p>0: 表示 创建异步对象时,new XMLHttpRequest();<br>  1: 表示 初始异步对象的请求参数,执行open()方法。<br>  2: 表示 使用send()方法发送请求。<br>  3: 表示 使用异步对象从服务器端接收了数据<br>  4: 表示 异步对象接收了数据,并在异步对象内部处理完成后</p>
-</blockquote>
-</li>
-</ul>
-<p>status: 网络的状态,和Http的状态码对应</p>
-<blockquote>
-<p>200: 请求成功<br>    404:服务器资源没有找到<br>    500: 服务器内部代码有错误</p>
+<p>this.style.backgroundColor = “greenyellow”;<br>this.style.fontSize = “26px”;</p>
 </blockquote>
 <ul>
-<li>responsText属性: 表示 服务器端返回的数据</li>
+<li><strong>创建节点</strong>: 通过 let ck =document.createElement(‘up’);<br>创建节点之后需要添加节点才能看到创建好的节点</li>
+<li><strong>添加节点</strong>(添加到<strong>末尾</strong>):     node.appendchild(child);  </li>
+<li><strong>插入节点</strong>(到指定位置的<strong>前面</strong>):   ul.insertBefore(节点绑定名, ul.children[0]);</li>
+<li><strong>删除节点</strong>(删除并返回一个子节点):    ul.removeChild(ul.children[0]);</li>
 </ul>
+<hr>
+<h3 id="DOM创建"><a href="#DOM创建" class="headerlink" title="DOM创建"></a>DOM创建</h3><p>document.write（）是直接将内容写入页面的内容流，但若是文档流执行完毕再进行document.write（），则它会导致页面全部重绘。<br>HTML 输出流：当前数据形式是 HTML 格式的数据，这部分数据正被导出、传输或显示，所以称为”流“。<br>innerHTML是将内容写入某个DOM节点，不会导致页面全部重绘，创建多个元素效率更高（不要拼接字符串，采取数组形式拼接），结构稍微复杂。<br>innerHTML获取标签所包含的HTML+文本信息,innerText只能获取文本信息</p>
+<p><img src="https://pic.imgdb.cn/item/60f2e9df5132923bf84e6055.gif" alt="HTML"></p>
+<p>document.createElement() //创建多个元素 效率稍微低一些 但是结构会很清晰</p>
+<h3 id="DOM查询-获取元素"><a href="#DOM查询-获取元素" class="headerlink" title="DOM查询(获取元素)"></a>DOM查询(获取元素)</h3><p>DOM提供的API方法:getElementByid,getElementByTagName (老方法不推荐使用)<br>    H5新增的方法:querySelector、querySelectorAll (提倡使用)<br>    利用节点操作获取元素:父节点(parentNode)、子节点(children)、兄(previousElementSibling、nextElementSibling)提倡使用</p>
+<p>getElementByTagName: 根据类名返回元素对象合集<br>querySelector: 返回指定选择器的第一个元素对象,指定时需要加.或者#符号<br>querySelectorAll(): 返回指定选择器的所有元素对象,指定时需要加.或者#符号</p>
+<h3 id="DOM增加"><a href="#DOM增加" class="headerlink" title="DOM增加"></a>DOM增加</h3><p>appendChild() 方法向节点添加最后一个子节点。<br>insertBefore() 在前面增加</p>
+<h3 id="事件操作"><a href="#事件操作" class="headerlink" title="事件操作"></a>事件操作</h3><p>给元素注册事件，获取事件源(谁被触发) .事件类型(绑定事件,比如点击onclick) = 事件处理程序(函数赋值)<br>onclick  鼠标点击左键触发</p>
+<p>　　　　onmouseover  鼠标经过触发</p>
+<p>　　　　onmouseout    鼠标离开触发</p>
+<p>　　　　onfocus  获得鼠标焦点触发</p>
+<p>　　　　onblur    失去鼠标焦点触发</p>
+<p>　　　　onmousemove   鼠标移动触发</p>
+<p>　　　　onmouseup   鼠标弹起触发</p>
+<p>　　　　onmousedown   鼠标按下触发</p>
 
       </section>
 
@@ -208,16 +178,32 @@
       
         <nav class="article-nav">
           
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f152f45132923bf8ee5966.jpg"></div>
+    
+    <div class="card-text">
+      
+        <a href="/2021/07/16/%E7%AE%97%E6%B3%95/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">算法</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f42d0d5132923bf85789ed.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f152865132923bf8ebe22c.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2021/07/18/target/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">target</h2>
+        <a href="/2021/07/14/%E8%B5%B7%E9%A3%9E/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">起飞</h2>
         </a>
       
       <div class="card-text--row">Older</div>
