@@ -140,8 +140,20 @@
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
         <h3 id="关于图床"><a href="#关于图床" class="headerlink" title="关于图床"></a>关于图床</h3><p>目前可以白嫖的有: 聚合图床 路过图床  sm.ms 随意云</p>
+<hr>
 <h3 id="关于log和dir和document-write"><a href="#关于log和dir和document-write" class="headerlink" title="关于log和dir和document.write"></a>关于log和dir和document.write</h3><p>console.log(): 用于控制台调试，可以打印对象的内容,无法看到标签对象的属性和方法,<br>能输出多个数据，可以识别数据类型(颜色有差异)<br>console.dir(): 以对象形式输出标签对象的属性和方法,不能直观识别数据类型</p>
 <p>document.write: 不用于调试，只能打印出对象类型,(在网页上写东西),Javascript 中只能在 HTML 输出流中使用 document.write(实际上文档加载时就是一边加载一边用 document.write 写出内容到屏幕上，而加载完成后，document 就关闭)，在文档已加载后(注意)使用它（比如在函数中），会覆盖整个文档(重写,html里只有空head和新body,故background也会被重置,)。</p>
+<hr>
+<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>var a = 2 如何执行:</p>
+<p>编译器先编译到var a ,编译器会询问该作用域中是否有a,<br>如果有a,则不进行重复声明,编译下一步,否则会在该作用域中声明一个新变量,命名为a<br>编译到a=2,编译器会为引擎生成能够完成这个赋值操作的代码,引擎会询问作用域中是否有a,直至找到a并赋值给它,否则会报错</p>
+<hr>
+<h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><p>栈会自动分配内存空间，会自动释放，存放基本类型，简单的数据段，占据固定大小的空间。<br>（基本类型：String，Number，Boolean，Null，Undefined）<br>动态分配的内存，大小不定也不会自动释放，存放引用类型，指那些可能由多个值构成的对象，保存在堆内存中，包含引用类型的变量，实际上保存的不是变量本身，而是指向该对象的指针。（引用类型：Function，Array，Object）</p>
+<p>栈：所有在方法中定义的变量都是放在栈内存中，随着方法的执行结束，这个方法的内存栈也自然销毁。<br>堆: 堆内存中的对象不会随方法的结束而销毁<br>栈和堆的区别：即基本类型和引用类型的区别<br>var a = [1,0,9,8,7];<br>   var b = a;<br>   var c = a[0];<br>   console.log(b);     //[1,0,9,8,7]<br>   console.log(c);     //1<br>   //改变数值<br>   b[1] = 3;<br>   c = 5;<br>   console.log(b[1]);  //3<br>   console.log(a[0]);  //1<br>这都是赋值</p>
+<p>因为a是数组，是引用类型，赋给b的时候传的是栈中的地址，不是堆内存中的对象，c仅仅是从a堆内存中获取的一个数据值，并保存在栈中，所以b修改的时候，会根据地址回到a堆中修改，c则直接在栈中修改，并且不能指向a堆内存中。</p>
+<hr>
+<h3 id="深浅拷贝与赋值"><a href="#深浅拷贝与赋值" class="headerlink" title="深浅拷贝与赋值"></a>深浅拷贝与赋值</h3><p>赋值:(a = [1,2,3], b=a,) 赋值操作(包括对象作为参数、返回值),不会开辟新的内存空间,他只是赋值了对象的引用(也只对对象进行操作).也就是除了b这个名字之外,没有其他的内存开销,修改了a也就影响了b,修改了b,也就影响了a.</p>
+<p>浅拷贝：只复制指向某个对象的指针而不复制对象本身，新旧对象还是共享同一块内存。<br>如果属性是基本类型，拷贝的就是基本类型的值(基本数据类型互不影响)；如果属性是内存地址（引用类型），拷贝的就是内存地址 ，因此如果其中一个对象改变了这个地址，就会影响到另一个对象。</p>
+<p>深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。</p>
 <!-- hexo中插入图片的方式: ![Alt text](图片url "optional title") -->
 
       </section>
@@ -274,7 +286,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 10px;" class="tags-cloud-0">基础知识</a>
+      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">基础</a>
     </div>
   </div>
 </section>

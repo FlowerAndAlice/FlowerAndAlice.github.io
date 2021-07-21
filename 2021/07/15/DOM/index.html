@@ -160,8 +160,12 @@
 <h3 id="DOM创建"><a href="#DOM创建" class="headerlink" title="DOM创建"></a>DOM创建</h3><p>document.write（）是直接将内容写入页面的内容流，但若是文档流执行完毕再进行document.write（），则它会导致页面全部重绘。<br>HTML 输出流：当前数据形式是 HTML 格式的数据，这部分数据正被导出、传输或显示，所以称为”流“。<br>innerHTML是将内容写入某个DOM节点，不会导致页面全部重绘，创建多个元素效率更高（不要拼接字符串，采取数组形式拼接），结构稍微复杂。<br>innerHTML获取标签所包含的HTML+文本信息,innerText只能获取文本信息</p>
 <p><img src="https://pic.imgdb.cn/item/60f2e9df5132923bf84e6055.gif" alt="HTML"></p>
 <p>document.createElement() //创建多个元素 效率稍微低一些 但是结构会很清晰</p>
-<h3 id="DOM查询-获取元素"><a href="#DOM查询-获取元素" class="headerlink" title="DOM查询(获取元素)"></a>DOM查询(获取元素)</h3><p>DOM提供的API方法:getElementByid,getElementByTagName (老方法不推荐使用)<br>    H5新增的方法:querySelector、querySelectorAll (提倡使用)<br>    利用节点操作获取元素:父节点(parentNode)、子节点(children)、兄(previousElementSibling、nextElementSibling)提倡使用</p>
-<p>getElementByTagName: 根据类名返回元素对象合集<br>querySelector: 返回指定选择器的第一个元素对象,指定时需要加.或者#符号<br>querySelectorAll(): 返回指定选择器的所有元素对象,指定时需要加.或者#符号</p>
+<h3 id="DOM查询-获取元素"><a href="#DOM查询-获取元素" class="headerlink" title="DOM查询(获取元素)"></a>DOM查询(获取元素)</h3><p>DOM提供的API方法:getElementByid(),getElementByTagName()[] (老方法不推荐使用)<br>    H5新增的方法:querySelector()、querySelectorAll() (提倡使用)<br>    利用节点操作获取元素:父节点(parentNode)、子节点(children)、兄(previousElementSibling、nextElementSibling)提倡使用</p>
+<ol>
+<li>getElementByTagName()[]: 根据类名返回元素对象合集</li>
+<li><strong>querySelector()</strong>: 返回指定选择器的<strong>第一个</strong>元素对象,可做任意选择(id #: 爱井)<br>更多细节:<a target="_blank" rel="noopener" href="https://www.jb51.net/article/100745.htm">https://www.jb51.net/article/100745.htm</a></li>
+<li>querySelectorAll(): 返回指定选择器的<strong>所有</strong>元素对象,指定时需要加.或者#符号</li>
+</ol>
 <h3 id="DOM增加"><a href="#DOM增加" class="headerlink" title="DOM增加"></a>DOM增加</h3><p>appendChild() 方法向节点添加最后一个子节点。<br>insertBefore() 在前面增加</p>
 <h3 id="事件操作"><a href="#事件操作" class="headerlink" title="事件操作"></a>事件操作</h3><p>给元素注册事件，获取事件源(谁被触发) .事件类型(绑定事件,比如点击onclick) = 事件处理程序(函数赋值)<br>onclick  鼠标点击左键触发</p>
 <p>　　　　onmouseover  鼠标经过触发</p>
@@ -202,8 +206,8 @@
     
     <div class="card-text">
       
-        <a href="/2021/07/14/%E8%B5%B7%E9%A3%9E/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">起飞</h2>
+        <a href="/2021/07/14/js%E5%9F%BA%E7%A1%80/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">js基础</h2>
         </a>
       
       <div class="card-text--row">Older</div>
@@ -302,7 +306,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 10px;" class="tags-cloud-0">基础知识</a>
+      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">基础</a>
     </div>
   </div>
 </section>

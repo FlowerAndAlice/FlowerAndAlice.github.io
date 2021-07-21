@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    起飞 |
+                                                    js基础 |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -106,7 +106,7 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">起飞</h1>
+          <h1 class="title-wrap">js基础</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
@@ -117,7 +117,7 @@
 </ul>
           <ul class="wrap-list dark">
   
-    <li><a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">🏷️ 基础知识</a></li>
+    <li><a href="/tags/%E5%9F%BA%E7%A1%80/">🏷️ 基础</a></li>
   
 </ul>
         </div>
@@ -141,15 +141,36 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>var a = 2 如何执行:</p>
-<p>编译器先编译到var a ,编译器会询问该作用域中是否有a,<br>如果有a,则不进行重复声明,编译下一步,否则会在该作用域中声明一个新变量,命名为a<br>编译到a=2,编译器会为引擎生成能够完成这个赋值操作的代码,引擎会询问作用域中是否有a,直至找到a并赋值给它,否则会报错</p>
-<h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><p>栈会自动分配内存空间，会自动释放，存放基本类型，简单的数据段，占据固定大小的空间。<br>（基本类型：String，Number，Boolean，Null，Undefined）<br>动态分配的内存，大小不定也不会自动释放，存放引用类型，指那些可能由多个值构成的对象，保存在堆内存中，包含引用类型的变量，实际上保存的不是变量本身，而是指向该对象的指针。（引用类型：Function，Array，Object）</p>
-<p>栈：所有在方法中定义的变量都是放在栈内存中，随着方法的执行结束，这个方法的内存栈也自然销毁。<br>堆: 堆内存中的对象不会随方法的结束而销毁<br>栈和堆的区别：即基本类型和引用类型的区别<br>var a = [1,0,9,8,7];<br>   var b = a;<br>   var c = a[0];<br>   console.log(b);     //[1,0,9,8,7]<br>   console.log(c);     //1<br>   //改变数值<br>   b[1] = 3;<br>   c = 5;<br>   console.log(b[1]);  //3<br>   console.log(a[0]);  //1<br>这都是赋值</p>
-<p>因为a是数组，是引用类型，赋给b的时候传的是栈中的地址，不是堆内存中的对象，c仅仅是从a堆内存中获取的一个数据值，并保存在栈中，所以b修改的时候，会根据地址回到a堆中修改，c则直接在栈中修改，并且不能指向a堆内存中。</p>
-<h3 id="深浅拷贝与赋值"><a href="#深浅拷贝与赋值" class="headerlink" title="深浅拷贝与赋值"></a>深浅拷贝与赋值</h3><p>赋值:(a = [1,2,3], b=a,) 赋值操作(包括对象作为参数、返回值),不会开辟新的内存空间,他只是赋值了对象的引用(也只对对象进行操作).也就是除了b这个名字之外,没有其他的内存开销,修改了a也就影响了b,修改了b,也就影响了a.</p>
-<p>浅拷贝：只复制指向某个对象的指针而不复制对象本身，新旧对象还是共享同一块内存。<br>如果属性是基本类型，拷贝的就是基本类型的值(基本数据类型互不影响)；如果属性是内存地址（引用类型），拷贝的就是内存地址 ，因此如果其中一个对象改变了这个地址，就会影响到另一个对象。</p>
-<p>深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。</p>
-
+        <h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量名可以是字母、下划线、$ 和 数字，但不能以数字开头。 (驼峰)</p>
+<ol>
+<li>关键字: catch、finally、do、throw、void…</li>
+<li>保留字：Abstract、Byte、Char、Debugger、Export、Static…</li>
+</ol>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ol>
+<li>ES5基本数据类型：Undefined，Null，Number，String，Boolean。引用类型：Object。</li>
+<li>ES6新增了数据类型<strong>Symbol</strong>，表示独一无二的值。</li>
+<li>typeof 返回的是string，表示的是数据类型。</li>
+<li>转换为string：var a= a.toString(); 或者a=string(a);</li>
+<li>将srting转为number(string有一些number没有的方法)：a=number(a)或者直接 +number(a);<br>undefined返回NaN, 空串/空格/Null，返回0;</li>
+<li><strong>a++</strong> (a在前)表示原变量的值，自增前的量; <strong>++a</strong> 表示新值，即自增后的值;</li>
+</ol>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ol>
+<li>==不比较数据类型(会转换数据类型再比较number),故基本不用</li>
+<li>===既比较数据类型,又比较number值,<strong>性能最优</strong></li>
+<li>!=,不比较数据类型(会转换-&gt;性能不是最优)</li>
+<li>!==,既比较数据类型,又比较number值,<strong>性能最优</strong></li>
+<li>此处有高级用法待挖掘</li>
+</ol>
+<h3 id="分支语句"><a href="#分支语句" class="headerlink" title="分支语句"></a>分支语句</h3><ul>
+<li><p>第一种 if结构 :</p>
+</li>
+<li><p>第二种 switch结构 :</p>
+</li>
+</ul>
+<blockquote>
+<p>switch ( 条件判断 ) {<br>   case value： 执行语句;  （记录对比）<br>   break; （关键字）停止或跳出操作<br>  case value： 执行语句 ;<br>    break;<br>   …<br> default:<br> }</p>
+</blockquote>
+<h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3>
       </section>
 
       
@@ -264,7 +285,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 10px;" class="tags-cloud-0">基础知识</a>
+      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">基础</a>
     </div>
   </div>
 </section>
