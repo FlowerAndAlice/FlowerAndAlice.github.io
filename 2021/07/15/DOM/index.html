@@ -167,7 +167,16 @@
 <li>querySelectorAll(): 返回指定选择器的<strong>所有</strong>元素对象,指定时需要加.或者#符号</li>
 </ol>
 <h3 id="DOM增加"><a href="#DOM增加" class="headerlink" title="DOM增加"></a>DOM增加</h3><p>appendChild() 方法向节点添加最后一个子节点。<br>insertBefore() 在前面增加</p>
-<h3 id="事件操作"><a href="#事件操作" class="headerlink" title="事件操作"></a>事件操作</h3><p>给元素注册事件，获取事件源(谁被触发) .事件类型(绑定事件,比如点击onclick) = 事件处理程序(函数赋值)<br>onclick  鼠标点击左键触发</p>
+<h3 id="事件操作"><a href="#事件操作" class="headerlink" title="事件操作"></a>事件操作</h3><ul>
+<li>element.<strong>onEventType</strong>在同一元素上同一事件类型绑定多个事件时,后面的会覆盖前面的,</li>
+<li>但element.<strong>addEventListener</strong>不会覆盖  ,注意add..用的是click而不是onclick</li>
+</ul>
+<blockquote>
+<p>addEventListener(“eventType”,fun,boolean ) ;<br>//<strong>boolean默认false-&gt;冒泡阶段触发,true-&gt;捕获阶段触发</strong></p>
+</blockquote>
+<ul>
+<li>给元素注册事件，获取事件源(谁被触发) .事件类型(绑定事件,比如点击onclick) = 事件处理程序(函数赋值)<br>onclick  鼠标点击左键触发</li>
+</ul>
 <p>　　　　onmouseover  鼠标经过触发</p>
 <p>　　　　onmouseout    鼠标离开触发</p>
 <p>　　　　onfocus  获得鼠标焦点触发</p>
@@ -175,6 +184,18 @@
 <p>　　　　onmousemove   鼠标移动触发</p>
 <p>　　　　onmouseup   鼠标弹起触发</p>
 <p>　　　　onmousedown   鼠标按下触发</p>
+<h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><ul>
+<li><p>比如 : 三个div嵌套,都绑定click事件,点击最内层的元素,事件是从内到外执行的。</p>
+</li>
+<li><p>事件捕获： 从外层到内层(不会触发事件)</p>
+</li>
+<li><p>事件冒泡： 从内层到外层(会触发事件)</p>
+</li>
+<li><p>阻止冒泡: e.stopPropagation(); //此处的e为函数中传的参数</p>
+</li>
+<li><p>阻止事件的默认行为(比如a链接跳转): e.preventDefault();//一定有效<br>或者 return false;  //不一定有效</p>
+</li>
+</ul>
 
       </section>
 
