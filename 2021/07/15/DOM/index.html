@@ -141,11 +141,33 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h3><p>添加模态框的几种方法: 1.在button里添加data 属性,为button绑定模态框<br>2.使用jquery语法, 先给模态框的div添加id,然后通过  $(‘#myModal’).modal(options) 调用</p>
-<h3 id="Web-Apis"><a href="#Web-Apis" class="headerlink" title="Web Apis"></a>Web Apis</h3><p>dom: 文档对象模型, 简单理解为处理文档的一些接口<br>1.对于JavaScript，为了能够使JavaScript操作HTML，JavaScript就有了一套自己的DOM编程接口。<br>　　2.对于HTML，DOM使得html形成一颗dom树，包含文档、元素、节点。<br>文档: 一个页面就是一个文档,DOM中使用document表示<br>元素: 页面中的所有标签都是元素,DOM中用element表示<br>节点: 网页中所有内容都是节点(标签/属性/文本/注释),DOM中用node表示<br> DOM把以上内容都看做对象(可以获取)</p>
-<h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><p>我们主要针对元素的操作。主要有创建、增、删、改、查、属性操作、事件操作。</p>
+        <h3 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h3><ul>
+<li>添加模态框的几种方法:</li>
+</ul>
+<ol>
+<li>在button里添加data 属性,为button绑定模态框</li>
+<li>使用jquery语法, 先给模态框的div添加id,然后通过  $(‘#myModal’).modal(options) 调用</li>
+</ol>
+<h3 id="Web-Apis"><a href="#Web-Apis" class="headerlink" title="Web Apis"></a>Web Apis</h3><ul>
+<li>dom: 文档对象模型, 简单理解为处理文档的一些接口</li>
+</ul>
+<ol>
+<li><p>对于JavaScript，为了能够使JavaScript操作HTML，JavaScript就有了一套自己的DOM编程接口。</p>
+</li>
+<li><p>对于HTML，DOM使得html形成一颗dom树，包含文档、元素、节点。</p>
+</li>
+</ol>
 <ul>
-<li>修改样式: 通过</li>
+<li>文档: 一个页面就是一个文档,DOM中使用document表示</li>
+<li>元素: 页面中的所有标签都是元素,DOM中用element表示</li>
+<li>节点: 网页中所有内容都是节点(标签/属性/文本/注释),DOM中用node表示</li>
+<li>DOM把以上内容都看做对象(可以获取)</li>
+</ul>
+<h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><ul>
+<li><p>我们主要针对元素的操作。主要有创建、增、删、改、查、属性操作、事件操作。</p>
+</li>
+<li><p><strong>修改样式</strong>:</p>
+</li>
 </ul>
 <blockquote>
 <p>this.style.backgroundColor = “greenyellow”;<br>this.style.fontSize = “26px”;</p>
@@ -157,19 +179,29 @@
 <li><strong>删除节点</strong>(删除并返回一个子节点):    ul.removeChild(ul.children[0]);</li>
 </ul>
 <hr>
-<h3 id="DOM创建"><a href="#DOM创建" class="headerlink" title="DOM创建"></a>DOM创建</h3><p>document.write（）是直接将内容写入页面的内容流，但若是文档流执行完毕再进行document.write（），则它会导致页面全部重绘。<br>HTML 输出流：当前数据形式是 HTML 格式的数据，这部分数据正被导出、传输或显示，所以称为”流“。<br>innerHTML是将内容写入某个DOM节点，不会导致页面全部重绘，创建多个元素效率更高（不要拼接字符串，采取数组形式拼接），结构稍微复杂。<br>innerHTML获取标签所包含的HTML+文本信息,innerText只能获取文本信息</p>
+<h3 id="DOM创建"><a href="#DOM创建" class="headerlink" title="DOM创建"></a>DOM创建</h3><ul>
+<li>document.write（）是直接将内容写入页面的内容流，但若是文档流执行完毕再进行document.write（），则它会导致页面全部重绘。</li>
+<li>HTML 输出流：当前数据形式是 HTML 格式的数据，这部分数据正被导出、传输或显示，所以称为”流“。</li>
+<li>innerHTML是将内容写入某个DOM节点，不会导致页面全部重绘，创建多个元素效率更高（不要拼接字符串，采取数组形式拼接），结构稍微复杂。</li>
+<li>innerHTML获取标签所包含的HTML+文本信息,innerText只能获取文本信息</li>
+</ul>
 <p><img src="https://pic.imgdb.cn/item/60f2e9df5132923bf84e6055.gif" alt="HTML"></p>
 <p>document.createElement() //创建多个元素 效率稍微低一些 但是结构会很清晰</p>
-<h3 id="DOM查询-获取元素"><a href="#DOM查询-获取元素" class="headerlink" title="DOM查询(获取元素)"></a>DOM查询(获取元素)</h3><p>DOM提供的API方法:getElementByid(),getElementByTagName()[] (老方法不推荐使用)<br>    H5新增的方法:querySelector()、querySelectorAll() (提倡使用)<br>    利用节点操作获取元素:父节点(parentNode)、子节点(children)、兄(previousElementSibling、nextElementSibling)提倡使用</p>
+<h3 id="DOM查询-获取元素"><a href="#DOM查询-获取元素" class="headerlink" title="DOM查询(获取元素)"></a>DOM查询(获取元素)</h3><ul>
+<li>DOM提供的API方法:getElementByid(),getElementByTagName()[] (老方法不推荐使用)<br>  H5新增的方法:querySelector()、querySelectorAll() (提倡使用)<br>  利用节点操作获取元素:父节点(parentNode)、子节点(children)、兄(previousElementSibling、nextElementSibling)提倡使用</li>
+</ul>
 <ol>
 <li>getElementByTagName()[]: 根据类名返回元素对象合集</li>
 <li><strong>querySelector()</strong>: 返回指定选择器的<strong>第一个</strong>元素对象,可做任意选择(id #: 爱井)<br>更多细节:<a target="_blank" rel="noopener" href="https://www.jb51.net/article/100745.htm">https://www.jb51.net/article/100745.htm</a></li>
 <li>querySelectorAll(): 返回指定选择器的<strong>所有</strong>元素对象,指定时需要加.或者#符号</li>
 </ol>
-<h3 id="DOM增加"><a href="#DOM增加" class="headerlink" title="DOM增加"></a>DOM增加</h3><p>appendChild() 方法向节点添加最后一个子节点。<br>insertBefore() 在前面增加</p>
+<h3 id="DOM增加"><a href="#DOM增加" class="headerlink" title="DOM增加"></a>DOM增加</h3><ul>
+<li>appendChild() 方法向节点添加最后一个子节点。</li>
+<li>insertBefore() 在前面增加</li>
+</ul>
 <h3 id="事件操作"><a href="#事件操作" class="headerlink" title="事件操作"></a>事件操作</h3><ul>
 <li>element.<strong>onEventType</strong>在同一元素上同一事件类型绑定多个事件时,后面的会覆盖前面的,</li>
-<li>但element.<strong>addEventListener</strong>不会覆盖  ,注意add..用的是click而不是onclick</li>
+<li>但element.<strong>addEventListener</strong>不会覆盖  ,注意不要为事件使用“on”前缀</li>
 </ul>
 <blockquote>
 <p>addEventListener(“eventType”,fun,boolean ) ;<br>//<strong>boolean默认false-&gt;冒泡阶段触发,true-&gt;捕获阶段触发</strong></p>
@@ -189,12 +221,41 @@
 </li>
 <li><p>事件捕获： 从外层到内层(不会触发事件)</p>
 </li>
-<li><p>事件冒泡： 从内层到外层(会触发事件)</p>
+<li><p><strong>事件冒泡</strong>： 从内层到外层(会触发事件)<br>JS中当触发某些具有冒泡性质的事件时，首先在触发元素寻找是否有相应的注册事件，如果没有再继续向上级父元素寻找是否有相应的注册事件作出相应，这就是事件冒泡。</p>
 </li>
-<li><p>阻止冒泡: e.stopPropagation(); //此处的e为函数中传的参数</p>
+<li><p><strong>阻止冒泡</strong>: e.stopPropagation(); //此处的e为函数中传的参数</p>
 </li>
 <li><p>阻止事件的默认行为(比如a链接跳转): e.preventDefault();//一定有效<br>或者 return false;  //不一定有效</p>
 </li>
+</ul>
+<h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><ul>
+<li><p>利用事件冒泡的特性，将本应该注册在子元素上的处理事件注册在父元素上，这样点击子元素时发现其本身没有相应事件就到父元素上寻找作出响应。</p>
+</li>
+<li><p>这样做的<strong>优势</strong>：1.减少DOM操作，提高性能。2.随时可以添加子元素，添加的子元素会自动有相应的处理事件。</p>
+</li>
+<li><p><strong>原因</strong>: 在JavaScript中，添加到页面上的事件处理程序数量将直接关系到页面的整体<strong>运行性能</strong>，因为需要不断的与dom节点进行<strong>交互</strong>，访问dom的次数越多，引起浏览器<strong>重绘</strong>与重排的次数也就越多，就会延长整个页面的交互就绪时间，这就是为什么性能优化的主要思想之一就是减少DOM操作的原因；如果要用事件委托，就会将所有的操作放到js程序里面，与dom的操作就<strong>只需要交互一次</strong>，而且<strong>只需要一个内存空间</strong>,这样就能大大的减少与dom的交互次数，提高性能；</p>
+</li>
+<li><p><strong>原理</strong>:</p>
+</li>
+</ul>
+<ol>
+<li><p>Event对象提供了一个属性叫target，<strong>可以返回事件的目标节点</strong>，成为事件源，也就是说，target就可以表示为当前的事件操作的dom，但是不是真正操作dom;</p>
+</li>
+<li><p>此时只是获取了当前节点的位置，并不知道是什么节点名称(但可以直接用)，这里我们可以用nodeName来获取具体是什么标签名，这个返回的是一个大写的，</p>
+</li>
+<li><p>用事件委托的方式，新添加的子元素是带有事件效果的，我们可以发现，当用事件委托的时候，根本就不需要去遍历元素的子节点，只需要给父级元素添加事件就好了，其他的都是在js里面的执行，这样可以大大的减少dom操作，这才是事件委托的精髓所在。</p>
+</li>
+<li><p>详细请查看:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lauzhishuai/p/11263210.html">https://www.cnblogs.com/lauzhishuai/p/11263210.html</a></p>
+</li>
+</ol>
+<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><ul>
+<li>element.onkeydown: 表示键盘(一次)被按下;传参后通过keycode可获得对应unicode编码</li>
+</ul>
+<h3 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h3><ul>
+<li>element.ontouchStart: 表示某个element被按下去了</li>
+<li>element.ontouchEnd: 表示鼠标在点击element后又松开了</li>
+<li>element.ontouchMove: 表示鼠标在按住element后在滑动的时候</li>
+<li>//模拟移动端的触屏,但此时在google中需要调到手机模式</li>
 </ul>
 
       </section>
