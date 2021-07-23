@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    Ajax |
+                                                    CSS |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -55,7 +55,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f439cb5132923bf8b3f12d.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f42d055132923bf85758f4.jpg)"></div>
   
 
   <!-- navbar -->
@@ -106,18 +106,18 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Ajax</h1>
+          <h1 class="title-wrap">CSS</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-07-18T14:30:28.000Z" itemprop="datePublished">2021-07-18</time>
+            <time  class="article-date" datetime="2021-07-23T14:08:27.000Z" itemprop="datePublished">2021-07-23</time>
           </h2>
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
   
-    <li><a href="/tags/Ajax/">🏷️ Ajax</a></li>
+    <li><a href="/tags/CSS/">🏷️ CSS</a></li>
   
 </ul>
         </div>
@@ -141,67 +141,58 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><p>Asynchronous Javascript And XML（异步JavaScript和XML），<br>ajax是一种无需重新加载整个网页的情况下，能够部分更新页面内容的新方法<br>ajax不是新的编程语言,而是多种技术的综合使用</p>
-<hr>
-<h3 id="全局刷新和局部刷新"><a href="#全局刷新和局部刷新" class="headerlink" title="全局刷新和局部刷新"></a>全局刷新和局部刷新</h3><ul>
-<li>全局刷新: 使用form,href等发起的请求是全局刷新<br>用户发起请求,视图改变了,旋转试图,使用新的数据添加到页面<br>缺点:<ol>
-<li>传递数据量比较大,占用网络带宽</li>
-<li>浏览器需要重新渲染整个页面</li>
-<li>用户体验一般</li>
-</ol>
-</li>
-<li>局部刷新: 在当前页面中发起请求,获取数据,更新当前页面的部分dom对象,对视图部分刷新<br>特点:<ol>
-<li>数据量比较小,在网络中传播速度快</li>
-<li>更新部分的页面内容,浏览器不需要全部渲染视图</li>
-<li>在页面中,可以做多个局部刷新</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h3 id="异步请求对象"><a href="#异步请求对象" class="headerlink" title="异步请求对象"></a>异步请求对象</h3><p>在局部刷新中,使用异步请求对象,在浏览器内部发起请求,获取数据<br>异步对象可以向服务器端独立发起请求,传递参数,接受服务器返回的结果数据</p>
-<ul>
-<li>异步对象(XMLHttpRequest)是浏览器内部的一种js对象,各大浏览器都能支持异步对象的使用。</li>
-</ul>
-<hr>
-<h3 id="异步对象XMLHttpRequest接收"><a href="#异步对象XMLHttpRequest接收" class="headerlink" title="异步对象XMLHttpRequest接收"></a>异步对象XMLHttpRequest接收</h3><p>js中的一种对象,使用js语法创建和使用这个对象。<br>var xhr = new XMLHttpRequest();<br>之后就可以使用xhr对象的属性或者函数,进行异步对象的操作<br>局部需要使用到的技术:</p>
-<blockquote>
-<p>1、<strong>js</strong>：创建XMLHttpRequest对象,调用它的属性或方法<br> 2、DOM：处理DOM，更新select的数据<br> 3、CSS：处理视图，更新、美化。<br> 4、sevlet：服务器端技术<br> 5、数据格式：<strong>json （之前是xml）</strong></p>
-</blockquote>
-<p>以上这些的综合使用就成为Ajax:<br>使用<strong>js</strong>操作<strong>xhr</strong>异步对象,和服务器端交换使用<strong>json</strong>数据格式</p>
-<hr>
-<h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><ul>
-<li><p>同步: 同一时间只能做一件事(one by one),不能关闭界面,否则会中断,比如打电话</p>
-</li>
-<li><p>异步: 系统中断,当前进程外部的实体可以触发代码执行,比如海王聊天(效率更高)</p>
-</li>
-</ul>
-<hr>
-<h3 id="异步对象XMLHttpRequest属性和方法"><a href="#异步对象XMLHttpRequest属性和方法" class="headerlink" title="异步对象XMLHttpRequest属性和方法"></a>异步对象XMLHttpRequest属性和方法</h3><ul>
-<li><p>创建异步对象,使用js的语法<br>var xhr = new XMLHttpRequest();</p>
-</li>
-<li><p>XMLHttpRequest方法</p>
-</li>
+        <h3 id="浮动布局"><a href="#浮动布局" class="headerlink" title="浮动布局"></a>浮动布局</h3><ul>
+<li>HTML元素分类:</li>
 </ul>
 <ol>
-<li><p>open(请求方式,服务端的访问地址,异步还是同步(布尔值))<br>例如 xhr.open(“get”,”loginServlet”,true) :<br>表示我们向 loginServlet地址发送一个异步请求,用的是get方式</p>
+<li><p>块元素(可以设置宽度和高度,独立成行): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  h1-6、p、div、ul、li</p>
 </li>
-<li><p>send(): 使用异步对象发送请求</p>
+<li><p>行内元素(内联元素): (不可以设置宽度和高度,不独立成行):&nbsp;&nbsp; a、span</p>
+</li>
+<li><p>行内块元素(<strong>可以设置宽度和高度,独立成行</strong>)： img、imput、button</p>
+</li>
+<li><p>以上通过dispaly属性实现： block、inline、inline-block，还有一个none实现隐藏</p>
 </li>
 </ol>
 <ul>
-<li>XMLHttpRequest属性<br>readyState属性:请求的状态<blockquote>
-<p>0: 表示 创建异步对象时,new XMLHttpRequest();<br>  1: 表示 初始异步对象的请求参数,执行open()方法。<br>  2: 表示 使用send()方法发送请求。<br>  3: 表示 使用异步对象从服务器端接收了数据<br>  4: 表示 异步对象接收了数据,并在异步对象内部处理完成后</p>
-</blockquote>
-</li>
+<li><strong>脱离文档流</strong>:</li>
 </ul>
-<p>status: 网络的状态,和Http的状态码对应</p>
-<blockquote>
-<p>200: 请求成功<br>    404:服务器资源没有找到<br>    500: 服务器内部代码有错误</p>
-</blockquote>
-<ul>
-<li>responsText属性: 表示 服务器端返回的数据<pre><code>例如: var data = xhr.responsText;
-</code></pre>
+<ol>
+<li><p>文档流: 将窗体自上而下分成一行一行，并在每行中按从左至右依次排放元素，称为文档流，也称为普通流。<br>HTML中全部元素都是盒模型，盒模型占用一定的空间，依次排放在HTML中，形成了文档流。</p>
 </li>
+<li><p>元素脱离文档流之后，将不再在文档流中占据空间，而是处于浮动状态（可以理解为漂浮在文档流的上方）。<br>脱离文档流的元素的定位基于正常的文档流，当一个元素脱离文档流后，依然在文档流中的其他元素将忽略该元素并填补其原先的空间</p>
+</li>
+</ol>
+<ul>
+<li>方法:</li>
+</ul>
+<ol>
+<li><p>使用float脱离文档流时，其他盒子会无视这个元素，但其他盒子内的<strong>文本</strong>认为这个元素依旧存在,会为这个元素让出位置</p>
+</li>
+<li><p>使用absolute脱离文档流后的元素，是相对于该元素的父元素进行定位的;<br>并且这个父类元素的position必须是非static定位的</p>
+</li>
+<li><p>fixed: 完全脱离文档流，相对于浏览器窗口进行定位。（相对于浏览器窗口就是相对于html）。</p>
+</li>
+</ol>
+<ul>
+<li><strong>清除浮动</strong>:</li>
+</ul>
+<p><strong>原因</strong>: 浮动溢出:容器的高度不能自动伸长以适应内容的高度，使内容溢出到容器外而影响布局的现象。</p>
+<p><strong>方法</strong>:</p>
+<ol>
+<li><p>使用带<strong>clear属性</strong>的空元素 :<br>在浮动元素后使用一个空元素如 <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code><br>并在CSS中赋予.clear{clear:both;}属性即可清理浮动。<br>亦可使用<code>&lt;br class=&quot;clear&quot; /&gt;</code>或<code>&lt;hr class=&quot;clear&quot; /&gt;</code>来进行清理。</p>
+</li>
+<li><p>使用CSS的<strong>overflow</strong>属性:<br>给浮动元素的容器(浮动的它的父级)添加overflow:hidden;或overflow:auto;可以清除浮动<br>因为overflow.hidden会触发BFC。 BFC的意思是，我这个元素里面的子孙元素，不会影响外部元素的布局。<br>故该容器里需全为浮动的元素</p>
+</li>
+<li><p>给浮动的元素的容器添加浮动:<br>给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局，(<strong>不推荐使用</strong>)</p>
+</li>
+<li><p>使用<strong>邻接元素</strong>处理:<br>给浮动元素后面的元素添加clear属性。</p>
+</li>
+<li><p>使用CSS的:<strong>after伪元素</strong>:<br>在元素末尾添加一个内容为一个点并带有 clear: both 属性的元素</p>
+</li>
+</ol>
+<h3 id="CSS定位"><a href="#CSS定位" class="headerlink" title="CSS定位"></a>CSS定位</h3><ul>
+<li>static</li>
 </ul>
 
       </section>
@@ -210,32 +201,16 @@
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f42d055132923bf85758f4.jpg"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2021/07/23/css/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">CSS</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f42d0d5132923bf85789ed.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f439cb5132923bf8b3f12d.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2021/07/18/target/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">target</h2>
+        <a href="/2021/07/18/Ajax/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Ajax</h2>
         </a>
       
       <div class="card-text--row">Older</div>
