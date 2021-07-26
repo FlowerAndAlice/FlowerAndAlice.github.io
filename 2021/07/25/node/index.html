@@ -157,6 +157,31 @@
 <li>npm是node的包的管理器,下载的第三方模块放在node_modules里,</li>
 <li>npm服务器在国外,淘宝为国内用户提供cnpm,它是npm的镜像,可以代替npm</li>
 </ul>
+<h3 id="模块化开发"><a href="#模块化开发" class="headerlink" title="模块化开发"></a>模块化开发</h3><ul>
+<li>实际开发中不可能把所有代码全写在一个文件夹中,所以node为我们提供了模块化的语法,每一个js文件都可以当做一个模块:</li>
+</ul>
+<ol>
+<li>require() &nbsp;引入了一个外部模块</li>
+<li>module.exports 暴露模块接口</li>
+</ol>
+<ul>
+<li>es6的模块化语法(与node模块化略有差异):</li>
+</ul>
+<ol>
+<li>import 引入外部模块</li>
+<li>export 暴露模块接口</li>
+</ol>
+<h3 id="外部模块的分类"><a href="#外部模块的分类" class="headerlink" title="外部模块的分类"></a>外部模块的分类</h3><ol>
+<li>核心模块: node自带的模块,可以在require引入后直接使用</li>
+<li>自定义模块: 我们自己编写的模块,引入时需要完整的路径</li>
+<li>第三方模块: 使用npm下载的就是第三方模块,下载完成后require直接引入后使用</li>
+</ol>
+<h3 id="常用的核心模块"><a href="#常用的核心模块" class="headerlink" title="常用的核心模块"></a>常用的核心模块</h3><ul>
+<li>fs模块:<br>node 的文件系统模块,通过此模块的readFile方法可以读取文件</li>
+</ul>
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ol>
+<li>按上就是copy上一行代码</li>
+</ol>
 
       </section>
 
