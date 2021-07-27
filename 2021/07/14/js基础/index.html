@@ -155,6 +155,30 @@
 <li><strong>a++</strong> (a在前)表示原变量的值，自增前的量; <strong>++a</strong> 表示新值，即自增后的值;</li>
 <li>“+”运算符转换规则<br>如果不全是数字则优先转化为字符串 因该是如果有一个字符串或者对象就转换字符串</li>
 </ol>
+<h3 id="数组的方法-改变本身的"><a href="#数组的方法-改变本身的" class="headerlink" title="数组的方法(改变本身的)"></a>数组的方法(改变本身的)</h3><ul>
+<li><p>1.push()<br>接收任意数量的参数,添加到数组末尾,返回数组的最新长度</p>
+</li>
+<li><p>2.pop()<br>删除数组最后一项,同时减少数组的length值,返回被删除的项</p>
+</li>
+<li><p>3.shift()<br>删除数组第一项并返回它,length减1</p>
+</li>
+<li><p>4.unshift()<br>接收任意数量的参数,添加到数组开头,返回数组的最新长度</p>
+</li>
+<li><p>5.sort()<br>默认使用unicode编码排序,故需要传入<strong>比较函数</strong>作为参数</p>
+</li>
+<li><p>6.reverse()<br>数组<strong>取反</strong></p>
+</li>
+</ul>
+<h3 id="数组的方法-不改变本身的"><a href="#数组的方法-不改变本身的" class="headerlink" title="数组的方法(不改变本身的)"></a>数组的方法(不改变本身的)</h3><ul>
+<li><p>1.concat()<br>将数组合并添加到返回的新数组</p>
+</li>
+<li><p>2.slice()<br>根据给出的参数截胡原数组并返回到新数组</p>
+</li>
+<li><p>3.splice()<br>三个参数: 开始的索引位,要删除的元素数量,要插入的任意个元素<br>返回被删除的元素,否则返回空数组</p>
+</li>
+<li><p>4.join()<br>把数组中的所有元素通过指定的分隔符进行分隔后,放入一个字符串。</p>
+</li>
+</ul>
 <h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ol>
 <li>==不比较数据类型(会转换数据类型再比较number),故基本不用</li>
 <li>===既比较数据类型,又比较number值,<strong>性能最优</strong></li>
