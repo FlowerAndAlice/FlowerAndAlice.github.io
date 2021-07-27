@@ -229,7 +229,26 @@
 <blockquote>
 <p>sort(function(a, b) {<br>return a - b;<br>});</p>
 </blockquote>
-<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><h3 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h3><p>return只能返回同步数据,&nbsp;异步中获取数据的方法有3种</p>
+<ul>
+<li><strong>回调函数</strong>(将函数作为参数传递给另一个函数,也就是将函数作为参数进行操作):</li>
+</ul>
+<blockquote>
+<p>let target = “hello Yoimiya”;<br>function getData(fn) {<br> setTimeout(() =&gt; {<br>fn(target);<br> }, 500)<br> }<br> let result = getData((d) =&gt; {<br> console.log(d);<br> });<br>//维护困难</p>
+</blockquote>
+<ul>
+<li>用<strong>promise对象</strong>获取数据<br>这是es6提供的一个内置对象,new Promise(); //专门解决异步问题</li>
+</ul>
+<blockquote>
+<p>let target = “hello Yoimiya2”;<br>        function getData() {<br>            return new Promise((resolve) =&gt; {<br>                setTimeout(() =&gt; {<br>                    resolve(target);<br>                }, 666);<br>            }); //then的函数参数的形参就是resolve传出来的值<br>        }<br>        let p = getData();<br>        p.then((d) =&gt; {<br>            console.log(d);<br>        })</p>
+</blockquote>
+<ul>
+<li>用<strong>async函数</strong></li>
+</ul>
+<blockquote>
+<p>let target = “hello Yoimiya3”;<br>        function getData() {<br>            return new Promise((resolve) =&gt; {<br>                setTimeout(() =&gt; {<br>                    resolve(target);<br>                }, 666);<br>            }); //then的函数参数的形参就是resolve传出来的值<br>        }<br>        async function pray() {<br>            let data = await getData();<br>            console.log(data);<br>        }<br>        pray();<br>//直接就获取了promise中的值,不用then,可以一个个获取</p>
+</blockquote>
+
       </section>
 
       
@@ -287,7 +306,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>9</span>
+        <span>10</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">

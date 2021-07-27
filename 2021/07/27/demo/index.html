@@ -28,8 +28,6 @@
 
                                             <title>
                                                 
-                                                    node |
-                                                        
                                                             Flower &amp; Alice
                                             </title>
 
@@ -55,7 +53,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f439ba5132923bf8b361d5.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://i0.hdslb.com/bfs/album/19f81b408481612e81b37ebed5a6027b906ececd.jpg)"></div>
   
 
   <!-- navbar -->
@@ -106,18 +104,16 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">node</h1>
+          <h1 class="title-wrap"></h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-07-25T11:48:58.000Z" itemprop="datePublished">2021-07-25</time>
+            <time  class="article-date" datetime="2021-07-27T10:14:04.050Z" itemprop="datePublished">2021-07-27</time>
           </h2>
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
-  
-    <li><a href="/tags/node/">🏷️ node</a></li>
   
 </ul>
         </div>
@@ -141,112 +137,63 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="命令行工具概述"><a href="#命令行工具概述" class="headerlink" title="命令行工具概述"></a>命令行工具概述</h3><ul>
-<li>我们对计算机的操作几乎都是基于图形界面完成的,比如新建目录、运行某个程序，这些操作在计算机底层都是一个个命令，计算机接收到指令，做出相应反映。</li>
-<li>而通过命令行工具，我们不经过任何UI界面就可以给计算机下达命令。</li>
-<li>cd..可以返回上一级</li>
-<li>tab可以补全: cd D此时按下tab会补全为desktop,cd Do此时按下tab会补全为document</li>
-<li>直接D:回车就可以进入到D盘</li>
-<li>在图形界面按住shift点击右键可以打开powershell(win10)</li>
-</ul>
-<h3 id="什么是node"><a href="#什么是node" class="headerlink" title="什么是node"></a>什么是node</h3><ul>
-<li>Node是一个基于ChromeV8引擎的JavaScript代码运行环境。</li>
-<li>通过node,让js具备后台开发的能力</li>
-<li>组成: Node.js是由ECMAScript+Node模块API组成。</li>
-<li>语法: 所有ECMAScript语法在Node环境中都可以使用。</li>
-<li>npm是node的包的管理器,下载的第三方模块放在node_modules里,</li>
-<li>npm服务器在国外,淘宝为国内用户提供cnpm,它是npm的镜像,可以代替npm</li>
-</ul>
-<h3 id="模块化开发"><a href="#模块化开发" class="headerlink" title="模块化开发"></a>模块化开发</h3><ul>
-<li>实际开发中不可能把所有代码全写在一个文件夹中,所以node为我们提供了模块化的语法,每一个js文件都可以当做一个模块:</li>
-</ul>
-<ol>
-<li>require() &nbsp;引入了一个外部模块</li>
-<li>module.exports 暴露模块接口</li>
-</ol>
-<ul>
-<li>es6的模块化语法(与node模块化略有差异):</li>
-</ul>
-<ol>
-<li>import 引入外部模块</li>
-<li>export 暴露模块接口</li>
-</ol>
-<h3 id="外部模块的分类"><a href="#外部模块的分类" class="headerlink" title="外部模块的分类"></a>外部模块的分类</h3><ol>
-<li>核心模块: node自带的模块,可以在require引入后直接使用</li>
-<li>自定义模块: 我们自己编写的模块,引入时需要完整的路径</li>
-<li>第三方模块: 使用npm下载的就是第三方模块,下载完成后require直接引入后使用</li>
-</ol>
-<h3 id="常用的核心模块"><a href="#常用的核心模块" class="headerlink" title="常用的核心模块"></a>常用的核心模块</h3><ul>
-<li>fs模块:<br>node 的文件系统模块,通过此模块的readFile方法可以读取文件</li>
-</ul>
-<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><ul>
-<li><p>在需要<strong>导出</strong>的js中: exports.自定义名1=函数名;<br>其中函数名与上方定义函数的<strong>表达式</strong>使用的变量名相同,必须是<strong>表达式</strong>,不能是声明</p>
-</li>
-<li><p>在需要<strong>引入</strong>的js中: const 自定义名2 = require(“./导出模块的js文件名”);<br>let 结果变量 = 自定义名2.自定义名1(参数,参数);</p>
-</li>
-</ul>
-<h3 id="web服务器"><a href="#web服务器" class="headerlink" title="web服务器"></a>web服务器</h3><ul>
-<li>1.客户端与服务器<br>输入域名(比如<a target="_blank" rel="noopener" href="http://baidu.com/">http://baidu.com</a>)后,按下回车,浏览器就会向百度服务器发送一个请求,服务器接到请求之后,会把百度的首页内容以文本的方式发送给浏览器(其中包括html、css、js)，然后我们看到就变成了网页。</li>
-</ul>
-<p>几个基本概念：</p>
-<ol>
-<li>请求：浏览器向服务器要数据</li>
-<li>响应：服务器给浏览器发送数据</li>
-<li>地址：我们可以通过域名或ip访问到一个网站，域名或者ip就是这个网站的地址</li>
-<li>端口：一个ip或者一个域名可以找到一台服务器，但是这台服务器可以对外服务多个网站，他们的端口是不同的，因此访问一个站点除了输出ip或域名，还要输入端口，平时我们很少输入端口是因为几乎所有的网站都会使用默认的80端口，因此不必输入</li>
-</ol>
-<ul>
-<li>创建服务器</li>
-</ul>
-<blockquote>
-<p>const http = require(‘http’);<br>const server = http.createServer((req, res) =&gt; {<br>  res.end(‘Hello World’);<br>});<br>server.listen(3000, () =&gt; {<br>  console.log(<code>Server is running</code>);<br>});<br>//一般不这么实现node项目,而是使用框架实现<br>//通过<a target="_blank" rel="noopener" href="http://192.168.50.153:3000/">http://192.168.50.153:3000</a>可以访问该页面<br>//全局安装nodemon后,命令行输入nodemon server.js,可实现实时刷新</p>
-</blockquote>
-<ul>
-<li>框架实现</li>
-</ul>
-<blockquote>
-<p>const Koa = require(“koa”);<br>const app = new Koa();<br>app.listen(3000,() =&gt; {<br>    console.log(“server is running”)<br>});</p>
-</blockquote>
-<p>引入的Koa是一个构造函数，通过new关键字可以创建一个koa应用app。然后通过app的listen方法设置监听端口，运行这个程序就可以移动一个koa服务器了。</p>
-<h3 id="路由知识"><a href="#路由知识" class="headerlink" title="路由知识"></a>路由知识</h3><p>浏览器可以使用不同的方法向服务器发送请求,常用的如下:</p>
-<ul>
-<li>get请求</li>
-<li>post请求</li>
-</ul>
-<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ol>
-<li>按上就是copy上一行代码</li>
-</ol>
+        <!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //ajax与服务器通信,异步获取数据
+        let target = "hello Yoimiya3";
+
+        function getData() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(target);
+                }, 666);
+            }); //then的函数参数的形参就是resolve传出来的值
+        }
+        async function pray() {
+            let data0 = await getData();
+            console.log(data0);
+            let data1 = await getData();
+            console.log(data1);
+            let data2 = await getData();
+            console.log(data2);
+            let data3 = await getData();
+            console.log(data3);
+        }
+        pray();
+        // let p = getData();
+        // p.then((d) => {
+        //     console.log(d);
+        // })
+    </script>
+</body>
+
+</html>
       </section>
 
       
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
-      
-        <a href="/2021/07/27/demo/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">(no title)</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f42d055132923bf85758f4.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f439ba5132923bf8b361d5.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2021/07/23/css/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">CSS</h2>
+        <a href="/2021/07/25/node/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">node</h2>
         </a>
       
       <div class="card-text--row">Older</div>
