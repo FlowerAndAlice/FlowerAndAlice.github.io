@@ -141,7 +141,10 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="命令行工具概述"><a href="#命令行工具概述" class="headerlink" title="命令行工具概述"></a>命令行工具概述</h3><ul>
+        <h3 id="重要-报错原因"><a href="#重要-报错原因" class="headerlink" title="(重要)报错原因"></a>(重要)报错原因</h3><ul>
+<li><strong>注释</strong><br>如果在<strong>注释</strong>中写一段错误的代码,仍然会报错!</li>
+</ul>
+<h3 id="命令行工具概述"><a href="#命令行工具概述" class="headerlink" title="命令行工具概述"></a>命令行工具概述</h3><ul>
 <li>我们对计算机的操作几乎都是基于图形界面完成的,比如新建目录、运行某个程序，这些操作在计算机底层都是一个个命令，计算机接收到指令，做出相应反映。</li>
 <li>而通过命令行工具，我们不经过任何UI界面就可以给计算机下达命令。</li>
 <li>cd..可以返回上一级</li>
@@ -269,11 +272,47 @@
 <h3 id="继承-公共界面-block"><a href="#继承-公共界面-block" class="headerlink" title="继承(公共界面):block"></a>继承(公共界面):block</h3><p>步骤:</p>
 <ol>
 <li>先在viewx里写一个layout.html,把公共的html放里面,然后写<br><code>&#123;% block content %&#125; &#123;% endblock %&#125;</code></li>
-<li>然后把需要继承的html删除至只剩下body的内容<br>开头<code>&#123;% extends "./views/layout.html" %&#125;</code><br>//此处路径需<strong>要出去再进来</strong><br>以及<code>&#123;% block content %&#125;`
+<li>然后把需要继承的html删除至只剩下body的内容<br>开头<code>&#123;% extends "./views/layout.html" %&#125;</code>   //不要打错<br>//此处路径需<strong>要出去再进来</strong><br>以及<code>&#123;% block content %&#125;`   //注意此处中间有**空格**
 结尾`&#123;% endblock %&#125;</code></li>
 </ol>
 <ul>
 <li>include<br>注意include要<strong>写在endblock之前</strong></li>
+</ul>
+<h3 id="cookie与session"><a href="#cookie与session" class="headerlink" title="cookie与session"></a>cookie与session</h3><ul>
+<li>概述<br>cookie:</li>
+</ul>
+<ol>
+<li>商店给会员发的会员卡(不需要服务器接入)、</li>
+<li>或者条形码(需要服务器接入进行店铺加密) :<br>通过session对应cookie,完成验证</li>
+</ol>
+<ul>
+<li>设置cookie<br>概述: 网站服务器程序可以在浏览器中写入cookie,然后浏览器再次访问这个网站时,就会带着这个cookie</li>
+</ul>
+<blockquote>
+<p>ctx.cookies.set(“user”, “Yoimiya”);  //此处属性值可为number型</p>
+</blockquote>
+<p>服务器返回(reponse)cookie以后,客户端拿到会员卡,下次来(request)以及之后就一直保存有该cookie<br>哪怕访问此网站的其他页面,也一直携带该cookie</p>
+<ul>
+<li>获取cookie</li>
+</ul>
+<blockquote>
+<p>router.get(“/test”, async ctx =&gt; {<br>    let user = ctx.cookies.get(“user”);<br>    ctx.body = user;<br>})</p>
+</blockquote>
+<p>//此处为cookie字段名(属性名)</p>
+<ul>
+<li>cookie过期时间<br>//设置cookie过期时间为两秒(距离上一次重写cookie的时间超过两秒就重新载入cookie)</li>
+</ul>
+<blockquote>
+<p>ctx.cookies.set(“count”, count, {<br>            maxAge: 2000<br>        })</p>
+</blockquote>
+<ul>
+<li>session<br>需要用到”koa-session”引擎<br>//<strong>查阅</strong>所有npm下载的包可以去<strong>npmjs.com</strong><br>了解到不用get,都是直接 ctx.session.user就能获取到session<br>session记录网页访问次数:</li>
+</ul>
+<blockquote>
+<p>router.get(“/session”, async ctx =&gt; {<br>    if (ctx.session.count &gt; 0) {<br>        ctx.session.count = ++ctx.session.count;<br>    } else {<br>        ctx.session.count = 1;<br>    }<br>    ctx.body = ctx.session.count;<br>})</p>
+</blockquote>
+<ul>
+<li>重定向<br>页面内逻辑实现网页内部跳转,即为重定向<br>重定向不需要await 直接ctx.redirect()</li>
 </ul>
 <h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ol>
 <li>按上就是copy上一行代码</li>
