@@ -306,10 +306,30 @@
 <p>ctx.cookies.set(“count”, count, {<br>            maxAge: 2000<br>        })</p>
 </blockquote>
 <ul>
-<li>session<br>需要用到”koa-session”引擎<br>//<strong>查阅</strong>所有npm下载的包可以去<strong>npmjs.com</strong><br>了解到不用get,都是直接 ctx.session.user就能获取到session<br>session记录网页访问次数:</li>
+<li>session<br>需要用到”koa-session”引擎<br>//<strong>查阅</strong>所有npm下载的包可以去<strong>npmjs.com</strong><br>//<strong>nunjucks里的if语句</strong>用的是<strong>jinja的语法</strong>,自行<strong>查阅</strong><br>了解到不用get,都是直接 ctx.session.user就能获取到session<br>session记录网页访问次数:</li>
 </ul>
 <blockquote>
 <p>router.get(“/session”, async ctx =&gt; {<br>    if (ctx.session.count &gt; 0) {<br>        ctx.session.count = ++ctx.session.count;<br>    } else {<br>        ctx.session.count = 1;<br>    }<br>    ctx.body = ctx.session.count;<br>})</p>
+</blockquote>
+<ul>
+<li>登录验证(通过if语句)</li>
+</ul>
+<blockquote>
+<p>router.post(‘/login’, async ctx =&gt; {<br>    let username = ctx.request.body.username;<br>    let password = ctx.request.body.password;</p>
+</blockquote>
+<pre><code>if (username !== &#39;&#39; &amp;&amp; password === &quot;yyds&quot;) &#123;
+    ctx.session.user = &quot;yyds&quot;;
+    ctx.redirect(&quot;/content&quot;);
+&#125; else &#123;
+    ctx.redirect(&quot;/&quot;);
+&#125;
+</code></pre>
+<p>})</p>
+<ul>
+<li>登录才能查看内容页</li>
+</ul>
+<blockquote>
+<p>router.get(“/content”, async ctx =&gt; {<br>    if (ctx.session.user) {<br>        await ctx.render(“content”);<br>    } else {<br>        ctx.redirect(“/login”);<br>    }<br>})</p>
 </blockquote>
 <ul>
 <li>重定向<br>页面内逻辑实现网页内部跳转,即为重定向<br>重定向不需要await 直接ctx.redirect()</li>

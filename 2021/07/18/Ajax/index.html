@@ -199,10 +199,61 @@
 <p>200: 请求成功<br>    404:服务器资源没有找到<br>    500: 服务器内部代码有错误</p>
 </blockquote>
 <ul>
-<li>responsText属性: 表示 服务器端返回的数据<pre><code>例如: var data = xhr.responsText;
+<li><p>responsText属性: 表示 服务器端返回的数据</p>
+<pre><code>例如: var data = xhr.responsText;
 </code></pre>
 </li>
+<li><p>http概述<br>http协议全称超文本传输协议,简单理解成为一个服务器与客户端通信的协议。</p>
+</li>
 </ul>
+<p>在http协议的约定下，客户端可以向服务器发送http请求，<br>服务器在接收到请求之后，给予客户端http响应(index.html)。</p>
+<p>web服务器会给每种要通过web传输的对象都打上名为MIME类型的数据格式标签,<br>当Web浏览器从服务器取回一个对象时,会查看相关的MIME类型,来决定如何处理<br>MIMIE类型是一种文本标记,表示一种主要的对象类型和一个特定的子类型,用/来分隔</p>
+<ul>
+<li>http协议请求的常用方法</li>
+</ul>
+<ol>
+<li>get方法</li>
+<li>post方法</li>
+<li>put方法  :将来自客户端的数据存储到一个命名的服务器资源中去</li>
+<li>delete方法</li>
+</ol>
+<p>四种方法用来完成数据的增删查改 等操<br>真正的操作是服务器来完成</p>
+<ul>
+<li>http协议状态码<br>每条http响应报文返回时都会携带一个状态码<br>状态码为客户端提供一种事物处理结果的便携方式,我们在network<br>工具中可以看到响应头中的状态码</li>
+</ul>
+<ol>
+<li>100-199(信息性状态码): HTTP/1.1向协议中引入了信息性状态码</li>
+<li>200*299(成功状态码)</li>
+<li>300*399(重定向状态码)  : 到其他地方去获取资源</li>
+<li>400-499(客户端状态码)</li>
+<li>500-599(服务器状态码)</li>
+</ol>
+<ul>
+<li>3个常见HTTP状态码</li>
+</ul>
+<ol>
+<li>200 OK: 请求成功</li>
+<li>404 Not Found: 服务器资源没有找到</li>
+<li>500 Internal Server Error: 服务器内部代码有错误</li>
+</ol>
+<ul>
+<li>URI<br>服务器资源名被统一称为<strong>统一资源标识符</strong>(Uniform Resource Identifier,URI)<br>URI就像因特网上的邮件地址,在世界范围内唯一标识并定位信息资源</li>
+</ul>
+<p>URI分为 <strong>URL</strong> (统一资源定位符)和 <strong>URN</strong> (统一资源名)</p>
+<ul>
+<li>URL<br>几乎所有URI都是URL,标准格式如下:</li>
+</ul>
+<ol>
+<li>第一部分: <strong>方案</strong> (scheme): 说明了访问资源所使用的协议类型(通常是HTTP协议:http://)</li>
+<li>第二部分: 给出了<strong>服务器</strong>的因特网<strong>地址</strong>(比如<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a>)</li>
+<li>其余部分制定了Web服务器上的某个资源(比如/images/yyds.jpg)</li>
+</ol>
+<hr>
+<ul>
+<li>Postman<br>Postman可以模拟浏览器向服务器发送请求,<br>在使用Postman之前，我们需要先完成服务器端程序，来处理数据的增删改查，</li>
+</ul>
+<p>let fruit = ctx.request.body.fruit; //可以获取到页面中传入的新元素</p>
+<p>let id = ctx.params.id;  //可以获取页面中的id<br>传入id到后台:URL输入 /fruits/:id</p>
 
       </section>
 
