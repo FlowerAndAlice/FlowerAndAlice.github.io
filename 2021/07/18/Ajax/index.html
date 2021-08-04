@@ -141,7 +141,13 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><p>Asynchronous Javascript And XML（异步JavaScript和XML），<br>ajax是一种无需重新加载整个网页的情况下，能够部分更新页面内容的新方法<br>ajax不是新的编程语言,而是多种技术的综合使用</p>
+        <h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><p>Asynchronous Javascript And XML（异步JavaScript和XML），<br>不过现在主流的数据格式是<strong>json</strong><br>ajax是一种无需重新加载整个网页的情况下，能够部分更新页面内容的新方法<br>ajax不是新的编程语言,而是多种技术的综合使用</p>
+<ul>
+<li>优点 : 按需获取数据,提升系统性能</li>
+<li>缺点 : 异步获取数据,不利于搜索引擎优化</li>
+</ul>
+<hr>
+<h3 id="json"><a href="#json" class="headerlink" title="json"></a>json</h3><p>{<br>    “genshin”:{<br>        “pary1”:”Yoimiya”,<br>        “pary2”:”Baal”,<br>        “pary3”:”ams”<br>    }<br>}</p>
 <hr>
 <h3 id="全局刷新和局部刷新"><a href="#全局刷新和局部刷新" class="headerlink" title="全局刷新和局部刷新"></a>全局刷新和局部刷新</h3><ul>
 <li>全局刷新: 使用form,href等发起的请求是全局刷新<br>用户发起请求,视图改变了,旋转试图,使用新的数据添加到页面<br>缺点:<ol>
@@ -208,6 +214,16 @@
 </ul>
 <p>在http协议的约定下，客户端可以向服务器发送http请求，<br>服务器在接收到请求之后，给予客户端http响应(index.html)。</p>
 <p>web服务器会给每种要通过web传输的对象都打上名为MIME类型的数据格式标签,<br>当Web浏览器从服务器取回一个对象时,会查看相关的MIME类型,来决定如何处理<br>MIMIE类型是一种文本标记,表示一种主要的对象类型和一个特定的子类型,用/来分隔</p>
+<ul>
+<li>Ajax原理<br>我们通过下面的方法向服务器发送请求</li>
+</ul>
+<ol>
+<li>在浏览器直接输入URL</li>
+<li>a标签实现的页面跳转</li>
+<li>表单提交</li>
+<li>Postman模拟http请求</li>
+</ol>
+<p>在Ajax的请求原理: 通过XMLhttpRequest对象向服务器发送请求,</p>
 <ul>
 <li>http协议请求的常用方法</li>
 </ul>
