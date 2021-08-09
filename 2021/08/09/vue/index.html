@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    闲聊 |
+                                                    vue |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -55,7 +55,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f1777e5132923bf8ac2700.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/61113d075132923bf8b88fb2.jpg)"></div>
   
 
   <!-- navbar -->
@@ -106,11 +106,11 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">闲聊</h1>
+          <h1 class="title-wrap">vue</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-07-16T08:58:10.000Z" itemprop="datePublished">2021-07-16</time>
+            <time  class="article-date" datetime="2021-08-09T14:31:52.000Z" itemprop="datePublished">2021-08-09</time>
           </h2>
           <ul class="wrap-list dark">
   
@@ -139,47 +139,44 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="关于图床"><a href="#关于图床" class="headerlink" title="关于图床"></a>关于图床</h3><p>目前可以白嫖的有: 聚合图床 路过图床  sm.ms 随意云</p>
-<hr>
-<h3 id="关于log和dir和document-write"><a href="#关于log和dir和document-write" class="headerlink" title="关于log和dir和document.write"></a>关于log和dir和document.write</h3><p>console.log(): 用于控制台调试，可以打印对象的内容,无法看到标签对象的属性和方法,<br>能输出多个数据，可以识别数据类型(颜色有差异)<br>console.dir(): 以对象形式输出标签对象的属性和方法,不能直观识别数据类型</p>
-<p>document.write: 不用于调试，只能打印出对象类型,(在网页上写东西),Javascript 中只能在 HTML 输出流中使用 document.write(实际上文档加载时就是一边加载一边用 document.write 写出内容到屏幕上，而加载完成后，document 就关闭)，在文档已加载后(注意)使用它（比如在函数中），会覆盖整个文档(重写,html里只有空head和新body,故background也会被重置,)。</p>
-<hr>
-<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>var a = 2 如何执行:</p>
-<p>编译器先编译到var a ,编译器会询问该作用域中是否有a,<br>如果有a,则不进行重复声明,编译下一步,否则会在该作用域中声明一个新变量,命名为a<br>编译到a=2,编译器会为引擎生成能够完成这个赋值操作的代码,引擎会询问作用域中是否有a,直至找到a并赋值给它,否则会报错</p>
-<hr>
-<h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><p>栈会自动分配内存空间，会自动释放，存放基本类型，简单的数据段，占据固定大小的空间。<br>（基本类型：String，Number，Boolean，Null，Undefined）<br>动态分配的内存，大小不定也不会自动释放，存放引用类型，指那些可能由多个值构成的对象，保存在堆内存中，包含引用类型的变量，实际上保存的不是变量本身，而是指向该对象的指针。（引用类型：Function，Array，Object）</p>
-<p>栈：所有在方法中定义的变量都是放在栈内存中，随着方法的执行结束，这个方法的内存栈也自然销毁。<br>堆: 堆内存中的对象不会随方法的结束而销毁<br>栈和堆的区别：即基本类型和引用类型的区别<br>var a = [1,0,9,8,7];<br>   var b = a;<br>   var c = a[0];<br>   console.log(b);     //[1,0,9,8,7]<br>   console.log(c);     //1<br>   //改变数值<br>   b[1] = 3;<br>   c = 5;<br>   console.log(b[1]);  //3<br>   console.log(a[0]);  //1<br>这都是赋值</p>
-<p>因为a是数组，是引用类型，赋给b的时候传的是栈中的地址，不是堆内存中的对象，c仅仅是从a堆内存中获取的一个数据值，并保存在栈中，所以b修改的时候，会根据地址回到a堆中修改，c则直接在栈中修改，并且不能指向a堆内存中。</p>
-<hr>
-<h3 id="深浅拷贝与赋值"><a href="#深浅拷贝与赋值" class="headerlink" title="深浅拷贝与赋值"></a>深浅拷贝与赋值</h3><p>赋值:(a = [1,2,3], b=a,) 赋值操作(包括对象作为参数、返回值),不会开辟新的内存空间,他只是赋值了对象的引用(也只对对象进行操作).也就是除了b这个名字之外,没有其他的内存开销,修改了a也就影响了b,修改了b,也就影响了a.</p>
-<p>浅拷贝：只复制指向某个对象的指针而不复制对象本身，新旧对象还是共享同一块内存。<br>如果属性是基本类型，拷贝的就是基本类型的值(基本数据类型互不影响)；如果属性是内存地址（引用类型），拷贝的就是内存地址 ，因此如果其中一个对象改变了这个地址，就会影响到另一个对象。</p>
-<p>深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。</p>
-<!-- hexo中插入图片的方式: ![Alt text](图片url "optional title")   //不需要冒号 -->
-
-<h3 id="hexo中的一些书写问题"><a href="#hexo中的一些书写问题" class="headerlink" title="hexo中的一些书写问题"></a>hexo中的一些书写问题</h3><ul>
-<li>嵌入html或者js代码时,会报错MD033,<br>解决方式: 1.在前面加4个空格,会变成黑色代码块<pre><code>   2.在两侧添加反引号`
-</code></pre>
-</li>
-</ul>
-<p><img src="https://i0.hdslb.com/bfs/album/23ffd5d98c0fd4096f1b5f1b465ba533ddaa53c4.jpg" alt="HTML"></p>
-<h3 id="网络知识"><a href="#网络知识" class="headerlink" title="网络知识"></a>网络知识</h3><ul>
-<li><p>硬路由<br>专门用来做路由器的硬件</p>
-</li>
-<li><p>软路由<br>让不是路由器的设备实现路由器的功能, 性能强、价格高<br>按照架构可分为 ARM、X86 、其他<br>X86架构处理器可运行复杂指令集，大部分电脑为X86  (性能价格高)<br>ARM架构处理器运行精简指令集，手机基本都是ARM</p>
-</li>
-</ul>
-<p>常见的软路由系统<br>openWrt(开源免费的)、KoolShare、Ikuai</p>
-<ul>
-<li>NAS<br>网络附属存储: 通俗点说就是一块插了网线的硬盘<br>挑选NAS的准则:</li>
-</ul>
-<ol>
-<li>速度:处理器性能</li>
-<li>容量:可以放多少块硬盘</li>
-<li>理解:系统易用性</li>
-<li>饭量:耗电功率</li>
-<li>价格</li>
+        <h3 id="vue里的傻逼错误"><a href="#vue里的傻逼错误" class="headerlink" title="vue里的傻逼错误"></a>vue里的傻逼错误</h3><hr>
+<h3 id="vue引入"><a href="#vue引入" class="headerlink" title="vue引入"></a>vue引入</h3><ol>
+<li>script的src属性引入Vue.js文件</li>
+<li>使用node环境,构建基于Vue的web项目 (一般项目开发采用这种)</li>
 </ol>
-<p>群辉(易用性、美观)和威联通(性能)占了大部分市场份额、剩下的是diy养成<br>硬盘需要自行购买</p>
+<hr>
+<h3 id="引入Vue-js"><a href="#引入Vue-js" class="headerlink" title="引入Vue.js"></a>引入Vue.js</h3><ul>
+<li><p>把js里的数据添加到DOM里,<strong>之前</strong>是先获取DOM节点(document.querySelector)再操作节点</p>
+</li>
+<li><p>一个vue程序最基本的<strong>结构</strong>：</p>
+</li>
+</ul>
+<p>首先，我们在html中定义了一个id为app的<strong>容器</strong>，然后我们在js创建一个Vue的<strong>实例</strong>，通过<strong>el属性</strong>指定这个容器，从而实现让js接管html.</p>
+<ul>
+<li>el属性:将vue挂载到html</li>
+</ul>
+<hr>
+<h3 id="绑定文本"><a href="#绑定文本" class="headerlink" title="绑定文本"></a>绑定文本</h3><ul>
+<li><p>data属性: 在Vue的实例之下添加属性</p>
+</li>
+<li><p><code>&#123;&#123;&#125;&#125;</code>: 可以输入一个<strong>表达式</strong>,也可以直接获取Vue实例的值</p>
+</li>
+<li><p>能将vue实例里data中的message属性通过双花括号显示在文本节点之中，</p>
+</li>
+</ul>
+<hr>
+<h3 id="绑定属性"><a href="#绑定属性" class="headerlink" title="绑定属性"></a>绑定属性</h3><ul>
+<li>还能将数据绑定成为一个html属性(vue实例里data中的message属性)，使用【v-bind:属性名】和【:属性名】两种方式都可以绑定属性，在实际开发中，我们通常使用简写。</li>
+</ul>
+<hr>
+<h3 id="绑定事件"><a href="#绑定事件" class="headerlink" title="绑定事件"></a>绑定事件</h3><ul>
+<li><p>在vue实例中可以设置methods属性为vue的示例添加方法，这些方法我可以直接被调用，也可以绑定为事件</p>
+</li>
+<li><p>使用【v-on:事件类型】和【@事件类型】两种方式都可以为元素绑定事件，在实际开发中，通常使用简写。</p>
+</li>
+</ul>
+<hr>
+<hr>
 
       </section>
 
@@ -187,32 +184,16 @@
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f3910d5132923bf8644f6d.jpg"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2021/07/18/webpack/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">webpack</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f152f45132923bf8ee5966.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f439ba5132923bf8b361d5.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2021/07/16/%E7%AE%97%E6%B3%95/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">算法</h2>
+        <a href="/2021/07/25/node/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">node</h2>
         </a>
       
       <div class="card-text--row">Older</div>

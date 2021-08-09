@@ -141,7 +141,13 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><p>Asynchronous Javascript And XML（异步JavaScript和XML），<br>不过现在主流的数据格式是<strong>json</strong><br>ajax是一种无需重新加载整个网页的情况下，能够部分更新页面内容的新方法<br>ajax不是新的编程语言,而是多种技术的综合使用</p>
+        <hr>
+<h3 id="Ajax里犯的傻逼错误"><a href="#Ajax里犯的傻逼错误" class="headerlink" title="Ajax里犯的傻逼错误"></a>Ajax里犯的傻逼错误</h3><ul>
+<li><strong>本地读取js</strong>文件时,需要添加static路径!<br>app.use(static(__dirname + “/public”));此时文件放是/public/js/json.js,通过:3000/public/js/json.js读取</li>
+<li><strong>所有</strong>服务器上的文件<strong>资源</strong>(包括html,js)访问都要通过<strong>static中间件</strong>!!!</li>
+<li>发送post请求时,没有引入app.use(parser());!!!!! -2021.08.05  我tm巨蠢</li>
+</ul>
+<h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><p>Asynchronous Javascript And XML（异步JavaScript和XML），<br>不过现在主流的数据格式是<strong>json</strong><br>ajax是一种无需重新加载整个网页的情况下，能够部分更新页面内容的新方法<br>ajax不是新的编程语言,而是多种技术的综合使用</p>
 <ul>
 <li>优点 : 按需获取数据,提升系统性能</li>
 <li>缺点 : 异步获取数据,不利于搜索引擎优化</li>
@@ -266,10 +272,53 @@
 </ol>
 <hr>
 <ul>
-<li>Postman<br>Postman可以模拟浏览器向服务器发送请求,<br>在使用Postman之前，我们需要先完成服务器端程序，来处理数据的增删改查，</li>
+<li>Postman</li>
+<li>*Postman**可以模拟浏览器向服务器发送请求,<br>在使用Postman之前，我们需要先完成服务器端程序，来处理数据的增删改查，</li>
 </ul>
 <p>let fruit = ctx.request.body.fruit; //可以获取到页面中传入的新元素</p>
 <p>let id = ctx.params.id;  //可以获取页面中的id<br>传入id到后台:URL输入 /fruits/:id</p>
+<hr>
+<h3 id="跨域请求"><a href="#跨域请求" class="headerlink" title="跨域请求"></a>跨域请求</h3><ul>
+<li><p><strong>同源策略</strong><br>浏览器的一个安全功能,不同源的客户端脚本在没有明确授权的情况下,不能读写对方的资源比如432666.top采用ajax读取432.xyz里的文件数据会被拒绝</p>
+</li>
+<li><p><strong>相同的ip(域名),且同端口,则为同源</strong>否则为不同源<br>同源策略限制了从同一个源加载的脚本如何与龙一个源的资源进行交互,<br>这是一个隔离潜在恶意文件的重要安全机制</p>
+</li>
+<li><p><strong>jsonp</strong>原理</p>
+</li>
+</ul>
+<p><strong>ajax默认不能跨域</strong>,但<strong>script标签</strong>可以通过<strong>src属性</strong>获取到<strong>跨域的js</strong>文件<br>比如,我们想要在域名B获取域名A里的数据,可以在域名A的js文件里装载数据,然后再域名B通过script标签跨域引入当当前项目,进而使用数据<br><strong>注意jsonp本质上并不是Ajax</strong>,只是功能很像</p>
+<hr>
+<ul>
+<li><strong>jQuery</strong>实现跨域请求数据<br>前端:<br>先引入jq</li>
+</ul>
+<blockquote>
+<p>$(“.get”).click(() =&gt; {<br>                $.ajax({<br>                    url: “<a target="_blank" rel="noopener" href="http://127.0.0.1:3000/data&quot;">http://127.0.0.1:3000/data&quot;</a>,<br>                    dataType: “jsonp”,<br>                }).done(res =&gt; {<br>                    console.log(res);<br>                })<br>            })<br>后台:</p>
+</blockquote>
+<ol>
+<li>const jsonp = require(“koa-jsonp”);</li>
+<li>app.use(jsonp());</li>
+<li>router.get(“/data”, ctx =&gt; {<br> ctx.body = “Yoimiya”;<br>})</li>
+</ol>
+<ul>
+<li>http-server<br>在某个文件处cmp后使用http-server即可在8080打开这个文件</li>
+</ul>
+<h3 id="不通过jq-通过axios跨域"><a href="#不通过jq-通过axios跨域" class="headerlink" title="不通过jq,通过axios跨域"></a>不通过jq,通过axios跨域</h3><ul>
+<li>后台:</li>
+</ul>
+<ol>
+<li>删除jsonp的request和use</li>
+<li>在/data处的get请求内添加 ctx.set(“Access-Control-Allow-Origin”, “<a href="http://127.0.0.1:8080&quot;">http://127.0.0.1:8080&quot;</a>);  后面的url可改为*,即任何地址都可跨域访问此data</li>
+</ol>
+<ul>
+<li><p>前端:<br>引入axios<br>axios.get(“<a target="_blank" rel="noopener" href="http://127.0.0.1:3000/data&quot;).then">http://127.0.0.1:3000/data&quot;).then</a>(res =&gt; {</p>
+<pre><code>      console.log(res.data);
+  &#125;)
+</code></pre>
+</li>
+<li><p>但这样有安全隐患,故此情况只适合开发的时候内部的(前后端交互)使用,部署的时候不跨域  </p>
+</li>
+</ul>
+<hr>
 
       </section>
 
@@ -344,7 +393,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>9</span>
+        <span>10</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
