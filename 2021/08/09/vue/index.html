@@ -144,6 +144,8 @@
 </li>
 <li><p>click 不要打错成cilck!!!(离谱)(我是啥b)</p>
 </li>
+<li><p>在使用cpmputed时,将price写成prive导致一直报错但找不到错误(乌鱼子)</p>
+</li>
 </ul>
 <hr>
 <h3 id="vue引入"><a href="#vue引入" class="headerlink" title="vue引入"></a>vue引入</h3><ol>
@@ -227,8 +229,16 @@
 <ul>
 <li><p>若是在子级组件里的template标签写div,则引入组件会因为块元素而换行</p>
 </li>
-<li><p>如只有 v.属性 才能获取对象里的属性</p>
+<li><p>只有 v.属性 才能获取对象里的属性</p>
 </li>
+</ul>
+<h3 id="非父子级组件传值"><a href="#非父子级组件传值" class="headerlink" title="非父子级组件传值"></a>非父子级组件传值</h3><ul>
+<li>在src目录中创建一个store.js文件用来统一存储数据</li>
+</ul>
+<p>export default {<br>    state: {<br>   &nbsp;&nbsp;     message: “pray to get Baal”<br>    },<br>    setStateMessage(str) {<br>    &nbsp;&nbsp;    this.state.message = str;<br>    }}</p>
+<ul>
+<li>随后在要传入的组件先(import)引入store.js,再在data里传值:<br>state : store.state, (注意此处是冒号)(即可将store里的数据传到组件)</li>
+<li>调用store里的setStateMessage方法可将设置的参数传给state.message</li>
 </ul>
 <hr>
 

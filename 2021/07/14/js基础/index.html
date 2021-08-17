@@ -141,11 +141,21 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量名可以是字母、下划线、$ 和 数字，但不能以数字开头。 (驼峰)</p>
+        <h3 id="to-do-list"><a href="#to-do-list" class="headerlink" title="to-do-list"></a>to-do-list</h3><hr>
+<ul>
+<li>HTML负责<strong>结构</strong>,CSS负责<strong>表现</strong>,JS负责<strong>行为</strong>,各司其职</li>
+<li>应当避免不必要的由js直接操作样式(可用class表示状态)</li>
+<li>只需要展示一次的可以考虑零JS方案</li>
+<li>行为设计分为功能(Api)和控制流(Event),</li>
+<li>组件设计的原则： <strong>可扩展性</strong>、<strong>复写性</strong>、<strong>可读性</strong>、正确性<br>步骤： 结构设计、展现效果、行为设计</li>
+</ul>
+<hr>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量名可以是字母、下划线、$ 和 数字，但不能以数字开头。 (驼峰)</p>
 <ol>
 <li>关键字: catch、finally、do、throw、void…</li>
 <li>保留字：Abstract、Byte、Char、Debugger、Export、Static…</li>
 </ol>
+<hr>
 <h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ol>
 <li>ES5基本数据类型：Undefined，Null，Number，String，Boolean。引用类型：Object。</li>
 <li>ES6新增了数据类型<strong>Symbol</strong>，表示独一无二的值。</li>
@@ -155,6 +165,7 @@
 <li><strong>a++</strong> (a在前)表示原变量的值，自增前的量; <strong>++a</strong> 表示新值，即自增后的值;</li>
 <li>“+”运算符转换规则<br>如果不全是数字则优先转化为字符串 因该是如果有一个字符串或者对象就转换字符串</li>
 </ol>
+<hr>
 <h3 id="数组的方法-改变本身的"><a href="#数组的方法-改变本身的" class="headerlink" title="数组的方法(改变本身的)"></a>数组的方法(改变本身的)</h3><ul>
 <li><p>1.push()<br>接收任意数量的参数,添加到数组末尾,返回数组的最新长度</p>
 </li>
@@ -179,6 +190,7 @@
 <li><p>4.join()<br>把数组中的所有元素通过指定的分隔符进行分隔后,放入一个字符串。</p>
 </li>
 </ul>
+<hr>
 <h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ol>
 <li>==不比较数据类型(会转换数据类型再比较number),故基本不用</li>
 <li>===既比较数据类型,又比较number值,<strong>性能最优</strong></li>
@@ -186,6 +198,7 @@
 <li>!==,既比较数据类型,又比较number值,<strong>性能最优</strong></li>
 <li>此处有高级用法待挖掘</li>
 </ol>
+<hr>
 <h3 id="分支语句"><a href="#分支语句" class="headerlink" title="分支语句"></a>分支语句</h3><ul>
 <li><p>第一种 if结构 :</p>
 </li>
@@ -219,6 +232,7 @@
 <blockquote>
 <p>var array = [‘a’, ‘b’, ‘c’];<br>array.forEach(function(element) {<br>  console.log(element);<br>})<br>//a; b; c;</p>
 </blockquote>
+<hr>
 <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ul>
 <li>sort()方法:</li>
 </ul>
@@ -248,6 +262,12 @@
 <blockquote>
 <p>let target = “hello Yoimiya3”;<br>        function getData() {<br>            return new Promise((resolve) =&gt; {<br>                setTimeout(() =&gt; {<br>                    resolve(target);<br>                }, 666);<br>            }); //then的函数参数的形参就是resolve传出来的值<br>        }<br>        async function pray() {<br>            let data = await getData();<br>            console.log(data);<br>        }<br>        pray();<br>//直接就获取了promise中的值,不用then,可以一个个获取</p>
 </blockquote>
+<hr>
+<h3 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h3><ul>
+<li>节流: (比如500毫秒内只能计数一次) (timer不结束不会重新计数)</li>
+<li>防抖: (触发频率太快时不发送请求) (每次触发事件都会重新调用,但只有timer超时才会发送请求)</li>
+</ul>
+<hr>
 
       </section>
 

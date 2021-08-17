@@ -186,10 +186,14 @@
 </ol>
 <hr>
 <h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
-<li><p>css,层叠样式表(Cascading style sheets),一种用来为结构化文档(基本就是html)添加样式的语言</p>
+<li><p>css,层叠样式表(Cascading style sheets),一种用来为结构化文档(基本就是html)添加样式的语言,以规则集(rule set)(选择器+声明块)开始</p>
 </li>
-<li><p>height/width = content box的高/宽<br>模型的高/宽 = content box + 2<em>padding + 2</em>border<br>(可通过box-sizing:border-box修改)</p>
+<li><p>盒模型 height/width = content box的高/宽<br>模型的高/宽 = content box + 2<em>padding + 2</em>border<br>(可通过box-sizing:border-box修改宽高的定义范围)</p>
 </li>
+</ul>
+<hr>
+<h3 id="弹性布局"><a href="#弹性布局" class="headerlink" title="弹性布局"></a>弹性布局</h3><ul>
+<li>弹性盒子是一种用于按行或者按列布局元素的一维布局方法</li>
 </ul>
 <hr>
 <h3 id="浮动布局"><a href="#浮动布局" class="headerlink" title="浮动布局"></a>浮动布局</h3><ul>
@@ -210,10 +214,7 @@
 <li>默认的,按照书写顺序从上往下排,每个块级元素都会自动换行.如果有margin就会被隔开<br>(p标签有默认margin)</li>
 </ul>
 <hr>
-<ul>
-<li><strong>脱离文档流</strong>:</li>
-</ul>
-<ol>
+<h3 id="脱离文档流"><a href="#脱离文档流" class="headerlink" title="脱离文档流"></a><strong>脱离文档流</strong></h3><ol>
 <li><p>文档流: 将窗体自上而下分成一行一行，并在每行中按从左至右依次排放元素，称为文档流，也称为普通流。<br>HTML中全部元素都是盒模型，盒模型占用一定的空间，依次排放在HTML中，形成了文档流。</p>
 </li>
 <li><p>元素脱离文档流之后，将不再在文档流中占据空间，而是处于浮动状态（可以理解为漂浮在文档流的上方）。<br>脱离文档流的元素的定位基于正常的文档流，当一个元素脱离文档流后，依然在文档流中的其他元素将忽略该元素并填补其原先的空间</p>
@@ -231,10 +232,7 @@
 </li>
 </ol>
 <hr>
-<ul>
-<li><strong>清除浮动</strong>:</li>
-</ul>
-<p><strong>原因</strong>: 浮动溢出:容器的高度不能自动伸长以适应内容的高度，使内容溢出到容器外而影响布局的现象。</p>
+<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a><strong>清除浮动</strong></h3><p><strong>原因</strong>: 浮动溢出:容器的高度不能自动伸长以适应内容的高度，使内容溢出到容器外而影响布局的现象。</p>
 <p><strong>方法</strong>:</p>
 <ol>
 <li><p>使用带<strong>clear属性</strong>的空元素 :<br>在浮动元素后使用一个空元素如 <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code><br>并在CSS中赋予.clear{clear:both;}属性即可清理浮动。<br>亦可使用<code>&lt;br class=&quot;clear&quot; /&gt;</code>或<code>&lt;hr class=&quot;clear&quot; /&gt;</code>来进行清理。</p>
@@ -249,9 +247,21 @@
 </li>
 </ol>
 <hr>
-<h3 id="CSS定位"><a href="#CSS定位" class="headerlink" title="CSS定位"></a>CSS定位</h3><ul>
-<li>static</li>
+<h3 id="CSS定位-position"><a href="#CSS定位-position" class="headerlink" title="CSS定位(position)"></a>CSS定位(position)</h3><ul>
+<li>static,默认值,通常是在<strong>覆盖</strong>absolute或者relative样式时使用。</li>
+<li>fixed 相对浏览器的窗口进行定位。</li>
+<li>relative 相对定位。(比如学生站队，教练喊小明。小明出队，向前走了一步。)</li>
+<li>absolute 绝对定位</li>
 </ul>
+<ol>
+<li><strong>相对于最近的一个应用absolute或者relative的父元素</strong>，然后相对这个元素进行定位</li>
+<li>它也是一种相对定位，不过相对的不再是自己，而是父元素。具体是哪个父元素，就要看父元素是否应用了position属性。</li>
+<li>由此可以看出，如果父元素没有应用position样式，那么就会继续向上查找，直到html元素。如果都没有找到，absolute就会根据html进行定位；相反，如果找到某个父元素有absolute或者relative或者fixed，则会先对这个元素进行定位。</li>
+</ol>
+<ul>
+<li>通过非静态(非static)让元素非常独立可控,比如弹窗、下拉菜单、固定导航栏等场景</li>
+</ul>
+<hr>
 
       </section>
 
