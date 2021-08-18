@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    vue |
+                                                    ts |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -55,7 +55,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/61113d075132923bf8b88fb2.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/6114d6025132923bf8afdb79.jpg)"></div>
   
 
   <!-- navbar -->
@@ -106,11 +106,11 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">vue</h1>
+          <h1 class="title-wrap">ts</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-08-09T14:31:52.000Z" itemprop="datePublished">2021-08-09</time>
+            <time  class="article-date" datetime="2021-08-18T15:15:52.000Z" itemprop="datePublished">2021-08-18</time>
           </h2>
           <ul class="wrap-list dark">
   
@@ -139,108 +139,25 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="vue里的傻逼错误"><a href="#vue里的傻逼错误" class="headerlink" title="vue里的傻逼错误"></a>vue里的傻逼错误</h3><ul>
-<li><p>new Vue({}) 大括号在小括号里!</p>
-</li>
-<li><p>click 不要打错成cilck!!!(离谱)(我是啥b)</p>
-</li>
-<li><p>在使用cpmputed时,将price写成prive导致一直报错但找不到错误(乌鱼子)</p>
-</li>
+        <h3 id="傻逼错误"><a href="#傻逼错误" class="headerlink" title="傻逼错误"></a>傻逼错误</h3><ul>
+<li>(错误:shell command: install ‘code’ command in PATH无反应)</li>
+<li>code 命令:直接从命令行中打开文件目录</li>
+<li>只有<strong>macOS系统</strong>需要额外安装code命令,windows可直接使用!</li>
 </ul>
-<hr>
-<h3 id="vue引入"><a href="#vue引入" class="headerlink" title="vue引入"></a>vue引入</h3><ol>
-<li>script的src属性引入Vue.js文件</li>
-<li>使用node环境,构建基于Vue的web项目 (一般项目开发采用这种)</li>
-</ol>
-<hr>
-<h3 id="引入Vue-js"><a href="#引入Vue-js" class="headerlink" title="引入Vue.js"></a>引入Vue.js</h3><ul>
-<li><p>把js里的数据添加到DOM里,<strong>之前</strong>是先获取DOM节点(document.querySelector)再操作节点</p>
-</li>
-<li><p>一个vue程序最基本的<strong>结构</strong>：</p>
-</li>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>TS是JS的超集</li>
+<li>它对JS进行了扩展,向JS中引入了类型的概念,并添加了许多新的特性</li>
+<li>TS代码需要通过编译器编译为JS，然后再交由JS解析器执行</li>
+<li>TS完全兼容JS，换言之，任何的JS代码都可以直接当成TS使用。</li>
+<li>相较于JS而言，TS拥有了静态类型，更加严格的语法，更强大的功能</li>
+<li>TS可以在代码执行前就完成代码的检查，减小了运行时异常的出现的几率；TS代码可以编译为任意版本的JS代码，可有效解决不同JS运行环境的兼容问题；同样的功能，TS的代码量要大于JS，但由于TS的代码结构更加清晰，变量类型更加明确，在后期代码的维护中TS却远远胜于JS。</li>
 </ul>
-<p>首先，我们在html中定义了一个id为app的<strong>容器</strong>，然后我们在js创建一个Vue的<strong>实例</strong>，通过<strong>el属性</strong>指定这个容器，从而实现让js接管html.</p>
-<ul>
-<li>el属性:将vue挂载到html</li>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+<li>cmd面板使用npm全局安装typescript: npm i -g typescript</li>
+<li>在终端使用tsc init 命令生成tsconfig.json配置文件</li>
+<li>在tsconfig.json设置include ,注意加””</li>
+<li>在include路径里创建ts文件</li>
 </ul>
-<hr>
-<h3 id="绑定文本"><a href="#绑定文本" class="headerlink" title="绑定文本"></a>绑定文本</h3><ul>
-<li><p>data属性: 在Vue的实例之下添加属性</p>
-</li>
-<li><p><strong>&#123;&#123;&#125;&#125;</strong>: 可以输入一个<strong>表达式</strong>,也可以直接获取Vue实例的值</p>
-</li>
-<li><p>能将vue实例里data中的message属性通过双花括号显示在文本节点之中，</p>
-</li>
-</ul>
-<hr>
-<h3 id="绑定属性"><a href="#绑定属性" class="headerlink" title="绑定属性"></a>绑定属性</h3><ul>
-<li>还能将数据绑定成为一个html属性(vue实例里data中的message属性)，使用【<strong>v-bind</strong>:属性名】和【:属性名】两种方式都可以<strong>绑定属性</strong>，在实际开发中，我们通常使用简写。</li>
-</ul>
-<hr>
-<h3 id="绑定事件"><a href="#绑定事件" class="headerlink" title="绑定事件"></a>绑定事件</h3><ul>
-<li><p>在vue实例中可以设置methods属性为vue的示例添加方法，这些方法我可以直接被调用，也可以绑定为<strong>事件</strong></p>
-</li>
-<li><p>使用【<strong>v-on</strong>:事件类型】和【@事件类型】两种方式都可以为元素绑定事件，在实际开发中，通常使用简写。</p>
-</li>
-<li><p>在methods中通过this.属性 可获取data中设置的属性</p>
-</li>
-</ul>
-<hr>
-<h3 id="组件化开发"><a href="#组件化开发" class="headerlink" title="组件化开发"></a>组件化开发</h3><ul>
-<li>以vue为后缀的文件时vue 的单文件组件</li>
-<li>组件可以理解为一个 可以自定义的, 有更强大功能的标签</li>
-<li>开发web项目时,其实就是在编写和组装这些组件</li>
-</ul>
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ul>
-<li><p>指令(directives)是带有<code>v-</code>前缀的特殊属性,v-bind:(简写:)(绑定属性)和v-on:(简写@)(绑定事件)都是指令</p>
-</li>
-<li><p>v-if和v-show都能控制元素的显示与隐藏</p>
-</li>
-<li><p>v-if=’false’：<strong>不会渲染DOM</strong>，查看元素不可见。</p>
-</li>
-<li><p>v-show=’false’：<strong>会</strong>渲染DOM，查看元素可见，但是样式为<strong>display:none</strong>;</p>
-</li>
-<li><p>v-for显示列表: 哪个要循环就把v-for写在哪个标签里<br><code>&lt;tr v-for=&quot;(v,i) of students&quot; :key=&quot;i&quot;&gt;</code><br><code>&lt;td&gt;&#123;&#123;v.name&#125;&#125;&lt;/td&gt;</code><br><code>&lt;td&gt;&#123;&#123;i&#125;&#125;&lt;/td&gt;</code><br><code>&lt;td&gt;&#123;&#123;v.age&#125;&#125;&lt;/td&gt;</code><br><code>&lt;/tr&gt;</code></p>
-</li>
-</ul>
-<hr>
-<h3 id="组件嵌套"><a href="#组件嵌套" class="headerlink" title="组件嵌套"></a>组件嵌套</h3><ul>
-<li><p>自定义组件一般在components目录中创建，采用<strong>大写字母开头</strong>+驼峰命名法。</p>
-</li>
-<li><p>注意注册组件时不要把components打错! 使用下面代码可引入当前组件</p>
-</li>
-</ul>
-<blockquote>
-<p>import Genshin from “./components/Genshin.vue”;<br>    import Impact from “./components/Impact.vue”;<br>    export default {<br>        //注册组件<br>        components: {<br>            Genshin,<br>            Impact,<br>        },</p>
-</blockquote>
-<h3 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h3><ul>
-<li><p>父级向子级传值: 在app.vue 的data内写一个属性1 meessage,在子级的调用标签,添加 :属性2=”属性1”,在子级组件export内 通过 props: [“属性2”], 之后即可通过&#123;&#123;属性2&#125;&#125;使用该值</p>
-</li>
-<li><p>子级向父级传值: 在app.vue内的子级的调用标签,添加自定义事件<br>比如 @myEvent=”changeData” ,然后再html内定义要传的值得表达式,<br>比如 <code>&lt;h3&gt;&#123;&#123;childData&#125;&#125;&lt;/h3&gt;</code> ,随后在data内初始化要传的值,</p>
-</li>
-<li><p>来到子级,先给传参绑定一个click事件,在该事件内,this.$emit(“myEvent”, this.childData)<br>即可将子级的数据传到父级内的自定义事件的参数</p>
-</li>
-<li><p>最后在父级的自定义事件把参数传到data里</p>
-</li>
-</ul>
-<blockquote>
-<p>changeData(childData) {<br>                this.childData = childData;<br>            },</p>
-</blockquote>
-<ul>
-<li><p>若是在子级组件里的template标签写div,则引入组件会因为块元素而换行</p>
-</li>
-<li><p>只有 v.属性 才能获取对象里的属性</p>
-</li>
-</ul>
-<h3 id="非父子级组件传值"><a href="#非父子级组件传值" class="headerlink" title="非父子级组件传值"></a>非父子级组件传值</h3><ul>
-<li>在src目录中创建一个store.js文件用来统一存储数据</li>
-</ul>
-<p>export default {<br>    state: {<br>   &nbsp;&nbsp;     message: “pray to get Baal”<br>    },<br>    setStateMessage(str) {<br>    &nbsp;&nbsp;    this.state.message = str;<br>    }}</p>
-<ul>
-<li>随后在要传入的组件先(import)引入store.js,再在data里传值:<br>state : store.state, (注意此处是冒号)(即可将store里的数据传到组件)</li>
-<li>调用store里的setStateMessage方法可将设置的参数传给state.message</li>
-</ul>
-<hr>
 
       </section>
 
@@ -248,32 +165,16 @@
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/6114d6025132923bf8afdb79.jpg"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2021/08/18/ts/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">ts</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f439ba5132923bf8b361d5.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/61113d075132923bf8b88fb2.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2021/07/25/node/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">node</h2>
+        <a href="/2021/08/09/vue/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">vue</h2>
         </a>
       
       <div class="card-text--row">Older</div>
