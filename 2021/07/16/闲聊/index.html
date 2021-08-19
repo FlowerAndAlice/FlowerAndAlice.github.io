@@ -139,7 +139,34 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="关于图床"><a href="#关于图床" class="headerlink" title="关于图床"></a>关于图床</h3><p>目前可以白嫖的有: 聚合图床 路过图床  sm.ms 随意云</p>
+        <h3 id="关于图床"><a href="#关于图床" class="headerlink" title="关于图床"></a>关于图床</h3><p>目前可以白嫖的有: 聚合图床(yyds) &nbsp;路过图床  sm.ms 随意云</p>
+<hr>
+<h3 id="编程语言分类"><a href="#编程语言分类" class="headerlink" title="编程语言分类"></a>编程语言分类</h3><ul>
+<li><p><strong>动态类型</strong>:Pyhton、Ruby、PHP、<strong>JavaScript</strong><br>(<strong>运行时才会检查数据类型</strong>,不用给变量指定数据类型)<br>(第一次赋值给变量时,才会记录其数据类型)(let a)</p>
+</li>
+<li><p><strong>静态类型</strong>:C、C++、C#、JAVA<br>(<strong>编译期间检查数据类型</strong>,使用数据前,要声明数据类型)(int,float等)</p>
+</li>
+<li><p><strong>强定义</strong>类型定义语言</p>
+</li>
+</ul>
+<ol>
+<li>类型安全</li>
+<li>强制数据类型定义的语言,如不强制转换,变量永远是某个指定的数据类型</li>
+<li>比如 C/C++/JAVA/C#</li>
+<li>举例: 整形变量不能赋值成字符串</li>
+</ol>
+<ul>
+<li><strong>弱定义</strong>类型定义语言</li>
+</ul>
+<ol>
+<li>类型<strong>不安全</strong></li>
+<li>数据类型可以忽略的语言,<strong>一个变量可以赋不同类型的值</strong>(boolean、str、number等)</li>
+<li>比如 PHP/SQL/<strong>JavaScript</strong>/Python</li>
+<li>举例: let a =1; a=”Yoimiya”;</li>
+</ol>
+<ul>
+<li>汇编语言无类型</li>
+</ul>
 <hr>
 <h3 id="关于log和dir和document-write"><a href="#关于log和dir和document-write" class="headerlink" title="关于log和dir和document.write"></a>关于log和dir和document.write</h3><p>console.log(): 用于控制台调试，可以打印对象的内容,无法看到标签对象的属性和方法,<br>能输出多个数据，可以识别数据类型(颜色有差异)<br>console.dir(): 以对象形式输出标签对象的属性和方法,不能直观识别数据类型</p>
 <p>document.write: 不用于调试，只能打印出对象类型,(在网页上写东西),Javascript 中只能在 HTML 输出流中使用 document.write(实际上文档加载时就是一边加载一边用 document.write 写出内容到屏幕上，而加载完成后，document 就关闭)，在文档已加载后(注意)使用它（比如在函数中），会覆盖整个文档(重写,html里只有空head和新body,故background也会被重置,)。</p>
@@ -154,12 +181,15 @@
 <h3 id="深浅拷贝与赋值"><a href="#深浅拷贝与赋值" class="headerlink" title="深浅拷贝与赋值"></a>深浅拷贝与赋值</h3><p>赋值:(a = [1,2,3], b=a,) 赋值操作(包括对象作为参数、返回值),不会开辟新的内存空间,他只是赋值了对象的引用(也只对对象进行操作).也就是除了b这个名字之外,没有其他的内存开销,修改了a也就影响了b,修改了b,也就影响了a.</p>
 <p>浅拷贝：只复制指向某个对象的指针而不复制对象本身，新旧对象还是共享同一块内存。<br>如果属性是基本类型，拷贝的就是基本类型的值(基本数据类型互不影响)；如果属性是内存地址（引用类型），拷贝的就是内存地址 ，因此如果其中一个对象改变了这个地址，就会影响到另一个对象。</p>
 <p>深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。</p>
-<!-- hexo中插入图片的方式: ![Alt text](图片url "optional title")   //不需要冒号 -->
+<!-- hexo中插入图片的方式: ![HTML](图片url "optional title")   //不需要冒号 -->
 
 <h3 id="hexo中的一些书写问题"><a href="#hexo中的一些书写问题" class="headerlink" title="hexo中的一些书写问题"></a>hexo中的一些书写问题</h3><ul>
 <li>嵌入html或者js代码时,会报错MD033,<br>解决方式:</li>
 </ul>
 <p>1.在前面加4个空格,会变成黑色代码块<br>2.在两侧添加反引号`</p>
+<ul>
+<li><strong>滚动条</strong>的改动在theme/flex-block/source/css/style.styl修改<br>(为了黑夜模式没有白,我可以忍!)</li>
+</ul>
 <!-- ![HTML](https://i0.hdslb.com/bfs/album/23ffd5d98c0fd4096f1b5f1b465ba533ddaa53c4.jpg) -->
 
 <ul>

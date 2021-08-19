@@ -146,17 +146,61 @@
 </ul>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
 <li>TS是JS的超集</li>
-<li>它对JS进行了扩展,向JS中引入了类型的概念,并添加了许多新的特性</li>
-<li>TS代码需要通过编译器编译为JS，然后再交由JS解析器执行</li>
+<li>它对JS进行了扩展,向JS中引入了<strong>类型</strong>的概念,并添加了许多新的特性</li>
+<li>TS代码需要通过编译器<strong>编译</strong>为JS，然后再交由JS<strong>解析</strong>器执行</li>
 <li>TS完全兼容JS，换言之，任何的JS代码都可以直接当成TS使用。</li>
 <li>相较于JS而言，TS拥有了静态类型，更加严格的语法，更强大的功能</li>
-<li>TS可以在代码执行前就完成代码的检查，减小了运行时异常的出现的几率；TS代码可以编译为任意版本的JS代码，可有效解决不同JS运行环境的兼容问题；同样的功能，TS的代码量要大于JS，但由于TS的代码结构更加清晰，变量类型更加明确，在后期代码的维护中TS却远远胜于JS。</li>
+<li>TS可以在代码执行前就完成代码的检查，减小了运行时异常的出现的几率；TS代码可以编译为任意版本的JS代码，可有效解决不同JS<strong>运行环境的兼容</strong>问题；同样的功能，TS的代码量要大于JS，但由于TS的代码结构更加清晰，变量类型更加明确，在后期代码的维护中TS却远远胜于JS。</li>
 </ul>
+<h3 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h3><ul>
+<li><p>never是空集,字面量(“a”,1,ture)和null,undefined是单元素集合</p>
+</li>
+<li><p>Boolean={true,false}是有限集合</p>
+</li>
+<li><p>String,Symblo,BigInt和number={…}是无限集合(近似)</p>
+</li>
+<li><p>还有一个全集</p>
+</li>
+<li><p>A|B 是 A或B (并集)(联合类型Union Types),  A&amp;B (交集)(交叉类型Intersection Types)</p>
+</li>
+<li><p>JS中用let等<strong>声明变量</strong>,TS中可用tpe为类型<strong>声明别名</strong>(采用块级作用域)</p>
+</li>
+<li><p>用let和var声明变量时,比如let a=”Yoimiya”,TS认为变量会改变,(<strong>类型拓宽</strong>)故将类型推断为较为宽泛的类型string,但如果是<strong>const</strong> a=”Yoimiya”,TS知道常量<strong>不会改变</strong>,(<strong>类型收窄</strong>)故推断为字面量类型”Yoimiya”</p>
+</li>
+<li><p>类型空间: 编译器存在的(比如type,interface的)各种类型,这个空间由TS的编译器tsc创建</p>
+</li>
+<li><p>值空间: 运行时存在的(比如let,const的)各种值,有JS引擎(比如V8)</p>
+</li>
+<li><p>class等枚举会在两者都添加,instanceof只作用于值空间</p>
+</li>
+<li><p>typeof在值空间返回js类型,在类型空间返回TS类型(看等号左边确定所在空间)</p>
+</li>
+<li><p>bigint是新引入的类型(es2020+才能使用),表示任意大小的整数,(<strong>number范围</strong>:[-(2^53)-1,(2^53)-1])</p>
+</li>
+<li><p>bigint字面量是在数字后面加小写’n’,<strong>bigint不能和number混合运算,需要显示转换</strong></p>
+</li>
+<li><p>强类型的编程语言都有类型系统,分为:</p>
+</li>
+</ul>
+<ol>
+<li><strong>结构类型系统</strong>:通过类型的实际结构确定两个类型是否相等或兼容(<strong>TS</strong>、Go、OCaml等)</li>
+<li>名义类型系统：通过类型的名称确定两个类型是否相等(C、C++、JAVA等)</li>
+</ol>
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
 <li>cmd面板使用npm全局安装typescript: npm i -g typescript</li>
-<li>在终端使用tsc init 命令生成tsconfig.json配置文件</li>
+<li>创建ts文件夹,src子文件夹(并在里面写一个index.ts)</li>
+<li>(初始化ts项目)npm init -y</li>
+<li>npm install –save-dev typescript</li>
+<li>在终端使用tsc init 命令生成tsconfig.json配置文件(或者在vscode打开ts文件,点击右下角ts版本号,也可创建tsconfig)</li>
 <li>在tsconfig.json设置include ,注意加””</li>
 <li>在include路径里创建ts文件</li>
+</ul>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/play">https://www.typescriptlang.org/play</a></li>
+</ul>
+<h3 id="TS的编译过程"><a href="#TS的编译过程" class="headerlink" title="TS的编译过程"></a>TS的编译过程</h3><ul>
+<li>(TS通过编译器编译为JS，然后再交由JS解析器执行)</li>
+<li>重点: TS的类型检查 与 生成JS 是两个<strong>独立</strong>的过程,类型检查出错不影响JS代码!</li>
 </ul>
 
       </section>
