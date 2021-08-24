@@ -144,7 +144,9 @@
 </li>
 <li><p>click 不要打错成cilck!!!(离谱)(我是啥b)</p>
 </li>
-<li><p>在使用cpmputed时,将price写成prive导致一直报错但找不到错误(乌鱼子)</p>
+<li><p>在使用computed时,将price写成prive导致一直报错但找不到错误(乌鱼子)</p>
+</li>
+<li><p>在后台获取index时,把params打成parms !</p>
 </li>
 </ul>
 <hr>
@@ -191,6 +193,7 @@
 <li>组件可以理解为一个 可以自定义的, 有更强大功能的标签</li>
 <li>开发web项目时,其实就是在编写和组装这些组件</li>
 </ul>
+<hr>
 <h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ul>
 <li><p>指令(directives)是带有<code>v-</code>前缀的特殊属性,v-bind:(简写:)(绑定属性)和v-on:(简写@)(绑定事件)都是指令</p>
 </li>
@@ -213,8 +216,11 @@
 <blockquote>
 <p>import Genshin from “./components/Genshin.vue”;<br>    import Impact from “./components/Impact.vue”;<br>    export default {<br>        //注册组件<br>        components: {<br>            Genshin,<br>            Impact,<br>        },</p>
 </blockquote>
+<hr>
 <h3 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h3><ul>
 <li><p>父级向子级传值: 在app.vue 的data内写一个属性1 meessage,在子级的调用标签,添加 :属性2=”属性1”,在子级组件export内 通过 props: [“属性2”], 之后即可通过&#123;&#123;属性2&#125;&#125;使用该值</p>
+</li>
+<li><p>插槽: (可自定义button等 )在父组件调用子组件的标签里通过template标签的v-slot属性可在定义对应子组件的slot对应name的插槽里自定义html内容</p>
 </li>
 <li><p>子级向父级传值: 在app.vue内的子级的调用标签,添加自定义事件<br>比如 @myEvent=”changeData” ,然后再html内定义要传的值得表达式,<br>比如 <code>&lt;h3&gt;&#123;&#123;childData&#125;&#125;&lt;/h3&gt;</code> ,随后在data内初始化要传的值,</p>
 </li>
@@ -232,6 +238,7 @@
 <li><p>只有 v.属性 才能获取对象里的属性</p>
 </li>
 </ul>
+<hr>
 <h3 id="非父子级组件传值"><a href="#非父子级组件传值" class="headerlink" title="非父子级组件传值"></a>非父子级组件传值</h3><ul>
 <li>在src目录中创建一个store.js文件用来统一存储数据</li>
 </ul>
@@ -239,6 +246,38 @@
 <ul>
 <li>随后在要传入的组件先(import)引入store.js,再在data里传值:<br>state : store.state, (注意此处是冒号)(即可将store里的数据传到组件)</li>
 <li>调用store里的setStateMessage方法可将设置的参数传给state.message</li>
+</ul>
+<hr>
+<h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><ul>
+<li>Vue中的数据变化,并不是直接改变DOM,而是通过改变<strong>虚拟DOM</strong>,并计算更改差异,进而修改DOM中有变化的内容</li>
+<li>通过doc.query..获取真实DOM之后,通过window.getComputedStyle(节点) 可获取节点样式并进行操作</li>
+<li>但vue提供了<strong>新的获取DOM节点的方法</strong> (注意这里是虚拟DOM)<br>(给节点绑定一个属性叫ref,然后通过let box=this.$refs.ref的值,即可获取到节点)</li>
+</ul>
+<hr>
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><ul>
+<li>通过在export default内的filters:{}, 可自定义过滤器,用于一些常见的<strong>文本格式化</strong></li>
+<li>过滤器可以用在两个地方：<strong>双花括号插值</strong>和 <strong>v-bind 表达式()</strong></li>
+</ul>
+<hr>
+<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><ul>
+<li>数据<strong>双向绑定</strong><br>(通过给输入框绑定v-model属性,值为数据,可实现双向绑定)<br>(select直接绑定行不通,需要在select内绑定后设置每个option的value值,才能传递)</li>
+</ul>
+<p>(form表单里的button默认的是submit类型!)<br>(表单控件都是内联元素)<br>(label标签就是他所关联的表单控件的延伸,前提是label的for属性的属性值与想要关联的表单控件的id一样)</p>
+<hr>
+<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><ul>
+<li>不应该在模板中放入太多的逻辑,故对于<strong>复杂逻辑</strong>,需要使用计算属性<br>(多个值变化为了得到一个值,此时用计算属性) (为了得到一个值)</li>
+<li>计算属性: computed里的函数的返回值</li>
+</ul>
+<hr>
+<h3 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h3><ul>
+<li>在watch里写一个变量同名的函数,自带的形参即为变量变化后的值<br>(一个值变化影响多个值,此时用监听器) (为了观察一个值)</li>
+</ul>
+<hr>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
+<li><p>每个vue实例在被创建时(new Vue)都要经过一系列的初始化过程,<br>也会默认调用一些(vue内置定义的)函数,这些函数就是vue的生命周期函数(钩子)</p>
+</li>
+<li><p>created在页面加载之前执行,mounted则在模板之后<br>(这两者只有调用异步函数之后,在异步函数里修改变量,且之后变量会复原)</p>
+</li>
 </ul>
 <hr>
 
@@ -315,7 +354,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>11</span>
+        <span>13</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -327,7 +366,7 @@
         <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
 </svg>
-        5
+        7
       </div>
     </div>
   </div>
@@ -372,7 +411,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">基础</a>
+      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
     </div>
   </div>
 </section>

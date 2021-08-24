@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    node |
+                                                    http |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -55,7 +55,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/60f439ba5132923bf8b361d5.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/6124a30e44eaada739124698.jpg)"></div>
   
 
   <!-- navbar -->
@@ -106,18 +106,18 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">node</h1>
+          <h1 class="title-wrap">http</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-07-25T11:48:58.000Z" itemprop="datePublished">2021-07-25</time>
+            <time  class="article-date" datetime="2021-08-24T07:42:25.000Z" itemprop="datePublished">2021-08-24</time>
           </h2>
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
   
-    <li><a href="/tags/node/">🏷️ node</a></li>
+    <li><a href="/tags/http/">🏷️ http</a></li>
   
 </ul>
         </div>
@@ -141,263 +141,23 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <hr>
-<h3 id="重要-报错原因"><a href="#重要-报错原因" class="headerlink" title="(重要)报错原因"></a>(重要)报错原因</h3><ul>
-<li><p><strong>注释</strong><br>如果在<strong>注释</strong>中写一段错误的代码,仍然会报错!</p>
-</li>
-<li><p><strong>引入npm包导致404错误!</strong><br>此时可以上unpkg寻找想要引入的npm包,引入对应地址即可</p>
-</li>
-</ul>
-<hr>
-<h3 id="命令行工具概述"><a href="#命令行工具概述" class="headerlink" title="命令行工具概述"></a>命令行工具概述</h3><ul>
-<li>我们对计算机的操作几乎都是基于图形界面完成的,比如新建目录、运行某个程序，这些操作在计算机底层都是一个个命令，计算机接收到指令，做出相应反映。</li>
-<li>而通过命令行工具，我们不经过任何UI界面就可以给计算机下达命令。</li>
-<li>cd..可以返回上一级</li>
-<li>tab可以补全: cd D此时按下tab会补全为desktop,cd Do此时按下tab会补全为document</li>
-<li>直接D:回车就可以进入到D盘</li>
-<li>在图形界面按住shift点击右键可以打开powershell(win10)</li>
-</ul>
-<hr>
-<h3 id="什么是node"><a href="#什么是node" class="headerlink" title="什么是node"></a>什么是node</h3><ul>
-<li>Node是一个基于ChromeV8引擎的JavaScript代码运行环境。(在项目开发时的所需要的代码库)</li>
-<li>通过node,让js具备后台开发的能力</li>
-<li>组成: Node.js是由ECMAScript+Node模块API组成。</li>
-<li>语法: 所有ECMAScript语法在Node环境中都可以使用。</li>
-<li>npm是node的包的管理器,下载的<strong>第三方模块</strong>放在node_modules里,</li>
-<li>nvm: 管理node.js和npm的版本<br><img src="https://pic.imgdb.cn/item/611dbd284907e2d39cd4ed9b.jpg" alt="HTML"></li>
-<li>npm服务器在国外,淘宝为国内用户提供cnpm,它是npm的镜像,可以代替npm</li>
-</ul>
-<hr>
-<h3 id="模块化开发"><a href="#模块化开发" class="headerlink" title="模块化开发"></a>模块化开发</h3><ul>
-<li>实际开发中不可能把所有代码全写在一个文件夹中,所以node为我们提供了模块化的语法,每一个js文件都可以当做一个模块:</li>
-</ul>
-<ol>
-<li>require() &nbsp;引入了一个外部模块</li>
-<li>module.exports 暴露模块接口</li>
-</ol>
-<ul>
-<li>es6的模块化语法(与node模块化略有差异):</li>
-</ul>
-<ol>
-<li>import 引入外部模块</li>
-<li>export 暴露模块接口</li>
-</ol>
-<hr>
-<h3 id="模块化机制"><a href="#模块化机制" class="headerlink" title="模块化机制"></a>模块化机制</h3><ul>
-<li>模块化: 根据功能或业务将一个大程序拆分为互相依赖的小文件,再用简单的方式拼装起来</li>
-<li>(如果没有node.js) 所有的script标签必须保证顺序正确(调用在引入之后),否则会依赖报错</li>
-<li>全局变量存在命名冲突,占用内存无法被回收</li>
-<li>IIFE/namespace会导致代码可读性降低等诸多问题</li>
-<li>Node.js支持CommonJs模块规范,采用同步机制加载模块</li>
-</ul>
-<hr>
-<h3 id="外部模块的分类"><a href="#外部模块的分类" class="headerlink" title="外部模块的分类"></a>外部模块的分类</h3><ol>
-<li>核心模块: node自带的模块,可以在require引入后直接使用</li>
-<li>自定义模块: 我们自己编写的模块,引入时需要完整的路径</li>
-<li>第三方模块: 使用npm下载的就是第三方模块,下载完成后require直接引入后使用</li>
-</ol>
-<hr>
-<h3 id="常用的核心模块"><a href="#常用的核心模块" class="headerlink" title="常用的核心模块"></a>常用的核心模块</h3><ul>
-<li>fs模块:<br>node 的文件系统模块,通过此模块的readFile方法可以读取文件</li>
-</ul>
-<hr>
-<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><ul>
-<li><p>在需要<strong>导出</strong>的js中: exports.自定义名1=函数名;   //注意此处<strong>别加括号</strong><br>其中函数名与上方定义函数的<strong>表达式</strong>使用的变量名相同,必须是<strong>表达式</strong>,不能是声明</p>
-</li>
-<li><p>在需要<strong>引入</strong>的js中: const 自定义名2 = require(“./导出模块的js文件名”);<br>let 结果变量 = 自定义名2.自定义名1(参数,参数);</p>
-</li>
-</ul>
-<hr>
-<h3 id="web服务器"><a href="#web服务器" class="headerlink" title="web服务器"></a>web服务器</h3><ul>
-<li>1.客户端与服务器<br>输入域名(比如<a target="_blank" rel="noopener" href="http://baidu.com/">http://baidu.com</a>)后,按下回车,浏览器就会向百度服务器发送一个请求,服务器接到请求之后,会把百度的首页内容以文本的方式发送给浏览器(其中包括html、css、js)，然后我们看到就变成了网页。</li>
-</ul>
-<p>几个基本概念：</p>
-<ol>
-<li>请求：浏览器向服务器要数据</li>
-<li>响应：服务器给浏览器发送数据</li>
-<li>地址：我们可以通过域名或ip访问到一个网站，域名或者ip就是这个网站的地址</li>
-<li>端口：一个ip或者一个域名可以找到一台服务器，但是这台服务器可以对外服务多个网站，他们的端口是不同的，因此访问一个站点除了输出ip或域名，还要输入端口，平时我们很少输入端口是因为几乎所有的网站都会使用默认的80端口，因此不必输入</li>
-</ol>
-<ul>
-<li>创建服务器</li>
-</ul>
-<blockquote>
-<p>const http = require(‘http’);<br>const server = http.createServer((req, res) =&gt; {<br>  res.end(‘Hello World’);<br>});<br>server.listen(3000, () =&gt; {<br>  console.log(<code>Server is running</code>);<br>});</p>
-</blockquote>
-<p>一般不这么实现node项目,而是使用框架实现<br>通过<a target="_blank" rel="noopener" href="http://192.168.50.153:3000/">http://192.168.50.153:3000</a>可以访问该页面<br>全局安装nodemon后,命令行输入nodemon server.js,可实现实时刷新</p>
-<ul>
-<li>框架实现</li>
-</ul>
-<blockquote>
-<p>const Koa = require(“koa”);<br>const app = new Koa();<br>app.listen(3000,() =&gt; {<br>    console.log(“server is running”)<br>});</p>
-</blockquote>
-<p>引入的Koa是一个构造函数，通过new关键字可以创建一个koa应用app。然后通过app的listen方法设置监听端口，运行这个程序就可以移动一个koa服务器了。</p>
-<hr>
-<h3 id="设置响应的内容"><a href="#设置响应的内容" class="headerlink" title="设置响应的内容"></a>设置响应的内容</h3><ul>
-<li>use()方法<br>在创建应用之后,监听事件之前,使用use方法.<br>//ctx：上下文变量，可以获取请求与响应的相关信息。</li>
-</ul>
-<blockquote>
-<p>app.use(async ctx=&gt;{<br>  ctx.body=”welcome to my node world”;<br>})</p>
-</blockquote>
-<hr>
-<h3 id="路由知识"><a href="#路由知识" class="headerlink" title="路由知识"></a>路由知识</h3><p>浏览器可以使用不同的方法向服务器发送请求,常用的如下:</p>
-<ul>
-<li>get请求<br>先cnpm一个koa-router包，随后引入并执行</li>
-</ul>
-<blockquote>
-<p>const router=require(“koa-router”)();</p>
-</blockquote>
-<p>//注意加一个<strong>括号</strong>表示<strong>执行</strong><br>//然后就可以使用get请求了</p>
-<blockquote>
-<p>router.get(‘/‘,async ctx=&gt;{<br>  ctx.body=<code>&lt;h1&gt;Yoimiya&lt;/h1&gt;</code>;<br>})</p>
-</blockquote>
-<p>使用get就不需要每次单独使用use了,只需要在get最后</p>
-<blockquote>
-<p>app.use(router.routes());</p>
-</blockquote>
-<ul>
-<li>post请求</li>
-</ul>
-<hr>
-<h3 id="静态文件"><a href="#静态文件" class="headerlink" title="静态文件"></a>静态文件</h3><ul>
-<li>获取本地文件:<br>先引入static: const static = require(“koa-static”); //引入<br>app.use(static(__dirname + “相对路径”));  //注意加static</li>
-</ul>
-<hr>
-<h3 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h3><p><em>作用<br>可以直接*<em>设置响应的html页面</em></em>,并且可以把后台数据绑定到模板中,发送给客户端<br>我们选择一个易上手的模板引擎:nunjucks<br>创建应用之后,监听之前:</p>
-<p>*操作(模板引擎的单独步骤)</p>
-<blockquote>
-<p>const nunjucks = require(“nunjucks”); //引入模板引擎<br>const views = require(“koa-views”); //指定模板引擎<br>app.use(views(__dirname + “/views”, { map: { html: “nunjucks” } }<br>))</p>
-</blockquote>
-<p>此处两个参数,第一个指定模板路径,第二个指定模板引擎,都需要在views里</p>
-<p>router.get(“/“, async ctx =&gt; {<br>    await ctx.render(“server”, { title: “welcome to my node” })<br>})</p>
-<p>//结合路由,引入title变量到模板,在html里使用来使用</p>
-<hr>
-<h3 id="处理表单数据"><a href="#处理表单数据" class="headerlink" title="处理表单数据"></a>处理表单数据</h3><ul>
-<li><p>action属性:表单的提交路径</p>
-</li>
-<li><p>input的name属性:定义表单提交的数据字段</p>
-</li>
-</ul>
-<p>*form的属性method: 用什么方法请求(默认get)</p>
-<p>method的值: GET(获取)、 post(发送)、</p>
-<ul>
-<li>get方法:(server.js里要有<strong>router.get</strong>) 传表单数据到页面里<br>在server.js里:  先写出表单提交的界面home.html,绑定到/login端口</li>
-</ul>
-<blockquote>
-<p>router.get(“/login”, async ctx =&gt; {<br>    let username = ctx.query.username;<br>    let password = ctx.query.password;<br>    await ctx.render(“home”, { username: username, password: password })<br>})</p>
-</blockquote>
-<ul>
-<li>post方法：<br>引入第三方模块:<br>const parser = require(“koa-parser”);<br>app.use(parser());//就可以解析post请求参数了</li>
-</ul>
-<blockquote>
-<p>router.post(“/login”, async ctx =&gt; {<br>    let username = ctx.request.body.username;<br>    let password = ctx.request.body.password;<br>    await ctx.render(“home”, {<br>        username,<br>        password<br>    })<br>})</p>
-</blockquote>
-<p>//注意js里要有<strong>router.post</strong>!</p>
-<h3 id="nunjucks-的api"><a href="#nunjucks-的api" class="headerlink" title="nunjucks 的api"></a>nunjucks 的api</h3><p>自行查看官方文档</p>
-<hr>
-<h3 id="继承-公共界面-block"><a href="#继承-公共界面-block" class="headerlink" title="继承(公共界面):block"></a>继承(公共界面):block</h3><p>步骤:</p>
-<ol>
-<li>先在viewx里写一个layout.html,把公共的html放里面,然后写<br><code>&#123;% block content %&#125; &#123;% endblock %&#125;</code></li>
-<li>然后把需要继承的html删除至只剩下body的内容<br>开头<code>&#123;% extends "./views/layout.html" %&#125;</code>   //不要打错<br>//此处路径需<strong>要出去再进来</strong><br>以及<code>&#123;% block content %&#125;`   //注意此处中间有**空格**
-结尾`&#123;% endblock %&#125;</code></li>
-</ol>
-<ul>
-<li>include<br>注意include要<strong>写在endblock之前</strong></li>
-</ul>
-<h3 id="cookie与session"><a href="#cookie与session" class="headerlink" title="cookie与session"></a>cookie与session</h3><ul>
-<li>概述<br>cookie:</li>
-</ul>
-<ol>
-<li>商店给会员发的会员卡(不需要服务器接入)、</li>
-<li>或者条形码(需要服务器接入进行店铺加密) :<br>通过session对应cookie,完成验证</li>
-</ol>
-<ul>
-<li>设置cookie<br>概述: 网站服务器程序可以在浏览器中写入cookie,然后浏览器再次访问这个网站时,就会带着这个cookie</li>
-</ul>
-<blockquote>
-<p>ctx.cookies.set(“user”, “Yoimiya”);  //此处属性值可为number型</p>
-</blockquote>
-<p>服务器返回(reponse)cookie以后,客户端拿到会员卡,下次来(request)以及之后就一直保存有该cookie<br>哪怕访问此网站的其他页面,也一直携带该cookie</p>
-<ul>
-<li>获取cookie</li>
-</ul>
-<blockquote>
-<p>router.get(“/test”, async ctx =&gt; {<br>    let user = ctx.cookies.get(“user”);<br>    ctx.body = user;<br>})</p>
-</blockquote>
-<p>//此处为cookie字段名(属性名)</p>
-<ul>
-<li>cookie过期时间<br>//设置cookie过期时间为两秒(距离上一次重写cookie的时间超过两秒就重新载入cookie)</li>
-</ul>
-<blockquote>
-<p>ctx.cookies.set(“count”, count, {<br>            maxAge: 2000<br>        })</p>
-</blockquote>
-<ul>
-<li>session<br>需要用到”koa-session”引擎<br>//<strong>查阅</strong>所有npm下载的包可以去<strong>npmjs.com</strong><br>//<strong>nunjucks里的if语句</strong>用的是<strong>jinja的语法</strong>,自行<strong>查阅</strong><br>了解到不用get,都是直接 ctx.session.user就能获取到session<br>session记录网页访问次数:</li>
-</ul>
-<blockquote>
-<p>router.get(“/session”, async ctx =&gt; {<br>    if (ctx.session.count &gt; 0) {<br>        ctx.session.count = ++ctx.session.count;<br>    } else {<br>        ctx.session.count = 1;<br>    }<br>    ctx.body = ctx.session.count;<br>})</p>
-</blockquote>
-<ul>
-<li>登录验证(通过if语句)</li>
-</ul>
-<blockquote>
-<p>router.post(‘/login’, async ctx =&gt; {<br>    let username = ctx.request.body.username;<br>    let password = ctx.request.body.password;</p>
-</blockquote>
-<pre><code>if (username !== &#39;&#39; &amp;&amp; password === &quot;yyds&quot;) &#123;
-    ctx.session.user = &quot;yyds&quot;;
-    ctx.redirect(&quot;/content&quot;);
-&#125; else &#123;
-    ctx.redirect(&quot;/&quot;);
-&#125;
-</code></pre>
-<p>})</p>
-<ul>
-<li>登录才能查看内容页</li>
-</ul>
-<blockquote>
-<p>router.get(“/content”, async ctx =&gt; {<br>    if (ctx.session.user) {<br>        await ctx.render(“content”);<br>    } else {<br>        ctx.redirect(“/login”);<br>    }<br>})</p>
-</blockquote>
-<ul>
-<li>重定向<br>页面内逻辑实现网页内部跳转,即为重定向<br>重定向不需要await 直接ctx.redirect()</li>
-</ul>
-<hr>
-<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ol>
-<li>按上就是copy上一行代码</li>
-<li>npm/cnpm时 -g是全局、 –save是保存信息到packages.json里</li>
-</ol>
-
+        <h3 id="http错误"><a href="#http错误" class="headerlink" title="http错误"></a>http错误</h3><h3 id="http概述"><a href="#http概述" class="headerlink" title="http概述"></a>http概述</h3>
       </section>
 
       
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/61113d075132923bf8b88fb2.jpg"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2021/08/09/vue/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">vue</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f42d055132923bf85758f4.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/6122fefb44eaada739232a12.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2021/07/23/css/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">CSS</h2>
+        <a href="/2021/08/23/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">安全&amp;性能</h2>
         </a>
       
       <div class="card-text--row">Older</div>
