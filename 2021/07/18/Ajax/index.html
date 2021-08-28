@@ -309,6 +309,7 @@
 <li>删除jsonp的request和use</li>
 <li>在/data处的get请求内添加 ctx.set(“Access-Control-Allow-Origin”, “<a href="http://127.0.0.1:8080&quot;">http://127.0.0.1:8080&quot;</a>);  后面的url可改为*,即任何地址都可跨域访问此data</li>
 <li>koa2-cors中间件,(cnpm,引入,use)</li>
+<li>如果要引入parser并发送post请求,需要<strong>在路由之前进行parser的引入</strong>(否则报错!)</li>
 </ol>
 <ul>
 <li><p>前端:<br>引入axios<br>axios.get(“<a target="_blank" rel="noopener" href="http://127.0.0.1:3000/data&quot;).then">http://127.0.0.1:3000/data&quot;).then</a>(res =&gt; {</p>

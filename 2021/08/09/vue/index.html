@@ -264,6 +264,12 @@
 </ul>
 <p>(form表单里的button默认的是submit类型!)<br>(表单控件都是内联元素)<br>(label标签就是他所关联的表单控件的延伸,前提是label的for属性的属性值与想要关联的表单控件的id一样)</p>
 <hr>
+<h3 id="本地存储"><a href="#本地存储" class="headerlink" title="本地存储"></a>本地存储</h3><ul>
+<li>在某个页面使用localStorage.setItem(“变量名”,this.数据)可存储到本地</li>
+<li>随后在其他页面通过localStorage.getItem(“变量名”)可获取该数据值</li>
+<li>通过localStorage.clear();可实现将本地存储值清空</li>
+</ul>
+<hr>
 <h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><ul>
 <li>不应该在模板中放入太多的逻辑,故对于<strong>复杂逻辑</strong>,需要使用计算属性<br>(多个值变化为了得到一个值,此时用计算属性) (为了得到一个值)</li>
 <li>计算属性: computed里的函数的返回值</li>
@@ -271,6 +277,12 @@
 <hr>
 <h3 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h3><ul>
 <li>在watch里写一个变量同名的函数,自带的形参即为变量变化后的值<br>(一个值变化影响多个值,此时用监听器) (为了观察一个值)</li>
+<li>在路由切换时,会无法立即改变变量值,(因为与a标签的刷新不同)<br>通过 watch: {<pre><code>      &#39;$route.path&#39;: function() &#123;
+          this.username = localStorage.getItem(&quot;usr&quot;);
+      &#125;
+  &#125;
+</code></pre>
+即可实现即时切换值</li>
 </ul>
 <hr>
 <h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
@@ -278,6 +290,30 @@
 </li>
 <li><p>created在页面加载之前执行,mounted则在模板之后<br>(这两者只有调用异步函数之后,在异步函数里修改变量,且之后变量会复原)</p>
 </li>
+</ul>
+<hr>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><ul>
+<li>如何创建:vue create之后选自定义配置,在router处 空格+一直回车</li>
+<li>小的组件写在components里,大的单独页面的组件写在views里</li>
+<li>通过router-link标签的to属性(相当于a标签的href)实现跳转到其他组件页面</li>
+</ul>
+<ol>
+<li>to属性</li>
+<li>//index.js的const routes=[{}] 里设置path、name、components属性</li>
+</ol>
+<ul>
+<li>通过this.$router.push(“/“)可实现不通过router-link标签实现页面跳转</li>
+<li>通过导航守卫router.beforeEach((to, from,next) =&gt; {</li>
+</ul>
+<p>})<br>可实现将路由拦截(无法访问内容)</p>
+<hr>
+<h3 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h3><ul>
+<li>前端8080的变量要用 VUE_APP_变量名 来命名,可实现生产环境和开发环境的(ip/变量名)区分</li>
+<li>在前端新建两个文件: .env.development和.env.production</li>
+<li>关闭8080后在命令行npm run build 可在根目录获得一个dist文件夹</li>
+<li>将dist文件夹里的html/css拷贝到server(后台)的public文件夹,并在static中设置目录为public</li>
+<li>在app.Vue里要用<code>$&#123;process.env.VUE_APP_变量名&#125;</code>来使用该变量</li>
+<li>再运行前端可实现项目部署</li>
 </ul>
 <hr>
 
