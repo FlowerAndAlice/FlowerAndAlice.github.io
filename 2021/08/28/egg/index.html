@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    vue |
+                                                    egg |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -55,7 +55,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/61113d075132923bf8b88fb2.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://pic.imgdb.cn/item/61299da544eaada7390fc89c.png)"></div>
   
 
   <!-- navbar -->
@@ -106,11 +106,11 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">vue</h1>
+          <h1 class="title-wrap">egg</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-08-09T14:31:52.000Z" itemprop="datePublished">2021-08-09</time>
+            <time  class="article-date" datetime="2021-08-28T14:52:35.000Z" itemprop="datePublished">2021-08-28</time>
           </h2>
           <ul class="wrap-list dark">
   
@@ -139,181 +139,56 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="vue里的傻逼错误"><a href="#vue里的傻逼错误" class="headerlink" title="vue里的傻逼错误"></a>vue里的傻逼错误</h3><ul>
-<li><p>new Vue({}) 大括号在小括号里!</p>
+        <h3 id="MVC概述"><a href="#MVC概述" class="headerlink" title="MVC概述"></a>MVC概述</h3><ul>
+<li><p><strong>模型</strong>(model)-<strong>视图</strong>(view)-<strong>控制器</strong>(controller)的缩写</p>
 </li>
-<li><p>click 不要打错成cilck!!!(离谱)(我是啥b)</p>
+<li><p>MVC模型是一种软件设计规则,主要作用就是逻辑拆分:</p>
 </li>
-<li><p>在使用computed时,将price写成prive导致一直报错但找不到错误(乌鱼子)</p>
-</li>
-<li><p>在后台获取index时,把params打成parms !</p>
-</li>
-</ul>
-<hr>
-<h3 id="vue引入"><a href="#vue引入" class="headerlink" title="vue引入"></a>vue引入</h3><ol>
-<li>script的src属性引入Vue.js文件</li>
-<li>使用node环境,构建基于Vue的web项目 (一般项目开发采用这种)</li>
-</ol>
-<hr>
-<h3 id="引入Vue-js"><a href="#引入Vue-js" class="headerlink" title="引入Vue.js"></a>引入Vue.js</h3><ul>
-<li><p>把js里的数据添加到DOM里,<strong>之前</strong>是先获取DOM节点(document.querySelector)再操作节点</p>
-</li>
-<li><p>一个vue程序最基本的<strong>结构</strong>：</p>
-</li>
-</ul>
-<p>首先，我们在html中定义了一个id为app的<strong>容器</strong>，然后我们在js创建一个Vue的<strong>实例</strong>，通过<strong>el属性</strong>指定这个容器，从而实现让js接管html.</p>
-<ul>
-<li>el属性:将vue挂载到html</li>
-</ul>
-<hr>
-<h3 id="绑定文本"><a href="#绑定文本" class="headerlink" title="绑定文本"></a>绑定文本</h3><ul>
-<li><p>data属性: 在Vue的实例之下添加属性</p>
-</li>
-<li><p><strong>&#123;&#123;&#125;&#125;</strong>: 可以输入一个<strong>表达式</strong>,也可以直接获取Vue实例的值</p>
-</li>
-<li><p>能将vue实例里data中的message属性通过双花括号显示在文本节点之中，</p>
-</li>
-</ul>
-<hr>
-<h3 id="绑定属性"><a href="#绑定属性" class="headerlink" title="绑定属性"></a>绑定属性</h3><ul>
-<li>还能将数据绑定成为一个html属性(vue实例里data中的message属性)，使用【<strong>v-bind</strong>:属性名】和【:属性名】两种方式都可以<strong>绑定属性</strong>，在实际开发中，我们通常使用简写。</li>
-</ul>
-<hr>
-<h3 id="绑定事件"><a href="#绑定事件" class="headerlink" title="绑定事件"></a>绑定事件</h3><ul>
-<li><p>在vue实例中可以设置methods属性为vue的示例添加方法，这些方法我可以直接被调用，也可以绑定为<strong>事件</strong></p>
-</li>
-<li><p>使用【<strong>v-on</strong>:事件类型】和【@事件类型】两种方式都可以为元素绑定事件，在实际开发中，通常使用简写。</p>
-</li>
-<li><p>在methods中通过this.属性 可获取data中设置的属性</p>
-</li>
-</ul>
-<hr>
-<h3 id="组件化开发"><a href="#组件化开发" class="headerlink" title="组件化开发"></a>组件化开发</h3><ul>
-<li>以vue为后缀的文件时vue 的单文件组件</li>
-<li>组件可以理解为一个 可以自定义的, 有更强大功能的标签</li>
-<li>开发web项目时,其实就是在编写和组装这些组件</li>
-</ul>
-<hr>
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ul>
-<li><p>指令(directives)是带有<code>v-</code>前缀的特殊属性,v-bind:(简写:)(绑定属性)和v-on:(简写@)(绑定事件)都是指令</p>
-</li>
-<li><p>v-if和v-show都能控制元素的显示与隐藏</p>
-</li>
-<li><p>v-if=’false’：<strong>不会渲染DOM</strong>，查看元素不可见。</p>
-</li>
-<li><p>v-show=’false’：<strong>会</strong>渲染DOM，查看元素可见，但是样式为<strong>display:none</strong>;</p>
-</li>
-<li><p>v-for显示列表: 哪个要循环就把v-for写在哪个标签里<br><code>&lt;tr v-for=&quot;(v,i) of students&quot; :key=&quot;i&quot;&gt;</code><br><code>&lt;td&gt;&#123;&#123;v.name&#125;&#125;&lt;/td&gt;</code><br><code>&lt;td&gt;&#123;&#123;i&#125;&#125;&lt;/td&gt;</code><br><code>&lt;td&gt;&#123;&#123;v.age&#125;&#125;&lt;/td&gt;</code><br><code>&lt;/tr&gt;</code></p>
-</li>
-</ul>
-<hr>
-<h3 id="组件嵌套"><a href="#组件嵌套" class="headerlink" title="组件嵌套"></a>组件嵌套</h3><ul>
-<li><p>自定义组件一般在components目录中创建，采用<strong>大写字母开头</strong>+驼峰命名法。</p>
-</li>
-<li><p>注意注册组件时不要把components打错! 使用下面代码可引入当前组件</p>
-</li>
-</ul>
-<blockquote>
-<p>import Genshin from “./components/Genshin.vue”;<br>    import Impact from “./components/Impact.vue”;<br>    export default {<br>        //注册组件<br>        components: {<br>            Genshin,<br>            Impact,<br>        },</p>
-</blockquote>
-<hr>
-<h3 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h3><ul>
-<li><p>父级向子级传值: 在app.vue 的data内写一个属性1 meessage,在子级的调用标签,添加 :属性2=”属性1”,在子级组件export内 通过 props: [“属性2”], 之后即可通过&#123;&#123;属性2&#125;&#125;使用该值</p>
-</li>
-<li><p>插槽: (可自定义button等 )在父组件调用子组件的标签里通过template标签的v-slot属性可在定义对应子组件的slot对应name的插槽里自定义html内容</p>
-</li>
-<li><p>子级向父级传值: 在app.vue内的子级的调用标签,添加自定义事件<br>比如 @myEvent=”changeData” ,然后再html内定义要传的值得表达式,<br>比如 <code>&lt;h3&gt;&#123;&#123;childData&#125;&#125;&lt;/h3&gt;</code> ,随后在data内初始化要传的值,</p>
-</li>
-<li><p>来到子级,先给传参绑定一个click事件,在该事件内,this.$emit(“myEvent”, this.childData)<br>即可将子级的数据传到父级内的自定义事件的参数</p>
-</li>
-<li><p>最后在父级的自定义事件把参数传到data里</p>
-</li>
-</ul>
-<blockquote>
-<p>changeData(childData) {<br>                this.childData = childData;<br>            },</p>
-</blockquote>
-<ul>
-<li><p>若是在子级组件里的template标签写div,则引入组件会因为块元素而换行</p>
-</li>
-<li><p>只有 v.属性 才能获取对象里的属性</p>
-</li>
-</ul>
-<hr>
-<h3 id="非父子级组件传值"><a href="#非父子级组件传值" class="headerlink" title="非父子级组件传值"></a>非父子级组件传值</h3><ul>
-<li>在src目录中创建一个store.js文件用来统一存储数据</li>
-</ul>
-<p>export default {<br>    state: {<br>   &nbsp;&nbsp;     message: “pray to get Baal”<br>    },<br>    setStateMessage(str) {<br>    &nbsp;&nbsp;    this.state.message = str;<br>    }}</p>
-<ul>
-<li>随后在要传入的组件先(import)引入store.js,再在data里传值:<br>state : store.state, (注意此处是冒号)(即可将store里的数据传到组件)</li>
-<li>调用store里的setStateMessage方法可将设置的参数传给state.message</li>
-</ul>
-<hr>
-<h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><ul>
-<li>Vue中的数据变化,并不是直接改变DOM,而是通过改变<strong>虚拟DOM</strong>,并计算更改差异,进而修改DOM中有变化的内容</li>
-<li>通过doc.query..获取真实DOM之后,通过window.getComputedStyle(节点) 可获取节点样式并进行操作</li>
-<li>但vue提供了<strong>新的获取DOM节点的方法</strong> (注意这里是虚拟DOM)<br>(给节点绑定一个属性叫ref,然后通过let box=this.$refs.ref的值,即可获取到节点)</li>
-</ul>
-<hr>
-<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><ul>
-<li>通过在export default内的filters:{}, 可自定义过滤器,用于一些常见的<strong>文本格式化</strong></li>
-<li>过滤器可以用在两个地方：<strong>双花括号插值</strong>和 <strong>v-bind 表达式()</strong></li>
-</ul>
-<hr>
-<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><ul>
-<li>数据<strong>双向绑定</strong><br>(通过给输入框绑定v-model属性,值为数据,可实现双向绑定)<br>(select直接绑定行不通,需要在select内绑定后设置每个option的value值,才能传递)</li>
-</ul>
-<p>(form表单里的button默认的是submit类型!)<br>(表单控件都是内联元素)<br>(label标签就是他所关联的表单控件的延伸,前提是label的for属性的属性值与想要关联的表单控件的id一样)</p>
-<hr>
-<h3 id="本地存储"><a href="#本地存储" class="headerlink" title="本地存储"></a>本地存储</h3><ul>
-<li>在某个页面使用localStorage.setItem(“变量名”,this.数据)可存储到本地</li>
-<li>随后在其他页面通过localStorage.getItem(“变量名”)可获取该数据值</li>
-<li>通过localStorage.clear();可实现将本地存储值清空</li>
-</ul>
-<hr>
-<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><ul>
-<li>不应该在模板中放入太多的逻辑,故对于<strong>复杂逻辑</strong>,需要使用计算属性<br>(多个值变化为了得到一个值,此时用计算属性) (为了得到一个值)</li>
-<li>计算属性: computed里的函数的返回值</li>
-</ul>
-<hr>
-<h3 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h3><ul>
-<li>在watch里写一个变量同名的函数,自带的形参即为变量变化后的值<br>(一个值变化影响多个值,此时用监听器) (为了观察一个值)</li>
-<li>在路由切换时,会无法立即改变变量值,(因为与a标签的刷新不同)<br>通过 watch: {<pre><code>      &#39;$route.path&#39;: function() &#123;
-          this.username = localStorage.getItem(&quot;usr&quot;);
-      &#125;
-  &#125;
-</code></pre>
-即可实现即时切换值</li>
-</ul>
-<hr>
-<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
-<li><p>每个vue实例在被创建时(new Vue)都要经过一系列的初始化过程,<br>也会默认调用一些(vue内置定义的)函数,这些函数就是vue的生命周期函数(钩子)</p>
-</li>
-<li><p>created在页面加载之前执行,mounted则在模板之后<br>(这两者只有调用异步函数之后,在异步函数里修改变量,且之后变量会复原)</p>
-</li>
-</ul>
-<hr>
-<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><ul>
-<li>如何创建:vue create之后选自定义配置,在router处 空格+一直回车</li>
-<li>小的组件写在components里,大的单独页面的组件写在views里</li>
-<li>通过router-link标签的to属性(相当于a标签的href)实现跳转到其他组件页面</li>
 </ul>
 <ol>
-<li>to属性</li>
-<li>//index.js的const routes=[{}] 里设置path、name、components属性</li>
+<li>视图为用户展示数据</li>
+<li>控制器用来处理用户输入</li>
+<li>模型用于处理数据</li>
 </ol>
-<ul>
-<li>通过this.$router.push(“/“)可实现不通过router-link标签实现页面跳转</li>
-<li>通过导航守卫router.beforeEach((to, from,next) =&gt; {</li>
-</ul>
-<p>})<br>可实现将路由拦截(无法访问内容)</p>
 <hr>
-<h3 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h3><ul>
-<li>前端8080的变量要用 VUE_APP_变量名 来命名,可实现生产环境和开发环境的(ip/变量名)区分</li>
-<li>在前端新建两个文件: .env.development和.env.production</li>
-<li>关闭8080后在命令行npm run build 可在根目录获得一个dist文件夹</li>
-<li>将dist文件夹里的html/css拷贝到server(后台)的public文件夹,并在static中设置目录为public</li>
-<li>在app.Vue里要用<code>$&#123;process.env.VUE_APP_变量名&#125;</code>来使用该变量</li>
-<li>再运行前端可实现项目部署</li>
+<h3 id="Egg中的controller-控制器"><a href="#Egg中的controller-控制器" class="headerlink" title="Egg中的controller(控制器)"></a>Egg中的controller(控制器)</h3><ol>
+<li>直接响应数据或渲染模板</li>
+<li>接收用户的输入</li>
+<li>与路由建立对应关系</li>
+</ol>
+<hr>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><ul>
+<li>进入路由: 在router.js里:<br>router.get(‘/prays’, controller.prays.index)</li>
+</ul>
+<hr>
+<h3 id="路由发送get请求"><a href="#路由发送get请求" class="headerlink" title="路由发送get请求"></a>路由发送get请求</h3><ul>
+<li>获取query参数:</li>
+</ul>
+<p>let query = this.ctx.request.query;<br>再通过<code>值:$&#123;query.index&#125;</code>获取query对象的属性</p>
+<ul>
+<li>获取params参数:</li>
+</ul>
+<p>//在router.js里:<br>router.get(‘/prays/<strong>:id</strong>‘, controller.prays.<strong>getId</strong>)<br>(加一个:id, 再把方法改为新方法)</p>
+<p>然后再在pray.js(自己的路由)里<br>async getId() {<br>        let id = this.ctx.params.id;<br>        this.ctx.body = <code>id:$&#123;id&#125;</code>;<br>}</p>
+<p>随后在路由里加一个/id即可获取到id参数</p>
+<hr>
+<h3 id="路由发送post请求"><a href="#路由发送post请求" class="headerlink" title="路由发送post请求"></a>路由发送post请求</h3><ul>
+<li><p>先写一个方法<strong>创建表单</strong>,method=’post’ action=’/该路由’ 里面的输入input有name=”某属性”</p>
+</li>
+<li><p>router.<strong>get</strong>调用该路由及该方法</p>
+</li>
+<li><p>router.<strong>post</strong>调用该路由和一个<strong>新方法</strong></p>
+</li>
+<li><p>在新方法里通过<strong>this.ctx.request.body</strong>获取post得到的参数,(并将它<strong>push到本地数据</strong>里)(不需要this)(获取的是对象,故需push(<strong>参数.某属性名</strong>))</p>
+</li>
+<li><p>回到本地(this.ctx.body=prayList的)路由</p>
+</li>
+<li><p>以上这种方法太麻烦,可通过restful风格的url简化路由文件<br>router(‘接口名’,’接口url’,controller.接口名)</p>
+</li>
+</ul>
+<p><img src="http://img.xiaozhoubg.com/Fvtnu3GErZDMmrLBdZDux0ZvzCeR" alt="html"></p>
+<ul>
+<li>写出方法后,通过访问对应路由即可调用该功能</li>
 </ul>
 <hr>
 
@@ -323,32 +198,16 @@
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/6114d6025132923bf8afdb79.jpg"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2021/08/18/ts/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">ts</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f439ba5132923bf8b361d5.jpg"></div>
+      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/6124a30e44eaada739124698.jpg"></div>
     
     <div class="card-text">
       
-        <a href="/2021/07/25/node/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">node</h2>
+        <a href="/2021/08/24/http/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">http</h2>
         </a>
       
       <div class="card-text--row">Older</div>
