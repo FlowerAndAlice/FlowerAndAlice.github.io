@@ -157,10 +157,6 @@
 <li>与路由建立对应关系</li>
 </ol>
 <hr>
-<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><ul>
-<li>进入路由: 在router.js里:<br>router.get(‘/prays’, controller.prays.index)</li>
-</ul>
-<hr>
 <h3 id="路由发送get请求"><a href="#路由发送get请求" class="headerlink" title="路由发送get请求"></a>路由发送get请求</h3><ul>
 <li>获取query参数:</li>
 </ul>
@@ -173,6 +169,13 @@
 <p>随后在路由里加一个/id即可获取到id参数</p>
 <hr>
 <h3 id="路由发送post请求"><a href="#路由发送post请求" class="headerlink" title="路由发送post请求"></a>路由发送post请求</h3><ul>
+<li><p>egg里对post请求做了一些安全验证,在config.ddefault.js中,这样设置即可<br>config.security = {</p>
+<pre><code>  csrf: &#123;
+      enable: false,
+  &#125;,
+</code></pre>
+<p>  };</p>
+</li>
 <li><p>先写一个方法<strong>创建表单</strong>,method=’post’ action=’/该路由’ 里面的输入input有name=”某属性”</p>
 </li>
 <li><p>router.<strong>get</strong>调用该路由及该方法</p>
@@ -183,12 +186,34 @@
 </li>
 <li><p>回到本地(this.ctx.body=prayList的)路由</p>
 </li>
-<li><p>以上这种方法太麻烦,可通过restful风格的url简化路由文件<br>router(‘接口名’,’接口url’,controller.接口名)</p>
+<li><p>以上这种方法太麻烦,可通过<strong>restful风格的url</strong>简化路由文件<br>(在router.js中) router(‘接口名’,’接口url’,controller.接口名)</p>
 </li>
 </ul>
-<p><img src="http://img.xiaozhoubg.com/Fvtnu3GErZDMmrLBdZDux0ZvzCeR" alt="html"></p>
+<p><img src="https://pic.imgdb.cn/item/612c8e1744eaada739d649cb.jpg" alt="html"></p>
 <ul>
-<li>写出方法后,通过访问对应路由即可调用该功能</li>
+<li>(接口中)写出方法后,通过访问对应路由即可调用该功能</li>
+</ul>
+<hr>
+<h3 id="插件egg-views-nunjucks-使用模板引擎"><a href="#插件egg-views-nunjucks-使用模板引擎" class="headerlink" title="插件egg-views-nunjucks (使用模板引擎)"></a>插件egg-views-nunjucks (使用模板引擎)</h3><ul>
+<li>安装依赖: cnpm install –save egg-view-nunjucks</li>
+<li>在plugin.js中引入插件,在config.default.js中配置插件</li>
+</ul>
+<blockquote>
+<p>//<strong>plugin.js</strong><br>module.exports = {<br>  // had enabled by egg<br>  // static: {<br>  //   enable: true,<br>  // }<br>  nunjuscks:{<br>    enable:true,<br>    package:’egg-view-nunjucks’<br>  }<br>};<br>//<strong>config.default.js</strong><br>config.view ={<br>  defaultViewEngine:’nunjucks’<br>}</p>
+</blockquote>
+<ul>
+<li>随后在app目录创建view文件夹,写一个index.html</li>
+<li>在主页路由的方法内 await ctx.render(“index”);(注意此处不需要热度)</li>
+</ul>
+<h3 id="插件-使用Egg-cors"><a href="#插件-使用Egg-cors" class="headerlink" title="插件 (使用Egg-cors)"></a>插件 (使用Egg-cors)</h3><ul>
+<li>安装依赖(cnpm install –save egg-cors)</li>
+<li>在plugin.js中引入插件，在config.default.js中配置插件..(注意,和;)</li>
+</ul>
+<blockquote>
+<p>//plugin.js<br>module.exports = {<br>  // had enabled by egg<br>  // static: {<br>  //   enable: true,<br>  // }<br>  cors:{<br>    enable:true,<br>    package:’egg-cors’<br>  }<br>};<br>//config.default.js<br>config.cors={<br>  origin:”<em>“, //“</em>“代表所有的跨域请求<br>  allowMethods: ‘GET,HEAD,PUT,POST,DELETE,PATCH’<br>}</p>
+</blockquote>
+<ul>
+<li>通过Vue与egg实现祈愿列表的查看添加和删除效果</li>
 </ul>
 <hr>
 
