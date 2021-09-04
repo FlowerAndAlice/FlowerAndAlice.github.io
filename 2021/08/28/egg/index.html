@@ -165,7 +165,9 @@
 <li>获取params参数:</li>
 </ul>
 <p>//在router.js里:<br>router.get(‘/prays/<strong>:id</strong>‘, controller.prays.<strong>getId</strong>)<br>(加一个:id, 再把方法改为新方法)</p>
-<p>然后再在pray.js(自己的路由)里<br>async getId() {<br>        let id = this.ctx.params.id;<br>        this.ctx.body = <code>id:$&#123;id&#125;</code>;<br>}</p>
+<p>然后再在pray.js(自己的路由)里</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">getId</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> id = <span class="built_in">this</span>.ctx.params.id;</span><br><span class="line">        <span class="built_in">this</span>.ctx.body = <span class="string">`id:<span class="subst">$&#123;id&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>随后在路由里加一个/id即可获取到id参数</p>
 <hr>
 <h3 id="路由发送post请求"><a href="#路由发送post请求" class="headerlink" title="路由发送post请求"></a>路由发送post请求</h3><ul>
@@ -199,23 +201,88 @@
 <li>在plugin.js中引入插件,在config.default.js中配置插件</li>
 </ul>
 <blockquote>
-<p>//<strong>plugin.js</strong><br>module.exports = {<br>  // had enabled by egg<br>  // static: {<br>  //   enable: true,<br>  // }<br>  nunjuscks:{<br>    enable:true,<br>    package:’egg-view-nunjucks’<br>  }<br>};<br>//<strong>config.default.js</strong><br>config.view ={<br>  defaultViewEngine:’nunjucks’<br>}</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//**plugin.js**</span></span><br><span class="line">&gt;<span class="built_in">module</span>.exports = &#123;</span><br><span class="line">&gt;<span class="comment">// had enabled by egg</span></span><br><span class="line">&gt;<span class="comment">// static: &#123;</span></span><br><span class="line">&gt;<span class="comment">//   enable: true,</span></span><br><span class="line">&gt;<span class="comment">// &#125;</span></span><br><span class="line">&gt;nunjuscks:&#123;</span><br><span class="line">&gt;enable:<span class="literal">true</span>,</span><br><span class="line">&gt;package:<span class="string">&#x27;egg-view-nunjucks&#x27;</span></span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="comment">//**config.default.js**</span></span><br><span class="line">&gt;config.view =&#123;</span><br><span class="line">&gt;defaultViewEngine:<span class="string">&#x27;nunjucks&#x27;</span></span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
+
+
 </blockquote>
 <ul>
 <li>随后在app目录创建view文件夹,写一个index.html</li>
 <li>在主页路由的方法内 await ctx.render(“index”);(注意此处不需要热度)</li>
 </ul>
+<hr>
 <h3 id="插件-使用Egg-cors"><a href="#插件-使用Egg-cors" class="headerlink" title="插件 (使用Egg-cors)"></a>插件 (使用Egg-cors)</h3><ul>
 <li>安装依赖(cnpm install –save egg-cors)</li>
 <li>在plugin.js中引入插件，在config.default.js中配置插件..(注意,和;)</li>
 </ul>
 <blockquote>
-<p>//plugin.js<br>module.exports = {<br>  // had enabled by egg<br>  // static: {<br>  //   enable: true,<br>  // }<br>  cors:{<br>    enable:true,<br>    package:’egg-cors’<br>  }<br>};<br>//config.default.js<br>config.cors={<br>  origin:”<em>“, //“</em>“代表所有的跨域请求<br>  allowMethods: ‘GET,HEAD,PUT,POST,DELETE,PATCH’<br>}</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//plugin.js</span></span><br><span class="line">&gt;<span class="built_in">module</span>.exports = &#123;</span><br><span class="line">&gt;<span class="comment">// had enabled by egg</span></span><br><span class="line">&gt;<span class="comment">// static: &#123;</span></span><br><span class="line">&gt;<span class="comment">//   enable: true,</span></span><br><span class="line">&gt;<span class="comment">// &#125;</span></span><br><span class="line">&gt;cors:&#123;</span><br><span class="line">&gt;enable:<span class="literal">true</span>,</span><br><span class="line">&gt;package:<span class="string">&#x27;egg-cors&#x27;</span></span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="comment">//config.default.js</span></span><br><span class="line">&gt;config.cors=&#123;</span><br><span class="line">&gt;origin:<span class="string">&quot;*&quot;</span>, <span class="comment">//&quot;*&quot;代表所有的跨域请求</span></span><br><span class="line">&gt;allowMethods: <span class="string">&#x27;GET,HEAD,PUT,POST,DELETE,PATCH&#x27;</span></span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
+
+
 </blockquote>
 <ul>
 <li>通过Vue与egg实现祈愿列表的查看添加和删除效果</li>
+<li>(egg:7001中)的destroy(delete)中如果不写 this.ctx.body = “..”会报错</li>
 </ul>
 <hr>
+<h3 id="用户登录状态"><a href="#用户登录状态" class="headerlink" title="用户登录状态"></a>用户登录状态</h3><ul>
+<li><p>需要3个路由:</p>
+<ol>
+<li>login表单(action=”/login”)的get路由,对应login方法</li>
+<li>login表单的post路由,对应doLogin方法</li>
+<li>logOut表单(模板中的包含注销的表单)(action=”/logOut”)的post路由,对应logOut方法</li>
+</ol>
+</li>
+<li><p>session</p>
+<ol>
+<li><p>doLogin方法中,通过this.ctx.request.body.username获取用户名</p>
+</li>
+<li><p>通过this.ctx.session.user = username; 可设置session</p>
+</li>
+<li><p>通过this.ctx.session.user = ‘’;可清空sessionJWT( Json Web Token )</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="JWT-Json-Web-Token"><a href="#JWT-Json-Web-Token" class="headerlink" title="JWT ( Json Web Token )"></a>JWT ( Json Web Token )</h3><ul>
+<li>jwt 概述</li>
+</ul>
+<ol>
+<li><p>json : JavaScript对象表示法,用js的对象来表示数据,例如[{wife:”Baal”},{wife:””}]</p>
+</li>
+<li><p>token : 加密的字符串(标识),客户端带着token向服务器发送请求,以证明自己的身份 </p>
+</li>
+</ol>
+<ul>
+<li>安装egg-jwt插件(生成token)</li>
+</ul>
+<ol>
+<li><p>cnpm install –save egg-jwt</p>
+</li>
+<li><p>在根目录下的 <code>config/plugin.js</code> 配置如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jwt:&#123;</span><br><span class="line">    <span class="attr">enable</span>:<span class="literal">true</span>,</span><br><span class="line">    <span class="attr">package</span>:<span class="string">&quot;egg-jwt&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>配置 <code>config.defalit.js</code> 文件,设置<code>secret</code>; 注意 <code>secret</code>不能泄露。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.jwt = &#123;<span class="attr">sercet</span>:<span class="string">&quot;自定义&quot;</span>&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h3 id="生成token"><a href="#生成token" class="headerlink" title="生成token"></a>生成token</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">index</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> username = &#123;</span><br><span class="line">        <span class="attr">name</span>:<span class="string">&quot;藤井&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//egg-jwt </span></span><br><span class="line">    <span class="keyword">let</span> token = <span class="built_in">this</span>.app.jwt.sign(user,<span class="built_in">this</span>.app.config.jwt.secret)</span><br><span class="line">    <span class="built_in">this</span>.ctx.body = token;   </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="验证流程"><a href="#验证流程" class="headerlink" title="验证流程"></a>验证流程</h3><ol>
+<li>根据用户信息,生成token,并响应给客户端(前端)</li>
+<li>客户端存储在localstorage中</li>
+<li>客户端每次查看数据,请求头携带token</li>
+<li>服务器接收请求时,验证请求头的token,验证成功则响应数据</li>
+</ol>
+<hr>
+<h3 id="解析token"><a href="#解析token" class="headerlink" title="解析token"></a>解析token</h3><p>我们使用了<code>try……catch</code>语句，如果<code>token</code>验证成功则执行<code>try</code>语句，如果<code>token</code>验证失败则会有个反馈</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用户登录(加密)</span></span><br><span class="line">    <span class="keyword">let</span> token = <span class="built_in">this</span>.app.jwt.sign(user,<span class="built_in">this</span>.app.config.jwt.secret)</span><br><span class="line">    <span class="comment">//解析token</span></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> decode = <span class="built_in">this</span>.app.jwt.verify(token,<span class="built_in">this</span>.app.config.jwt.secret)</span><br><span class="line">        <span class="built_in">this</span>.ctx.body = decode</span><br><span class="line">    &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">        <span class="built_in">this</span>.ctx.body = <span class="string">&quot;token未能通过验证&quot;</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><ul>
+<li>概念: egg是一个基于koa的框架,中间件是一个函数,在请求与响应之间执行。</li>
+<li>在路由和控制器之间的</li>
+</ul>
 
       </section>
 
