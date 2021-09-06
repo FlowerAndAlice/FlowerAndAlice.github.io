@@ -157,6 +157,12 @@
 <li>与路由建立对应关系</li>
 </ol>
 <hr>
+<h3 id="新建egg项目"><a href="#新建egg项目" class="headerlink" title="新建egg项目"></a>新建egg项目</h3><ol>
+<li>新建空白文件夹</li>
+<li>cnpm init egg –type=simple (生成项目)</li>
+<li>cnpm install (安装依赖)</li>
+</ol>
+<hr>
 <h3 id="路由发送get请求"><a href="#路由发送get请求" class="headerlink" title="路由发送get请求"></a>路由发送get请求</h3><ul>
 <li>获取query参数:</li>
 </ul>
@@ -201,13 +207,13 @@
 <li>在plugin.js中引入插件,在config.default.js中配置插件</li>
 </ul>
 <blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//**plugin.js**</span></span><br><span class="line">&gt;<span class="built_in">module</span>.exports = &#123;</span><br><span class="line">&gt;<span class="comment">// had enabled by egg</span></span><br><span class="line">&gt;<span class="comment">// static: &#123;</span></span><br><span class="line">&gt;<span class="comment">//   enable: true,</span></span><br><span class="line">&gt;<span class="comment">// &#125;</span></span><br><span class="line">&gt;nunjuscks:&#123;</span><br><span class="line">&gt;enable:<span class="literal">true</span>,</span><br><span class="line">&gt;package:<span class="string">&#x27;egg-view-nunjucks&#x27;</span></span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="comment">//**config.default.js**</span></span><br><span class="line">&gt;config.view =&#123;</span><br><span class="line">&gt;defaultViewEngine:<span class="string">&#x27;nunjucks&#x27;</span></span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//**plugin.js**</span></span><br><span class="line">&gt;<span class="built_in">module</span>.exports = &#123;</span><br><span class="line"></span><br><span class="line">&gt;nunjuscks:&#123;</span><br><span class="line">&gt;enable:<span class="literal">true</span>,</span><br><span class="line">&gt;package:<span class="string">&#x27;egg-view-nunjucks&#x27;</span></span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="comment">//**config.default.js**</span></span><br><span class="line">&gt;config.view =&#123;</span><br><span class="line">&gt;defaultViewEngine:<span class="string">&#x27;nunjucks&#x27;</span></span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
 
 
 </blockquote>
 <ul>
 <li>随后在app目录创建view文件夹,写一个index.html</li>
-<li>在主页路由的方法内 await ctx.render(“index”);(注意此处不需要热度)</li>
+<li>在主页路由的方法内 await ctx.render(“index”);(注意此处不需要斜杠)</li>
 </ul>
 <hr>
 <h3 id="插件-使用Egg-cors"><a href="#插件-使用Egg-cors" class="headerlink" title="插件 (使用Egg-cors)"></a>插件 (使用Egg-cors)</h3><ul>
@@ -254,7 +260,7 @@
 </li>
 </ol>
 <ul>
-<li>安装egg-jwt插件(生成token)</li>
+<li><strong>安装egg-jwt插件</strong>(生成token)</li>
 </ul>
 <ol>
 <li><p>cnpm install –save egg-jwt</p>
@@ -276,19 +282,74 @@
 </ol>
 <hr>
 <h3 id="解析token"><a href="#解析token" class="headerlink" title="解析token"></a>解析token</h3><p>我们使用了<code>try……catch</code>语句，如果<code>token</code>验证成功则执行<code>try</code>语句，如果<code>token</code>验证失败则会有个反馈</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用户登录(加密)</span></span><br><span class="line">    <span class="keyword">let</span> token = <span class="built_in">this</span>.app.jwt.sign(user,<span class="built_in">this</span>.app.config.jwt.secret)</span><br><span class="line">    <span class="comment">//解析token</span></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> decode = <span class="built_in">this</span>.app.jwt.verify(token,<span class="built_in">this</span>.app.config.jwt.secret)</span><br><span class="line">        <span class="built_in">this</span>.ctx.body = decode</span><br><span class="line">    &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">        <span class="built_in">this</span>.ctx.body = <span class="string">&quot;token未能通过验证&quot;</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用户登录(加密)(生成token)</span></span><br><span class="line">    <span class="keyword">let</span> token = <span class="built_in">this</span>.app.jwt.sign(user,<span class="built_in">this</span>.app.config.jwt.secret)</span><br><span class="line">    <span class="comment">//解析token</span></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> decode = <span class="built_in">this</span>.app.jwt.verify(token,<span class="built_in">this</span>.app.config.jwt.secret)</span><br><span class="line">        <span class="built_in">this</span>.ctx.body = decode</span><br><span class="line">    &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">        <span class="built_in">this</span>.ctx.body = <span class="string">&quot;token未能通过验证&quot;</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><ul>
-<li>概念: egg是一个基于koa的框架,中间件是一个函数,在请求与响应之间执行。</li>
-<li>在路由和控制器之间的</li>
+<li>概念: egg是一个基于koa的框架,中间件是一个函数,<strong>在请求与响应之间执行</strong>。</li>
+<li>在<strong>router.js</strong>里,路由(请求)和控制器(响应)之间调用/执行</li>
 </ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">&quot;/jwtmessage&quot;</span>, app.middleware.checktoken(), controller.jwt.getmessage);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>具体实现,在app下新建<strong>middleware文件夹</strong>,并创建js文件如下:</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checktoken</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">ctx, next</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> token = ctx.request.header.token; <span class="comment">//获取token</span></span><br><span class="line">      <span class="keyword">let</span> decode = ctx.app.jwt.verify(token, ctx.app.config.jwt.secret); </span><br><span class="line">        <span class="comment">//解析token</span></span><br><span class="line">      <span class="keyword">if</span> (decode.username) &#123;</span><br><span class="line">       <span class="keyword">await</span> next(); <span class="comment">//用户验证成功,跳转到控制器</span></span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       ctx.body = &#123;</span><br><span class="line">          <span class="attr">code</span>: <span class="number">40000</span>,</span><br><span class="line">          <span class="attr">msg</span>: <span class="string">&quot;旅行者进入提瓦特失败&quot;</span></span><br><span class="line">       &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">     ctx.body = &#123;</span><br><span class="line">        <span class="attr">code</span>: <span class="number">40000</span>,</span><br><span class="line">        <span class="attr">msg</span>: <span class="string">&quot;token未通过验证&quot;</span>,</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = checktoken;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h3><ul>
+<li>应用程序的数据通常存储在数据库中,而不是内存中</li>
+<li>因此我们使用MySQL数据库实现数据的持久化</li>
+<li>为了更方便的操作mysql,我们使用sequelize ( ORM框架 ) 管理数据层的代码</li>
+</ul>
+<ul>
+<li>ORM (对象关系映射)( Object Relational Mapping)</li>
+</ul>
+<ol>
+<li>将数据从对象的形式,转换为表格的形式</li>
+<li>sequelize是一个基于node的ORM框架</li>
+<li>通过egg-sequelize,可以直接使用sequelize提供的方法操作数据库,而不需要手写SQL语句</li>
+</ol>
+<ul>
+<li>sequelize的<strong>安装</strong></li>
+</ul>
+<ol>
+<li><p>cnpm install –save egg-sequelize</p>
+</li>
+<li><p>1</p>
+</li>
+<li><p>  <strong>引入插件</strong></p>
+</li>
+</ol>
+   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//plugin.js</span></span><br><span class="line"><span class="attr">sequelize</span>: &#123;</span><br><span class="line"></span><br><span class="line">   <span class="attr">enable</span>: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">   <span class="attr">package</span>: <span class="string">&#x27;egg-sequelize&#x27;</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>​    <strong>配置数据库连接</strong></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//config.default.js</span></span><br><span class="line">config.sequelize=&#123;</span><br><span class="line">      <span class="attr">dialect</span>:<span class="string">&#x27;mysql&#x27;</span>,  <span class="comment">//数据库类型</span></span><br><span class="line">      <span class="attr">database</span>:<span class="string">&#x27;alice&#x27;</span>,     	<span class="comment">//自定义</span></span><br><span class="line">      <span class="attr">host</span>:<span class="string">&#x27;localhost&#x27;</span>,</span><br><span class="line">      <span class="attr">port</span>:<span class="number">3306</span>,          <span class="comment">//端口号</span></span><br><span class="line">      <span class="attr">username</span>:<span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">      <span class="attr">password</span>:<span class="string">&#x27;123456&#x27;</span>    <span class="comment">//自定义</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
 
       </section>
 
       
       
         <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/61337f7244eaada739d20aa3.jpg"></div>
+    
+    <div class="card-text">
+      
+        <a href="/2021/09/04/mysql/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">MySQL</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
           
           
             <div class="article-nav-item layout-padding">
@@ -341,7 +402,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>14</span>
+        <span>15</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
