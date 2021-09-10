@@ -139,7 +139,21 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="MVC概述"><a href="#MVC概述" class="headerlink" title="MVC概述"></a>MVC概述</h3><ul>
+        <h3 id="egg-烧饼错误"><a href="#egg-烧饼错误" class="headerlink" title="egg.烧饼错误"></a>egg.烧饼错误</h3><ul>
+<li><p><strong>where语句</strong>内的<strong>条件需为冒号</strong>而不能是等号!</p>
+</li>
+<li><p>this.ctx.request.query.id表示前端传过来的id,</p>
+</li>
+<li><p>this.ctx.params.id表示url里(/id)的id</p>
+</li>
+<li><p>数据库里的表的某个id的数据如果被删除,并不会像数组一样往前递进</p>
+</li>
+<li><p>await this.app.model后面需要接<strong>大写的</strong> <strong>model中的js文件</strong></p>
+<p>(比如await this.app.model.Fate),否则会找不到然后报500</p>
+</li>
+</ul>
+<hr>
+<h3 id="MVC概述"><a href="#MVC概述" class="headerlink" title="MVC概述"></a>MVC概述</h3><ul>
 <li><p><strong>模型</strong>(model)-<strong>视图</strong>(view)-<strong>控制器</strong>(controller)的缩写</p>
 </li>
 <li><p>MVC模型是一种软件设计规则,主要作用就是逻辑拆分:</p>
@@ -207,7 +221,7 @@
 <li>在plugin.js中引入插件,在config.default.js中配置插件</li>
 </ul>
 <blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//**plugin.js**</span></span><br><span class="line">&gt;<span class="built_in">module</span>.exports = &#123;</span><br><span class="line"></span><br><span class="line">&gt;nunjuscks:&#123;</span><br><span class="line">&gt;enable:<span class="literal">true</span>,</span><br><span class="line">&gt;package:<span class="string">&#x27;egg-view-nunjucks&#x27;</span></span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="comment">//**config.default.js**</span></span><br><span class="line">&gt;config.view =&#123;</span><br><span class="line">&gt;defaultViewEngine:<span class="string">&#x27;nunjucks&#x27;</span></span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//**plugin.js**</span></span><br><span class="line">&gt;<span class="built_in">module</span>.exports = &#123;</span><br><span class="line"></span><br><span class="line">&gt;nunjuscks:&#123;</span><br><span class="line">&gt;enable:<span class="literal">true</span>,</span><br><span class="line">&gt;package:<span class="string">&#x27;egg-view-nunjucks&#x27;</span></span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="comment">//**config.default.js**</span></span><br><span class="line">&gt;config.view =&#123;</span><br><span class="line">&gt;defaultViewEngine:<span class="string">&#x27;nunjucks&#x27;</span></span><br><span class="line">&gt;&#125;;</span><br></pre></td></tr></table></figure>
 
 
 </blockquote>
@@ -311,22 +325,71 @@
 <li>通过egg-sequelize,可以直接使用sequelize提供的方法操作数据库,而不需要手写SQL语句</li>
 </ol>
 <ul>
-<li>sequelize的<strong>安装</strong></li>
+<li>sequelize的<strong>安装</strong>和<strong>使用</strong></li>
 </ul>
 <ol>
 <li><p>cnpm install –save egg-sequelize</p>
 </li>
-<li><p>1</p>
+<li><p>cnpm install –save mysql2</p>
 </li>
 <li><p>  <strong>引入插件</strong></p>
 </li>
 </ol>
    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//plugin.js</span></span><br><span class="line"><span class="attr">sequelize</span>: &#123;</span><br><span class="line"></span><br><span class="line">   <span class="attr">enable</span>: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">   <span class="attr">package</span>: <span class="string">&#x27;egg-sequelize&#x27;</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
+<p>   此处疑似报错,用exports.import可引入</p>
 <ol start="4">
 <li>​    <strong>配置数据库连接</strong></li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//config.default.js</span></span><br><span class="line">config.sequelize=&#123;</span><br><span class="line">      <span class="attr">dialect</span>:<span class="string">&#x27;mysql&#x27;</span>,  <span class="comment">//数据库类型</span></span><br><span class="line">      <span class="attr">database</span>:<span class="string">&#x27;alice&#x27;</span>,     	<span class="comment">//自定义</span></span><br><span class="line">      <span class="attr">host</span>:<span class="string">&#x27;localhost&#x27;</span>,</span><br><span class="line">      <span class="attr">port</span>:<span class="number">3306</span>,          <span class="comment">//端口号</span></span><br><span class="line">      <span class="attr">username</span>:<span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">      <span class="attr">password</span>:<span class="string">&#x27;123456&#x27;</span>    <span class="comment">//自定义</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>在app/model文件中<strong>创建数据模型</strong></li>
+</ol>
+<p>在model文件夹创建clazz.js文件:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; STRING &#125; = app.Sequelize;</span><br><span class="line">  <span class="keyword">const</span> Clazz = app.model.define(<span class="string">&#x27;clazz&#x27;</span>, &#123;</span><br><span class="line">   <span class="attr">name</span>: STRING,</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> Clazz;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>在app的<strong>同级目录</strong>下添加app.js文件,<strong>初始化数据库</strong></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">  app.beforeStart(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//sync方法会根据模型创建表</span></span><br><span class="line">   <span class="keyword">await</span> app.model.sync(&#123;&#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如何实现增删改查</li>
+</ul>
+<ol>
+<li>在controller中写wife.js</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Controller = <span class="built_in">require</span>(<span class="string">&quot;egg&quot;</span>).Controller;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WifeController</span> <span class="keyword">extends</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">index</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">     <span class="built_in">this</span>.ctx.body = <span class="string">&quot;请问姑娘芳名&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">create</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">     <span class="built_in">this</span>.ctx.body = <span class="string">&quot;又多着一个老婆&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">destroy</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">     <span class="built_in">this</span>.ctx.body = <span class="string">&quot;分手吧渣女&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">update</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">     <span class="built_in">this</span>.ctx.body = <span class="string">&quot;老婆改造计划&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = WifeController;</span><br><span class="line"><span class="comment">//真实项目中,controller要和操作数据的逻辑分离开,便于维护</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在router中写restful式路由:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">router.resources(<span class="string">&quot;wife&quot;</span>, <span class="string">&quot;/wife&quot;</span>, controller.wife);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在函数里完成增删改查</li>
+</ol>
+<hr>
+<h3 id="service"><a href="#service" class="headerlink" title="service"></a>service</h3><ul>
+<li>前端和controller交互（接收数据，返回响应）,controller调用service的方法,service去操作数据库(database)</li>
+<li>简单说就是,service就是在复杂业务场景下用于做业务逻辑封装的一个抽象层</li>
+</ul>
+<p>好处:</p>
+<ol>
+<li>保持Controller中的<strong>逻辑更加简洁</strong>。</li>
+<li>保持业务逻辑的<strong>独立性</strong>，抽象出来的Service可以被多个Controller<strong>重复调用</strong></li>
+</ol>
+<p>具体做法：</p>
+<ol>
+<li>在<strong>app/service</strong>目录下创建JS文件</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Service = <span class="built_in">require</span>(<span class="string">&#x27;egg&#x27;</span>).Service;  <span class="comment">//引入service</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WifeService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;   <span class="comment">//继承service</span></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="title">getWifeList</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> wifeList = <span class="keyword">await</span> <span class="built_in">this</span>.app.model.Wife.findAll();</span><br><span class="line">            <span class="keyword">return</span> wifeList;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="title">createWife</span>(<span class="params">name, fate_id</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">await</span> <span class="built_in">this</span>.app.model.Wife.create(&#123;</span><br><span class="line">                <span class="attr">name</span>: name,</span><br><span class="line">                <span class="attr">fate_id</span>: fate_id,</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = WifeService;   <span class="comment">//暴露service</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在controller进行<strong>调用</strong>、<strong>传参</strong>、<strong>接收返回值</strong>、作<strong>异常处理</strong>（根据返回值）</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">create</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> name = <span class="built_in">this</span>.ctx.request.body.name;</span><br><span class="line">        <span class="keyword">let</span> fate_id = <span class="built_in">this</span>.ctx.request.body.fate_id;</span><br><span class="line">        <span class="keyword">let</span> result = <span class="keyword">await</span> <span class="built_in">this</span>.ctx.service.wife.createWife(name, fate_id);</span><br><span class="line">        <span class="keyword">if</span> (result) &#123;</span><br><span class="line">            <span class="built_in">this</span>.ctx.body = &#123;</span><br><span class="line">                <span class="attr">code</span>: <span class="number">20000</span>,</span><br><span class="line">                <span class="attr">msg</span>: <span class="string">&#x27;又多着一个老婆&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.ctx.body = &#123;</span><br><span class="line">                <span class="attr">code</span>: <span class="number">50000</span>,</span><br><span class="line">                <span class="attr">msg</span>: <span class="string">&#x27;服务器拉垮了,请与管理员联系&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 
       </section>

@@ -221,6 +221,11 @@
 <ol start="3">
 <li><strong>DQL <strong>(Data Query Language) : 数据</strong>查询</strong>语言,用来<strong>查询</strong>数据库中的数据 :  **select **  ;</li>
 </ol>
+<ul>
+<li>修改表的字符集</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1、修改数据库字符集</span><br><span class="line"></span><br><span class="line">alter database db_new charset utf8mb4;</span><br><span class="line"></span><br><span class="line">2、修改表字符集</span><br><span class="line"></span><br><span class="line">alter table tb charset=utf8mb4;</span><br><span class="line"></span><br><span class="line">3、修改表字符集和校验规则</span><br><span class="line"></span><br><span class="line">alter table tb charset=utf8mb4 collate=utf8mb4_general_ci;</span><br><span class="line"></span><br><span class="line">4、修改表字段的字符集和校验规则</span><br><span class="line"></span><br><span class="line">alter table tb modify name varchar(50) character set utf8 collate utf8_general_ci;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 
       </section>
 
