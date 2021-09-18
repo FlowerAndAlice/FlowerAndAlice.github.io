@@ -28,8 +28,6 @@
 
                                             <title>
                                                 
-                                                    vue |
-                                                        
                                                             Flower &amp; Alice
                                             </title>
 
@@ -106,7 +104,7 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">vue</h1>
+          <h1 class="title-wrap"></h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
@@ -166,6 +164,10 @@
 <li>el属性:将vue挂载到html</li>
 </ul>
 <hr>
+<h3 id="vue中的前端依赖"><a href="#vue中的前端依赖" class="headerlink" title="vue中的前端依赖"></a>vue中的前端依赖</h3><ol>
+<li>axios ：  cnpm install –save axios </li>
+</ol>
+<hr>
 <h3 id="绑定文本"><a href="#绑定文本" class="headerlink" title="绑定文本"></a>绑定文本</h3><ul>
 <li><p>data属性: 在Vue的实例之下添加属性</p>
 </li>
@@ -203,8 +205,8 @@
 </li>
 <li><p>v-show=’false’：<strong>会</strong>渲染DOM，查看元素可见，但是样式为<strong>display:none</strong>;</p>
 </li>
-<li><p>v-for显示列表: 哪个要循环就把v-for写在哪个标签里<br><code>&lt;tr v-for=&quot;(v,i) of students&quot; :key=&quot;i&quot;&gt;</code><br><code>&lt;td&gt;&#123;&#123;v.name&#125;&#125;&lt;/td&gt;</code><br><code>&lt;td&gt;&#123;&#123;i&#125;&#125;&lt;/td&gt;</code><br><code>&lt;td&gt;&#123;&#123;v.age&#125;&#125;&lt;/td&gt;</code><br><code>&lt;/tr&gt;</code></p>
-</li>
+<li><p>v-for显示列表: 哪个要循环就把v-for写在哪个标签里</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr v-<span class="keyword">for</span>=<span class="string">&quot;(v,i) of students&quot;</span> :key=<span class="string">&quot;i&quot;</span>&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;v.name&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;i&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;v.age&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
 <h3 id="组件嵌套"><a href="#组件嵌套" class="headerlink" title="组件嵌套"></a>组件嵌套</h3><ul>
@@ -214,7 +216,7 @@
 </li>
 </ul>
 <blockquote>
-<p>import Genshin from “./components/Genshin.vue”;<br>    import Impact from “./components/Impact.vue”;<br>    export default {<br>        //注册组件<br>        components: {<br>            Genshin,<br>            Impact,<br>        },</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Genshin <span class="keyword">from</span> <span class="string">&quot;./components/Genshin.vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> Impact <span class="keyword">from</span> <span class="string">&quot;./components/Impact.vue&quot;</span>;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">//注册组件</span></span><br><span class="line">    <span class="attr">components</span>: &#123;</span><br><span class="line">        Genshin,</span><br><span class="line">        Impact,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <hr>
 <h3 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h3><ul>
@@ -230,7 +232,7 @@
 </li>
 </ul>
 <blockquote>
-<p>changeData(childData) {<br>                this.childData = childData;<br>            },</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">changeData</span>(<span class="params">childData</span>)</span> &#123;</span><br><span class="line">          <span class="built_in">this</span>.childData = childData;</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>
 </blockquote>
 <ul>
 <li><p>若是在子级组件里的template标签写div,则引入组件会因为块元素而换行</p>
@@ -242,7 +244,8 @@
 <h3 id="非父子级组件传值"><a href="#非父子级组件传值" class="headerlink" title="非父子级组件传值"></a>非父子级组件传值</h3><ul>
 <li>在src目录中创建一个store.js文件用来统一存储数据</li>
 </ul>
-<p>export default {<br>    state: {<br>   &nbsp;&nbsp;     message: “pray to get Baal”<br>    },<br>    setStateMessage(str) {<br>    &nbsp;&nbsp;    this.state.message = str;<br>    }}</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">      <span class="attr">message</span>: <span class="string">&quot;pray to get Baal&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">setStateMessage</span>(<span class="params">str</span>)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.state.message = str;</span><br><span class="line">    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>随后在要传入的组件先(import)引入store.js,再在data里传值:<br>state : store.state, (注意此处是冒号)(即可将store里的数据传到组件)</li>
 <li>调用store里的setStateMessage方法可将设置的参数传给state.message</li>
@@ -255,8 +258,16 @@
 </ul>
 <hr>
 <h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><ul>
-<li>通过在export default内的filters:{}, 可自定义过滤器,用于一些常见的<strong>文本格式化</strong></li>
-<li>过滤器可以用在两个地方：<strong>双花括号插值</strong>和 <strong>v-bind 表达式()</strong></li>
+<li><p>通过在export default内的filters:{}, 可自定义过滤器函数,用于一些常见的<strong>文本格式化</strong></p>
+</li>
+<li><p>过滤器可以用在两个地方：<strong>双花括号插值</strong>和 <strong>v-bind 表达式()</strong></p>
+</li>
+<li><p>比如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2&gt;&#123;&#123;date | dateFormate&#125;&#125;&lt;/h2&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>随后在过滤器函数里通过对参数value的处理,返回想要的过滤结果</p>
+</li>
+<li><p>在<strong>字面量里使用data的数据</strong>需要使用${}   比如 `**${year}年**${month}月${d}日`</p>
+</li>
 </ul>
 <hr>
 <h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><ul>
@@ -277,13 +288,11 @@
 <hr>
 <h3 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h3><ul>
 <li>在watch里写一个变量同名的函数,自带的形参即为变量变化后的值<br>(一个值变化影响多个值,此时用监听器) (为了观察一个值)</li>
-<li>在路由切换时,会无法立即改变变量值,(因为与a标签的刷新不同)<br>通过 watch: {<pre><code>      &#39;$route.path&#39;: function() &#123;
-          this.username = localStorage.getItem(&quot;usr&quot;);
-      &#125;
-  &#125;
-</code></pre>
-即可实现即时切换值</li>
+<li>在路由切换时,会无法立即改变变量值,(因为与a标签的刷新不同)<br>通过 </li>
 </ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">          <span class="string">&#x27;$route.path&#x27;</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="built_in">this</span>.username = <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;usr&quot;</span>);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<p>即可实现即时切换值</p>
 <hr>
 <h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
 <li><p>每个vue实例在被创建时(new Vue)都要经过一系列的初始化过程,<br>也会默认调用一些(vue内置定义的)函数,这些函数就是vue的生命周期函数(钩子)</p>
@@ -293,7 +302,7 @@
 </ul>
 <hr>
 <h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><ul>
-<li>如何创建:vue create之后选自定义配置,在router处 空格+一直回车</li>
+<li>如何<strong>创建</strong>:vue create之后选自定义配置,在router处 空格+一直回车</li>
 <li>小的组件写在components里,大的单独页面的组件写在views里</li>
 <li>通过router-link标签的to属性(相当于a标签的href)实现跳转到其他组件页面</li>
 </ul>
@@ -304,19 +313,49 @@
 </ol>
 <ul>
 <li>通过this.$router.push(“/“)可实现不通过router-link标签实现页面跳转</li>
-<li>通过导航守卫router.beforeEach((to, from,next) =&gt; {</li>
+<li>通过导航守卫</li>
 </ul>
-<p>})<br>可实现将路由拦截(无法访问内容)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (to.path === <span class="string">&quot;/login&quot;</span>) &#123;</span><br><span class="line">        next();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> token =<span class="built_in">localStorage</span>.getItem(<span class="string">&quot;token&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(token)&#123;</span><br><span class="line">            next();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            next(<span class="string">&quot;/login&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>可实现将路由拦截(无法访问内容)</p>
 <hr>
 <h3 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h3><ul>
-<li>前端8080的变量要用 VUE_APP_变量名 来命名,可实现生产环境和开发环境的(ip/变量名)区分</li>
-<li>在前端新建两个文件: .env.development和.env.production</li>
+<li>前端8080的变量要用 VUE_APP_变量名 来命名,可实现生产环境和<strong>开发环境</strong>的(ip/变量名)区分</li>
+<li>在前端新建两个文件: .env.development和.env.production  (<strong>重启后生效</strong>)</li>
 <li>关闭8080后在命令行npm run build 可在根目录获得一个dist文件夹</li>
-<li>将dist文件夹里的html/css拷贝到server(后台)的public文件夹,并在static中设置目录为public</li>
+<li>将dist文件夹里的html/css拷贝到server(后台)的public文件夹,并在config中设置目录为public</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//config.default.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">appInfo</span> =&gt;</span> &#123;</span><br><span class="line">config.static = &#123;</span><br><span class="line">        <span class="attr">prefix</span>: <span class="string">&#x27;/&#x27;</span>, <span class="comment">//访问路径</span></span><br><span class="line">        <span class="attr">dir</span>: path.join(appInfo.baseDir, <span class="string">&#x27;app/public&#x27;</span>), <span class="comment">//设置静态文件目录</span></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
 <li>在app.Vue里要用<code>$&#123;process.env.VUE_APP_变量名&#125;</code>来使用该变量</li>
-<li>再运行前端可实现项目部署</li>
+<li>再运行后台可实现项目部署</li>
 </ul>
 <hr>
+<h3 id="封装请求"><a href="#封装请求" class="headerlink" title="封装请求"></a>封装请求</h3><ol>
+<li>在src下新建一个utils 文件夹, 里面新建request.js</li>
+<li>引入依赖</li>
+<li>axios有一个create()方法,可以创建一个自己(新的axios对象),且可以配置</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios form <span class="string">&quot;axios&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> request = axios.create(&#123;</span><br><span class="line">    <span class="attr">baseURL</span>: process.env.VUE_APP_BASE_API,   <span class="comment">//和css的base类似</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> request;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>将原先所有的axios换成request,且url不再需要一长串,只需要</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.post(<span class="string">`/login`</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>该对象有一个interceptors属性,是拦截器的意思,</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">request.interceptors.request.use(<span class="function">(<span class="params">req</span>) =&gt;</span> &#123;           <span class="comment">//use方法,回调函数</span></span><br><span class="line">    <span class="keyword">let</span> token = <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;token&quot;</span>);  <span class="comment">//获取token</span></span><br><span class="line">    <span class="keyword">if</span> (token) &#123;                                  </span><br><span class="line">        req.headers.token = token;              <span class="comment">//设置token到页面中</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> req;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="element-UI"><a href="#element-UI" class="headerlink" title="element_UI"></a>element_UI</h3><ul>
+<li><strong>引入</strong>:  cnpm i element-ui -S</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> ElementUI <span class="keyword">from</span> <span class="string">&#x27;element-ui&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  <span class="attr">render</span>: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 
       </section>
 
