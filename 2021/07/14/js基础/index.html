@@ -151,10 +151,11 @@
 <hr>
 <h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><p>变量名可以是字母、下划线、$ 和 数字，但不能以数字开头。 (驼峰)</p>
 <ul>
-<li><p>保留字：Abstract、Byte、Char、Debugger、Export、Static…</p>
-</li>
-<li><p>var ——ES5 变量声明方式</p>
-</li>
+<li>保留字：Abstract、Byte、Char、Debugger、Export、Static…</li>
+</ul>
+<p>JavaScript是单线程语言，所以执行肯定是按顺序执行。但是并不是逐行的分析和执行，而是一段一段地分析执行，会先进行编译阶段然后执行。在编译阶段，代码真正执行前的几毫秒，会检测到所有的变量和函数声明，所有这些函数和变量声明都被添加到名为Lexical Environment的JavaScript数据结构内的内存中。所以这些变量和函数能在它们真正被声明之前使用。</p>
+<ul>
+<li>var ——ES5 变量声明方式</li>
 </ul>
 <ol>
 <li>在变量未赋值时，变量undefined（包括变量提升）</li>
@@ -200,6 +201,23 @@
 <p>注意，var foo 尽管出现在 function foo()… 的声明之前，但它是重复的声明（因此被忽 </p>
 <p>略了），因为函数声明会被提升到普通变量之前。</p>
 <p>尽管重复的 var 声明会被忽略掉，但出现在后面的函数声明还是可以覆盖前面的。(但还是不安全)</p>
+<hr>
+<h3 id="作用域-闭包"><a href="#作用域-闭包" class="headerlink" title="作用域 (闭包)"></a>作用域 (闭包)</h3><ul>
+<li><p>作用域 : 一个独立的地盘,让变量不会外泄、暴露出去。不同作用域下同名变量不冲突</p>
+</li>
+<li><p><strong>ES6 之前 JavaScript 没有块级作用域,只有全局作用域和函数作用域</strong>。ES6 的到来，为我们提供了‘块级作用域’,可通过新增命令 let 和 const 来体现。</p>
+</li>
+<li><p>闭包定义 ： 在函数1外部通过（函数1内部返回的函数2）指向函数1内部的指针获取函数1的局部变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(age);<span class="comment">//10 ----------函数内部获取全局变量</span></span><br><span class="line">	<span class="keyword">var</span> name = <span class="string">&quot;Yoimiya&quot;</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(name);     </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(name);<span class="comment">//---------------打印不出东西</span></span><br><span class="line"><span class="keyword">var</span> bar = foo();                <span class="comment">//执行log(age)</span></span><br><span class="line">bar();       <span class="comment">//执行回调函数,打印出Yoimiya</span></span><br></pre></td></tr></table></figure></li>
+<li><p>每次把回调函数赋值给外部变量,都会重新创建一个新地址,井水不犯河水</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addCount</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		count += <span class="number">1</span>;</span><br><span class="line">		<span class="built_in">console</span>.log(count);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="keyword">var</span> fun1 = addCount();</span><br><span class="line">    <span class="keyword">var</span> fun2 = addCount();</span><br><span class="line">    fun1();<span class="comment">//1</span></span><br><span class="line">    fun1();<span class="comment">//2</span></span><br><span class="line">    fun1();<span class="comment">//3</span></span><br><span class="line">    fun2();<span class="comment">//1</span></span><br><span class="line">    fun2();<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerFn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">           <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">           <span class="function"><span class="keyword">function</span> <span class="title">innerFn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">               i++;</span><br><span class="line">               <span class="built_in">console</span>.log(i);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> innerFn</span><br><span class="line">       &#125;</span><br><span class="line">   <span class="keyword">var</span> inner1 = outerFn();</span><br><span class="line">   <span class="keyword">var</span> inner2 = outerFn();</span><br><span class="line">       inner1(); <span class="comment">//1</span></span><br><span class="line">       inner2(); <span class="comment">//1</span></span><br><span class="line">       inner1(); <span class="comment">//2</span></span><br><span class="line">       inner1(); <span class="comment">//3</span></span><br><span class="line">       inner2(); <span class="comment">//2</span></span><br><span class="line">       inner2(); <span class="comment">//3</span></span><br></pre></td></tr></table></figure></li>
+<li><p>fn()()的直接调用都是在开辟一个新的地址，但是把它赋给一个变量的时候，地址就不会再改变了，这个时候就会发现输出只是在递增的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> ++a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(fn()());<span class="comment">//4</span></span><br><span class="line"><span class="built_in">console</span>.log(fn()());<span class="comment">//4</span></span><br><span class="line"><span class="built_in">console</span>.log(fn()());<span class="comment">//4</span></span><br><span class="line"><span class="keyword">var</span> newFn = fn();</span><br><span class="line"><span class="built_in">console</span>.log(newFn());<span class="comment">//4</span></span><br><span class="line"><span class="built_in">console</span>.log(newFn());<span class="comment">//5</span></span><br><span class="line"><span class="built_in">console</span>.log(newFn());<span class="comment">//6</span></span><br></pre></td></tr></table></figure></li>
+<li><p>通过<strong>传参</strong>把每次不同的 <strong>i</strong> 传进块级作用域里</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lis = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;li&quot;</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;lis.length;i++)&#123;</span><br><span class="line">  	(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">      	 lis[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">           	  <span class="built_in">console</span>.log(i);</span><br><span class="line">      	 &#125;;</span><br><span class="line">  	&#125;)(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 <hr>
 <h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ol>
 <li><p>js数据类型 ：</p>
@@ -301,17 +319,17 @@
 </ol>
 <hr>
 <h3 id="数组的方法-immutable-methods"><a href="#数组的方法-immutable-methods" class="headerlink" title="数组的方法(immutable methods)"></a>数组的方法(immutable methods)</h3><ol>
-<li><p>concat( )    : 复制原数组的副本,添加参数到副本末尾,返回新数组</p>
+<li><p> concat( )    : 复制原数组的副本,添加参数到副本末尾,返回新数组</p>
 </li>
-<li><p>slice( )        :  根据给出的参数截胡原数组并返回到新数组</p>
+<li><p> slice( )        :  根据给出的参数截胡原数组并返回新数组</p>
 </li>
-<li><p>join( )          :  把数组中的所有元素通过指定的分隔符进行分隔后,放入一个字符串。</p>
+<li><p> join( )          :  把数组中的所有元素通过指定的分隔符进行分隔后,放入一个字符串。</p>
 </li>
-<li><p>forEach( ) （ES5）: 让数组中的每一项做一件事</p>
+<li><p> forEach( ) （ES5）: 让数组中的每一项做一件事</p>
 </li>
-<li><p>map( ) （ES5）      : 让数组通过某种计算产生一个新数组</p>
+<li><p> map( ) （ES5）      : 让数组通过某种计算产生一个新数组</p>
 </li>
-<li><p>filter( ) （ES5）      : 筛选出数组中符合条件的项,组成新数组</p>
+<li><p> filter( ) （ES5）      : 筛选出数组中符合条件的项,组成新数组</p>
 </li>
 </ol>
 <ul>
@@ -344,6 +362,7 @@
 <li>reverse( )   ：反转数组项的顺序,且返回反转后的数组</li>
 <li>splice( )      :  三个参数: 开始的索引位,要删除的元素数量,要插入的任意个元素<br>返回被删除的元素,否则返回空数组</li>
 </ol>
+<hr>
 <h3 id="String-的方法"><a href="#String-的方法" class="headerlink" title="String 的方法"></a>String 的方法</h3><ol>
 <li><p>indexOf( )  :    语法：str.indexOf(searchValue [, fromIndex])</p>
 <p>​    ①如果没有提供确切地提供字符串，[<strong>searchValue</strong> 会被强制设置为 <code>&quot;undefined&quot;</code>]， 然后在当前字符串中从头查找这个值。举个例子：<code>&#39;undefined&#39;.indexOf()</code> 将会返回0，</p>
@@ -457,10 +476,6 @@
 <li>后续的source会覆盖前面的source的同名属性。</li>
 <li>Object.assign复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。( 浅拷贝 )</li>
 </ol>
-<ul>
-<li>map( )</li>
-<li>foreach( )</li>
-</ul>
 <hr>
 <h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><ul>
 <li><p>对象可以通过两种形式定义：声明（文字）形式和构造形式。 </p>

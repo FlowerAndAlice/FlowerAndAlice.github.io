@@ -257,6 +257,45 @@
 <li>很多的移动设备无法完全显示框架，设备兼容性差。</li>
 <li>iframe框架页面会增加服务器的http请求，对于大型网站是不可取的。</li>
 </ol>
+<hr>
+<h3 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h3><ul>
+<li><p>顺序 : 捕获阶段( 从documen到目标 )、目标阶段、冒泡阶段( 从目标到window )。</p>
+<ol>
+<li><p>DOM0级只支持冒泡阶段。</p>
+</li>
+<li><p>DOM2级事件处理程序，其中定义了两个方法：</p>
+<ol>
+<li>addEventListener() —添加事件侦听器</li>
+<li>removeEventListener() —删除事件侦听器</li>
+</ol>
+<p>函数均有3个参数， 第一个参数是要处理的事件名( 使用 click ,<strong>而不是on</strong>click) ,第二个参数是作为事件处理程序的函数( 该函数的<strong>参数.stopPropagation( )<strong>可</strong>阻止冒泡</strong> ) , 第三个参数是一个boolean值，默认false表示使用冒泡机制，true表示捕获机制。</p>
+</li>
+</ol>
+</li>
+<li><p>能否冒泡</p>
+</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/6163002f2ab3f51d912acf22.jpg"></p>
+<hr>
+<h3 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h3><ul>
+<li><p>18位身份证  : <strong>/^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))(([0[1-9])|([1|2]\d)|3[0-1])\d{3}[0-9Xx]$/</strong></p>
+<p>6位地区编码 : [1-9]\d{5}</p>
+<p>4位年份 :  [1-9]\d{3}</p>
+<p>2位月份 :  (0[1-9])|(1[0-2])</p>
+<p>2位日数 :  (([0[1-9])|([1|2]\d)|3[0-1])</p>
+<p>4位校验码 : \d{3}[0-9Xx]</p>
+</li>
+</ul>
+<hr>
+<h3 id="同异步"><a href="#同异步" class="headerlink" title="同异步"></a>同异步</h3><ul>
+<li><p>带引号则在全局环境中查找该方法 , 不带引号则在局部环境中查找方法</p>
+</li>
+<li><p>setTimeout(go( ),10 );   //立即执行<strong>局部</strong>里的go函数  (不带引号带括号)</p>
+<p>setTimeout(go,10 );       //等待10毫秒执行<strong>局部</strong>里的go函数</p>
+<p>setTimeout(‘go( )’,10 );   //等待10毫秒执行<strong>全局中</strong>的go函数</p>
+</li>
+<li></li>
+</ul>
 
       </section>
 
