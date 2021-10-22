@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    target |
+                                                    html |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -106,7 +106,7 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">target</h1>
+          <h1 class="title-wrap">html</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
@@ -139,38 +139,166 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="js基础"><a href="#js基础" class="headerlink" title="js基础"></a>js基础</h3><ul>
-<li>变量、数据类型、分支语句、循环语句、函数、对象</li>
-</ul>
-<h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><ul>
-<li><p>获取元素节点、添加节点、删除节点、修改属性、点击事件</p>
+        <h3 id="错题"><a href="#错题" class="headerlink" title="错题"></a>错题</h3><ul>
+<li><p>（规范）ul里面只能放li，但li里可以放h* 和p等标签，dl里可以放dt和dd，dt和dd同级</p>
 </li>
-<li><p>几个网页效果： 图片切换、选项卡</p>
+<li><fieldset>标签 : 将表单内容分组打包,生成一组相关表单的字段,特殊边框,
+
+<legend>  标签  :   为filedset元素定义标题</li>
+<li><p>不可继承的属性  :</p>
+<p>① display   ② margin  ③ border  ④ padding  </p>
+<p>⑤ background  ⑥ height/width  ⑦  position</p>
 </li>
-<li><p>写一个经典页面</p>
+</ul>
+<hr>
+<h3 id="Html结构"><a href="#Html结构" class="headerlink" title="Html结构"></a>Html结构</h3><ul>
+<li>HTML: (Hyper Text Markup Language)超文本标记语言,用于构建网页基本结构及其内容</li>
+<li>超文本: 文本中指向其他文本的链接</li>
+<li>标记语言: 将文本及其他信息结合起来,展现出文档结构,如Html/Xml/Markdown</li>
+<li><strong>!DOCTYPE 标签</strong>: 他是指示web浏览器关于页面<strong>使用哪个HTML版本</strong>进行编写的指令</li>
+</ul>
+<hr>
+<h3 id="HTML5-主要解决的问题"><a href="#HTML5-主要解决的问题" class="headerlink" title="HTML5: 主要解决的问题"></a>HTML5: 主要解决的问题</h3><ol>
+<li>文档结构的混乱: 以前的文档结构过度依赖div标签,Html5则提出了<strong>多种语义化标签</strong>,使得文档易理解,并有利于<strong>seo优化</strong></li>
+<li>解决了浏览器之间的<strong>兼容性问题</strong></li>
+<li>提供了一些新的web应用的api</li>
+</ol>
+<ul>
+<li><!DOCTYPE html><p>:刚html文档最前面位置,加上后就会按照W3C的HTML5标准啦解析渲染页面</p>
+</li>
+<li><p><code>&lt;head&gt;</code> :对用户不可见,包括字符编码声明(utf-8 : 表示页面可用任何语言)、关键字、css样式、页面描述等等</p>
 </li>
 </ul>
-<h3 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h3><ul>
-<li>做一些好玩的，可加入css3</li>
+<hr>
+<h3 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h3><ol>
+<li>能够设置宽高，默认和父容器宽度一样</li>
+<li><strong>独立成行</strong>，(块级元素们)在页面从上往下排列，margin和padding均有效</li>
+<li>可容纳其他块级元素、或内联元素</li>
+<li>代表性的就是div，其他如p、h1-h6、nav、aside、header、footer、section、article、ol、ul-li、address、form、blckquote等等，都可以用div来实现。不过为了可以方便程序员解读代码，一般都会使用特定的<strong>语义化标签</strong>，使得代码可读性强，且便于查错。</li>
+</ol>
+<hr>
+<h3 id="行内-内联-元素"><a href="#行内-内联-元素" class="headerlink" title="行内(内联)元素"></a>行内(内联)元素</h3><ol>
+<li>只占据它对应标签的边框所包含的空间,(不会自动换行) ( 非独立成行 )</li>
+<li>只能容纳文本或其他内联元素</li>
+<li><strong>设置宽高无效</strong></li>
+<li>对margin仅设置<strong>左右</strong>方向有效，上下无效；padding设置上下左右都有效，</li>
+<li>常见的行内元素:a、span、br、i、em、label、var、strong</li>
+</ol>
+<hr>
+<h3 id="行内块级元素"><a href="#行内块级元素" class="headerlink" title="行内块级元素"></a>行内块级元素</h3><ol>
+<li><p>非独立成行</p>
+</li>
+<li><p>能设置宽高</p>
+</li>
+<li><p>在行内从左往右排列</p>
+</li>
+<li><p>常见行内块元素 ： img、input</p>
+</li>
+</ol>
+<ul>
+<li>块级元素与内联元素区别： （ 块级元素）单独成行，可设置高度、宽度和外边距，</li>
 </ul>
-<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><ul>
-<li>其实就是js的运行环境， 用node开启web服务器，用npm管理项目依赖</li>
+<hr>
+<h3 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h3><p>（div、article、section）</p>
+<p>  ① <strong>标准盒模型</strong>  box-sizing : content-box  </p>
+<p>  ​     此时盒子的宽和高只决定元素的<strong>content部分</strong>,即 <strong>width = content</strong></p>
+<p>  ② <strong>IE盒模型</strong>       box-sizing :  border-box</p>
+<p>  ​     此时盒子的宽和高决定元素的<strong>border大小</strong>,即 <strong>width = content+padding*2+border*2</strong></p>
+<hr>
+<h3 id="H5新特性"><a href="#H5新特性" class="headerlink" title="H5新特性"></a>H5新特性</h3><ol>
+<li>新增选择器 document.querySelector、document.querySelectorAll</li>
+<li>媒体播放的 video 和 audio</li>
+<li>本地存储 localStorage 和 sessionStorage</li>
+<li>语意化标签 article、footer、header、nav、section</li>
+<li>多任务 webworker</li>
+<li>全双工通信协议 websocket</li>
+<li>历史管理 history</li>
+<li>跨域资源共享(CORS) Access-Control-Allow-Origin</li>
+<li>绘画 canvas</li>
+</ol>
+<hr>
+<h3 id="html语义化"><a href="#html语义化" class="headerlink" title="html语义化"></a>html语义化</h3><ul>
+<li>脱掉CSS的外衣,依然头是头,脚是脚。还是一篇完整的文档。这就是语义化之后文档的效果</li>
 </ul>
-<h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><ul>
-<li>了解<strong>Http协议</strong>，发送请求，可以获取后台数据</li>
+<p>​       语义化： 也无非就是在使用标签的时候多使用有英文语义的标签。</p>
+<p>① header :  头部   ② slider :  侧边栏   ③ main  :  主体  ④  footer : 底部 </p>
+<ul>
+<li>语义化优点：</li>
 </ul>
-<h3 id="框架：vue"><a href="#框架：vue" class="headerlink" title="框架：vue"></a>框架：vue</h3><ul>
-<li>尝试做博客系统、内容管理系统、选课系统、排课系统等项目(后台管理)</li>
+<ol>
+<li>易于用户阅读，样式丢失的时候能让页面呈现清晰的结构。</li>
+<li>有利于SEO，搜索引擎根据标签来确定上下文和各个关键字的权重。</li>
+<li>方便其他设备解析，如盲人阅读器根据语义渲染网页</li>
+<li>有利于开发和维护，语义化更具可读性，代码更好维护，与CSS3关系更和谐。</li>
+</ol>
+<hr>
+<h3 id="弹性布局"><a href="#弹性布局" class="headerlink" title="弹性布局"></a>弹性布局</h3><ul>
+<li>弹性盒子是一种用于按行或者按列布局元素的一维布局方法</li>
 </ul>
-<h3 id="深入js"><a href="#深入js" class="headerlink" title="深入js"></a>深入js</h3><ul>
-<li>闭包、作用域链、变量销毁、原型对象、对象方法拓展、es6、</li>
-<li>类，模块化、结构赋值、异步编程、回调函数、promise、async</li>
-<li>(算法) 二维数组、冒泡排序</li>
-<li>pat乙级=&gt;甲级=&gt;剑指offer</li>
+<hr>
+<h3 id="正常文档流"><a href="#正常文档流" class="headerlink" title="正常文档流"></a>正常文档流</h3><ul>
+<li>默认的,按照书写顺序从上往下排,每个块级元素都会自动换行.如果有margin就会被隔开<br>(p标签有默认margin)</li>
 </ul>
-<h3 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h3><ul>
-<li>考虑简单学一下uni-app, 这样做小程序会比较方便</li>
+<hr>
+<h3 id="脱离文档流"><a href="#脱离文档流" class="headerlink" title="脱离文档流"></a><strong>脱离文档流</strong></h3><ol>
+<li><p>文档流: 将窗体自上而下分成一行一行，并在每行中按从左至右依次排放元素，称为文档流，也称为普通流。<br>HTML中全部元素都是盒模型，盒模型占用一定的空间，依次排放在HTML中，形成了文档流。</p>
+</li>
+<li><p>元素脱离文档流之后，将不再在文档流中占据空间，而是处于浮动状态（可以理解为漂浮在文档流的上方）。<br>脱离文档流的元素的定位基于正常的文档流，当一个元素脱离文档流后，依然在文档流中的其他元素将忽略该元素并填补其原先的空间</p>
+</li>
+</ol>
+<ul>
+<li>方法:</li>
 </ul>
+<ol>
+<li>使用float脱离文档流时，其他盒子会无视这个元素，但其他盒子内的<strong>文本</strong>认为这个元素依旧存在,会为这个元素让出位置</li>
+<li>使用absolute脱离文档流后的元素，是相对于该元素的父元素进行定位的;<br>并且这个父类元素的position必须是非static定位的</li>
+<li>fixed: 完全脱离文档流，相对于浏览器窗口进行定位。（相对于浏览器窗口就是相对于html）。</li>
+</ol>
+<hr>
+<h3 id="浮动布局"><a href="#浮动布局" class="headerlink" title="浮动布局"></a>浮动布局</h3><ul>
+<li>HTML元素分类:</li>
+</ul>
+<ol>
+<li><p>块元素(可以设置宽度和高度,独立成行): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  h1-6、p、div、ul、li</p>
+</li>
+<li><p>行内元素(内联元素): (不可以设置宽度和高度,不独立成行):&nbsp;&nbsp; a、span</p>
+</li>
+<li><p>行内块元素(<strong>可以设置宽度和高度,独立成行</strong>)： img、imput、button</p>
+</li>
+<li><p>以上通过dispaly属性实现： block、inline、inline-block，还有一个none实现隐藏</p>
+</li>
+</ol>
+<hr>
+<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a><strong>清除浮动</strong></h3><p><strong>原因</strong>: 浮动溢出:容器的高度不能自动伸长以适应内容的高度，使内容溢出到容器外而影响布局的现象。</p>
+<p><strong>方法</strong>:</p>
+<ol>
+<li>使用带<strong>clear属性</strong>的空元素 :<br>在浮动元素后使用一个空元素如 <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code><br>并在CSS中赋予.clear{clear:both;}属性即可清理浮动。<br>亦可使用<code>&lt;br class=&quot;clear&quot; /&gt;</code>或<code>&lt;hr class=&quot;clear&quot; /&gt;</code>来进行清理。</li>
+<li>使用CSS的<strong>overflow</strong>属性:<br>给浮动元素的容器(浮动的它的父级)添加overflow:hidden;或overflow:auto;可以清除浮动<br>因为overflow.hidden会触发BFC。 BFC的意思是，我这个元素里面的子孙元素，不会影响外部元素的布局。<br>故该容器里需全为浮动的元素</li>
+<li>给浮动的元素的容器添加浮动:<br>给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局，(<strong>不推荐使用</strong>)</li>
+<li>使用<strong>邻接元素</strong>处理:<br>给浮动元素后面的元素添加clear属性。</li>
+<li>使用CSS的:<strong>after伪元素</strong>:<br>在元素末尾添加一个内容为一个点并带有 clear: both 属性的元素</li>
+</ol>
+<hr>
+<h3 id="iframe有什么优点、缺点"><a href="#iframe有什么优点、缺点" class="headerlink" title="iframe有什么优点、缺点"></a>iframe有什么优点、缺点</h3><ul>
+<li>优点：</li>
+</ul>
+<ol>
+<li>iframe能够原封不动的把嵌入的网页展现出来。</li>
+<li>如果有多个网页引用iframe，那么你只需要修改iframe的内容，就可以实现调用的每一个页面内容的更改，方便快捷。</li>
+<li>网页如果为了统一风格，头部和版本都是一样的，就可以写成一个页面，用iframe来嵌套，可以增加代码的可重用。</li>
+<li>如果遇到加载缓慢的第三方内容如图标和广告，这些问题可以由iframe来解决。</li>
+</ol>
+<ul>
+<li>缺点：</li>
+</ul>
+<ol>
+<li>iframe会阻塞主页面的onload事件；</li>
+<li>iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。会产生很多页面，不容易管理。</li>
+<li>iframe框架结构有时会让人感到迷惑，如果框架个数多的话，可能会出现上下、左右滚动条，会分散访问者的注意力，用户体验度差。</li>
+<li>代码复杂，无法被一些搜索引擎索引到，这一点很关键，现在的搜索引擎爬虫还不能很好的处理iframe中的内容，所以使用iframe会不利于搜索引擎优化（SEO）。</li>
+<li>很多的移动设备无法完全显示框架，设备兼容性差。</li>
+<li>iframe框架页面会增加服务器的http请求，对于大型网站是不可取的。</li>
+</ol>
 
       </section>
 

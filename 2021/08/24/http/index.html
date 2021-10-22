@@ -141,7 +141,25 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="http错误"><a href="#http错误" class="headerlink" title="http错误"></a>http错误</h3><h3 id="http概述"><a href="#http概述" class="headerlink" title="http概述"></a>http概述</h3>
+        <h3 id="Cookie的存活时间"><a href="#Cookie的存活时间" class="headerlink" title="Cookie的存活时间"></a>Cookie的存活时间</h3><ul>
+<li><p>默认情况下,cookie数据保存到内存里,浏览器关闭后,Cookie数据被销毁</p>
+</li>
+<li><p>持久化存储 : setMaxAge(int seconds)</p>
+<p>① 正数  :  将Cookie数据写到硬盘的文件中，持久化存储。并指定cookie存活时间，时间到后，cookie文件自动失效。 (若不关闭浏览器,则仍可访问cookie)</p>
+<p>② 负数  :  默认值，即关闭浏览器后，cookie即失效</p>
+<p>③ 零      :  删除cookie信息</p>
+</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/617278e52ab3f51d91c46e43.jpg"></p>
+<hr>
+<h3 id="GET与POST的区别"><a href="#GET与POST的区别" class="headerlink" title="GET与POST的区别"></a>GET与POST的区别</h3><ul>
+<li>Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。    </li>
+<li>Get传送的数据量较小(1024字节)，这主要是因为受URL长度限制；Post传送的数据量较大，一般被默认为不受限制。    </li>
+<li>Get限制Form表单的数据集的值必须为ASCII字符；而Post支持整个ISO10646字符集。 </li>
+<li>Get执行效率却比Post方法好。Get是form提交的默认方法</li>
+</ul>
+<hr>
+
       </section>
 
       

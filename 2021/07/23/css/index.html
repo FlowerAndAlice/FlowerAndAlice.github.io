@@ -145,106 +145,64 @@
 <li>codecademy、 udacity、freecodecamp</li>
 <li>css-tricks</li>
 </ul>
-<h3 id="Html结构"><a href="#Html结构" class="headerlink" title="Html结构"></a>Html结构</h3><ul>
-<li><p>HTML: (Hyper Text Markup Language)超文本标记语言,用于构建网页基本结构及其内容</p>
+<hr>
+<h3 id="引入CSS的方法"><a href="#引入CSS的方法" class="headerlink" title="引入CSS的方法"></a>引入CSS的方法</h3><ul>
+<li><p>**内部样式表 **: 在head标签中, 使用style标签写的样式就是 内部样式</p>
 </li>
-<li><p>超文本: 文本中指向其他文本的链接</p>
-</li>
-<li><p>标记语言: 将文本及其他信息结合起来,展现出文档结构,如Html/Xml/Markdown</p>
+<li><p><strong>外部样式表</strong> :</p>
+<ol>
+<li><strong>@import关键字</strong>  </li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;  <span class="keyword">@import</span> url(<span class="string">&quot;css/style.css&quot;</span>); &lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不推荐使用, 因为浏览器不会立即导入 @import导入的样式, 但会直接加载link导入的样式 </p>
+</blockquote>
+<ol start="2">
+<li>head标签内用<strong>link标签</strong>引入外部样式 (最常用) (head标签内)</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./css/test1.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>行内样式</strong>表(内联样式)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color: pink;&quot;</span>&gt;</span>标签内用style=&quot;&quot;写的，就是行内样式<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="长度单位"><a href="#长度单位" class="headerlink" title="长度单位"></a>长度单位</h3><ul>
+<li><p>绝对长度单位</p>
+<p>①  <strong>px</strong> : 一般指CSS逻辑像素,它是相对于设备像素的单位，像素是相对于屏幕分辨率的，页面按照精确像素展示，不会因为其它元素的尺寸变化而变化，像素仍然是最典型的度量单位，例如：<code>windows</code>的用户所使用的<code>分辨率96像素/英寸</code>，而<code>mac</code>的用户所使用的分辨率一般是<code>72像素/英寸</code>，一般javascript语言里的单位就是使用的像素。</p>
+<p>可以设定固定的布局和元素的大小,但同时缺点为没有弹性</p>
+<p>②  <strong>in</strong>：英寸（inch）是一个物理度量文件，但是在CSS领域，英寸只不过被直接映射成像素罢了。（1in == 2.54cm == 96px）</p>
+<p>③  <strong>em</strong>   :  是相对于当前父元素的字体大小为标准</p>
+<p>④  <strong>rem</strong> :  是相对于 <code>html</code> 元素的字体大小为标准</p>
+<p>⑤  <strong>vw</strong>    :   可视宽度单位（视窗宽度），1vw 等于可视区宽度的 1%</p>
+<p>⑥  <strong>vh</strong>     :  相对于可视化区域高度的1%</p>
+<blockquote>
+<p>所有的单位都会转为px,所以无论相对还是绝对,都是会变的</p>
+<p>在不同的分辨率下 ，像素点的大小是不同的，所以同一个网页，以 px 作长度单位时，在不同的分辨率下显示的大小是不同的，在低分辨率下，像素点较大，细节不够清晰，虽然显示的页面也大，但模糊不清。</p>
+<p>我们可以这样理解，将px看做绝对单位（显示上的绝对单位），其它的单位都是以 它为基础的，比如em，它就是相对当前文本字体的高度（假设当前文本字体的尺寸是12px，我们设置新的字体为1.5em，则新的字体尺寸转换为12 * 1.5 = 18px）</p>
+<p>如果 <code>padding</code>、 <code>margin</code> 设置了百分比，上，下，左，右 用的都是父元素<strong>宽度</strong> 的值为标准去计算。</p>
+</blockquote>
 </li>
 </ul>
 <hr>
-<h3 id="HTML5-主要解决的问题"><a href="#HTML5-主要解决的问题" class="headerlink" title="HTML5: 主要解决的问题"></a>HTML5: 主要解决的问题</h3><ol>
-<li>文档结构的混乱: 以前的文档结构过度依赖div标签,Html5则提出了<strong>多种语义化标签</strong>,使得文档易理解,并有利于<strong>seo优化</strong></li>
-<li>解决了浏览器之间的<strong>兼容性问题</strong></li>
-<li>提供了一些新的web应用的api</li>
-</ol>
-<ul>
-<li><!DOCTYPE html><p>:刚html文档最前面位置,加上后就会按照W3C的HTML5标准啦解析渲染页面</p>
-</li>
-<li><p><code>&lt;head&gt;</code> :对用户不可见,包括字符编码声明(utf-8 : 表示页面可用任何语言)、关键字、css样式、页面描述等等</p>
-</li>
-</ul>
-<hr>
-<h3 id="内联-行内-元素"><a href="#内联-行内-元素" class="headerlink" title="内联(行内)元素"></a>内联(行内)元素</h3><ol>
-<li>只占据它对应标签的边框所包含的空间,(不会自动换行)</li>
-<li>只能容纳文本或其他内联元素</li>
-<li><strong>设置宽高无效</strong></li>
-<li>对margin仅设置<strong>左右</strong>方向有效，上下无效；padding设置上下左右都有效，</li>
-<li>常见的行内元素:a、span、br、i、em、label、var、strong</li>
-</ol>
-<h3 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h3><ol>
-<li>能够设置宽高</li>
-<li><strong>自动换行</strong>，(块级元素们)在页面从上往下排列，margin和padding均有效</li>
-<li>可容纳其他块级元素、或内联元素</li>
-<li>代表性的就是div，其他如p、h1-h6、nav、aside、header、footer、section、article、ul-li、address等等，都可以用div来实现。不过为了可以方便程序员解读代码，一般都会使用特定的<strong>语义化标签</strong>，使得代码可读性强，且便于查错。</li>
-</ol>
-<h3 id="行内块级元素"><a href="#行内块级元素" class="headerlink" title="行内块级元素"></a>行内块级元素</h3><ol>
-<li>不自动换行</li>
-<li>能设置宽高</li>
-<li>在行内从左往右排列</li>
-</ol>
-<hr>
-<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
-<li><p>css,层叠样式表(Cascading style sheets),一种用来为结构化文档(基本就是html)添加样式的语言,以规则集(rule set)(选择器+声明块)开始</p>
-</li>
-<li><p>盒模型 height/width = content box的高/宽<br>模型的高/宽 = content box + 2<em>padding + 2</em>border<br>(可通过box-sizing:border-box修改宽高的定义范围)</p>
-</li>
-</ul>
-<hr>
-<h3 id="弹性布局"><a href="#弹性布局" class="headerlink" title="弹性布局"></a>弹性布局</h3><ul>
-<li>弹性盒子是一种用于按行或者按列布局元素的一维布局方法</li>
-</ul>
-<hr>
-<h3 id="浮动布局"><a href="#浮动布局" class="headerlink" title="浮动布局"></a>浮动布局</h3><ul>
-<li>HTML元素分类:</li>
+<h3 id="CSS-选择器"><a href="#CSS-选择器" class="headerlink" title="CSS 选择器"></a>CSS 选择器</h3><ul>
+<li>选择器<strong>权重</strong></li>
 </ul>
 <ol>
-<li><p>块元素(可以设置宽度和高度,独立成行): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  h1-6、p、div、ul、li</p>
+<li><p> 相同选择器: 后面的会覆盖前面的 ( 权重相同 )</p>
 </li>
-<li><p>行内元素(内联元素): (不可以设置宽度和高度,不独立成行):&nbsp;&nbsp; a、span</p>
+<li><p> 不同选择器: <strong>ID(100) &gt; CLASS(10) &gt; element(1)</strong></p>
 </li>
-<li><p>行内块元素(<strong>可以设置宽度和高度,独立成行</strong>)： img、imput、button</p>
+<li><p> <strong>层级</strong>选择器: 按权重累加计算 (10+100&gt;100+1)</p>
 </li>
-<li><p>以上通过dispaly属性实现： block、inline、inline-block，还有一个none实现隐藏</p>
-</li>
-</ol>
-<hr>
-<h3 id="正常文档流"><a href="#正常文档流" class="headerlink" title="正常文档流"></a>正常文档流</h3><ul>
-<li>默认的,按照书写顺序从上往下排,每个块级元素都会自动换行.如果有margin就会被隔开<br>(p标签有默认margin)</li>
-</ul>
-<hr>
-<h3 id="脱离文档流"><a href="#脱离文档流" class="headerlink" title="脱离文档流"></a><strong>脱离文档流</strong></h3><ol>
-<li><p>文档流: 将窗体自上而下分成一行一行，并在每行中按从左至右依次排放元素，称为文档流，也称为普通流。<br>HTML中全部元素都是盒模型，盒模型占用一定的空间，依次排放在HTML中，形成了文档流。</p>
-</li>
-<li><p>元素脱离文档流之后，将不再在文档流中占据空间，而是处于浮动状态（可以理解为漂浮在文档流的上方）。<br>脱离文档流的元素的定位基于正常的文档流，当一个元素脱离文档流后，依然在文档流中的其他元素将忽略该元素并填补其原先的空间</p>
+<li><p> 最高权重: !important</p>
 </li>
 </ol>
 <ul>
-<li>方法:</li>
+<li>高级选择器</li>
 </ul>
 <ol>
-<li><p>使用float脱离文档流时，其他盒子会无视这个元素，但其他盒子内的<strong>文本</strong>认为这个元素依旧存在,会为这个元素让出位置</p>
-</li>
-<li><p>使用absolute脱离文档流后的元素，是相对于该元素的父元素进行定位的;<br>并且这个父类元素的position必须是非static定位的</p>
-</li>
-<li><p>fixed: 完全脱离文档流，相对于浏览器窗口进行定位。（相对于浏览器窗口就是相对于html）。</p>
-</li>
-</ol>
-<hr>
-<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a><strong>清除浮动</strong></h3><p><strong>原因</strong>: 浮动溢出:容器的高度不能自动伸长以适应内容的高度，使内容溢出到容器外而影响布局的现象。</p>
-<p><strong>方法</strong>:</p>
-<ol>
-<li><p>使用带<strong>clear属性</strong>的空元素 :<br>在浮动元素后使用一个空元素如 <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code><br>并在CSS中赋予.clear{clear:both;}属性即可清理浮动。<br>亦可使用<code>&lt;br class=&quot;clear&quot; /&gt;</code>或<code>&lt;hr class=&quot;clear&quot; /&gt;</code>来进行清理。</p>
-</li>
-<li><p>使用CSS的<strong>overflow</strong>属性:<br>给浮动元素的容器(浮动的它的父级)添加overflow:hidden;或overflow:auto;可以清除浮动<br>因为overflow.hidden会触发BFC。 BFC的意思是，我这个元素里面的子孙元素，不会影响外部元素的布局。<br>故该容器里需全为浮动的元素</p>
-</li>
-<li><p>给浮动的元素的容器添加浮动:<br>给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局，(<strong>不推荐使用</strong>)</p>
-</li>
-<li><p>使用<strong>邻接元素</strong>处理:<br>给浮动元素后面的元素添加clear属性。</p>
-</li>
-<li><p>使用CSS的:<strong>after伪元素</strong>:<br>在元素末尾添加一个内容为一个点并带有 clear: both 属性的元素</p>
-</li>
+<li> 后代选择器 : 全部后辈 (子孙) 中的    <em>body p{ background:pink; }</em></li>
+<li> 子代选择器 :一代,儿子辈的   <em>body&gt;p{ background：pink; }</em></li>
 </ol>
 <hr>
 <h3 id="CSS定位-position"><a href="#CSS定位-position" class="headerlink" title="CSS定位(position)"></a>CSS定位(position)</h3><ul>
@@ -276,7 +234,7 @@
 </ul>
 <ol>
 <li>from {}  to {}</li>
-<li>百分比<br>0% {}<br>50% {}<br>100% {}</li>
+<li>百分比<br>0% {}<br> 50% {}<br> 100% {}</li>
 <li>通过animation:(keyframes名称)可实现动画及设置属性</li>
 </ol>
 <ul>

@@ -147,6 +147,7 @@
 <p>1.准备动作: 现代浏览器会在你输入的过程中就开始智能匹配 URL，它会从书签、历史记录等地方，找到已经输入的字符串可能匹配到的 URL，然后智能显示出来，让你补全 URL。对于 Google Chrome，它甚至可以从缓存中把页面展示出来，也就是说，此时你还没有按下 Enter 进行搜索，页面就已经显示出来了。</p>
 </li>
 </ul>
+<hr>
 <h3 id="CSS实现水平垂直居中"><a href="#CSS实现水平垂直居中" class="headerlink" title="CSS实现水平垂直居中"></a>CSS实现水平垂直居中</h3><ul>
 <li>知道尺寸</li>
 </ul>
@@ -162,101 +163,11 @@
 </ul>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.center-vertical</span>&#123;</span><br><span class="line">         <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">         <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">         <span class="attribute">background</span>: orange;</span><br><span class="line">         <span class="attribute">position</span>: absolute;</span><br><span class="line">         <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">         <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">         <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">         <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">         <span class="attribute">margin</span>: auto;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	<span class="attr">fn</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="built_in">this</span>) &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> fn = obj.fn;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同一个fn，三种调用方式，this分别不同</span></span><br><span class="line">obj.fn(); <span class="comment">// obj</span></span><br><span class="line">fn();     <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	<span class="attr">fn</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="built_in">this</span>) &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> fn = obj.fn;       <span class="comment">//此处是将函数赋值给fn这个变量,而不是传递结果</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 同一个fn，三种调用方式，this分别不同</span></span><br><span class="line">obj.fn(); <span class="comment">// obj</span></span><br><span class="line">fn();     <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://pic.imgdb.cn/item/6155a4912ab3f51d91e17a2b.jpg"></p>
 <p>注意全局处处需为var,否则找不到全局color</p>
-<h3 id="html部分"><a href="#html部分" class="headerlink" title="html部分"></a>html部分</h3><ul>
-<li><p><strong>!DOCTYPE 标签</strong>: 他是指示web浏览器关于页面<strong>使用哪个HTML版本</strong>进行编写的指令</p>
-</li>
-<li><p><strong>H5新特性</strong>:</p>
-</li>
-</ul>
-<ol>
-<li>新增选择器 document.querySelector、document.querySelectorAll</li>
-<li>媒体播放的 video 和 audio</li>
-<li>本地存储 localStorage 和 sessionStorage</li>
-<li>语意化标签 article、footer、header、nav、section</li>
-<li>多任务 webworker</li>
-<li>全双工通信协议 websocket</li>
-<li>历史管理 history</li>
-<li>跨域资源共享(CORS) Access-Control-Allow-Origin</li>
-<li>绘画 canvas</li>
-</ol>
-<ul>
-<li>html语义化:</li>
-</ul>
-<p>脱掉CSS的外衣,依然头是头,脚是脚。还是一篇完整的文档。这就是语义化之后文档的效果</p>
-<p>语义化： 也无非就是在使用表弯的时候多使用有英文语义的标签。</p>
-<ul>
-<li>语义化优点：</li>
-</ul>
-<ol>
-<li>易于用户阅读，样式丢失的时候能让页面呈现清晰的结构。</li>
-<li>有利于SEO，搜索引擎根据标签来确定上下文和各个关键字的权重。</li>
-<li>方便其他设备解析，如盲人阅读器根据语义渲染网页</li>
-<li>有利于开发和维护，语义化更具可读性，代码更好维护，与CSS3关系更和谐。</li>
-</ol>
-<h3 id="CSS-选择器"><a href="#CSS-选择器" class="headerlink" title="CSS 选择器"></a>CSS 选择器</h3><ul>
-<li>选择器<strong>权重</strong></li>
-</ul>
-<ol>
-<li><p> 相同选择器: 后面的会覆盖前面的 ( 权重相同 )</p>
-</li>
-<li><p>不同选择器: <strong>ID(100) &gt; CLASS(10) &gt; element(1)</strong></p>
-</li>
-<li><p>层级选择器: 按权重累加计算 (10+100&gt;100+1)</p>
-</li>
-<li><p>最高权重: !important</p>
-</li>
-</ol>
-<ul>
-<li>高级选择器</li>
-</ul>
-<ol>
-<li>后代选择器: 全部后辈 (子孙) 中的    <em>body p{ background:pink; }</em></li>
-<li>子代选择器:一代,儿子辈的   <em>body&gt;p{ background：pink; }</em></li>
-</ol>
-<hr>
-<h3 id="引入CSS的方法"><a href="#引入CSS的方法" class="headerlink" title="引入CSS的方法"></a>引入CSS的方法</h3><ul>
-<li><p><strong>内部样式</strong>: 在head标签中, 使用style标签写的样式就是 内部样式</p>
-</li>
-<li><p><strong>外部样式</strong>:</p>
-<ol>
-<li><strong>@import关键字</strong></li>
-</ol>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> url(./css/test2.css);</span><br></pre></td></tr></table></figure>
-
-<p>​        导入外部的样式, 不推荐使用, 浏览器不会立即导入 @import导入的样式, </p>
-<p>但会直接加载link导入的样式 </p>
-<ol start="2">
-<li>head标签内用<strong>link标签</strong>引入外部样式 (最常用)</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./css/test1.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><p><strong>行内样式</strong>表(内联样式)</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color: pink;&quot;</span>&gt;</span>标签内用style=&quot;&quot;写的，就是行内样式<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h3 id="iframe有什么优点、缺点"><a href="#iframe有什么优点、缺点" class="headerlink" title="iframe有什么优点、缺点"></a>iframe有什么优点、缺点</h3><ul>
-<li>优点：</li>
-</ul>
-<ol>
-<li>iframe能够原封不动的把嵌入的网页展现出来。</li>
-<li>如果有多个网页引用iframe，那么你只需要修改iframe的内容，就可以实现调用的每一个页面内容的更改，方便快捷。</li>
-<li>网页如果为了统一风格，头部和版本都是一样的，就可以写成一个页面，用iframe来嵌套，可以增加代码的可重用。</li>
-<li>如果遇到加载缓慢的第三方内容如图标和广告，这些问题可以由iframe来解决。</li>
-</ol>
-<ul>
-<li>缺点：</li>
-</ul>
-<ol>
-<li>iframe会阻塞主页面的onload事件；</li>
-<li>iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。会产生很多页面，不容易管理。</li>
-<li>iframe框架结构有时会让人感到迷惑，如果框架个数多的话，可能会出现上下、左右滚动条，会分散访问者的注意力，用户体验度差。</li>
-<li>代码复杂，无法被一些搜索引擎索引到，这一点很关键，现在的搜索引擎爬虫还不能很好的处理iframe中的内容，所以使用iframe会不利于搜索引擎优化（SEO）。</li>
-<li>很多的移动设备无法完全显示框架，设备兼容性差。</li>
-<li>iframe框架页面会增加服务器的http请求，对于大型网站是不可取的。</li>
-</ol>
 <hr>
 <h3 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h3><ul>
 <li><p>顺序 : 捕获阶段( 从documen到目标 )、目标阶段、冒泡阶段( 从目标到window )。</p>
@@ -268,22 +179,65 @@
 <li>addEventListener() —添加事件侦听器</li>
 <li>removeEventListener() —删除事件侦听器</li>
 </ol>
-<p>函数均有3个参数， 第一个参数是要处理的事件名( 使用 click ,<strong>而不是on</strong>click) ,第二个参数是作为事件处理程序的函数( 该函数的<strong>参数.stopPropagation( )<strong>可</strong>阻止冒泡</strong> ) , 第三个参数是一个boolean值，默认false表示使用冒泡机制，true表示捕获机制。</p>
+<p>函数均有3个参数， 第一个参数是要处理的事件名( 使用 click ,<strong>而不是on</strong>click) ,第二个参数是作为事件处理程序的函数( 该函数内写 <strong>参数.stopPropagation( )<strong>可</strong>阻止冒泡</strong> ) ,       第三个参数是一个boolean值，默认false表示使用冒泡机制，true表示捕获机制。</p>
+<ul>
+<li>阻止默认事件 :    e.preventDefault( ) </li>
+<li>阻止冒泡    :         e.stopPropagation( )</li>
+</ul>
 </li>
 </ol>
 </li>
 <li><p>能否冒泡</p>
+<p>are fbl mum</p>
 </li>
 </ul>
 <p><img src="https://pic.imgdb.cn/item/6163002f2ab3f51d912acf22.jpg"></p>
 <hr>
 <h3 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h3><ul>
-<li><p>18位身份证  : <strong>/^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))(([0[1-9])|([1|2]\d)|3[0-1])\d{3}[0-9Xx]$/</strong></p>
+<li><p><code>18位身份证</code>  :</p>
+<p> <strong>/^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))(([0[1-9])|([1|2]\d)|3[0-1])\d{3}[0-9Xx]$/</strong></p>
 <p>6位地区编码 : [1-9]\d{5}</p>
 <p>4位年份 :  [1-9]\d{3}</p>
 <p>2位月份 :  (0[1-9])|(1[0-2])</p>
 <p>2位日数 :  (([0[1-9])|([1|2]\d)|3[0-1])</p>
 <p>4位校验码 : \d{3}[0-9Xx]</p>
+</li>
+<li><p><code>regexp.exec(str)</code>,正则对象的主要方法,接收一个字符串参数,返回的<strong>数组</strong>,存放匹配的结果,[‘e’,index:1,input….等等]</p>
+<p>​        数组里有4个属性: length、index、input（被检索的string）、groups(undefined),未找到匹配则返回null</p>
+</li>
+<li><p><code>regexp.test(str) </code> , 检测一个字符串是否匹配某个模式,在全局匹配模式下,对于同一个正则对象重复调用就会出现下一次的匹配位置从上一次匹配结束的位置开始,                                  解决方法  :     重置lastIndex为0</p>
+</li>
+<li><p><code>str.match(regexp)</code>是支持正则表达式的**String对象的方法 **,regexp 必需。规定要匹配的模式的 RegExp 对象。 如果该参数不是 RegExp 对象，则需要首先把它传递给 RegExp 构造函数，将其转换为 RegExp 对象。返回值为存放匹配结果的数组</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str=<span class="string">&quot;Hello world!&quot;</span></span><br><span class="line"><span class="built_in">document</span>.write(str.match(<span class="string">&quot;world&quot;</span>) + <span class="string">&quot;&lt;br /&gt;&quot;</span>)    <span class="comment">//world</span></span><br><span class="line"><span class="built_in">document</span>.write(str.match(<span class="string">&quot;World&quot;</span>) + <span class="string">&quot;&lt;br /&gt;&quot;</span>)    <span class="comment">//null</span></span><br><span class="line"><span class="built_in">document</span>.write(str.match(<span class="string">&quot;worlld&quot;</span>) + <span class="string">&quot;&lt;br /&gt;&quot;</span>)   <span class="comment">//null</span></span><br><span class="line"><span class="built_in">document</span>.write(str.match(<span class="string">&quot;world!&quot;</span>))              <span class="comment">//world!</span></span><br></pre></td></tr></table></figure></li>
+<li><p><code>str=str.replace(/(a)\1/g,&#39;$1&#39;)</code>  用第一个分组的值a对匹配到的值aa进行替换</p>
+</li>
+<li><p>被正则表达式捕获(匹配)到的字符串会被暂存起来，分组1  :   RegExp.$1</p>
+</li>
+<li><p><code>\1</code> 和 <code>&#39;$1&#39;</code>  表示 第一个分组的值      <strong>括号就是分组</strong></p>
+</li>
+<li><p><code>\d&#123;1,3&#125;</code>   匹配1到3位的数字</p>
+</li>
+<li><p><code>\D </code>    查找非数字字符</p>
+</li>
+<li><p><code>\w</code>    查找单词字符</p>
+</li>
+<li><p><code>\W</code>    查找非单词字符</p>
+</li>
+<li><p><code>n+</code>    至少一个 n </p>
+</li>
+<li><p><code>n*</code>    零个或多个 n </p>
+</li>
+<li><p><code>n?</code>    零个或一个 n</p>
+</li>
+<li><p><code>/at/g</code>  全局模式 ,匹配字符串中的所有at,而不是找到第一个就停下</p>
+</li>
+<li><p><code>/[bc]at/i</code>   匹配第一个bat或者cat,不区分大小写</p>
+</li>
+<li><p><code>/\[bc]at/i</code>   匹配第一个[bc]at,不区分大小写,(元字符需要用\转义)</p>
+</li>
+<li><p><code>[^adgk]</code>    查找给定集合外的任何字符。</p>
+</li>
+<li><p><code>/.at/gi</code>   匹配所有以at结尾的三字符组合,不区分大小写</p>
 </li>
 </ul>
 <hr>
@@ -294,9 +248,9 @@
 <p>setTimeout(go,10 );       //等待10毫秒执行<strong>局部</strong>里的go函数</p>
 <p>setTimeout(‘go( )’,10 );   //等待10毫秒执行<strong>全局中</strong>的go函数</p>
 </li>
-<li></li>
 </ul>
-
+<hr>
+<h3 id="Event-Loop-浏览器"><a href="#Event-Loop-浏览器" class="headerlink" title="Event-Loop(浏览器)"></a>Event-Loop(浏览器)</h3>
       </section>
 
       

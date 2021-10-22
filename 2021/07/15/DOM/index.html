@@ -188,6 +188,7 @@
 <!-- ![HTML](https://i0.hdslb.com/bfs/album/23ffd5d98c0fd4096f1b5f1b465ba533ddaa53c4.jpg) -->
 
 <p>document.createElement() //创建多个元素 效率稍微低一些 但是结构会很清晰</p>
+<hr>
 <h3 id="DOM查询-获取元素"><a href="#DOM查询-获取元素" class="headerlink" title="DOM查询(获取元素)"></a>DOM查询(获取元素)</h3><ul>
 <li>DOM提供的API方法:getElementByid(),getElementByTagName()[] (老方法不推荐使用)<br>  H5新增的方法:querySelector()、querySelectorAll() (提倡使用)<br>  利用节点操作获取元素:父节点(parentNode)、子节点(children)、兄(previousElementSibling、nextElementSibling)提倡使用</li>
 </ul>
@@ -196,10 +197,12 @@
 <li><strong>querySelector()</strong>: 返回指定选择器的<strong>第一个</strong>元素对象,可做任意选择(id #: 爱井)<br>更多细节:<a target="_blank" rel="noopener" href="https://www.jb51.net/article/100745.htm">https://www.jb51.net/article/100745.htm</a></li>
 <li>querySelectorAll(): 返回指定选择器的<strong>所有</strong>元素对象,指定时需要加.或者#符号</li>
 </ol>
+<hr>
 <h3 id="DOM增加"><a href="#DOM增加" class="headerlink" title="DOM增加"></a>DOM增加</h3><ul>
 <li>appendChild() 方法向节点添加最后一个子节点。</li>
 <li>insertBefore() 在前面增加</li>
 </ul>
+<hr>
 <h3 id="事件操作"><a href="#事件操作" class="headerlink" title="事件操作"></a>事件操作</h3><ul>
 <li>element.<strong>onEventType</strong>在同一元素上同一事件类型绑定多个事件时,后面的会覆盖前面的,</li>
 <li>但element.<strong>addEventListener</strong>不会覆盖  ,注意不要为事件使用“on”前缀</li>
@@ -208,7 +211,9 @@
 <p>addEventListener(“eventType”,fun,boolean ) ;<br>//<strong>boolean默认false-&gt;冒泡阶段触发,true-&gt;捕获阶段触发</strong></p>
 </blockquote>
 <ul>
-<li>给元素注册事件，获取事件源(谁被触发) .事件类型(绑定事件,比如点击onclick) = 事件处理程序(函数赋值)<br>onclick  鼠标点击左键触发</li>
+<li>给元素注册事件，获取事件源(谁被触发) .事件类型(绑定事件,比如点击onclick) = 事件处理程序(函数赋值)<pre><code>  onclick  鼠标点击左键触发
+</code></pre>
+</li>
 </ul>
 <p>　　　　onmouseover  鼠标经过触发</p>
 <p>　　　　onmouseout    鼠标离开触发</p>
@@ -217,18 +222,15 @@
 <p>　　　　onmousemove   鼠标移动触发</p>
 <p>　　　　onmouseup   鼠标弹起触发</p>
 <p>　　　　onmousedown   鼠标按下触发</p>
+<hr>
 <h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><ul>
-<li><p>比如 : 三个div嵌套,都绑定click事件,点击最内层的元素,事件是从内到外执行的。</p>
-</li>
-<li><p>事件捕获： 从外层到内层(不会触发事件)</p>
-</li>
-<li><p><strong>事件冒泡</strong>： 从内层到外层(会触发事件)<br>JS中当触发某些具有冒泡性质的事件时，首先在触发元素寻找是否有相应的注册事件，如果没有再继续向上级父元素寻找是否有相应的注册事件作出相应，这就是事件冒泡。</p>
-</li>
-<li><p><strong>阻止冒泡</strong>: e.stopPropagation(); //此处的e为函数中传的参数</p>
-</li>
-<li><p>阻止事件的默认行为(比如a链接跳转): e.preventDefault();//一定有效<br>或者 return false;  //不一定有效</p>
-</li>
+<li>比如 : 三个div嵌套,都绑定click事件,点击最内层的元素,事件是从内到外执行的。</li>
+<li>事件捕获： 从外层到内层(不会触发事件)</li>
+<li><strong>事件冒泡</strong>： 从内层到外层(会触发事件)<br>JS中当触发某些具有冒泡性质的事件时，首先在触发元素寻找是否有相应的注册事件，如果没有再继续向上级父元素寻找是否有相应的注册事件作出相应，这就是事件冒泡。</li>
+<li><strong>阻止冒泡</strong>: e.stopPropagation(); //此处的e为函数中传的参数</li>
+<li>阻止事件的默认行为(比如a链接跳转): e.preventDefault();//一定有效<br>或者 return false;  //不一定有效</li>
 </ul>
+<hr>
 <h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><ul>
 <li><p>利用事件冒泡的特性，将本应该注册在子元素上的处理事件注册在父元素上，这样点击子元素时发现其本身没有相应事件就到父元素上寻找作出响应。</p>
 </li>
@@ -240,15 +242,12 @@
 </li>
 </ul>
 <ol>
-<li><p>Event对象提供了一个属性叫target，<strong>可以返回事件的目标节点</strong>，成为事件源，也就是说，target就可以表示为当前的事件操作的dom，但是不是真正操作dom;</p>
-</li>
-<li><p>此时只是获取了当前节点的位置，并不知道是什么节点名称(但可以直接用)，这里我们可以用nodeName来获取具体是什么标签名，这个返回的是一个大写的，</p>
-</li>
-<li><p>用事件委托的方式，新添加的子元素是带有事件效果的，我们可以发现，当用事件委托的时候，根本就不需要去遍历元素的子节点，只需要给父级元素添加事件就好了，其他的都是在js里面的执行，这样可以大大的减少dom操作，这才是事件委托的精髓所在。</p>
-</li>
-<li><p>详细请查看:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lauzhishuai/p/11263210.html">https://www.cnblogs.com/lauzhishuai/p/11263210.html</a></p>
-</li>
+<li>Event对象提供了一个属性叫target，<strong>可以返回事件的目标节点</strong>，成为事件源，也就是说，target就可以表示为当前的事件操作的dom，但是不是真正操作dom;</li>
+<li>此时只是获取了当前节点的位置，并不知道是什么节点名称(但可以直接用)，这里我们可以用nodeName来获取具体是什么标签名，这个返回的是一个大写的，</li>
+<li>用事件委托的方式，新添加的子元素是带有事件效果的，我们可以发现，当用事件委托的时候，根本就不需要去遍历元素的子节点，只需要给父级元素添加事件就好了，其他的都是在js里面的执行，这样可以大大的减少dom操作，这才是事件委托的精髓所在。</li>
+<li>详细请查看:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lauzhishuai/p/11263210.html">https://www.cnblogs.com/lauzhishuai/p/11263210.html</a></li>
 </ol>
+<hr>
 <h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><ul>
 <li>element.onkeydown: 表示键盘(一次)被按下;传参后通过keycode可获得对应unicode编码</li>
 </ul>
