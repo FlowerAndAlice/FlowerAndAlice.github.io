@@ -159,7 +159,7 @@
 <p>不推荐使用, 因为浏览器不会立即导入 @import导入的样式, 但会直接加载link导入的样式 </p>
 </blockquote>
 <ol start="2">
-<li>head标签内用<strong>link标签</strong>引入外部样式 (最常用) (head标签内)</li>
+<li>head标签内用<strong>link标签</strong>引入外部样式 (最常用) (head标签内)  ( 多个link标签会同时加载,谁先加载完的优先解析 )</li>
 </ol>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./css/test1.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure></li>
 <li><p><strong>行内样式</strong>表(内联样式)</p>
@@ -202,7 +202,7 @@
 </ul>
 <ol>
 <li> 后代选择器 : 全部后辈 (子孙) 中的    <em>body p{ background:pink; }</em></li>
-<li> 子代选择器 :一代,儿子辈的   <em>body&gt;p{ background：pink; }</em></li>
+<li> 子代选择器 :一代,儿子辈的   <em>body&gt;p{ background：pink; }</em>            ( 空格是子代   ,   逗号是一起 )</li>
 </ol>
 <hr>
 <h3 id="CSS定位-position"><a href="#CSS定位-position" class="headerlink" title="CSS定位(position)"></a>CSS定位(position)</h3><ul>
@@ -220,14 +220,80 @@
 <li>通过非静态(非static)让元素非常独立可控,比如弹窗、下拉菜单、固定导航栏等场景</li>
 </ul>
 <hr>
+<h3 id="正常文档流"><a href="#正常文档流" class="headerlink" title="正常文档流"></a>正常文档流</h3><ul>
+<li>默认的,按照书写顺序从上往下排,每个块级元素都会自动换行.如果有margin就会被隔开<br>(p标签有默认margin)</li>
+</ul>
+<hr>
+<h3 id="脱离文档流"><a href="#脱离文档流" class="headerlink" title="脱离文档流"></a><strong>脱离文档流</strong></h3><ol>
+<li><p>文档流: 将窗体自上而下分成一行一行，并在每行中按从左至右依次排放元素，称为文档流，也称为普通流。<br>HTML中全部元素都是盒模型，盒模型占用一定的空间，依次排放在HTML中，形成了文档流。</p>
+</li>
+<li><p>元素脱离文档流之后，将不再在文档流中占据空间，而是处于浮动状态（可以理解为漂浮在文档流的上方）。<br>脱离文档流的元素的定位基于正常的文档流，当一个元素脱离文档流后，依然在文档流中的其他元素将忽略该元素并填补其原先的空间</p>
+</li>
+</ol>
+<ul>
+<li>方法:</li>
+</ul>
+<ol>
+<li>使用float脱离文档流时，其他盒子会无视这个元素，但其他盒子内的<strong>文本</strong>认为这个元素依旧存在,会为这个元素让出位置</li>
+<li>使用absolute脱离文档流后的元素，是相对于该元素的父元素进行定位的;<br>并且这个父类元素的position必须是非static定位的</li>
+<li>fixed: 完全脱离文档流，相对于浏览器窗口进行定位。（相对于浏览器窗口就是相对于html）。</li>
+</ol>
+<hr>
+<h3 id="浮动布局"><a href="#浮动布局" class="headerlink" title="浮动布局"></a>浮动布局</h3><ul>
+<li>HTML元素分类:</li>
+</ul>
+<ol>
+<li>块元素(可以设置宽度和高度,独立成行): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  h1-6、p、div、ul、li</li>
+<li>行内元素(内联元素): (不可以设置宽度和高度,不独立成行):&nbsp;&nbsp; a、span</li>
+<li>行内块元素(<strong>可以设置宽度和高度,独立成行</strong>)： img、imput、button</li>
+<li>以上通过display属性实现： block、inline、inline-block，还有一个none实现隐藏</li>
+</ol>
+<hr>
+<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a><strong>清除浮动</strong></h3><p><strong>原因</strong>: 浮动溢出:容器的高度不能自动伸长以适应内容的高度，使内容溢出到容器外而影响布局的现象。</p>
+<p><strong>方法</strong>:</p>
+<ol>
+<li>使用带<strong>clear属性</strong>的空元素 :<br>在浮动元素后使用一个空元素如 <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code><br>并在CSS中赋予.clear{clear:both;}属性即可清理浮动。<br>亦可使用<code>&lt;br class=&quot;clear&quot; /&gt;</code>或<code>&lt;hr class=&quot;clear&quot; /&gt;</code>来进行清理。</li>
+<li>使用CSS的<strong>overflow</strong>属性:<br>给浮动元素的容器(浮动的它的父级)添加overflow:hidden;或overflow:auto;可以清除浮动<br>因为overflow.hidden会触发BFC。 BFC的意思是，我这个元素里面的子孙元素，不会影响外部元素的布局。<br>故该容器里需全为浮动的元素</li>
+<li>给浮动的元素的容器添加浮动:<br>给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局，(<strong>不推荐使用</strong>)</li>
+<li>使用<strong>邻接元素</strong>处理:<br>给浮动元素后面的元素添加clear属性。</li>
+<li>使用CSS的:<strong>after伪元素</strong>:<br>在元素末尾添加一个内容为一个点并带有 clear: both 属性的元素</li>
+</ol>
+<hr>
+<h3 id="Flex-弹性-布局"><a href="#Flex-弹性-布局" class="headerlink" title="Flex(弹性)布局"></a>Flex(弹性)布局</h3><ul>
+<li><p>弹性盒子是一种用于按行或者按列布局元素的一维布局方法</p>
+</li>
+<li><p>设为 Flex 布局以后，子元素的 <code>float</code>、<code>clear</code>和<code>vertical-align</code>属性将失效。要设置一个元素采用 flex 布局，只需设置器 display 属性取值为 <code>flex</code> 即可。</p>
+</li>
+<li><p>采用 Flex 布局的元素，称为Flex容器。其子元素为<strong>flex item</strong>，本文称其为”项目”。容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。</p>
+<h4 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h4><ul>
+<li><strong>flex-direction</strong> :  flex-direction属性决定主轴的方向（即项目的排列方向）。<ol>
+<li>row（默认值）：主轴为水平方向，起点在左端。</li>
+<li>row-reverse：主轴为水平方向，起点在右端。</li>
+<li>column：主轴为垂直方向，起点在上沿。</li>
+<li>column-reverse：主轴为垂直方向，起点在下沿。</li>
+</ol>
+</li>
+<li>**flex-wrap **:  默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。<ol>
+<li>nowrap（默认）：不换行。</li>
+<li>wrap：换行，第一行在上方。</li>
+<li>wrap-reverse：换行，第一行在下方。</li>
+</ol>
+</li>
+<li><strong>flex-flow</strong> : flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</li>
+<li><strong>justify-content</strong>  :  justify-content属性定义了项目在主轴上的对齐方式。</li>
+<li><strong>align-items</strong>   :   align-items属性定义项目在交叉轴上如何对齐。</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><ul>
 <li>CSS动画  transfrom:(加对应动画)<br>(过渡动画: dom加载完成或者class发生变化时触发)</li>
 </ul>
 <ol>
-<li>Translate(移动) :该变换由二维向量构成,第一个参数是x轴移动距离,可用百分比和px</li>
-<li>scale(缩放), (两参数： x、y),小于1缩小(大于1放大),</li>
-<li>rotate(旋转) 中心点默认在center,单位是deg</li>
-<li>skew(倾斜) : (与屏幕对比)(第一个参数水平方向,二是垂直)(单位deg)</li>
+<li><strong>Translate(移动)</strong>  : 该变换由二维向量构成,第一个参数是x轴移动距离,可用百分比和px</li>
+<li><strong>scale(缩放)</strong>  , (两参数： x、y),小于1缩小(大于1放大),</li>
+<li><strong>rotate(旋转)</strong>  中心点默认在center,单位是deg</li>
+<li><strong>skew(倾斜)</strong>  : (与屏幕对比)(第一个参数水平方向,二是垂直)(单位deg)</li>
 </ol>
 <ul>
 <li>keyframe实现动画<br>(通过在动画序列中定义<strong>关键帧</strong>的样式来<strong>控制CSS动画序列中的中间步骤</strong>)</li>

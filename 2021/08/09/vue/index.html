@@ -159,6 +159,7 @@
 <li>采用<strong>组件化</strong>模式,提高代码复用率、且让代码更好维护</li>
 <li><strong>声明式</strong>编码（v-for），让编码人员无需直接操作DOM，提高开发效率  （相对的有麻烦的命令式编码）</li>
 <li>使用虚拟DOM + 优秀的diff算法</li>
+<li>MVVM框架中Vue作为ViewModel进行<strong>Data bindings</strong>(数据绑定)和<strong>DOM Listener</strong>(DOM监听)( 发生事件时鉴定到且有时会改变相应Data )</li>
 </ol>
 <hr>
 <h3 id="引入Vue-js"><a href="#引入Vue-js" class="headerlink" title="引入Vue.js"></a>引入Vue.js</h3><ul>
@@ -167,10 +168,13 @@
 <li><p>一个vue程序最基本的<strong>结构</strong>：</p>
 </li>
 </ul>
-<p>首先，我们在html中定义了一个id为app的<strong>容器</strong>，然后我们在js创建一个Vue的<strong>实例</strong>，通过<strong>el属性</strong>指定这个容器，从而实现让js接管html.</p>
-<ul>
-<li>el属性:将vue挂载到html</li>
-</ul>
+<p>首先，我们在html中定义了一个id为app的<strong>容器</strong>，然后我们在js创建一个Vue的<strong>实例</strong></p>
+<blockquote>
+<p>①  <strong>el</strong> :   string | HTMLelement     将vue挂载到html ( 决定vue实例管理哪一个DOM ) </p>
+<p>②  <strong>data</strong>  :   Object | Function    Vue实例对应的数据对象</p>
+<p>③  <strong>methods</strong>  :  {[keys : string] : Function }</p>
+</blockquote>
+<p>​        </p>
 <hr>
 <h3 id="vue中的前端依赖"><a href="#vue中的前端依赖" class="headerlink" title="vue中的前端依赖"></a>vue中的前端依赖</h3><ol>
 <li>axios ：  cnpm install –save axios </li>
@@ -359,6 +363,7 @@
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">request.interceptors.request.use(<span class="function">(<span class="params">req</span>) =&gt;</span> &#123;           <span class="comment">//use方法,回调函数</span></span><br><span class="line">    <span class="keyword">let</span> token = <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;token&quot;</span>);  <span class="comment">//获取token</span></span><br><span class="line">    <span class="keyword">if</span> (token) &#123;                                  </span><br><span class="line">        req.headers.token = token;              <span class="comment">//设置token到页面中</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> req;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
+<hr>
 <h3 id="element-UI"><a href="#element-UI" class="headerlink" title="element_UI"></a>element_UI</h3><ul>
 <li><strong>引入</strong>:  cnpm i element-ui -S</li>
 </ul>

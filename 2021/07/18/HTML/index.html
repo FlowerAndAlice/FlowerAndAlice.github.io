@@ -142,9 +142,10 @@
         <h3 id="错题"><a href="#错题" class="headerlink" title="错题"></a>错题</h3><ul>
 <li><p>（规范）ul里面只能放li，但li里可以放h* 和p等标签，dl里可以放dt和dd，dt和dd同级</p>
 </li>
-<li><fieldset>标签 : 将表单内容分组打包,生成一组相关表单的字段,特殊边框,
-
-<legend>  标签  :   为filedset元素定义标题</li>
+<li><p>&lt;fieldset&gt; 标签 : 将表单内容分组打包,生成一组相关表单的字段,特殊边框,</p>
+<p>&lt;legend&gt;  标签  :   为filedset元素定义标题</p>
+<p>&lt;p&gt;标签里不能放&lt;p&gt;标签和块级元素标签</p>
+</li>
 <li><p>不可继承的属性  :</p>
 <p>① display   ② margin  ③ border  ④ padding  </p>
 <p>⑤ background  ⑥ height/width  ⑦  position</p>
@@ -227,56 +228,9 @@
 </ul>
 <ol>
 <li>易于用户阅读，样式丢失的时候能让页面呈现清晰的结构。</li>
-<li>有利于SEO，搜索引擎根据标签来确定上下文和各个关键字的权重。</li>
-<li>方便其他设备解析，如盲人阅读器根据语义渲染网页</li>
+<li><strong>有利于SEO</strong>，搜索引擎根据标签来确定上下文和各个关键字的权重。</li>
+<li><strong>方便其他设备解析</strong>，如盲人阅读器根据语义渲染网页</li>
 <li>有利于开发和维护，语义化更具可读性，代码更好维护，与CSS3关系更和谐。</li>
-</ol>
-<hr>
-<h3 id="弹性布局"><a href="#弹性布局" class="headerlink" title="弹性布局"></a>弹性布局</h3><ul>
-<li>弹性盒子是一种用于按行或者按列布局元素的一维布局方法</li>
-</ul>
-<hr>
-<h3 id="正常文档流"><a href="#正常文档流" class="headerlink" title="正常文档流"></a>正常文档流</h3><ul>
-<li>默认的,按照书写顺序从上往下排,每个块级元素都会自动换行.如果有margin就会被隔开<br>(p标签有默认margin)</li>
-</ul>
-<hr>
-<h3 id="脱离文档流"><a href="#脱离文档流" class="headerlink" title="脱离文档流"></a><strong>脱离文档流</strong></h3><ol>
-<li><p>文档流: 将窗体自上而下分成一行一行，并在每行中按从左至右依次排放元素，称为文档流，也称为普通流。<br>HTML中全部元素都是盒模型，盒模型占用一定的空间，依次排放在HTML中，形成了文档流。</p>
-</li>
-<li><p>元素脱离文档流之后，将不再在文档流中占据空间，而是处于浮动状态（可以理解为漂浮在文档流的上方）。<br>脱离文档流的元素的定位基于正常的文档流，当一个元素脱离文档流后，依然在文档流中的其他元素将忽略该元素并填补其原先的空间</p>
-</li>
-</ol>
-<ul>
-<li>方法:</li>
-</ul>
-<ol>
-<li>使用float脱离文档流时，其他盒子会无视这个元素，但其他盒子内的<strong>文本</strong>认为这个元素依旧存在,会为这个元素让出位置</li>
-<li>使用absolute脱离文档流后的元素，是相对于该元素的父元素进行定位的;<br>并且这个父类元素的position必须是非static定位的</li>
-<li>fixed: 完全脱离文档流，相对于浏览器窗口进行定位。（相对于浏览器窗口就是相对于html）。</li>
-</ol>
-<hr>
-<h3 id="浮动布局"><a href="#浮动布局" class="headerlink" title="浮动布局"></a>浮动布局</h3><ul>
-<li>HTML元素分类:</li>
-</ul>
-<ol>
-<li><p>块元素(可以设置宽度和高度,独立成行): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  h1-6、p、div、ul、li</p>
-</li>
-<li><p>行内元素(内联元素): (不可以设置宽度和高度,不独立成行):&nbsp;&nbsp; a、span</p>
-</li>
-<li><p>行内块元素(<strong>可以设置宽度和高度,独立成行</strong>)： img、imput、button</p>
-</li>
-<li><p>以上通过dispaly属性实现： block、inline、inline-block，还有一个none实现隐藏</p>
-</li>
-</ol>
-<hr>
-<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a><strong>清除浮动</strong></h3><p><strong>原因</strong>: 浮动溢出:容器的高度不能自动伸长以适应内容的高度，使内容溢出到容器外而影响布局的现象。</p>
-<p><strong>方法</strong>:</p>
-<ol>
-<li>使用带<strong>clear属性</strong>的空元素 :<br>在浮动元素后使用一个空元素如 <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code><br>并在CSS中赋予.clear{clear:both;}属性即可清理浮动。<br>亦可使用<code>&lt;br class=&quot;clear&quot; /&gt;</code>或<code>&lt;hr class=&quot;clear&quot; /&gt;</code>来进行清理。</li>
-<li>使用CSS的<strong>overflow</strong>属性:<br>给浮动元素的容器(浮动的它的父级)添加overflow:hidden;或overflow:auto;可以清除浮动<br>因为overflow.hidden会触发BFC。 BFC的意思是，我这个元素里面的子孙元素，不会影响外部元素的布局。<br>故该容器里需全为浮动的元素</li>
-<li>给浮动的元素的容器添加浮动:<br>给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局，(<strong>不推荐使用</strong>)</li>
-<li>使用<strong>邻接元素</strong>处理:<br>给浮动元素后面的元素添加clear属性。</li>
-<li>使用CSS的:<strong>after伪元素</strong>:<br>在元素末尾添加一个内容为一个点并带有 clear: both 属性的元素</li>
 </ol>
 <hr>
 <h3 id="iframe有什么优点、缺点"><a href="#iframe有什么优点、缺点" class="headerlink" title="iframe有什么优点、缺点"></a>iframe有什么优点、缺点</h3><ul>
