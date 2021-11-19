@@ -164,7 +164,7 @@
 <ol>
 <li>在变量未赋值时，变量undefined（包括变量提升）</li>
 <li>作用域——var的作用域为方法作用域；只要在方法内定义了，整个方法内的定义变量后的代码都可以使用</li>
-<li>在<strong>块内</strong>声明函数或变量,只要<strong>没加var,都算作全局</strong>函数/变量 ( 且严格模式会报错 )  ( <strong>函数形参除外</strong> )</li>
+<li>在<strong>块内</strong>声明函数或变量,只要<strong>没加var,都算作全局</strong>函数/变量 ( 且严格模式会报错 )  ( <strong>函数形参除外</strong> )  (又有<strong>传入引用类型时拿到的是全局中的对象的引用</strong>)</li>
 </ol>
 <ul>
 <li><code>let</code>——ES6变量声明方式</li>
@@ -226,7 +226,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">4399</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>)</span>&#123;     </span><br><span class="line">        n++;</span><br><span class="line">        <span class="built_in">console</span>.log(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">n</span>:n,<span class="attr">add</span>:add&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = test();       <span class="comment">//新建堆内存1,  然后test执行,新建私有作用域A</span></span><br><span class="line"><span class="keyword">var</span> result2 = test();      <span class="comment">//新建堆内存2,井水不犯河水</span></span><br><span class="line">result.add();              <span class="comment">//新地址1里的add函数内又是一个新的私有作用域,找不到n,到新地址1里找n,另新地址的n++, 4400</span></span><br><span class="line">result.add();              <span class="comment">//新地址1的n++,4401</span></span><br><span class="line"><span class="built_in">console</span>.log(result.n);     <span class="comment">//堆内存里的n=4399</span></span><br><span class="line">result2.add();</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h3 id="this-与-arguments"><a href="#this-与-arguments" class="headerlink" title="this 与 arguments"></a>this 与 arguments</h3><p>  解释器在调用函数每次都会向函数内部传进俩个隐含的参数。</p>
+<h3 id="this-与-arguments与严格模式"><a href="#this-与-arguments与严格模式" class="headerlink" title="this 与 arguments与严格模式"></a>this 与 arguments与严格模式</h3><p>  解释器在调用函数每次都会向函数内部传进俩个隐含的参数。</p>
 <ul>
 <li><p>一个隐含的参数就是<code>this</code>，是一个引用, 指向内存中的一个对象</p>
 <ul>
@@ -241,12 +241,21 @@
 </li>
 <li><p><strong>this指向</strong></p>
 <ul>
-<li>以<strong>函数的形式</strong>调用，this永远都是window  ( window.fun ,函数都是window的对象 ) </li>
+<li>以<strong>函数的形式</strong>调用( 包括立即执行函数、匿名函数 )，this永远都是window  ( window.fun ,函数都是window的对象 ) </li>
 <li>以**方法的形式( 对象的属性 )**调用时，this就是调用方法的那个对象</li>
 <li>以<strong>构建函数的形式</strong>调用时，this就是新创建的那个( 实例 )对象</li>
 <li>使用<strong>call和apply</strong>调用时，this指向传入的第一个参数</li>
-<li>箭头函数中的this , 指向函数<strong>定义时的上下文</strong>的this( <strong>箭头函数</strong>与普通函数的区别 )</li>
+<li>箭头函数中的this , 指向函数<strong>定义时的上下文</strong>的this( <strong>箭头函数</strong>与普通函数的区别 ),且call()等无法改变this指向,只能传参</li>
 <li>可以在上下文中把this传给变量,在函数中使用该变量,也可改变this指向</li>
+<li>函数定义时若处于<strong>严格模式</strong>下,this会指向undefined,箭头函数不受影响<ul>
+<li>“use strict” : 在正常模式中，如果一个变量没有声明就赋值，默认是全局变量。严格模式必须显式声明全局变量,不能使用未声明的变量。<ul>
+<li>将”use strict”放在脚本文件的<strong>第一行</strong>，则整个脚本都将以”严格模式”运行。</li>
+<li>将”use strict”放在函数体的第一行，则整个函数以”严格模式”运行。</li>
+</ul>
+</li>
+<li><strong>禁止this关键字指向全局对象</strong></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p><strong>call, bind,apply</strong>    </p>
@@ -458,18 +467,37 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = [<span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"><span class="keyword">let</span> arr3 = [<span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>];</span><br><span class="line"></span><br><span class="line">arr1.concat(arr2, arr3);      <span class="comment">// ES5 的合并数组</span></span><br><span class="line"><span class="comment">// [ &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27; ]</span></span><br><span class="line"></span><br><span class="line">[...arr1, ...arr2, ...arr3];  <span class="comment">// ES6 的合并数组</span></span><br><span class="line"><span class="comment">// [ &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27; ]</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
+<li><p><strong>void运算符</strong></p>
+<p>void会忽略操作数的值,返回undefined, 因此在操作数有副作用的时候使用void来让程序更有意义</p>
+<ul>
+<li><p>作用一：返回undefined</p>
+</li>
+<li><p>作用二:防止不必要的行为。利用它填充<code>&lt;a&gt;</code>的<code>href</code>确保点击时不会产生页面跳转;此外，填充<code>&lt;image&gt;</code>的<code>src</code>，确保不会向服务器发出垃圾请求。类似src=’javascript:void(0)’。</p>
+</li>
+</ul>
+<blockquote>
+<p>void  0;        //undefined</p>
+<p>void (0);       //undefined</p>
+<p>void  ( );       //SyntaxError</p>
+<p>typeof ( );    //SyntaxError</p>
+</blockquote>
+</li>
 <li><p><strong>typeof</strong> 返回的是string，表示的是数据类型。  （ array、object都返回object ）</p>
 <ul>
-<li><code>typeof Object</code>：结果是”function”，因为Object是一个构造函数，可以通过new操作符来构造对象。</li>
+<li><code>typeof Object</code>：(此处是大写O) 结果是”function”，因为Object是一个构造函数，可以通过new操作符来构造对象。</li>
+<li><code>typeof(obj/array)</code> : 结果是’object’,</li>
 <li><code>typeof null</code>：结果是”object”，null是一个只有一个值的特殊类型。表示一个空对象引用。</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为什么 typeof null 为 “object”? JavaScript 诞生以来便如此不同的对象在底层都表示为二进制，在 JS 中二进制前三位都为0的话会被判断为 object 类型，null的二进制表示是全0 (null 代表的是空指针)，自然前三位也是 0，所以执行 typeof 时会返回“object”。曾有一个 ECMAScript 的修复提案（通过选择性加入的方式），但被拒绝了,该提案会导致 typeof null === &#x27;null&#x27;。</span><br></pre></td></tr></table></figure></li>
 <li><p><strong>instanceof</strong>主要作用就是判断一个实例是否属于某种类型</p>
-<p>区别  :  无论引用的是什么类型的对象，<code>typeof</code>都返回 <code>“object”</code>。这就需要用到instanceof来检测某个对象是不是另一个对象的实例。</p>
-<p>右边变量的 prototype 在左边变量的原型链上时<code>instanceof</code> 为true</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原理</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">new_instance_of</span>(<span class="params">leftValue, rightValue</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">let</span> rightProto = rightValue.prototype; <span class="comment">// 取右表达式的 prototype 值</span></span><br><span class="line">    leftValue = leftValue.__proto__; <span class="comment">// 取左表达式的__proto__值</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (leftValue === <span class="literal">null</span>) &#123;        <span class="comment">//一直没找到</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;    </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (leftValue=== rightProto) &#123;      <span class="comment">//找到</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;    </span><br><span class="line">        &#125; </span><br><span class="line">        leftValue = leftValue.__proto__       <span class="comment">//往原型里继续找</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>转换为布尔值 , 只有这几个参数返回false  </p>
 </li>
+</ol>
+<p>   区别  :  无论引用的是什么类型的对象，<code>typeof</code>都返回 <code>“object”</code>。这就需要用到instanceof来检测某个对象是不是另一个对象的实例。</p>
+<p>   右边变量的 prototype 在<strong>左</strong>边变量的<strong>原</strong>型链上时<code>instanceof</code> 为true</p>
+   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原理</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">new_instance_of</span>(<span class="params">leftValue, rightValue</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">let</span> rightProto = rightValue.prototype; <span class="comment">// 取右表达式的 prototype 值</span></span><br><span class="line">    leftValue = leftValue.__proto__; <span class="comment">// 取左表达式的__proto__值</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (leftValue === <span class="literal">null</span>) &#123;        <span class="comment">//一直没找到</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;    </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (leftValue=== rightProto) &#123;      <span class="comment">//找到</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;    </span><br><span class="line">        &#125; </span><br><span class="line">        leftValue = leftValue.__proto__       <span class="comment">//往原型里继续找</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li>转换为布尔值 , 只有这几个参数返回false  </li>
 </ol>
 <blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Boolean</span>( <span class="literal">undefined</span> / <span class="literal">null</span> / <span class="number">0</span> / <span class="literal">NaN</span> / <span class="string">&#x27;&#x27;</span> )       <span class="comment">//false</span></span><br><span class="line"><span class="built_in">Boolean</span>([])       <span class="comment">//true   </span></span><br><span class="line"><span class="built_in">Boolean</span>(&#123;&#125;)       <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
@@ -616,7 +644,7 @@
 <h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><ul>
 <li><p>普通for循环中，for的第二项对饮能够的布尔值决定了循环是否继续，且每次循环的是整个分号的内容</p>
 <p>逗号表达式的对后一项才有效,  比如</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, j = <span class="number">0</span>; j &lt; <span class="number">6</span>, i &lt; <span class="number">10</span>; i++, j++) &#123;   <span class="comment">//此处决定i大于9才结束,故j也加到9,若反过来则只加到6</span></span><br><span class="line">    k += i + j;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="built_in">console</span>.log(k);</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, j = <span class="number">0</span>; j &lt; <span class="number">6</span>, i &lt; <span class="number">10</span>; i++, j++) &#123;   <span class="comment">//此处决定i大于9才结束,故j也加到9,若反过来则只加到6</span></span><br><span class="line">    k += i + j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(k);</span><br></pre></td></tr></table></figure></li>
 <li><p>for of  (ES6)</p>
 </li>
 </ul>
@@ -630,9 +658,12 @@
 <li><p>无法遍历普通对象</p>
 <p>for of 可迭代的对象：包括Array, Map, Set, String, TypedArray, arguments对象等等</p>
 </li>
-<li><p>for in循环遍历的是数组的索引，而for of循环遍历的是数组的值。</p>
+<li><blockquote>
+<p><strong>for in</strong>循环遍历的是数组的<strong>索引</strong>，( 遍历对象和原型的所有可枚举属性 )</p>
+<p>而<strong>for of</strong>循环遍历的是数组的<strong>值</strong>。</p>
+</blockquote>
 </li>
-<li><p>for in 会遍历自定义属性，for of不会</p>
+<li><p>for in 会遍历自定义属性，for of不会   (  )</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">&#x27;Baal&#x27;</span>,<span class="string">&#x27;Yoimiya&#x27;</span>];arr.wife = <span class="string">&quot;老婆&quot;</span>;<span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> arr)&#123;    <span class="built_in">console</span>.log(key+<span class="string">&#x27;: &#x27;</span>+arr[key]);	&#125;<span class="built_in">console</span>.log(<span class="string">&#x27;-----------分割线-----------&#x27;</span>);<span class="keyword">for</span>(<span class="keyword">var</span> item <span class="keyword">of</span> arr)&#123;	    <span class="built_in">console</span>.log(item);&#125;<span class="comment">// 0:Baal// 1:Yoimiya// wife:老婆//-----------分割线-----------// Baal// Yoimiya</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <ul>
@@ -684,6 +715,31 @@
 <li>后续的source会覆盖前面的source的同名属性。</li>
 <li>Object.assign复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。( 浅拷贝 )</li>
 </ol>
+<ul>
+<li><p>箭头函数与普通函数的区别 :  </p>
+<ol>
+<li><p>写法不一样</p>
+</li>
+<li><p>普通函数的声明会被提前,箭头函数不会</p>
+</li>
+<li><p>构造函数不能使用箭头函数来声明,没有new.target</p>
+<p>( new.target是用来检测函数是否被当做构造函数使用，他会返回一个指向构造函数的引用。)</p>
+</li>
+<li><p>箭头函数this指向定义时的上下文( 箭头函数的外面的外面 ),作为方法时,箭头函数的this指向window对象; 普通函数的this指向调用者,且用call()只能传参不能改变this指向</p>
+</li>
+<li><p>箭头函数的arguments指向其父级作用域的arguments</p>
+</li>
+</ol>
+</li>
+<li><p>javascript的<strong>全局属性</strong> ： infinity、NAN、undefined</p>
+<p>javascript的<strong>全局函数</strong>  ：decodeURI()、decodeURIcomponent()、</p>
+<p>​                                          encodeURI、encodeURIcomponent()、</p>
+<p>​                                          escape()、eval()、isFinite()、isNAN()、</p>
+<p>​                                          Number()、parseFloat()、parseInt()、String()、unescape()。</p>
+</li>
+<li><p>声明函数的注意点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  f =  <span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">23</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typeof</span> g();   <span class="comment">// 只有f.name=g, g还是未定义, 调用函数g会抛出 Error</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 <hr>
 <h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><ul>
 <li><p>对象可以通过两种形式定义：声明（文字）形式和构造形式。 </p>
@@ -707,7 +763,7 @@
 </li>
 <li><p>方法</p>
 </li>
-<li><p>继承</p>
+<li><p>继承    (ES5在原型链)</p>
 </li>
 </ol>
 </li>
@@ -724,18 +780,6 @@
 <li><p>对象的方法  ( 和属性不同 )</p>
 <p>Object.assign( )  : 用于对象的合并,将第一个参数后面的对象参数上的所有可枚举属性复制到第一个参数上</p>
 </li>
-<li><p><strong>History对象</strong></p>
-<ul>
-<li> 属性  :</li>
-</ul>
-<p>  ①   length  :返回浏览器历史列表中的<strong>URL数量</strong></p>
-<ul>
-<li> 方法  :</li>
-</ul>
-<p>  ①   back( )  :  加载history列表中的前一个URL</p>
-<p>  ②   forward( ) : 加载history列表中的下一个URL</p>
-<p>  ③   go( )   :  根据当前所处的页面，加载history列表中的某个具体页面</p>
-</li>
 <li><p>解构</p>
 <ul>
 <li><p>解构声明( 数组和对象,此处只讲对象 )</p>
@@ -746,6 +790,7 @@
 </li>
 </ul>
 <hr>
+<p><img src="https://pic.imgdb.cn/item/6180f4672ab3f51d918c3340.jpg"></p>
 <h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><ul>
 <li><p>①<code>__proto__</code>和<code>constructor</code>属性是<strong>对象</strong>所独有的；</p>
 <p>② <code>prototype</code>属性是<strong>函数</strong>所独有的，因为函数也是一种对象，所以函数也拥有<code>__proto__</code>和<code>constructor</code>属性。( 函数的proto都是Function.prototype )</p>
@@ -818,8 +863,12 @@
 </blockquote>
 <hr>
 <h3 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h3><ul>
-<li>节流: (比如500毫秒内只能计数一次) (timer不结束不会重新计数)</li>
-<li>防抖: (触发频率太快时不发送请求) (每次触发事件都会重新调用,但只有timer超时才会发送请求)</li>
+<li><p><strong>防抖:  防止事件短时间内多次触发</strong>   (触发频率太快时不发送请求)   (每次触发事件都会重新调用,但只有timer超时才会发送请求)</p>
+</li>
+<li><p><strong>节流:  不会高频率触发,但间隔时间内还是会不断触发</strong>  (比如500毫秒内只能计数一次)   (timer不结束不会重新计数)</p>
+</li>
+<li><p><strong>promise对象</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//相当于</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">        resolve(<span class="number">1</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
 <h3 id="正则-RegExp对象"><a href="#正则-RegExp对象" class="headerlink" title="正则 (RegExp对象 )"></a>正则 (RegExp对象 )</h3><ul>
@@ -839,8 +888,8 @@
     
     <div class="card-text">
       
-        <a href="/2021/07/15/DOM/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">DOM</h2>
+        <a href="/2021/07/15/DOM%20%20&&%20BOM/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">DOM &amp;&amp; BOM</h2>
         </a>
       
       <div class="card-text--row">Newer</div>

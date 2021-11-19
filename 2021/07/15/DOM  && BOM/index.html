@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    DOM |
+                                                    DOM &amp;&amp; BOM |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -106,7 +106,7 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">DOM</h1>
+          <h1 class="title-wrap">DOM &amp;&amp; BOM</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
@@ -148,6 +148,7 @@
 <li>在button里添加data 属性,为button绑定模态框</li>
 <li>使用jquery语法, 先给模态框的div添加id,然后通过  $(‘#myModal’).modal(options) 调用</li>
 </ol>
+<hr>
 <h3 id="Web-Apis"><a href="#Web-Apis" class="headerlink" title="Web Apis"></a>Web Apis</h3><ul>
 <li>dom: 文档对象模型, 简单理解为处理文档的一些接口</li>
 </ul>
@@ -163,6 +164,7 @@
 <li>节点: 网页中所有内容都是节点(标签/属性/文本/注释),DOM中用node表示</li>
 <li>DOM把以上内容都看做对象(可以获取)</li>
 </ul>
+<hr>
 <h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><ul>
 <li><p>我们主要针对元素的操作。主要有创建、增、删、改、查、属性操作、事件操作。</p>
 </li>
@@ -180,14 +182,19 @@
 </ul>
 <hr>
 <h3 id="DOM创建"><a href="#DOM创建" class="headerlink" title="DOM创建"></a>DOM创建</h3><ul>
-<li>document.write（）是直接将内容写入页面的内容流，但若是文档流执行完毕再进行document.write（），则它会导致页面全部重绘。</li>
-<li>HTML 输出流：当前数据形式是 HTML 格式的数据，这部分数据正被导出、传输或显示，所以称为”流“。</li>
-<li>innerHTML是将内容写入某个DOM节点，不会导致页面全部重绘，创建多个元素效率更高（不要拼接字符串，采取数组形式拼接），结构稍微复杂。</li>
-<li>innerHTML获取标签所包含的HTML+文本信息,innerText只能获取文本信息</li>
+<li><p>document.write（）是直接将内容写入页面的内容流，但若是文档流执行完毕再进行document.write（），则它会导致页面全部重绘。</p>
+</li>
+<li><p>HTML 输出流：当前数据形式是 HTML 格式的数据，这部分数据正被导出、传输或显示，所以称为”流“。</p>
+</li>
+<li><p>innerHTML是将内容写入某个DOM节点，不会导致页面全部重绘，创建多个元素效率更高（不要拼接字符串，采取数组形式拼接），结构稍微复杂。</p>
+</li>
+<li><p>innerHTML获取标签所包含的HTML+文本信息,innerText只能获取文本信息</p>
+</li>
+<li><p>document.createElement( ) //创建多个元素 效率稍微低一些 但是结构会很清晰</p>
+</li>
+<li><p>document.createTextNode( )  //可创建文本节点,还需后续来插入到元素中</p>
+</li>
 </ul>
-<!-- ![HTML](https://i0.hdslb.com/bfs/album/23ffd5d98c0fd4096f1b5f1b465ba533ddaa53c4.jpg) -->
-
-<p>document.createElement() //创建多个元素 效率稍微低一些 但是结构会很清晰</p>
 <hr>
 <h3 id="DOM查询-获取元素"><a href="#DOM查询-获取元素" class="headerlink" title="DOM查询(获取元素)"></a>DOM查询(获取元素)</h3><ul>
 <li>DOM提供的API方法:getElementByid(),getElementByTagName()[] (老方法不推荐使用)<br>  H5新增的方法:querySelector()、querySelectorAll() (提倡使用)<br>  利用节点操作获取元素:父节点(parentNode)、子节点(children)、兄(previousElementSibling、nextElementSibling)提倡使用</li>
@@ -201,6 +208,7 @@
 <h3 id="DOM增加"><a href="#DOM增加" class="headerlink" title="DOM增加"></a>DOM增加</h3><ul>
 <li>appendChild() 方法向节点添加最后一个子节点。</li>
 <li>insertBefore() 在前面增加</li>
+<li>removeChild()  删除父节点里的子节点 </li>
 </ul>
 <hr>
 <h3 id="事件操作"><a href="#事件操作" class="headerlink" title="事件操作"></a>事件操作</h3><ul>
@@ -211,8 +219,9 @@
 <p>addEventListener(“eventType”,fun,boolean ) ;<br>//<strong>boolean默认false-&gt;冒泡阶段触发,true-&gt;捕获阶段触发</strong></p>
 </blockquote>
 <ul>
-<li>给元素注册事件，获取事件源(谁被触发) .事件类型(绑定事件,比如点击onclick) = 事件处理程序(函数赋值)<pre><code>  onclick  鼠标点击左键触发
-</code></pre>
+<li><p>给元素注册事件，获取事件源(谁被触发) .事件类型(绑定事件,比如点击onclick) = 事件处理程序(函数赋值)</p>
+<p>  ​        注意加on</p>
+<p>  ​        onclick  鼠标点击左键触发</p>
 </li>
 </ul>
 <p>　　　　onmouseover  鼠标经过触发</p>
@@ -223,16 +232,25 @@
 <p>　　　　onmouseup   鼠标弹起触发</p>
 <p>　　　　onmousedown   鼠标按下触发</p>
 <hr>
-<h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><ul>
-<li>比如 : 三个div嵌套,都绑定click事件,点击最内层的元素,事件是从内到外执行的。</li>
-<li>事件捕获： 从外层到内层(不会触发事件)</li>
-<li><strong>事件冒泡</strong>： 从内层到外层(会触发事件)<br>JS中当触发某些具有冒泡性质的事件时，首先在触发元素寻找是否有相应的注册事件，如果没有再继续向上级父元素寻找是否有相应的注册事件作出相应，这就是事件冒泡。</li>
-<li><strong>阻止冒泡</strong>: e.stopPropagation(); //此处的e为函数中传的参数</li>
-<li>阻止事件的默认行为(比如a链接跳转): e.preventDefault();//一定有效<br>或者 return false;  //不一定有效</li>
+<h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h3><ul>
+<li><p>比如 : 三个div嵌套,都绑定click事件,点击最内层的元素,事件是从内到外执行的。</p>
+</li>
+<li><p>事件捕获： 从外层到内层(不会触发事件)</p>
+</li>
+<li><p>事件<strong>处理</strong></p>
+</li>
+<li><p><strong>事件冒泡</strong>： 从内层到外层(会触发事件)<br>JS中当触发某些具有冒泡性质的事件时，首先在触发元素寻找是否有相应的注册事件，如果没有再继续向上级父元素寻找是否有相应的注册事件作出相应，这就是事件冒泡。</p>
+<ul>
+<li><p><strong>阻止冒泡</strong>: e.stopPropagation(); //此处的e为函数中传的参数</p>
+</li>
+<li><p>阻止事件的默认行为(比如a链接跳转): e.preventDefault();//一定有效<br>或者 return false;  //不一定有效</p>
+</li>
+</ul>
+</li>
 </ul>
 <hr>
 <h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><ul>
-<li><p>利用事件冒泡的特性，将本应该注册在子元素上的处理事件注册在父元素上，这样点击子元素时发现其本身没有相应事件就到父元素上寻找作出响应。</p>
+<li><p>利用事件冒泡的特性，将本应该注册在子元素上的处理事件注册在父元素上，这样点击子元素时发现其本身没有相应事件就到父元素上寻找作出响应。比如<strong>点击父元素中的子元素,this指向父元素,但e.target指向捕获到底的子元素</strong></p>
 </li>
 <li><p>这样做的<strong>优势</strong>：1.减少DOM操作，提高性能。2.随时可以添加子元素，添加的子元素会自动有相应的处理事件。</p>
 </li>
@@ -251,12 +269,205 @@
 <h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><ul>
 <li>element.onkeydown: 表示键盘(一次)被按下;传参后通过keycode可获得对应unicode编码</li>
 </ul>
+<hr>
 <h3 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h3><ul>
 <li>element.ontouchStart: 表示某个element被按下去了</li>
 <li>element.ontouchEnd: 表示鼠标在点击element后又松开了</li>
 <li>element.ontouchMove: 表示鼠标在按住element后在滑动的时候</li>
 <li>//模拟移动端的触屏,但此时在google中需要调到手机模式</li>
 </ul>
+<hr>
+<h3 id="浏览器显示页面的原理"><a href="#浏览器显示页面的原理" class="headerlink" title="浏览器显示页面的原理"></a>浏览器显示页面的原理</h3><ul>
+<li>基本流程 ：</li>
+</ul>
+<ol>
+<li>获取 HTML 文档及样式表文件</li>
+<li>解析成对应的树形数据结构<ul>
+<li>DOM tree  ( 构建完就是dom ready )</li>
+<li>CSSOM tree</li>
+</ul>
+</li>
+<li>计算可见节点形成 render tree</li>
+<li>计算 DOM 的形状及位置进行布局</li>
+<li>将每个节点转化为实际像素绘制到视口上（栅格化）</li>
+</ol>
+<ul>
+<li><p>render tree（页面上所显示的最终结果）是由 DOM tree（开发工具中所显示的 HTML 所定义的内容结构）与 CSSOM tree（样式表所定义的规则结构）合并并剔除不可见的节点所形成的，其中不包含如下节点：&lt;html&gt;  &lt;head&gt;  &lt;meta&gt;  &lt;link&gt;  &lt;style&gt;  &lt;script&gt; 以及设置的 display:none 样式的</p>
+</li>
+<li><p>资源加载：</p>
+<ul>
+<li>执行 JavaScript 会阻止 DOM tree 构建</li>
+<li>加载 CSS 会阻止 render tree 构建<ul>
+<li>无论是否为阻止呈现的 CSS，都会被浏览器下载</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>默认情况下，JavaScript 脚本会在引入它的位置执行（如果是外联脚本则还需要等待加载完毕），这时会阻断 DOM tree 的构建；如果在运行脚本时浏览器尚未完成 CSS 的下载和 CSSOM tree 的构建，浏览器会将脚本执行延迟到这些操作结束之后。</li>
+</ul>
+</li>
+<li><p>影响性能的因素</p>
+<ul>
+<li><p>白屏时间( first Paint Time ) :  用户打开页面到页面开始有东西呈现为止</p>
+<ul>
+<li><p>HTML 和 CSS 的加载及解析速度</p>
+</li>
+<li><p><code>&lt;head&gt;</code> 内的脚本加载及执行</p>
+</li>
+</ul>
+</li>
+<li><p>首屏时间  :   用户浏览器首屏内所有内容都呈现出来所花费的时间</p>
+<ul>
+<li>图片加载</li>
+<li><code>\&lt;body&gt;</code> 内的脚本加载及执行</li>
+</ul>
+</li>
+<li><p>render tree 的构建</p>
+<ul>
+<li>HTML 的复杂度</li>
+<li>CSS 的复杂度</li>
+</ul>
+</li>
+<li><p>render tree 的绘制（栅格化）</p>
+<ul>
+<li>颜色的复杂度</li>
+<li>形状的复杂度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>用户可操作时间( DOM Interactive )  :  用户可以进行正常地点击、输入等操作，默认可以统计</p>
+</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/618a843c2ab3f51d91916fcc.jpg"></p>
+<p>各步骤的意义如下：</p>
+<ol>
+<li><strong>domLoading</strong> 表示开始解析第一批收到的 HTML 文档的字节</li>
+<li><strong>domInteractive</strong> 表示完成全部 HTML 的解析并且 DOM 构建完毕</li>
+<li><strong>domContentLoaded</strong> 表示 <a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=DDVtz3oGB9dk2oyvy6J1fg==.N1kd9FWlbKccrF+Zl5pcUV1qZR/4uu1as+THxbREEy4yEp6JHn8B2h0JPZvrFyNGWPwJHR/+GwUd+L9AQl0uunrqXm6LRd4PD+t4yNjiPiw=">DOM 与 CSSOM 皆已准备就绪</a><ul>
+<li>如果没有解析器阻塞 JavaScript，<em>DOMContentLoaded</em> 事件会在 <em>domInteractive</em> 之后立即触发</li>
+<li>很多 JavaScript 框架会在执行它们自己的逻辑前等待这个事件的触发</li>
+</ul>
+</li>
+<li><strong>domComplete</strong> 表示所有的处理都已完成并且所有的附属资源都已经下载完毕</li>
+<li><strong>loadEvent</strong> 作为网页加载的最后一步以便触发附加的应用逻辑</li>
+</ol>
+<hr>
+<h3 id="BOM-浏览器对象模型"><a href="#BOM-浏览器对象模型" class="headerlink" title="BOM (浏览器对象模型)"></a>BOM (浏览器对象模型)</h3><ul>
+<li><p>window对象( 全局对象 )</p>
+</li>
+<li><p>子对象</p>
+<ul>
+<li><p>screen对象  :  包含有关用户屏幕的信息</p>
+</li>
+<li><p>location对象  : 用于获取当前页面的地址(URL),并把浏览器重定向到新的页面</p>
+</li>
+</ul>
+<ul>
+<li>history对象  :  包含浏览器的历史</li>
+</ul>
+<ul>
+<li>navigator对象  : 包含用户浏览器的相关信息 </li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>location</strong></p>
+<ul>
+<li>代表浏览器的定位和导航。可以使用 <code>location</code> 来操作 URL 中的各个部分。最常用的有 <code>href</code> 属性，当前访问资源的完整路径。</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/618bb7882ab3f51d91045d95.jpg"></p>
+<ul>
+<li><p>方法  :</p>
+<ul>
+<li><p><code>assign(url)</code> 载入新的 url，记录浏览记录</p>
+</li>
+<li><p><code>replace(url)</code> 载入新的 url 不记录浏览记录</p>
+</li>
+<li><p><code>reload()</code> 重新载入当前页</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/618bbc492ab3f51d9105f0d7.jpg"></p>
+<hr>
+<p><strong>History对象</strong></p>
+<ul>
+<li><p>属性  :</p>
+<ul>
+<li>length  :返回浏览器历史列表中的<strong>URL数量</strong></li>
+</ul>
+</li>
+<li><p>方法  :</p>
+<ul>
+<li><p>back( )  :  加载history列表中的前一个URL</p>
+</li>
+<li><p>forward( ) : 加载history列表中的下一个URL</p>
+</li>
+<li><p>go( )   :  根据当前所处的页面，加载history列表中的某个具体页面,正数向前</p>
+</li>
+</ul>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211110203350406.png" alt="image-20211110203350406"></p>
+</li>
+</ul>
+<hr>
+<p><strong>window对象</strong></p>
+<ul>
+<li><p>表示浏览器中打开的窗口。</p>
+<blockquote>
+<p>如果文档包含框架（<frame> 或 <iframe> 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。</p>
+</blockquote>
+</li>
+<li><table>
+<thead>
+<tr>
+<th>事件名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>load</td>
+<td>文档和所有图片完成加载时</td>
+</tr>
+<tr>
+<td>unload</td>
+<td>离开当前文档时</td>
+</tr>
+<tr>
+<td>beforeunload</td>
+<td>和 unload 类似，但是它提供询问用户是否确认离开的机会</td>
+</tr>
+<tr>
+<td>resize</td>
+<td>拖动改变浏览器窗口大小时</td>
+</tr>
+<tr>
+<td>scroll</td>
+<td>拖动浏览器时</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>方法 </p>
+<ul>
+<li><p>弹出框</p>
+<p><img src="https://pic.imgdb.cn/item/618bbe412ab3f51d910696dc.jpg"></p>
+</li>
+<li><p>定时器</p>
+</li>
+<li><p>焦点控制  :  focus、blur</p>
+</li>
+<li><p>窗口控制 ：scrollTo（x，y）</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>navigator ( 导航器对象 )</strong></p>
+<p><img src="https://pic.imgdb.cn/item/618bbc112ab3f51d9105e1c3.jpg"></p>
+<hr>
+<p><strong>screen ( 显示器对象 )</strong></p>
+<p><img src="https://pic.imgdb.cn/item/618bbbea2ab3f51d9105d554.jpg"></p>
+<hr>
 
       </section>
 

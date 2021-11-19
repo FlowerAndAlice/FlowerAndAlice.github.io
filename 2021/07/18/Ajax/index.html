@@ -147,7 +147,9 @@
 <li><strong>所有</strong>服务器上的文件<strong>资源</strong>(包括html,js)访问都要通过<strong>static中间件</strong>!!!</li>
 <li>发送post请求时,没有引入app.use(parser());!!!!! -2021.08.05  我tm巨蠢</li>
 </ul>
-<h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><p>Asynchronous Javascript And XML（异步JavaScript和XML），<br>不过现在主流的数据格式是<strong>json</strong><br>ajax是一种无需重新加载整个网页的情况下，能够部分更新页面内容的新方法<br>ajax不是新的编程语言,而是多种技术的综合使用</p>
+<h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><p>Asynchronous Javascript And XML（异步JavaScript和XML），<br>不过现在主流的数据格式是<strong>json</strong></p>
+<p><strong>发送请求到后台,获取显示数据且不全局刷新的操作</strong>叫做AJAX</p>
+<p>ajax是一种无需重新加载整个网页的情况下，能够部分更新页面内容的新方法,<br>ajax不是新的编程语言,而是多种技术的综合使用</p>
 <ul>
 <li>优点 : 按需获取数据,提升系统性能</li>
 <li>缺点 : 异步获取数据,不利于搜索引擎优化</li>
@@ -189,34 +191,86 @@
 </ul>
 <hr>
 <h3 id="异步对象XMLHttpRequest属性和方法"><a href="#异步对象XMLHttpRequest属性和方法" class="headerlink" title="异步对象XMLHttpRequest属性和方法"></a>异步对象XMLHttpRequest属性和方法</h3><ul>
-<li><p>创建异步对象,使用js的语法<br>var xhr = new XMLHttpRequest();</p>
-</li>
-<li><p>XMLHttpRequest方法</p>
-</li>
+<li><strong>创建异步对象</strong>,使用js的语法</li>
 </ul>
-<ol>
-<li><p>open(请求方式,服务端的访问地址,异步还是同步(布尔值))<br>例如 xhr.open(“get”,”loginServlet”,true) :<br>表示我们向 loginServlet地址发送一个异步请求,用的是get方式</p>
-</li>
-<li><p>send(): 使用异步对象发送请求</p>
-</li>
-</ol>
 <ul>
-<li>XMLHttpRequest属性<br>readyState属性:请求的状态<blockquote>
-<p>0: 表示 创建异步对象时,new XMLHttpRequest();<br>  1: 表示 初始异步对象的请求参数,执行open()方法。<br>  2: 表示 使用send()方法发送请求。<br>  3: 表示 使用异步对象从服务器端接收了数据<br>  4: 表示 异步对象接收了数据,并在异步对象内部处理完成后</p>
-</blockquote>
+<li><strong>const xhr = new XMLHttpRequest();</strong></li>
+</ul>
+<ul>
+<li>XMLHttpRequest方法</li>
+</ul>
+<p>open(请求方式,服务端的访问地址,异步还是同步(布尔值))</p>
+<ul>
+<li><ul>
+<li>例如 <strong>xhr.open(“get”,”<a target="_blank" rel="noopener" href="http://127.0.0.1:3000/data&quot;,true">http://127.0.0.1:3000/data&quot;,true</a>) :</strong><br> 表示我们向<a target="_blank" rel="noopener" href="http://127.0.0.1:3000/data%E5%9C%B0%E5%9D%80%E5%8F%91%E9%80%81%E4%B8%80%E4%B8%AA%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82,%E7%94%A8%E7%9A%84%E6%98%AFget%E6%96%B9%E5%BC%8F">http://127.0.0.1:3000/data地址发送一个异步请求,用的是get方式</a></li>
+</ul>
 </li>
 </ul>
+<p>send(): 使用异步对象发送请求  </p>
+<ul>
+<li><ul>
+<li><strong>xhr.send();</strong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>readyState属性:请求的状态</p>
+</blockquote>
+<p>  0 (未初始化)： (XMLHttpRequest)对象已经创建，但还没有调用open()方法。<br>  1 (载入)：已经调用open() 方法，但尚未发送请求。<br>  2 (载入完成)： 请求已经发送完成。<br>  3 (交互)：可以接收到部分响应数据。<br>  4 (完成)：已经接收到了全部数据，并且连接已经关闭。</p>
 <p>status: 网络的状态,和Http的状态码对应</p>
 <blockquote>
 <p>200: 请求成功<br>    404:服务器资源没有找到<br>    500: 服务器内部代码有错误</p>
 </blockquote>
 <ul>
-<li><p>responsText属性: 表示 服务器端返回的数据</p>
-<pre><code>例如: var data = xhr.responsText;
+<li>responsText属性: 表示 服务器端返回的数据<pre><code>例如: var data = xhr.responsText;
 </code></pre>
 </li>
-<li><p>http概述<br>http协议全称超文本传输协议,简单理解成为一个服务器与客户端通信的协议。</p>
+</ul>
+<hr>
+<h3 id="Promise的状态变化"><a href="#Promise的状态变化" class="headerlink" title="Promise的状态变化"></a>Promise的状态变化</h3><ul>
+<li><p>promise实例对象中的一个属性 : <code>PromiseState</code>, 有三种可能的值</p>
+<ul>
+<li><p><strong>Pending</strong>状态（进行中）</p>
 </li>
+<li><p><strong>Fulfilled/Resolved</strong>状态（已成功）</p>
+</li>
+<li><p><strong>Rejected</strong>状态（已失败）</p>
+</li>
+<li><p>一旦状态改变就不会再变 （两种状态改变：成功或失败）</p>
+<ul>
+<li>Pending -&gt; Fulfilled</li>
+<li>Pending -&gt; Rejected</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>promise实例对象的另一个属性 <code>PromiseResult</code> , 保存着异步任务 <code>成功/失败</code>的结果</p>
+<ul>
+<li>只有<code>resolve</code>和<code>reject</code>和<code>throw</code>可以改变实例中该属性的值,无论异步任务是否成功, 值(reason,value)都会被传到 <code>PromiseResult</code> 中</li>
+</ul>
+</li>
+<li><p>Promise构造函数接受一个执行器函数作为参数,  Promise(executor){ } , </p>
+<p>执行器  (resolve,reject)=&gt;{ }  ,执行器函数的两个参数分别是<code>resolve</code>和<code>reject </code>,执行器在promise内部是立即同步回调，异步的操作是在执行器中另行执行的</p>
+</li>
+<li><p>Promise.prototype.then方法 : (onResolved, onRejected)=&gt;{ }</p>
+<ul>
+<li>onResolved 函数 :  成功时的回调函数 (value)=&gt;{ }</li>
+<li>onRejected 函数 :  失败时的回调函数 (reason)=&gt;{ }</li>
+<li>返回一个promise,  <code>PromiseState</code> : 执行的成功/失败, <code>PromiseResult</code> : 和成功/失败函数返回的promise的执行结果</li>
+</ul>
+</li>
+<li><p>Promise.resolve( )方法 :  返回一个成功/失败的Promise对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 = <span class="built_in">Promise</span>.resolve(<span class="number">995</span>);</span><br><span class="line">  <span class="comment">//传入参数为非Promise类型的对象,则返回结果为成功promise对象</span></span><br><span class="line"><span class="built_in">console</span>.log(p1);    <span class="comment">//Promise &#123;&lt;fulfilled&gt;: 995&#125;</span></span><br><span class="line"><span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="comment">//传入参数为Promise类型的对象时,返回结果就是传入promise对象的结果</span></span><br><span class="line">  <span class="comment">//resolve(&#x27;OK&#x27;);  //Promise &#123;&lt;fulfilled&gt;: &#x27;OK&#x27;&#125;</span></span><br><span class="line">  reject(<span class="string">&#x27;Error&#x27;</span>);  <span class="comment">//Promise &#123;&lt;rejected&gt;: &#x27;Error&#x27;&#125;</span></span><br><span class="line">&#125;))</span><br><span class="line">p2.catch(<span class="function">(<span class="params">reason</span>) =&gt;</span> &#123; <span class="comment">//Promise失败,处理结果</span></span><br><span class="line">  <span class="built_in">console</span>.log(reason);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(p2);</span><br></pre></td></tr></table></figure></li>
+<li><p>Promise.resolve( )方法 :  永远返回一个失败的Promise对象</p>
+<p> 传入什么参数,得到是 失败的且结果为那个参数的Promise对象</p>
+</li>
+<li><p>**Promise.all( )**方法 :  参数为包含n个promise的数组,返回结果为一个新的promise,<strong>只有参数中所有的promise都成功,结果promise才成功</strong>,此时PromiseResult中存放一个数组保存所有参数promise的结果。只要有一个失败,结果promise直接失败</p>
+</li>
+<li></li>
+</ul>
+<hr>
+<h3 id="Ajax原理"><a href="#Ajax原理" class="headerlink" title="Ajax原理"></a>Ajax原理</h3><ul>
+<li>http概述<br>http协议全称超文本传输协议,简单理解成为一个服务器与客户端通信的协议。</li>
 </ul>
 <p>在http协议的约定下，客户端可以向服务器发送http请求，<br>服务器在接收到请求之后，给予客户端http响应(index.html)。</p>
 <p>web服务器会给每种要通过web传输的对象都打上名为MIME类型的数据格式标签,<br>当Web浏览器从服务器取回一个对象时,会查看相关的MIME类型,来决定如何处理<br>MIMIE类型是一种文本标记,表示一种主要的对象类型和一个特定的子类型,用/来分隔</p>
@@ -297,7 +351,7 @@
 <ol>
 <li>const jsonp = require(“koa-jsonp”);</li>
 <li>app.use(jsonp());</li>
-<li>router.get(“/data”, ctx =&gt; {<br> ctx.body = “Yoimiya”;<br>})</li>
+<li>router.get(“/data”, ctx =&gt; {<br> ctx.body = “Yoimiya”;<br> })</li>
 </ol>
 <ul>
 <li>http-server<br>在某个文件处cmp后使用http-server即可在8080打开这个文件</li>
@@ -312,7 +366,7 @@
 <li>如果要引入parser并发送post请求,需要<strong>在路由之前进行parser的引入</strong>(否则报错!)</li>
 </ol>
 <ul>
-<li><p>前端:<br>引入axios<br>axios.get(“<a target="_blank" rel="noopener" href="http://127.0.0.1:3000/data&quot;).then">http://127.0.0.1:3000/data&quot;).then</a>(res =&gt; {</p>
+<li><p>前端:<br>引入axios<br>  axios.get(“<a target="_blank" rel="noopener" href="http://127.0.0.1:3000/data&quot;).then">http://127.0.0.1:3000/data&quot;).then</a>(res =&gt; {</p>
 <pre><code>      console.log(res.data);
   &#125;)
 </code></pre>
