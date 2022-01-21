@@ -175,7 +175,7 @@
 <li>能够设置宽高，默认和父容器宽度一样</li>
 <li><strong>独立成行</strong>，(块级元素们)在页面从上往下排列，margin和padding均有效</li>
 <li>可容纳其他块级元素、或内联元素</li>
-<li>代表性的就是div，其他如p、h1-h6、nav、aside、header、footer、section、article、ol、ul-li、address、form、blckquote等等，都可以用div来实现。不过为了可以方便程序员解读代码，一般都会使用特定的<strong>语义化标签</strong>，使得代码可读性强，且便于查错。</li>
+<li>代表性的就是div，其他如p、h1-h6、nav、aside、header、footer、section、article、ol、ul-li、dl、dt、dd(在后面但与dt同级)等等，都可以用div来实现。不过为了可以方便程序员解读代码，一般都会使用特定的<strong>语义化标签</strong>，使得代码可读性强，且便于查错。</li>
 </ol>
 <hr>
 <h3 id="行内-内联-元素"><a href="#行内-内联-元素" class="headerlink" title="行内(内联)元素"></a>行内(内联)元素</h3><ol>
@@ -183,21 +183,18 @@
 <li>只能容纳文本或其他内联元素</li>
 <li><strong>设置宽高无效</strong></li>
 <li>对margin仅设置<strong>左右</strong>方向有效，上下无效；padding设置上下左右都有效，</li>
-<li>常见的行内元素:a、span、br、i、em、label、var、strong</li>
+<li>常见的行内元素:a、span、br、i、em、label( 在 label 元素内点击文本，就会触发for属性绑定的id控件 )、var、strong</li>
 </ol>
 <hr>
 <h3 id="行内块级元素"><a href="#行内块级元素" class="headerlink" title="行内块级元素"></a>行内块级元素</h3><ol>
-<li><p>非独立成行</p>
-</li>
-<li><p>能设置宽高</p>
-</li>
-<li><p>在行内从左往右排列</p>
-</li>
-<li><p>常见行内块元素 ： img、input</p>
-</li>
+<li>非独立成行</li>
+<li>能设置宽高</li>
+<li>在行内从左往右排列</li>
+<li>常见行内块元素 ： img、input</li>
+<li>空元素 :  无须闭合的标签，如：&lt;br/&gt;、&lt;hr/&gt;、&lt;input/&gt;、&lt;img/&gt;、&lt;link/&gt;、&lt;meta/&gt; 等</li>
 </ol>
 <ul>
-<li>块级元素与内联元素区别： （ 块级元素）单独成行，可设置高度、宽度和外边距，</li>
+<li>块级元素与内联元素区别： （ 块级元素）单独成行，可设置高度、宽度和上下外边距，</li>
 </ul>
 <hr>
 <h3 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h3><p>（div、article、section）</p>
@@ -208,17 +205,18 @@
 <hr>
 <h3 id="H5新特性"><a href="#H5新特性" class="headerlink" title="H5新特性"></a>H5新特性</h3><ol>
 <li>新增选择器 document.querySelector、document.querySelectorAll</li>
-<li>媒体播放的 video 和 audio</li>
-<li>本地存储 localStorage 和 sessionStorage</li>
-<li>语意化标签 article、footer、header、nav、section</li>
+<li>音视频API   video 和 audio</li>
+<li>本地存储 localStorage(浏览器关闭后数据不丢失)和 sessionStorage</li>
+<li>语义化标签 article、footer、header、nav、section</li>
 <li>多任务 webworker</li>
 <li>全双工通信协议 websocket</li>
 <li>历史管理 history</li>
 <li>跨域资源共享(CORS) Access-Control-Allow-Origin</li>
-<li>绘画 canvas</li>
+<li>画布 canvas</li>
 </ol>
 <hr>
 <h3 id="html语义化"><a href="#html语义化" class="headerlink" title="html语义化"></a>html语义化</h3><ul>
+<li>在编程中，语义指的是一段代码的含义，这个HTML元素有什么作用，扮演了什么样的角色。简单的概括为：在适当的位置使用适当的标签,用正确的标签做正确的事情</li>
 <li>脱掉CSS的外衣,依然头是头,脚是脚。还是一篇完整的文档。这就是语义化之后文档的效果</li>
 </ul>
 <p>​       语义化： 也无非就是在使用标签的时候多使用有英文语义的标签。</p>
@@ -227,7 +225,7 @@
 <li>语义化优点：</li>
 </ul>
 <ol>
-<li>易于用户阅读，样式丢失的时候能让页面呈现清晰的结构。</li>
+<li>易于用户阅读，样式丢失的时候能让页面呈现清晰的<strong>结构</strong>。</li>
 <li><strong>有利于SEO</strong>，搜索引擎根据标签来确定上下文和各个关键字的权重。</li>
 <li><strong>方便其他设备解析</strong>，如盲人阅读器根据语义渲染网页</li>
 <li>有利于开发和维护，语义化更具可读性，代码更好维护，与CSS3关系更和谐。</li>
@@ -327,7 +325,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>16</span>
+        <span>15</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -384,7 +382,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 20px;" class="tags-cloud-10">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
+      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
     </div>
   </div>
 </section>
@@ -416,7 +414,7 @@
       
     </div>
      
-    <p>&copy; 2021 <a href="/" target="_blank">广工彭于晏</a></p>
+    <p>&copy; 2022 <a href="/" target="_blank">广工彭于晏</a></p>
 
     
 
@@ -464,6 +462,6 @@
 
             
                 <!-- 尾部用户自定义相关内容 -->
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

@@ -260,13 +260,34 @@
 </ul>
 </li>
 <li><p>Promise.resolve( )方法 :  返回一个成功/失败的Promise对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 = <span class="built_in">Promise</span>.resolve(<span class="number">995</span>);</span><br><span class="line">  <span class="comment">//传入参数为非Promise类型的对象,则返回结果为成功promise对象</span></span><br><span class="line"><span class="built_in">console</span>.log(p1);    <span class="comment">//Promise &#123;&lt;fulfilled&gt;: 995&#125;</span></span><br><span class="line"><span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="comment">//传入参数为Promise类型的对象时,返回结果就是传入promise对象的结果</span></span><br><span class="line">  <span class="comment">//resolve(&#x27;OK&#x27;);  //Promise &#123;&lt;fulfilled&gt;: &#x27;OK&#x27;&#125;</span></span><br><span class="line">  reject(<span class="string">&#x27;Error&#x27;</span>);  <span class="comment">//Promise &#123;&lt;rejected&gt;: &#x27;Error&#x27;&#125;</span></span><br><span class="line">&#125;))</span><br><span class="line">p2.catch(<span class="function">(<span class="params">reason</span>) =&gt;</span> &#123; <span class="comment">//Promise失败,处理结果</span></span><br><span class="line">  <span class="built_in">console</span>.log(reason);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(p2);</span><br></pre></td></tr></table></figure></li>
+<p>```js<br>let p1 = Promise.resolve(995);<br>  //传入参数为非Promise类型的对象,则返回结果为成功promise对象<br>console.log(p1);    //Promise {<fulfilled>: 995}<br>let p2 = Promise.resolve(new Promise((resolve, reject) =&gt; {</p>
+<pre><code> //传入参数为Promise类型的对象时,返回结果就是传入promise对象的结果
+</code></pre>
+<p>  //resolve(‘OK’);  //Promise {<fulfilled>: ‘OK’}<br>  reject(‘Error’);  //Promise {<rejected>: ‘Error’}<br>}))<br>p2.catch((reason) =&gt; { //Promise失败,处理结果<br>  console.log(reason);<br>})<br>console.log(p2);</p>
+</li>
 <li><p>Promise.resolve( )方法 :  永远返回一个失败的Promise对象</p>
 <p> 传入什么参数,得到是 失败的且结果为那个参数的Promise对象</p>
 </li>
 <li><p>**Promise.all( )**方法 :  参数为包含n个promise的数组,返回结果为一个新的promise,<strong>只有参数中所有的promise都成功,结果promise才成功</strong>,此时PromiseResult中存放一个数组保存所有参数promise的结果。只要有一个失败,结果promise直接失败</p>
 </li>
-<li></li>
+<li><p><strong>async函数</strong>的用法  :  async function foo() { };      //函数声明</p>
+<p> 无论async函数有无await操作，其总是返回一个Promise。</p>
+<ul>
+<li><p>没有显式return，相当于return Promise.resolve(undefined);</p>
+</li>
+<li><p>return非Promise的数据data，相当于return Promise.resolve(data);</p>
+</li>
+<li><p>return Promise, 会得到Promise对象本身</p>
+</li>
+</ul>
+</li>
+<li><p><strong>await操作符</strong>用法  :  let res = await expression;</p>
+<ul>
+<li>expression是Promise，res等于Promise成功的<strong>值</strong>，若Promise被拒绝，则抛出异常，由try…catch捕获</li>
+<li>expression是非Promise，会被转换为立即resolve的Promise，res等于expression </li>
+<li>await操作只能用在async函数中，否则会报错。</li>
+</ul>
+</li>
 </ul>
 <hr>
 <h3 id="Ajax原理"><a href="#Ajax原理" class="headerlink" title="Ajax原理"></a>Ajax原理</h3><ul>
@@ -452,7 +473,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>16</span>
+        <span>15</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -509,7 +530,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 20px;" class="tags-cloud-10">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
+      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
     </div>
   </div>
 </section>
@@ -541,7 +562,7 @@
       
     </div>
      
-    <p>&copy; 2021 <a href="/" target="_blank">广工彭于晏</a></p>
+    <p>&copy; 2022 <a href="/" target="_blank">广工彭于晏</a></p>
 
     
 
@@ -589,6 +610,6 @@
 
             
                 <!-- 尾部用户自定义相关内容 -->
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

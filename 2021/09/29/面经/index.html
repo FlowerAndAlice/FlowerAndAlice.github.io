@@ -149,20 +149,39 @@
 </ul>
 <hr>
 <h3 id="CSS实现水平垂直居中"><a href="#CSS实现水平垂直居中" class="headerlink" title="CSS实现水平垂直居中"></a>CSS实现水平垂直居中</h3><ul>
-<li><strong>知道尺寸( 负的margin )</strong></li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.center-vertical</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>: pink;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">margin-top</span>: -<span class="number">50px</span>; <span class="comment">/*高度的一半*/</span></span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">50px</span>; <span class="comment">/*宽度的一半*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>知道尺寸( margin: auto;实现绝对定位元素的居中 )</strong></li>
+<li><strong>定位</strong> + <strong>相同top,left,right,bottom</strong>,  + <strong>margin: auto</strong></li>
 </ul>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.center-vertical</span>&#123;</span><br><span class="line">   <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">   <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">   <span class="attribute">background</span>: orange;</span><br><span class="line">   <span class="attribute">position</span>: absolute;</span><br><span class="line">   <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">   <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">   <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">   <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">   <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>不知道尺寸</li>
+<li> <strong>定位</strong> + <strong>top,left为50%</strong>  +  <strong>负的margin</strong> </li>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span>&#123;</span><br><span class="line">   <span class="attribute">background</span>: pink;</span><br><span class="line">   <span class="attribute">position</span>: absolute;</span><br><span class="line">   <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">   <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">   <span class="attribute">transform</span>: <span class="built_in">translate</span>( -<span class="number">50%</span>, -<span class="number">50%</span>);  <span class="comment">/*往上（x轴）,左（y轴）移动自身长宽的 50%，以使其居于中心位置</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-class">.center-vertical</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>: pink;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">margin-top</span>: -<span class="number">50px</span>; <span class="comment">/*高度的一半*/</span></span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">50px</span>; <span class="comment">/*宽度的一半*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><strong>定位</strong> + <strong>top,left为50%</strong>  + <strong>transfrom</strong>的<strong>translate</strong>属性</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span>&#123;</span><br><span class="line">   <span class="attribute">background</span>: pink;</span><br><span class="line">   <span class="attribute">position</span>: absolute;   <span class="comment">/*或者relative*/</span></span><br><span class="line">   <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">   <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">   <span class="attribute">transform</span>: <span class="built_in">translate</span>( -<span class="number">50%</span>, -<span class="number">50%</span>);  <span class="comment">/*往上（x轴）,左（y轴）移动自身长宽的 50%，以使其居于中心位置</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>flex布局</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">      <span class="attribute">background-color</span>: <span class="built_in">rgb</span>(<span class="number">178</span>, <span class="number">224</span>, <span class="number">141</span>);</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">      <span class="attribute">position</span>: relative;</span><br><span class="line">      <span class="attribute">display</span>: flex;                <span class="comment">/*采用flex布局*/</span></span><br><span class="line">      <span class="attribute">justify-content</span>: center;      <span class="comment">/*子元素水平居中*/</span></span><br><span class="line">      <span class="attribute">align-items</span>: center;          <span class="comment">/*子元素垂直居中*/</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>table布局</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">      <span class="attribute">background-color</span>: <span class="built_in">rgb</span>(<span class="number">178</span>, <span class="number">224</span>, <span class="number">141</span>);</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">      <span class="attribute">display</span>: table-cell;</span><br><span class="line">      <span class="attribute">vertical-align</span>: middle;  <span class="comment">/* 子元素垂直居中 */</span></span><br><span class="line">      <span class="attribute">text-align</span>: center;      <span class="comment">/* 子元素水平居中 */</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="selector-class">.content</span> &#123;</span><br><span class="line">      <span class="attribute">background-color</span>: pink;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">      <span class="attribute">display</span>: inline-block;  <span class="comment">/*还需要设置为行内块元素*/</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="数组去重的方法"><a href="#数组去重的方法" class="headerlink" title="数组去重的方法"></a>数组去重的方法</h3><ul>
+<li><p>Set( ES6中最常用 )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr)); </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以简化为[...new Set(arr)];</span></span><br></pre></td></tr></table></figure></li>
+<li><p>for循环嵌套,然后用splice去重 ( ES5中最常用 )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j=i+<span class="number">1</span>;j&lt;arr.length;j++)&#123;  <span class="comment">//i之前的已经进行去重</span></span><br><span class="line">      <span class="keyword">if</span>(arr[i]==arr[j])&#123;</span><br><span class="line">        arr.splice(j,<span class="number">1</span>);</span><br><span class="line">        j--;     <span class="comment">//--后++,继续判断该位置</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">      <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>sort( )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">  arr.sort(<span class="function">(<span class="params">a,b</span>)=&gt;</span>a-b);   <span class="comment">//先排序</span></span><br><span class="line">  <span class="keyword">const</span> res=[arr[<span class="number">0</span>]];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr[i]!==arr[i-<span class="number">1</span>])&#123;</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>includes( )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(arr)) &#123;         <span class="comment">//判断参数是否是数组</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;type error!&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> res=[];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!obj.includes(arr[i]))&#123;</span><br><span class="line">      obj.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>indexOf( )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">   arr.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">   <span class="keyword">const</span> res = [];</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">     <span class="keyword">if</span> (res.indexOf(arr[i]) === -<span class="number">1</span>) &#123;</span><br><span class="line">       res.push(arr[i]);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 <hr>
 <h3 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h3><ul>
 <li><p>顺序 : 捕获阶段( 从documen到目标 )、目标阶段、冒泡阶段( 从目标到window )。</p>
@@ -211,13 +230,19 @@
 </li>
 <li><p><code>\1</code> 和 <code>&#39;$1&#39;</code>  表示 第一个分组的值      <strong>括号就是分组</strong></p>
 </li>
-<li><p><code>\d&#123;1,3&#125;</code>   匹配1到3位的数字</p>
+<li><p><code>\d&#123;1,3&#125;</code>   匹配1到3位的数字,等效于[0-9]</p>
 </li>
-<li><p><code>\D </code>    查找非数字字符</p>
+<li><p><code>\D </code>    查找非数字字符,等效于 [^0-9]</p>
 </li>
-<li><p><code>\w</code>    查找单词字符</p>
+<li><p><code>\w</code>    匹配字母、数字、下划线,等效于[ A-Za-z0-9_ ]</p>
 </li>
-<li><p><code>\W</code>    查找非单词字符</p>
+<li><p><code>\W</code>    匹配非字母、数字、下划线</p>
+</li>
+<li><p><code>\b</code>    匹配单词边界,比如er\b,可以匹配never却不可以匹配verb</p>
+</li>
+<li><p><code>\B</code>    匹配非单词边界</p>
+</li>
+<li><p><code>\s</code>    匹配空白字符,与\f,\n,\r,\t,\v等效</p>
 </li>
 <li><p><code>n+</code>    至少一个 n </p>
 </li>
@@ -231,7 +256,7 @@
 </li>
 <li><p><code>/\[bc]at/i</code>   匹配第一个[bc]at,不区分大小写,(元字符需要用\转义)</p>
 </li>
-<li><p><code>[^adgk]</code>    查找给定集合外的任何字符。</p>
+<li><p><code>[^adgk]</code>    查找给定集合外的任何字符。<code>/^adc/</code> 匹配开头的给定集合,<code>$</code> 匹配结尾的</p>
 </li>
 <li><p><code>/.at/gi</code>   匹配所有以at结尾的三字符组合,不区分大小写</p>
 </li>
@@ -246,18 +271,29 @@
 <li><p>方法2 :  使用<strong>Promise对象</strong>获取数据</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> target = <span class="string">&#x27;hello promise&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      resolve(target)</span><br><span class="line">    &#125;, <span class="number">500</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> p = getData();</span><br><span class="line">p.then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
 <li><p>方法3 : 使用<strong>async函数</strong>获取数据</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>) </span>&#123;            <span class="comment">//async需要结合promise使用</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      resolve(target)</span><br><span class="line">    &#125;, <span class="number">500</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> data = <span class="keyword">await</span> getData(); <span class="comment">//  async函数会等待promise完成</span></span><br><span class="line">  <span class="built_in">console</span>.log(data);            <span class="comment">//直接获取resolve传递出来的异步数据</span></span><br><span class="line">&#125;</span><br><span class="line">fun();</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>) </span>&#123;            <span class="comment">//async需要结合promise使用</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      resolve(target)</span><br><span class="line">    &#125;, <span class="number">500</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> data = <span class="keyword">await</span> getData(); <span class="comment">//  async函数会等待promise完成并返回</span></span><br><span class="line">  <span class="built_in">console</span>.log(data);            <span class="comment">//直接获取传递出来的resolve的promise的res</span></span><br><span class="line">&#125;</span><br><span class="line">fun();</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>带引号则在全局环境中查找该方法 , 不带引号则在局部环境中查找方法</p>
 </li>
 <li><p>setTimeout(go( ),10 );   //立即执行<strong>局部</strong>里的go函数  (不带引号带括号)</p>
 <p>setTimeout(go,10 );       //等待10毫秒执行<strong>局部</strong>里的go函数</p>
-<p>setTimeout(‘go( )’,10 );   //等待10毫秒执行<strong>全局中</strong>的go函数</p>
+<p>setTimeout(‘go( )’,10 );   //等待10毫秒执行<strong>全局中</strong>的go函数,实际还是立即执行</p>
 </li>
 </ul>
 <hr>
-<h3 id="Event-Loop-浏览器"><a href="#Event-Loop-浏览器" class="headerlink" title="Event-Loop(浏览器)"></a>Event-Loop(浏览器)</h3>
+<h3 id="Event-Loop-浏览器"><a href="#Event-Loop-浏览器" class="headerlink" title="Event-Loop(浏览器)"></a>Event-Loop(浏览器)</h3><hr>
+<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><ul>
+<li><p>带宽</p>
+</li>
+<li><p>延迟</p>
+</li>
+</ul>
+<hr>
+<h3 id="Iframe有哪些缺点？"><a href="#Iframe有哪些缺点？" class="headerlink" title="Iframe有哪些缺点？"></a>Iframe有哪些缺点？</h3><ul>
+<li>iframe会阻塞主页面的Onload事件；搜索引擎的检索程序无法解读这种页面，不利于SEO；iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载；使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。</li>
+</ul>
+
       </section>
 
       
@@ -315,7 +351,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>16</span>
+        <span>15</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -372,7 +408,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 20px;" class="tags-cloud-10">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
+      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
     </div>
   </div>
 </section>
@@ -404,7 +440,7 @@
       
     </div>
      
-    <p>&copy; 2021 <a href="/" target="_blank">广工彭于晏</a></p>
+    <p>&copy; 2022 <a href="/" target="_blank">广工彭于晏</a></p>
 
     
 
@@ -452,6 +488,6 @@
 
             
                 <!-- 尾部用户自定义相关内容 -->
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

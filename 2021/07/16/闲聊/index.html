@@ -142,12 +142,11 @@
         <h3 id="关于图床"><a href="#关于图床" class="headerlink" title="关于图床"></a>关于图床</h3><p>目前可以白嫖的有: 聚合图床(yyds) &nbsp;路过图床  sm.ms 随意云</p>
 <hr>
 <h3 id="编程语言分类"><a href="#编程语言分类" class="headerlink" title="编程语言分类"></a>编程语言分类</h3><ul>
-<li><p><strong>动态类型</strong>:Pyhton、Ruby、PHP、<strong>JavaScript</strong><br>(<strong>运行时才会检查数据类型</strong>,不用给变量指定数据类型)<br>(第一次赋值给变量时,才会记录其数据类型)(let a)</p>
-</li>
-<li><p><strong>静态类型</strong>:C、C++、C#、JAVA<br>(<strong>编译期间检查数据类型</strong>,使用数据前,要声明数据类型)(int,float等)</p>
-</li>
-<li><p><strong>强定义</strong>类型定义语言</p>
-</li>
+<li><strong>动态类型</strong> :  Pyhton、Ruby、PHP、<strong>JavaScript</strong><br>(<strong>运行时才会检查数据类型</strong>,不用给变量指定数据类型)<br>(第一次赋值给变量时,才会记录其数据类型)(let a)</li>
+<li><strong>静态类型</strong>:C、C++、C#、JAVA<br>(<strong>编译期间检查数据类型</strong>,使用数据前,要声明数据类型)(int,float等)</li>
+<li><strong>解释</strong>性语言  :  每次运行重新翻译,不是直接翻译成机器语言,而是先翻译成中间代码,再由解释器对中间代码进行解释运行,Pyhton、Ruby、PHP、<strong>JavaScript</strong></li>
+<li><strong>编译</strong>性语言  :   翻译发生在程序运行之前，将高级语言翻译成机器语言。再次运行时，可直接使用上一次翻译好的机器码，不需要重新编译。C / C++ / swift</li>
+<li><strong>强定义</strong>类型定义语言</li>
 </ul>
 <ol>
 <li>类型安全</li>
@@ -174,6 +173,32 @@
 <h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>var a = 2 如何执行:</p>
 <p>编译器先编译到var a ,编译器会询问该作用域中是否有a,<br>如果有a,则不进行重复声明,编译下一步,否则会在该作用域中声明一个新变量,命名为a<br>编译到a=2,编译器会为引擎生成能够完成这个赋值操作的代码,引擎会询问作用域中是否有a,直至找到a并赋值给它,否则会报错</p>
 <hr>
+<h3 id="数组和类数组"><a href="#数组和类数组" class="headerlink" title="数组和类数组"></a>数组和类数组</h3><ul>
+<li><p>数组是一个特殊对象,它与普通对象的区别 :</p>
+<ul>
+<li>有新元素添加到列表中时，自动更新length属性</li>
+<li>设置length属性，可以截断数组</li>
+<li>从Array.protoype中继承了方法</li>
+<li>类型为’Array’(普通对象是Object)</li>
+</ul>
+</li>
+<li><p>类数组是一个有length属性,且其他属性的值为非负正数的普通对象,不能直接调用数组方法</p>
+<p>与数组的区别 : 类数组是简单对象，它的原型关系与数组不同。</p>
+</li>
+<li><p>类数组转换为数组</p>
+<ul>
+<li><code>Array.from()</code></li>
+<li><code>Array.prototype.slice.call()</code></li>
+<li><code>Array.prototype.forEach()</code> 进行属性遍历并组成新的数组</li>
+<li>须知:<ul>
+<li>转换后的数组长度由 <code>length</code> 属性决定。索引不连续时转换结果也是连续的，会自动补位(为undefined)。</li>
+<li>仅考虑 0或正整数 的索引</li>
+<li>使用slice转换时,若有空位,为empty</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h3 id="深浅拷贝与赋值"><a href="#深浅拷贝与赋值" class="headerlink" title="深浅拷贝与赋值"></a>深浅拷贝与赋值</h3><p>赋值:(a = [1,2,3], b=a,) 赋值操作(包括对象作为参数、返回值),不会开辟新的内存空间,他只是赋值了对象的引用(也只对对象进行操作).也就是除了b这个名字之外,没有其他的内存开销,修改了a也就影响了b,修改了b,也就影响了a.</p>
 <p><strong>浅拷贝</strong>：只复制指向某个对象的指针而不复制对象本身，新旧对象还是共享同一块内存。<br>如果属性是基本类型，拷贝的就是基本类型的值(基本数据类型互不影响)；如果属性是内存地址（引用类型），拷贝的就是内存地址 ，因此如果其中一个对象改变了这个地址，就会影响到另一个对象。</p>
@@ -334,7 +359,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>16</span>
+        <span>15</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -391,7 +416,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 20px;" class="tags-cloud-10">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
+      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
     </div>
   </div>
 </section>
@@ -423,7 +448,7 @@
       
     </div>
      
-    <p>&copy; 2021 <a href="/" target="_blank">广工彭于晏</a></p>
+    <p>&copy; 2022 <a href="/" target="_blank">广工彭于晏</a></p>
 
     
 
@@ -471,6 +496,6 @@
 
             
                 <!-- 尾部用户自定义相关内容 -->
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

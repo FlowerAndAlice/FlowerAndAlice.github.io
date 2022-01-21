@@ -175,10 +175,10 @@
 <hr>
 <h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
 <li>O(1) : 加减乘除</li>
-<li>O(n) : for<strong>循环</strong> / while循环  (不用二分搜索)</li>
-<li>O(n^2) :  <strong>嵌套</strong>for循环 / 嵌套while循环  </li>
 <li>O(log n) : </li>
+<li>O(n) : for<strong>循环</strong> / while循环  (不用二分搜索)</li>
 <li>O(n* log n) : </li>
+<li>O(n^2) :  <strong>嵌套</strong>for循环 / 嵌套while循环  </li>
 </ul>
 <hr>
 <h3 id="数据结构大纲"><a href="#数据结构大纲" class="headerlink" title="数据结构大纲"></a>数据结构大纲</h3><p>关于数据结构算法 : 数据结构是计算机中 <strong>存储/组织数据</strong> 的方式,精心选择的数据结构通常可以带来最优效率的算法</p>
@@ -193,6 +193,7 @@
 </li>
 </ul>
 <p>排序算法：冒牌排序、选择排序、插入排序、希尔排序、归并排序和快速排序<br>查找算法：顺序查找和二分查找</p>
+<hr>
 <h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>1.数组<strong>扩容</strong>,-&gt;性能低 (16位数组不够则直接获取新32位数组,然后copy完再free(释放内存))<br>2.数组在前面或中间插入或删除元素的性能非常低,因为每个元素都需要位移<br>3.在数组中查找数据直接(index) O(1),查找性能高<br>深度了解数组: <a target="_blank" rel="noopener" href="https://www.voidcanvas.com/javascript-array-evolution-performance">https://www.voidcanvas.com/javascript-array-evolution-performance</a></p>
 <ul>
 <li><p><strong>数组去重</strong></p>
@@ -209,6 +210,22 @@
 <li>filter遍历</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> res = <span class="keyword">new</span> <span class="built_in">Map</span>();   </span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.filter(<span class="function">(<span class="params">a</span>) =&gt;</span> !res.has(a) &amp;&amp; res.set(a, <span class="number">1</span>));     <span class="comment">//筛选并返回新数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>二分查找</p>
+<p> 条件 : </p>
+<ul>
+<li>数组为<strong>有序数组</strong></li>
+<li>数组中<strong>无重复元素</strong></li>
+</ul>
+<p>做法:</p>
+<ul>
+<li>left=0 ,  right=length-1 , mid =left+(right-left)/2 </li>
+<li>while循环,不一定找的到用left&lt;=right,找得到用left&lt;right</li>
+<li>如果mid上的值等于target,返回mid,</li>
+<li>如果小于target,  left=mid+1    (砍掉左半边)</li>
+<li>如果大于target,  right=mid-1  (砍掉右半边)</li>
+<li>如果while循环结束了都没找到target,返回 -1</li>
 </ul>
 </li>
 </ul>
@@ -316,7 +333,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>16</span>
+        <span>15</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -373,7 +390,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 20px;" class="tags-cloud-10">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
+      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
     </div>
   </div>
 </section>
@@ -405,7 +422,7 @@
       
     </div>
      
-    <p>&copy; 2021 <a href="/" target="_blank">广工彭于晏</a></p>
+    <p>&copy; 2022 <a href="/" target="_blank">广工彭于晏</a></p>
 
     
 
@@ -453,6 +470,6 @@
 
             
                 <!-- 尾部用户自定义相关内容 -->
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>

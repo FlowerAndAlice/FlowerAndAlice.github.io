@@ -281,7 +281,9 @@
 <li>基本流程 ：</li>
 </ul>
 <ol>
-<li>获取 HTML 文档及样式表文件</li>
+<li>获取 HTML 文档</li>
+<li>加载外部样式表及JavaScript脚本</li>
+<li>解析执行JavaScript脚本</li>
 <li>解析成对应的树形数据结构<ul>
 <li>DOM tree  ( 构建完就是dom ready )</li>
 <li>CSSOM tree</li>
@@ -347,11 +349,23 @@
 <li><strong>domContentLoaded</strong> 表示 <a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=DDVtz3oGB9dk2oyvy6J1fg==.N1kd9FWlbKccrF+Zl5pcUV1qZR/4uu1as+THxbREEy4yEp6JHn8B2h0JPZvrFyNGWPwJHR/+GwUd+L9AQl0uunrqXm6LRd4PD+t4yNjiPiw=">DOM 与 CSSOM 皆已准备就绪</a><ul>
 <li>如果没有解析器阻塞 JavaScript，<em>DOMContentLoaded</em> 事件会在 <em>domInteractive</em> 之后立即触发</li>
 <li>很多 JavaScript 框架会在执行它们自己的逻辑前等待这个事件的触发</li>
+<li>DOMContentLoaded 事件必须等待其所属script之前的样式表加载解析完成才会触发。</li>
 </ul>
 </li>
 <li><strong>domComplete</strong> 表示所有的处理都已完成并且所有的附属资源都已经下载完毕</li>
 <li><strong>loadEvent</strong> 作为网页加载的最后一步以便触发附加的应用逻辑</li>
 </ol>
+<ul>
+<li><p>readystatechange   :   document有readyState属性来描述document的loading状态，readyState的改变会触发readystatechange事件.</p>
+<ul>
+<li>loading         :   文档仍然在加载</li>
+<li>interactive   :   文档结束加载并且被解析，但是像图片，样式，frame之类的子资源仍在加载</li>
+<li>complete     :   文档和子资源已经结束加载，该状态表明将要触发load事件。</li>
+</ul>
+</li>
+<li><p>onpageshow 事件类似于 onload 事件，onload 事件在页面第一次加载时触发， onpageshow 事件在每次加载页面时触发，即 onload 事件在页面从浏览器缓存中读取时不触发。</p>
+</li>
+</ul>
 <hr>
 <h3 id="BOM-浏览器对象模型"><a href="#BOM-浏览器对象模型" class="headerlink" title="BOM (浏览器对象模型)"></a>BOM (浏览器对象模型)</h3><ul>
 <li><p>window对象( 全局对象 )</p>
@@ -492,22 +506,6 @@
 </div>
           
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="https://pic.imgdb.cn/item/60f152865132923bf8ebe22c.jpg"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2021/07/14/js%E5%9F%BA%E7%A1%80/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">js基础</h2>
-        </a>
-      
-      <div class="card-text--row">Older</div>
-    </div>
-  </article>
-</div>
-          
         </nav>
       
 
@@ -542,7 +540,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>16</span>
+        <span>15</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -599,7 +597,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 20px;" class="tags-cloud-10">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
+      <a href="/tags/Ajax/" style="font-size: 10px;" class="tags-cloud-0">Ajax</a> <a href="/tags/CSS/" style="font-size: 10px;" class="tags-cloud-0">CSS</a> <a href="/tags/http/" style="font-size: 10px;" class="tags-cloud-0">http</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 10px;" class="tags-cloud-0">js基础</a> <a href="/tags/node/" style="font-size: 10px;" class="tags-cloud-0">node</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%80%A7%E8%83%BD/" style="font-size: 10px;" class="tags-cloud-0">安全&性能</a>
     </div>
   </div>
 </section>
@@ -631,7 +629,7 @@
       
     </div>
      
-    <p>&copy; 2021 <a href="/" target="_blank">广工彭于晏</a></p>
+    <p>&copy; 2022 <a href="/" target="_blank">广工彭于晏</a></p>
 
     
 
@@ -679,6 +677,6 @@
 
             
                 <!-- 尾部用户自定义相关内容 -->
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 
 </html>
