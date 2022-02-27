@@ -232,13 +232,13 @@
 </blockquote>
 <hr>
 <h3 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h3><ul>
-<li><p>父级向子级传值: 在app.vue 的data内写一个属性1 meessage,在子级的调用标签,添加 :属性2=”属性1”,在子级组件export内 通过 props: [“属性2”], 之后即可通过&#123;&#123;属性2&#125;&#125;使用该值</p>
+<li><p>父级向子级传值: 在app.vue 的data内写一个属性1 meessage,在子级的调用标签,添加 :属性2=”属性1”,在子级组件export内 通过 props: [“属性2”],(注意此处有引号) 之后即可通过&#123;&#123;属性2&#125;&#125;使用该值</p>
 </li>
 <li><p>插槽: (可自定义button等 )在父组件调用子组件的标签里通过template标签的v-slot属性可在定义对应子组件的slot对应name的插槽里自定义html内容</p>
 </li>
-<li><p>子级向父级传值: 在app.vue内的子级的调用标签,添加自定义事件<br>比如 @myEvent=”changeData” ,然后再html内定义要传的值得表达式,<br>比如 <code>&lt;h3&gt;&#123;&#123;childData&#125;&#125;&lt;/h3&gt;</code> ,随后在data内初始化要传的值,</p>
+<li><p>子级向父级传值: 父级在app.vue内的子级的调用标签,添加自定义事件,比如 @myEvent=”changeData” ,然后在别的html标签内定义要传的值的表达式,比如 <code>&lt;h3&gt;&#123;&#123;childData&#125;&#125;&lt;/h3&gt;</code> ,随后在data内初始化要传的值,为空串!</p>
 </li>
-<li><p>来到子级,先给传参绑定一个click事件,在该事件内,this.$emit(“myEvent”, this.childData)<br>即可将子级的数据传到父级内的自定义事件的参数</p>
+<li><p>来到子级,先给传参绑定一个click事件,在该事件内,this.$emit(“myEvent”, this.childData) 把数据传到父级<br>即可将子级的数据传到父级内的自定义事件的参数</p>
 </li>
 <li><p>最后在父级的自定义事件把参数传到data里</p>
 </li>

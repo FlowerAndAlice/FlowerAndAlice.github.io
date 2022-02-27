@@ -182,7 +182,7 @@
 <li><p>在变量为声明前直接使用会报错（无变量提升）</p>
 </li>
 <li><p><strong>let为块作用域</strong>—— ( 大括号中使用let/const才是块级,var全局 )</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//循环中使用var</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span><span class="built_in">console</span>.log(i),<span class="number">100</span>) <span class="comment">// 5 5 5 5 5</span></span><br><span class="line">    <span class="comment">//变量在全局,定时器在循环内,定时器执行时循环已结束,故获取到的是自增后的i</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i);  <span class="comment">//5(同步先输出)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//循环中使用var (泄漏成全局变量)</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span><span class="built_in">console</span>.log(i),<span class="number">100</span>) <span class="comment">// 5 5 5 5 5</span></span><br><span class="line">    <span class="comment">//变量在全局,定时器在循环内,定时器执行时循环已结束,故获取到的是自增后的i</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i);  <span class="comment">//5(同步先输出)</span></span><br></pre></td></tr></table></figure>
 
 <p>let在代码块中有自己的作用域，( 只有该块级作用域中有i,且该i在循环内 )</p>
 <p>所以<strong>for循环中的let声明的每一个值都会单独存在于一个作用域中</strong>,不会被覆盖掉。</p>
@@ -502,6 +502,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为什么 typeof null 为 “object”? JavaScript 诞生以来便如此不同的对象在底层都表示为二进制，在 JS 中二进制前三位都为0的话会被判断为 object 类型，null的二进制表示是全0 (null 代表的是空指针)，自然前三位也是 0，所以执行 typeof 时会返回“object”。曾有一个 ECMAScript 的修复提案（通过选择性加入的方式），但被拒绝了,该提案会导致 typeof null === &#x27;null&#x27;。</span><br></pre></td></tr></table></figure></li>
 <li><p>Object.prototype.toString.call( )  ,默认返回该参数的数据类型( string形式 )</p>
 </li>
+<li><p>Object.is( )  :  把0视为+0</p>
+<p> Object.is(0,-0)为false,Object.is(NaN, NaN)为true</p>
+<p> Set()和indexOf认为NaN相等,可以去重NaN</p>
+</li>
 <li><p><strong>instanceof</strong>主要作用就是判断一个实例是否属于某种类型</p>
 </li>
 </ol>
@@ -510,14 +514,14 @@
    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原理</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">new_instance_of</span>(<span class="params">leftValue, rightValue</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">let</span> rightProto = rightValue.prototype; <span class="comment">// 取右表达式的 prototype 值</span></span><br><span class="line">    leftValue = leftValue.__proto__; <span class="comment">// 取左表达式的__proto__值</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (leftValue === <span class="literal">null</span>) &#123;        <span class="comment">//一直没找到</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;    </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (leftValue=== rightProto) &#123;      <span class="comment">//找到</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;    </span><br><span class="line">        &#125; </span><br><span class="line">        leftValue = leftValue.__proto__       <span class="comment">//往原型里继续找</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol start="11">
-<li>转换为布尔值 , 只有这几个参数返回false  </li>
+<li>转换为布尔值 , 只有这几个参数返回false  ( **捕鼠队 **)</li>
 </ol>
 <blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Boolean</span>( <span class="literal">undefined</span> / <span class="literal">null</span> / <span class="number">0</span> / <span class="literal">NaN</span> / <span class="string">&#x27;&#x27;</span> )       <span class="comment">//false</span></span><br><span class="line"><span class="built_in">Boolean</span>([])       <span class="comment">//true   </span></span><br><span class="line"><span class="built_in">Boolean</span>(&#123;&#125;)       <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>   <strong>布尔值与其他类型进行比较  ,  布尔类型会转换为number类型</strong></p>
 <ol start="11">
-<li><p>转换为number：( 注意 和==不同 )</p>
+<li><p>转换为number：( 注意 和==不同 ) ( <strong>难奔对岸</strong> )</p>
 <blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(  );            <span class="comment">//0</span></span><br><span class="line"><span class="built_in">Number</span>([]);            <span class="comment">//0</span></span><br><span class="line"><span class="built_in">Number</span>(&#123;&#125;);            <span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">undefined</span>);     <span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">false</span>);         <span class="comment">//0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>);          <span class="comment">//0</span></span><br><span class="line"><span class="built_in">Number</span>([<span class="number">0</span>]);           <span class="comment">//0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">&#x27; &#x27;</span>);           <span class="comment">//0</span></span><br></pre></td></tr></table></figure>
 </blockquote>
@@ -628,10 +632,12 @@
 <p>   ③ 且 <code>fromIndex</code> 值大于等于字符串的长度，则返回字符串的长度（<code>str.length</code>）</p>
 <p>特点：</p>
 <ol>
-<li><p><strong>严格区分大小写</strong></p>
+<li><strong>严格区分大小写</strong></li>
+</ol>
 </li>
 <li><p>在使用indexOf检索数组时，如果用‘**===<strong>’去匹配，意味着会</strong>检查数据类型**,<strong>所以要用</strong>‘<strong>==</strong>‘</p>
-</li>
+<ol start="3">
+<li>无法检索NaN</li>
 </ol>
 </li>
 <li><p>lastIndexOf：从尾开始</p>
@@ -796,7 +802,7 @@
 <li><p>解构声明( 数组和对象,此处只讲对象 )</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> wife = &#123;</span><br><span class="line">   <span class="attr">name</span>: <span class="string">&#x27;Yoimiya&#x27;</span>,</span><br><span class="line">   <span class="attr">cat</span>: <span class="string">&#x27;dog&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> &#123; name,cat &#125; = wife;     <span class="comment">//解构声明,拿到值并存储到外部变量中</span></span><br><span class="line"><span class="built_in">console</span>.log(name);      <span class="comment">//Yoimiya</span></span><br><span class="line"><span class="built_in">console</span>.log(cat);       <span class="comment">//dog</span></span><br></pre></td></tr></table></figure></li>
 <li><p>解构赋值</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> wife = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;xiaogong&#x27;</span>,</span><br><span class="line">  <span class="attr">cat</span>: <span class="string">&#x27;dog&#x27;</span></span><br><span class="line">&#125;,</span><br><span class="line">name = <span class="number">1</span>,</span><br><span class="line">cat = <span class="number">2</span>;</span><br><span class="line">(&#123; name,cat &#125; = wife )              <span class="comment">//解构赋值(表达式),语法规定，代码块语句不允许出现在赋值语句左侧，添加小括号后可以将块语句转化为一个表达式，从而实现整个解构赋值过程</span></span><br><span class="line"><span class="built_in">console</span>.log(name);  <span class="comment">//Yoimiya</span></span><br><span class="line"><span class="built_in">console</span>.log(cat);	<span class="comment">//dog</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> wife = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Yoimiya&#x27;</span>,</span><br><span class="line">  <span class="attr">cat</span>: <span class="string">&#x27;dog&#x27;</span></span><br><span class="line">&#125;,</span><br><span class="line">name = <span class="number">1</span>,</span><br><span class="line">cat = <span class="number">2</span>;</span><br><span class="line">(&#123; name,cat &#125; = wife )              <span class="comment">//解构赋值(表达式),语法规定，代码块语句不允许出现在赋值语句左侧，添加小括号后可以将块语句转化为一个表达式，从而实现整个解构赋值过程</span></span><br><span class="line"><span class="built_in">console</span>.log(name);  <span class="comment">//Yoimiya</span></span><br><span class="line"><span class="built_in">console</span>.log(cat);	<span class="comment">//dog</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -898,9 +904,25 @@
 </blockquote>
 <hr>
 <h3 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h3><ul>
-<li><p><strong>防抖:  防止事件短时间内多次触发</strong>   (触发频率太快时不发送请求)   (每次触发事件都会重新调用,但只有timer超时才会发送请求)</p>
+<li><p><strong>防抖:  防止事件短时间内多次触发</strong>   (触发频率太快时不发送请求)   (每次触发事件都会重新调用,但只有timer超时才会发送请求)   在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。</p>
+</li>
+<li><p><strong>函数防抖的应用场景:</strong></p>
+<p>连续的事件，只需触发一次回调的场景有：</p>
+<ul>
+<li>搜索框搜索输入。只需用户最后一次输入完，再发送请求</li>
+<li>手机号、邮箱验证输入检测</li>
+<li>窗口大小Resize。只需窗口调整完成后，计算窗口大小。防止重复渲染。</li>
+</ul>
 </li>
 <li><p><strong>节流:  不会高频率触发,但间隔时间内还是会不断触发</strong>  (比如500毫秒内只能计数一次)   (timer不结束不会重新计数)</p>
+</li>
+<li><p>函数节流的应用场景:</p>
+<p>间隔一段时间执行一次回调的场景有：</p>
+<ul>
+<li>滚动加载，加载更多或滚到底部监听</li>
+<li>谷歌搜索框，搜索联想功能</li>
+<li>高频点击提交，表单重复提交</li>
+</ul>
 </li>
 <li><p><strong>promise对象</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//相当于</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">        resolve(<span class="number">1</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>

@@ -277,7 +277,8 @@
 <li>//模拟移动端的触屏,但此时在google中需要调到手机模式</li>
 </ul>
 <hr>
-<h3 id="浏览器显示页面的原理"><a href="#浏览器显示页面的原理" class="headerlink" title="浏览器显示页面的原理"></a>浏览器显示页面的原理</h3><ul>
+<h3 id="浏览器显示页面的原理"><a href="#浏览器显示页面的原理" class="headerlink" title="浏览器显示页面的原理"></a>浏览器显示页面的原理</h3><p><img src="https://pic.imgdb.cn/item/6216fd942ab3f51d917836b0.jpg"></p>
+<ul>
 <li>基本流程 ：</li>
 </ul>
 <ol>
@@ -295,6 +296,34 @@
 </ol>
 <ul>
 <li><p>render tree（页面上所显示的最终结果）是由 DOM tree（开发工具中所显示的 HTML 所定义的内容结构）与 CSSOM tree（样式表所定义的规则结构）合并并剔除不可见的节点所形成的，其中不包含如下节点：&lt;html&gt;  &lt;head&gt;  &lt;meta&gt;  &lt;link&gt;  &lt;style&gt;  &lt;script&gt; 以及设置的 display:none 样式的</p>
+</li>
+<li><p>render tree：渲染树，也就是浏览器引擎通过DOM Tree和CSS Rule Tree构建出来的一个树状结构，和dom tree不一样的是，它只有要最终呈现出来的内容，像或者带有display:none的节点是不存在render tree中的。</p>
+</li>
+<li><p>reflow / layout ( 回流,重排,渲染中的一种行为 )</p>
+<ul>
+<li><p>render 树中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。(一定时间内只会触发一次), 浏览器会使渲染树中受到影响的部分失效，并重新构造这部分渲染树，完成回流后，浏览器会重新绘制受影响的部分到屏幕中，该过程称为重排。</p>
+</li>
+<li><p>display : none ,不再占据空间,DOM结构变化,需重新渲染</p>
+</li>
+<li><p>visibility : hidden, 依旧占据空间,DOM结构未变,无需重新渲染</p>
+</li>
+</ul>
+</li>
+<li><p>会导致reflow(回流)的操作</p>
+<ul>
+<li>页面首次渲染</li>
+<li>浏览器窗口大小发生改变</li>
+<li>元素尺寸或位置发生改变</li>
+<li>元素内容变化(文字数量或图片大小)</li>
+<li>元素字体的大小变化</li>
+<li>添加或删除可见的DOM元素 appendChild</li>
+<li>激活CSS伪类, (例如 : hover)</li>
+<li>查询某些属性或调用某些方法 offsetHeight</li>
+</ul>
+</li>
+<li><p>repaint：重绘，渲染中的一种行为。render tree中任一元素样式属性（几何尺寸没改变）发生改变了，render tree都会重新画，比如字体颜色、背景等变化。</p>
+</li>
+<li><p>reflow一定引起repaint,而repaint不一定引起reflow</p>
 </li>
 <li><p>资源加载：</p>
 <ul>

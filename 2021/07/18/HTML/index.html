@@ -200,10 +200,16 @@
 <h3 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h3><p>（div、article、section）</p>
 <p>  ① <strong>标准盒模型</strong>  box-sizing : content-box  </p>
 <p>  ​     此时盒子的宽和高只决定元素的<strong>content部分</strong>,即 <strong>width = content</strong></p>
-<p>  ② <strong>IE盒模型</strong>       box-sizing :  border-box</p>
+<p>  ② <strong>IE(怪异)盒模型</strong>       box-sizing :  border-box  </p>
 <p>  ​     此时盒子的宽和高决定元素的<strong>border大小</strong>,即 <strong>width = content+padding*2+border*2</strong></p>
+<p> ps: </p>
+<ol>
+<li>scrollHeight=高度height(滚动内容)+上下padding</li>
+<li>clientHeight=高度height(滚动容器)+上下padding</li>
+<li>offsetWidth = 宽度 + padding + border</li>
+</ol>
 <hr>
-<h3 id="H5新特性"><a href="#H5新特性" class="headerlink" title="H5新特性"></a>H5新特性</h3><ol>
+<h3 id="H5新特性-不理玄音-双语本多余"><a href="#H5新特性-不理玄音-双语本多余" class="headerlink" title="H5新特性   (不理玄音,双语本多余)"></a>H5新特性   (不理玄音,双语本多余)</h3><ol>
 <li>新增选择器 document.querySelector、document.querySelectorAll</li>
 <li>音视频API   video 和 audio</li>
 <li>本地存储 localStorage(浏览器关闭后数据不丢失)和 sessionStorage</li>
@@ -220,9 +226,9 @@
 <li>脱掉CSS的外衣,依然头是头,脚是脚。还是一篇完整的文档。这就是语义化之后文档的效果</li>
 </ul>
 <p>​       语义化： 也无非就是在使用标签的时候多使用有英文语义的标签。</p>
-<p>① header :  头部   ② slider :  侧边栏   ③ main  :  主体  ④  footer : 底部 </p>
+<p>① header :  头部   ② aside :  独立内容区   ③ main  :  主体  ④  footer : 底部  ⑤ section  ⑥ article</p>
 <ul>
-<li>语义化优点：</li>
+<li>语义化优点：  ( **开胃一姐 **)</li>
 </ul>
 <ol>
 <li>易于用户阅读，样式丢失的时候能让页面呈现清晰的<strong>结构</strong>。</li>
