@@ -175,7 +175,8 @@
 <li>能够设置宽高，默认和父容器宽度一样</li>
 <li><strong>独立成行</strong>，(块级元素们)在页面从上往下排列，margin和padding均有效</li>
 <li>可容纳其他块级元素、或内联元素</li>
-<li>代表性的就是div，其他如p、h1-h6、nav、aside、header、footer、section、article、ol、ul-li、dl、dt、dd(在后面但与dt同级)等等，都可以用div来实现。不过为了可以方便程序员解读代码，一般都会使用特定的<strong>语义化标签</strong>，使得代码可读性强，且便于查错。</li>
+<li>代表性的就是div，其他如p、h1-h6、nav、aside、header、footer、section、article、ol、ul-li、dl、dt、dd等等，都可以用div来实现。不过为了可以方便程序员解读代码，一般都会使用特定的<strong>语义化标签</strong>，使得代码可读性强，且便于查错。</li>
+<li>ul和ol里只能放li, li里再放其他 , 如果一个<li>元素之后紧跟另一个<li>元素，或在父元素中没有其他更多内容，则结束标签可以省略 dd在dt后面但与dt同级</li>
 </ol>
 <hr>
 <h3 id="行内-内联-元素"><a href="#行内-内联-元素" class="headerlink" title="行内(内联)元素"></a>行内(内联)元素</h3><ol>
@@ -184,6 +185,7 @@
 <li><strong>设置宽高无效</strong></li>
 <li>对margin仅设置<strong>左右</strong>方向有效，上下无效；padding设置上下左右都有效，</li>
 <li>常见的行内元素:a、span、br、i、em、label( 在 label 元素内点击文本，就会触发for属性绑定的id控件 )、var、strong</li>
+<li>a标签的href属性里的URL不加协议，就会变相对路径，浏览器找不到会帮你加协议</li>
 </ol>
 <hr>
 <h3 id="行内块级元素"><a href="#行内块级元素" class="headerlink" title="行内块级元素"></a>行内块级元素</h3><ol>
@@ -191,7 +193,7 @@
 <li>能设置宽高</li>
 <li>在行内从左往右排列</li>
 <li>常见行内块元素 ： img、input</li>
-<li>空元素 :  无须闭合的标签，如：&lt;br/&gt;、&lt;hr/&gt;、&lt;input/&gt;、&lt;img/&gt;、&lt;link/&gt;、&lt;meta/&gt; 等</li>
+<li>空元素 :  无须闭合的标签，如：&lt;br/&gt;、&lt;hr/&gt;、&lt;input/&gt;、&lt;img/&gt;、&lt;link/&gt;、&lt;meta/&gt; 等 （厉害吗b）</li>
 </ol>
 <ul>
 <li>块级元素与内联元素区别： （ 块级元素）单独成行，可设置高度、宽度和上下外边距，</li>
@@ -218,7 +220,7 @@
 <li>全双工通信协议 websocket</li>
 <li>历史管理 history</li>
 <li>跨域资源共享(CORS) Access-Control-Allow-Origin</li>
-<li>画布 canvas</li>
+<li>画布 canvas ( canvas绘制不操作DOM, svg直接绘制DOM元素 )</li>
 </ol>
 <hr>
 <h3 id="html语义化"><a href="#html语义化" class="headerlink" title="html语义化"></a>html语义化</h3><ul>
@@ -228,13 +230,13 @@
 <p>​       语义化： 也无非就是在使用标签的时候多使用有英文语义的标签。</p>
 <p>① header :  头部   ② aside :  独立内容区   ③ main  :  主体  ④  footer : 底部  ⑤ section  ⑥ article</p>
 <ul>
-<li>语义化优点：  ( **开胃一姐 **)</li>
+<li>语义化优点：  ( **开胃一姐莉姐 **)</li>
 </ul>
 <ol>
 <li>易于用户阅读，样式丢失的时候能让页面呈现清晰的<strong>结构</strong>。</li>
 <li><strong>有利于SEO</strong>，搜索引擎根据标签来确定上下文和各个关键字的权重。</li>
 <li><strong>方便其他设备解析</strong>，如盲人阅读器根据语义渲染网页</li>
-<li>有利于开发和维护，语义化更具可读性，代码更好维护，与CSS3关系更和谐。</li>
+<li>有利于开发和维护，语义化使代码更具可读性、更好维护，与CSS3关系更和谐。</li>
 </ol>
 <hr>
 <h3 id="iframe有什么优点、缺点"><a href="#iframe有什么优点、缺点" class="headerlink" title="iframe有什么优点、缺点"></a>iframe有什么优点、缺点</h3><ul>

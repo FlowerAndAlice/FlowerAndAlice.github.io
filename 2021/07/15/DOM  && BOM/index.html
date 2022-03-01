@@ -295,6 +295,8 @@
 <li>将每个节点转化为实际像素绘制到视口上（栅格化）</li>
 </ol>
 <ul>
+<li><p>浏览器在渲染一个页面时，会将页面分为很多个图层，每个图层上有多个节点，在渲染dom时，经历以下过程:    DOM分割图层 —— 图层节点样式重计算(Recalculate style) —–  为每个节点生成图形和位置 (Layout，回流/重排/重布局) —–  将节点绘制并填充到图层中(Paint Setup和Paint, 重绘) —— 图层作为纹理上传到CPU处理 —— 结合多个图层到页面上生成最终屏幕图像(图层重组)    </p>
+</li>
 <li><p>render tree（页面上所显示的最终结果）是由 DOM tree（开发工具中所显示的 HTML 所定义的内容结构）与 CSSOM tree（样式表所定义的规则结构）合并并剔除不可见的节点所形成的，其中不包含如下节点：&lt;html&gt;  &lt;head&gt;  &lt;meta&gt;  &lt;link&gt;  &lt;style&gt;  &lt;script&gt; 以及设置的 display:none 样式的</p>
 </li>
 <li><p>render tree：渲染树，也就是浏览器引擎通过DOM Tree和CSS Rule Tree构建出来的一个树状结构，和dom tree不一样的是，它只有要最终呈现出来的内容，像或者带有display:none的节点是不存在render tree中的。</p>
@@ -321,9 +323,14 @@
 <li>查询某些属性或调用某些方法 offsetHeight</li>
 </ul>
 </li>
-<li><p>repaint：重绘，渲染中的一种行为。render tree中任一元素样式属性（几何尺寸没改变）发生改变了，render tree都会重新画，比如字体颜色、背景等变化。</p>
+<li><p>repaint：重绘，渲染中的一种行为。render tree中任一元素样式属性（几何尺寸没改变）发生改变了（(节点内部渲染效果)），render tree都会重新画，比如字体颜色、背景、visibility等变化。</p>
 </li>
 <li><p>reflow一定引起repaint,而repaint不一定引起reflow</p>
+</li>
+<li><p>transform和opacity改变的仅是图层的结合不触发回流/重绘：</p>
+<ul>
+<li>translate可以让浏览器创建图层，可以消除在动画开始之前的图层创建时间，使得动画尽快开始, 但是创建过多的图层会导致崩溃所以要结合实际情况考虑，节制！</li>
+</ul>
 </li>
 <li><p>资源加载：</p>
 <ul>

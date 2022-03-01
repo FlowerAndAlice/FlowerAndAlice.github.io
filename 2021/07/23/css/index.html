@@ -147,29 +147,41 @@
 </ul>
 <hr>
 <h3 id="CSS3新增属性"><a href="#CSS3新增属性" class="headerlink" title="CSS3新增属性"></a>CSS3新增属性</h3><p>1、box-shadow（阴影效果）</p>
-<p>2、border-image（图片边框）</p>
-<p>3、text-shadow（文本阴影）</p>
-<p>4、text-overflow（文本截断）</p>
+<p>2、border-image（图片<strong>边框</strong>）</p>
+<p>3、border-radius（圆角边框）</p>
+<p>4、text-shadow（<strong>文本</strong>阴影）</p>
 <p>5、word-wrap（自动换行）</p>
-<p>6、border-radius（圆角边框）</p>
-<p>7、opacity（透明度）</p>
-<p>8、box-sizing（控制盒模型的组成模式）</p>
-<p>9、resize（元素缩放）</p>
-<p>10、outline（外边框）</p>
-<p>11、background-size（指定背景图片尺寸）</p>
-<p>12、background-origin（指定背景图片从哪里开始显示）</p>
-<p>13、background-clip（指定背景图片从什么位置开始裁剪）</p>
-<p>14、background（为一个元素指定多个背景）</p>
-<p>15、hsl（通过色调、饱和度、亮度来指定颜色颜色值）</p>
-<p>16、hsla（在hsl的基础上增加透明度设置）</p>
-<p>17、rgba（基于rgb设置颜色，a设置透明度）</p>
+<p>6、display: flex; （弹性盒模型）</p>
+<p>7、box-sizing（控制盒模型的组成模式）</p>
+<p>8、rgba（基于rgb设置<strong>颜色</strong>，a是opacity设置<strong>透明度</strong>）</p>
+<p>9、background:linear-gradient（）；（<strong>渐变</strong>）</p>
+<p>10、background-size（指定<strong>背景</strong>图片尺寸）</p>
+<p>11、background-origin（指定背景图片从哪里开始显示）</p>
+<p>12、background-clip（指定背景图片从什么位置开始裁剪）</p>
+<p>13、p :nth-child(n+3) 【第三个开始到最后】 :nth-child(-n+3) 【第一个到第三个】</p>
+<p>14、:last-child （选择器）</p>
+<p>15、 @keyframes anim-1 {50% {border-radius: 50%;}} animation: anim-1 1s;          （<strong>制作特效</strong>）  （动画）</p>
+<p>16、 transform: scale（.5）；                      （缩放）</p>
+<p>17、 transform:translate（20px, 20px）   （位移）</p>
+<p>18、 transform: rotate（20deg）；            （旋转）</p>
+<p>19、 transition: all .3s ease-in .1s;             （ 平滑过渡 ）</p>
+<hr>
+<h3 id="CSS的可继承属性"><a href="#CSS的可继承属性" class="headerlink" title="CSS的可继承属性:"></a>CSS的可继承属性:</h3><ol>
+<li>visibility</li>
+<li>cursor</li>
+<li>颜色</li>
+<li>文字</li>
+<li>字体间距</li>
+<li>行高对齐方式</li>
+<li>列表样式</li>
+</ol>
 <hr>
 <h3 id="引入CSS的方法"><a href="#引入CSS的方法" class="headerlink" title="引入CSS的方法"></a>引入CSS的方法</h3><ul>
-<li><p>**内部样式表 **: 在head标签中, 使用style标签写的样式就是 内部样式</p>
+<li><p><strong>内部样式表</strong> : 在head标签中, 使用style标签写的样式就是 内部样式</p>
 </li>
 <li><p><strong>外部样式表</strong> :</p>
 <ol>
-<li><strong>@import关键字</strong>  </li>
+<li><strong>@import关键字</strong>   (CSS提供) (兼容:ie只有ie5以上才能识别)</li>
 </ol>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;  <span class="keyword">@import</span> url(<span class="string">&quot;css/style.css&quot;</span>); &lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
@@ -178,7 +190,7 @@
 <p>注意, @import引入CSS,但import引入 JS</p>
 </blockquote>
 <ol start="2">
-<li>head标签内用<strong>link标签</strong>引入外部样式 (最常用) (head标签内)  ( 多个link标签会同时加载,谁先加载完的优先解析 )</li>
+<li>head标签内用<strong>link标签</strong>引入外部样式 (最常用) (head标签内)  ( 多个link标签会同时加载,先加载完的优先解析 )(本身属于HTML标签)</li>
 </ol>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./css/test1.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure></li>
 <li><p><strong>行内样式</strong>表(内联样式)</p>
@@ -284,23 +296,31 @@
 <li><p>设为 Flex 布局以后，子元素的 <code>float</code>、<code>clear</code>和<code>vertical-align</code>属性将失效。要设置一个元素采用 flex 布局，只需设置器 display 属性取值为 <code>flex</code> 即可。</p>
 </li>
 <li><p>采用 Flex 布局的元素，称为Flex容器。其子元素为<strong>flex item</strong>，本文称其为”项目”。容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。</p>
-<h4 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h4><ul>
-<li><strong>flex-direction</strong> :  flex-direction属性决定主轴的方向（即项目的排列方向）。<ol>
+</li>
+<li><h4 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h4><ul>
+<li><strong>flex-direction</strong> :  flex-direction属性决定<strong>主轴的方向</strong>（即项目的排列方向）。<ol>
 <li>row（默认值）：主轴为水平方向，起点在左端。</li>
 <li>row-reverse：主轴为水平方向，起点在右端。</li>
 <li>column：主轴为垂直方向，起点在上沿。</li>
 <li>column-reverse：主轴为垂直方向，起点在下沿。</li>
 </ol>
 </li>
-<li>**flex-wrap **:  默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。<ol>
+<li><strong>flex-wrap <strong>:  默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，排不下时</strong>如何换行</strong>。<ol>
 <li>nowrap（默认）：不换行。</li>
 <li>wrap：换行，第一行在上方。</li>
 <li>wrap-reverse：换行，第一行在下方。</li>
 </ol>
 </li>
 <li><strong>flex-flow</strong> : flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</li>
-<li><strong>justify-content</strong>  :  justify-content属性定义了项目在主轴上的对齐方式。</li>
-<li><strong>align-items</strong>   :   align-items属性定义项目在交叉轴上如何对齐。</li>
+<li><strong>justify-content</strong>  :  justify-content属性定义了项目在主轴上的<strong>对齐方式</strong>。</li>
+<li><strong>align-items</strong>   :     align-items属性定义项目在交叉轴上的对齐方式。</li>
+</ul>
+</li>
+<li><p>子元素的属性 : </p>
+<ul>
+<li>flex：子项目所占的份数</li>
+<li>align-self：控制子项自己在侧轴的排列方式</li>
+<li>order：定义子项的排列顺序（前后顺序）</li>
 </ul>
 </li>
 </ul>
@@ -323,11 +343,15 @@
 <li>通过animation:(keyframes名称)可实现动画及设置属性</li>
 </ol>
 <ul>
-<li><p>优点: 简单高效,声明式,不依赖主线程,采用硬件加速(GPU),简单控制keyframe、animation播放暂停</p>
-</li>
-<li><p>缺点： 不能动态修改或定义动画内容，不同的动画无法实现同步，多个动画彼此无法堆叠<br>适用于简单的H5活动、宣传页</p>
+<li>优点: 简单高效,声明式,不依赖主线程,采用硬件加速(GPU),简单控制keyframe、animation播放暂停</li>
+<li>缺点： 不能动态修改或定义动画内容，不同的动画无法实现同步，多个动画彼此无法堆叠<br>适用于简单的H5活动、宣传页</li>
+<li>JS动画<ul>
+<li>缺点 : JS在浏览器的主线程中运行，其中还有很多需要运行的JS、样式计算、布局、绘制对其进行干扰，会导致线程堵塞(掉帧)    </li>
+<li>优点:  动画可控制</li>
+</ul>
 </li>
 </ul>
+<hr>
 <hr>
 <h3 id="UI框架"><a href="#UI框架" class="headerlink" title="UI框架"></a>UI框架</h3><ul>
 <li>基于vue的UI框架</li>

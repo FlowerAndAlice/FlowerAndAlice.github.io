@@ -168,12 +168,25 @@
 </ul>
 <p>JavaScript是单线程语言，所以执行肯定是按顺序执行。但是并不是逐行的分析和执行，而是一段一段地分析执行，会先进行编译阶段然后执行。在编译阶段，代码真正执行前的几毫秒，会检测到所有的变量和函数声明，所有这些函数和变量声明都被添加到名为Lexical Environment的JavaScript数据结构内的内存中。所以这些变量和函数能在它们真正被声明之前使用。</p>
 <ul>
-<li><code>var</code> ——ES5 变量声明方式</li>
+<li><p>内存泄漏 : ( <strong>顶尖B多钱</strong> )</p>
+<ol>
+<li>意外的全局变量；</li>
+<li>闭包；</li>
+<li>未被清空的定时器；</li>
+<li>未被销毁的事件监听；</li>
+<li>DOM 引用；</li>
+</ol>
+</li>
+<li><p><code>var</code> ——ES5 变量声明方式</p>
+</li>
 </ul>
 <ol>
-<li>在变量未赋值时，变量undefined（包括变量提升）</li>
-<li>作用域——var的作用域为方法作用域；只要在方法内定义了，整个方法内的定义变量后的代码都可以使用</li>
-<li>在<strong>块内</strong>声明函数或变量,只要<strong>没加var,都算作全局</strong>函数/变量 ( 且严格模式会报错 )  ( <strong>函数形参除外</strong> )  (又有<strong>传入引用类型时拿到的是全局中的对象的引用</strong>)</li>
+<li><p>在变量未赋值时，变量undefined（包括变量提升）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="number">2</span>=<span class="number">2</span>; <span class="comment">//不报错</span></span><br><span class="line"><span class="keyword">let</span> x=x; <span class="comment">//报错，因为检测等号右边的x未初始化</span></span><br></pre></td></tr></table></figure></li>
+<li><p>作用域——var的作用域为方法作用域；只要在方法内定义了，整个方法内的定义变量后的代码都可以使用</p>
+</li>
+<li><p>在<strong>块内</strong>声明函数或变量,只要<strong>没加var,都算作全局</strong>函数/变量 ( 且严格模式会报错 )  ( <strong>函数形参除外</strong> )  (又有<strong>传入引用类型时拿到的是全局中的对象的引用</strong>)</p>
+</li>
 </ol>
 <ul>
 <li><code>let</code>——ES6变量声明方式</li>
@@ -254,7 +267,11 @@
 <li>以**方法的形式( 对象的属性 )**调用时，this就是调用方法的那个对象</li>
 <li>以<strong>构建函数的形式</strong>调用时，this就是新创建的那个( 实例 )对象</li>
 <li>使用<strong>call和apply</strong>调用时，this指向传入的第一个参数</li>
-<li>箭头函数中的this , 指向函数<strong>定义时的上下文</strong>的this( <strong>箭头函数</strong>与普通函数的区别 ),且call()等无法改变this指向,只能传参</li>
+<li>箭头函数中的this , 指向函数<strong>定义时的上下文</strong>的this( <strong>箭头函数</strong>与普通函数的区别 ),且call()等无法改变this指向,只能传参<ul>
+<li> 箭头函数的this指向，作为对象属性时，没有作用域链的嵌套，与obj同级，外层是window</li>
+<li> 被setTimeOut调用时，有作用域嵌套，外层是obj</li>
+</ul>
+</li>
 <li>可以在上下文中把this传给变量,在函数中使用该变量,也可改变this指向</li>
 <li>函数定义时若处于<strong>严格模式</strong>下,this会指向undefined,箭头函数不受影响<ul>
 <li>“use strict” : 在正常模式中，如果一个变量没有声明就赋值，默认是全局变量。严格模式必须显式声明全局变量,不能使用未声明的变量。<ul>
@@ -279,6 +296,8 @@
 <li><p>apply功能一样,但必须传两个参数,新this对象和<strong>一个参数数组</strong>argArray</p>
 </li>
 <li><p><strong>bind不能调用函数</strong>，会返回一个函数，执行后得到和call相同的结果,传递值和数组或不传值都可以</p>
+</li>
+<li><p>传null或undefined时，将是JS执行环境的全局变量。浏览器中是window，其它环境（如node）则是global。</p>
 </li>
 <li><p>call应用: 子类继承父类的方法 (多重) </p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;                   </span><br><span class="line">      <span class="keyword">var</span> r = bindThis(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.test + a + b</span><br><span class="line">      &#125;, &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="number">2</span></span><br><span class="line">      &#125;)(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">      <span class="keyword">return</span> r === <span class="number">7</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bindThis</span>(<span class="params">f, oTarget</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> f.bind(oTarget);             <span class="comment">//相当于改this后的function(2,3)</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bindThis</span>(<span class="params">f, oTarget</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;                 <span class="comment">//相当于function(2,3) &#123;  return f.call(oTarget,...arguments)&#125;  即改this后的function(2,3)</span></span><br><span class="line">            <span class="keyword">return</span> f.call(oTarget,...arguments)  </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
@@ -367,8 +386,8 @@
 </ul>
 </li>
 <li><p><strong>执行顺序</strong></p>
-<p> Event Loop 的实现需要至少一个 Macrotask Queue 和至少一个 Microtask Queue。为了便于理解，我们都简化成一个。<br> 简单来说，Microtask Queue 具有更高的优先级，即执行一个 Macrotask 任务后，就会清空整个 Microtask Queue，此时如果有新的 Microtask 加入也会被执行。</p>
-<p> <strong>①同步(宏任务)  ②process.nextTick ③微任务  ④setImmediate ( 本次事件循环结束后执行 )  ⑤宏任务(下一轮)</strong></p>
+<p> Event Loop 的实现需要至少一个 Macrotask Queue 和至少一个 Microtask Queue。为了便于理解，我们都简化成一个。<br> 简单来说，Microtask Queue 具有更高的优先级，即执行一个 <strong>Macrotask 任务后，就会清空整个 Microtask Queue</strong>，此时如果有新的 Microtask 加入也会被执行。</p>
+<p> <strong>①整段同步代码(宏任务)  ②process.nextTick ③微任务  ④setImmediate ( 本次事件循环结束后执行 )  ⑤宏任务(下一轮)</strong></p>
 <p> <strong>同步包括new Promise( )里的代码</strong></p>
 <p> 例子  : </p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;1&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;2&#x27;</span>);</span><br><span class="line">    process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;3&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;4&#x27;</span>);</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;5&#x27;</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;6&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;7&#x27;</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;8&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;9&#x27;</span>);</span><br><span class="line">    process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;10&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;11&#x27;</span>);</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;12&#x27;</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -503,8 +522,9 @@
 <li><p>Object.prototype.toString.call( )  ,默认返回该参数的数据类型( string形式 )</p>
 </li>
 <li><p>Object.is( )  :  把0视为+0</p>
-<p> Object.is(0,-0)为false,Object.is(NaN, NaN)为true</p>
-<p> Set()和indexOf认为NaN相等,可以去重NaN</p>
+<p>  Object.is(0,-0)为false,Object.is(NaN, NaN)为true</p>
+<p>  Set()和indexOf认为NaN相等,可以去重NaN</p>
+<p> includes()认为NaN不同,不去重</p>
 </li>
 <li><p><strong>instanceof</strong>主要作用就是判断一个实例是否属于某种类型</p>
 </li>
@@ -604,9 +624,11 @@
 <p>map()会跳过空位,但会保留这个值,</p>
 <p>foreach()、filter()、reduce()、every()对空位都跳过不执行回调</p>
 </li>
+<li><p>数组的<strong>ES6方法</strong> （io F4） : includes( ) 、Arrayof( ) 、fill( ) 、  find( ) 、  flat( ) 、  Array.from </p>
+</li>
 </ul>
 <hr>
-<h3 id="数组的方法-mutable-methods"><a href="#数组的方法-mutable-methods" class="headerlink" title="数组的方法(mutable methods)"></a>数组的方法(mutable methods)</h3><ol>
+<h3 id="数组的方法-mutable-methods-spsspURF"><a href="#数组的方法-mutable-methods-spsspURF" class="headerlink" title="数组的方法(mutable methods)(spsspURF)"></a>数组的方法(mutable methods)(spsspURF)</h3><ol>
 <li>sort( )  :     unicode升序排序,传入函数可指定排序方法( <strong>a-b为升序</strong>)且返回排序后的数组</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">13</span>, <span class="number">24</span>, <span class="number">51</span>, <span class="number">3</span>];<span class="built_in">console</span>.log(arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> a-b;&#125;));</span><br></pre></td></tr></table></figure>
@@ -618,6 +640,20 @@
 <li>pop()          :  删除数组最后一项,同时减少数组的length值,返回被删除的项</li>
 <li>shift()         :  删除数组第一项并返回它,length减1 (顺带提一嘴length既不是属性也不是方法)</li>
 <li>unshift()    :  接收任意数量的参数,添加到数组开头,返回数组的最新长度</li>
+<li>fill( ) : 填充数组</li>
+</ol>
+<hr>
+<h3 id="数组扁平化的方法"><a href="#数组扁平化的方法" class="headerlink" title="数组扁平化的方法"></a>数组扁平化的方法</h3><ol>
+<li><p>直接调用flat() : let  arr_flat = arr.flat(Infinity);</p>
+</li>
+<li><p>递归:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, [<span class="number">4</span>, <span class="number">5</span>]]], <span class="number">6</span>];</span><br><span class="line"><span class="keyword">let</span> result = [];</span><br><span class="line"><span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params">ary</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; ary.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(ary[i])) &#123;</span><br><span class="line">      fn(ary[i]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result.push(ary[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">fn(arr);</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br></pre></td></tr></table></figure></li>
+<li><p>扩展运算符:  (只要有一项还是数组就展开 )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]], <span class="number">5</span>];</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (arr.some(<span class="function"><span class="params">item</span> =&gt;</span>                           <span class="built_in">Array</span>.isArray(item))) &#123;</span><br><span class="line">        arr = [].concat(...arr); </span><br><span class="line">        <span class="comment">//空数组连接扩展的参数队列(含数组)</span></span><br><span class="line">     &#125;</span><br><span class="line">      <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">console</span>.log(flatten(arr)); <span class="comment">//[1,2,3,4,5]</span></span><br></pre></td></tr></table></figure></li>
+<li><p>toString可以把数组直接转换成逗号分隔的字符串,再用<strong>JSON.parse</strong>转换为数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ary = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]], <span class="number">5</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> str = arr.toString();</span><br><span class="line">  str = <span class="string">&#x27;[&#x27;</span> + str + <span class="string">&#x27;]&#x27;</span>; <span class="comment">// 添加外部数组的 [ ]</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">JSON</span>.parse(str);<span class="comment">//再转换为数组</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(flatten(ary)); <span class="comment">// [1,2,3,4,5]</span></span><br></pre></td></tr></table></figure></li>
+<li><p>用JSON.stringify(arr)和replace(/([|])/g, ‘’)来代替toString</p>
+</li>
 </ol>
 <hr>
 <h3 id="String-的方法"><a href="#String-的方法" class="headerlink" title="String 的方法"></a>String 的方法</h3><ol>
@@ -731,18 +767,22 @@
 <li>Object.assign复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。( 浅拷贝 )</li>
 </ol>
 <ul>
-<li><p>箭头函数与普通函数的区别 :  </p>
+<li><p>箭头函数与普通函数的区别 :  ( <strong>捡的狗屁股啊</strong> )</p>
 <ol>
-<li><p>写法不一样</p>
+<li><p>语法更加简洁、清晰</p>
 </li>
-<li><p>普通函数的声明会被提前,箭头函数不会</p>
+<li><p>箭头函数this指向定义时的上下文( 箭头函数的外面的外面 ),作为方法时,箭头函数的this指向window对象; 普通函数的this指向调用者,且用call()只能传参不能改变this指向</p>
 </li>
 <li><p>构造函数不能使用箭头函数来声明,没有new.target</p>
 <p>( new.target是用来检测函数是否被当做构造函数使用，他会返回一个指向构造函数的引用。)</p>
 </li>
-<li><p>箭头函数this指向定义时的上下文( 箭头函数的外面的外面 ),作为方法时,箭头函数的this指向window对象; 普通函数的this指向调用者,且用call()只能传参不能改变this指向</p>
+<li><p>没有prototype</p>
+</li>
+<li><p>不能用作Generator函数</p>
 </li>
 <li><p>箭头函数的arguments指向其父级作用域的arguments</p>
+</li>
+<li><p>普通函数的声明会被提前,箭头函数不会</p>
 </li>
 </ol>
 </li>
@@ -853,7 +893,7 @@
 </ul>
 <hr>
 <h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><ul>
-<li><p>JS实现继承的6种方式</p>
+<li><p>JS实现继承的6种方式  ( 原神十连 计组师姐 )</p>
 <p>① 原型链继承           ②  原型式继承   ③ 寄生式继承   </p>
 <p>④ 寄生组合式继承   ⑤  组合继承       ⑥ 借用构造函数继承</p>
 </li>
