@@ -373,6 +373,24 @@ console.log(a) ; // &#123;Symbol(name): &quot;Kobe&quot;&#125;
 <li><p>iterator 遍历器，一种接口，为各种数据结构提供统一的访问机制</p>
 </li>
 </ul>
+<hr>
+<h3 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h3><ul>
+<li>内容优化<ul>
+<li>减少DOM数量,否则每次遍历DOM都久</li>
+<li><strong>懒加载</strong> : 先将img标签的src链接设为同一张图片（比如空白图片），然后给img标签设置自定义属性（比如 data-src）,然后将真正的图片地址存储在data-src中，当JS监听到该图片元素进入可视窗口时，将自定义属性中的地址存储到src属性中。达到懒加载的效果。</li>
+</ul>
+</li>
+<li>CSS优化<ul>
+<li>放body顶部</li>
+<li>合并成一个,减少HTTP请求</li>
+</ul>
+</li>
+<li>JS优化<ul>
+<li>放body底部</li>
+</ul>
+</li>
+<li>cookie优化</li>
+</ul>
 
       </section>
 

@@ -265,7 +265,7 @@
 </code></pre>
 <p>  //resolve(‘OK’);  //Promise {<fulfilled>: ‘OK’}<br>  reject(‘Error’);  //Promise {<rejected>: ‘Error’}<br>}))<br>p2.catch((reason) =&gt; { //Promise失败,处理结果<br>  console.log(reason);<br>})<br>console.log(p2);</p>
 </li>
-<li><p>Promise.resolve( )方法 :  永远返回一个失败的Promise对象</p>
+<li><p>Promise.reject( )方法 :  永远返回一个失败的Promise对象</p>
 <p> 传入什么参数,得到是 失败的且结果为那个参数的Promise对象</p>
 </li>
 <li><p>**Promise.all( )**方法 :  参数为包含n个promise的数组,返回结果为一个新的promise,<strong>只有参数中所有的promise都成功,结果promise才成功</strong>,此时PromiseResult中存放一个数组保存所有参数promise的结果。只要有一个失败,结果promise直接失败</p>

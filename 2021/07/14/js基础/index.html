@@ -160,6 +160,14 @@
 </li>
 <li><p>行内js   javascript : return void(null)  或者</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a onclick=<span class="string">&quot;javascript:return confirm(&#x27;您确定要删除吗？&#x27;)&quot;</span>&gt;纳尼&lt;/a&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>js标签的async和defer属性的区别 : 两者共同点都是使脚本异步加载</p>
+<ul>
+<li><p>defer 属性在文档解析完成后再执行这个脚本文件，这样的话就能使页面的渲染不被阻塞。多个设置了 defer 属性的脚本是顺序执行的</p>
+</li>
+<li><p>async 属性当脚本加载完成后立即执行js脚本，这个时候如果文档没有解析完成的话同样会阻塞。多个 async 属性的脚本的执行顺序是不可预测的，一般不会按照代码的顺序依次执行。</p>
+</li>
+</ul>
+</li>
 </ul>
 <hr>
 <h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><p>变量名可以是字母、下划线、$ 和 数字，但不能以数字开头。 (驼峰)</p>
@@ -836,6 +844,9 @@
 <ul>
 <li><p>对象的方法  ( 和属性不同 )</p>
 <p>Object.assign( )  : 用于对象的合并,将第一个参数后面的对象参数上的所有可枚举属性复制到第一个参数上</p>
+<p>Object.defineproperty(obj,’属性名’,{value,enumerable,writable,configurable,get(),set()} ) : 给对象添加属性并设置能否被枚举,修改,删除,</p>
+<p>//当有人读取该属性时,getter函数就会被调用,且返回值就是属性值(代替value,每次都是现取)</p>
+<p>//当有人修改该属性,setter函数就被调用,且会受到修改的值</p>
 </li>
 <li><p>解构</p>
 <ul>

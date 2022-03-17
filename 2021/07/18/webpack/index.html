@@ -158,6 +158,9 @@
 <hr>
 <h3 id="Webpack五个核心概念"><a href="#Webpack五个核心概念" class="headerlink" title="Webpack五个核心概念"></a>Webpack五个核心概念</h3><p>入口(Entry): 指示Webpack以哪个文件作为入口起点分析构建内部依赖图并进行打包。<br>输出(Output): 指示Webpack打包后的资源bundles输出到哪里去，以及如何命名。<br>加载器(Loader)： 让 webpack 能够去处理那些 webpack 默认不支持的(非JavaScript语言的)文件，<br>比如样式文件、图片文件等等（Webpack 本身默认只支持JS以及JSON文件）。<br>插件(Plugins): 可以执行范围更广阔的任务，包括打包优化，压缩代码以及重新定义环境变量等等。<br>模式(Mode)指示Webpack使用相应模式的配置。分为development和production两种模式，下面分别进行简述。<br>development: 开发模式，能让代码本地调试运行的环境。<br>production: 生产模式，能让代码优化运行的环境。</p>
 <hr>
+<h3 id="静态模块打包器"><a href="#静态模块打包器" class="headerlink" title="静态模块打包器"></a>静态模块打包器</h3><ul>
+<li>在index.js( 入口 )中,将js/css/less/img等资源引入,形成chunk ( 代码块 ),进行处理( 打包 ),然后输出,形成bundle,就可以被浏览器识别运行了</li>
+</ul>
 
       </section>
 

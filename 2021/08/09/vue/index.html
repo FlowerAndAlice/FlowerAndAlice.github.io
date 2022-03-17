@@ -140,14 +140,11 @@
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
         <h3 id="vue里的傻逼错误"><a href="#vue里的傻逼错误" class="headerlink" title="vue里的傻逼错误"></a>vue里的傻逼错误</h3><ul>
-<li><p>new Vue({}) 大括号在小括号里!</p>
-</li>
-<li><p>click 不要打错成cilck!!!(离谱)(我是啥b)</p>
-</li>
-<li><p>在使用computed时,将price写成prive导致一直报错但找不到错误(乌鱼子)</p>
-</li>
-<li><p>在后台获取index时,把params打成parms !</p>
-</li>
+<li>new Vue({}) 大括号在小括号里!</li>
+<li>click 不要打错成cilck!!!(离谱)(我是啥b)</li>
+<li>在使用computed时,将price写成prive导致一直报错但找不到错误(乌鱼子)</li>
+<li>在后台获取index时,把params打成parms !</li>
+<li>有时vue一直报红,将右下角的HTML改为Vue模式即可</li>
 </ul>
 <hr>
 <h3 id="vue引入"><a href="#vue引入" class="headerlink" title="vue引入"></a>vue引入</h3><ol>
@@ -203,9 +200,34 @@
 </ul>
 <hr>
 <h3 id="组件化开发"><a href="#组件化开发" class="headerlink" title="组件化开发"></a>组件化开发</h3><ul>
-<li>以vue为后缀的文件时vue 的单文件组件</li>
-<li>组件可以理解为一个 可以自定义的, 有更强大功能的标签</li>
-<li>开发web项目时,其实就是在编写和组装这些组件</li>
+<li><p>传统HTML+CSS+JS 的问题: </p>
+<ul>
+<li>一个界面的功能太复杂,依赖关系混乱,不好维护</li>
+<li>代码复用率不高</li>
+</ul>
+</li>
+<li><p>就产生了组件 – 实现应用中<strong>局部</strong>功能<strong>代码</strong>( HTML,CSS.JS )和<strong>资源</strong>(音视频)的<strong>集合</strong>,提高代码复用率、且让代码更好维护</p>
+</li>
+<li><p>以vue为后缀的文件时vue 的单文件组件</p>
+</li>
+<li><p>组件可以理解为一个 可以自定义的, 有更强大功能的标签</p>
+</li>
+<li><p>开发web项目时,其实就是在编写和组装这些组件</p>
+</li>
+<li><p><strong>模块化</strong> : 当应用中的JS都用不同的模块来编写,那这个应用就是个模块化的应用 ( 比如my.js -&gt;  a.js + b.js +c.js)</p>
+</li>
+<li><p>如何使用组件:</p>
+<ul>
+<li><p>创建组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Wife = Vue.extend(&#123;</span><br><span class="line">    <span class="attr">template</span>: <span class="string">` &lt;div&gt;6&lt;/div&gt;`</span>,<span class="comment">//配置组件结构</span></span><br><span class="line">      <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;    <span class="comment">//写成函数,避免多组件的数据污染</span></span><br><span class="line">        <span class="keyword">return</span> &#123;&#125;         </span><br><span class="line">&#125;&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>注册组件( 局部注册 ),在new Vue实例的component<strong>s</strong>中:{Wife};  </p>
+</li>
+<li><p>全局注册 : Vue.component(‘组件名’, 组件地址); </p>
+</li>
+<li><p>使用组件 ( 编写组件标签 )</p>
+</li>
+</ul>
+</li>
 </ul>
 <hr>
 <h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ul>
@@ -213,9 +235,9 @@
 </li>
 <li><p>v-if和v-show都能控制元素的显示与隐藏</p>
 </li>
-<li><p>v-if=’false’：<strong>不会渲染DOM</strong>，查看元素不可见。</p>
+<li><p>v-if=’false’：<strong>不会渲染DOM</strong>，查看元素不可见。(适用单次变化)</p>
 </li>
-<li><p>v-show=’false’：<strong>会</strong>渲染DOM，查看元素可见，但是样式为<strong>display:none</strong>;</p>
+<li><p>v-show=’false’：<strong>会</strong>渲染DOM，查看元素可见，但是样式为<strong>display:none</strong>;  ( 适用多次变化 )</p>
 </li>
 <li><p>v-for显示列表: 哪个要循环就把v-for写在哪个标签里</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr v-<span class="keyword">for</span>=<span class="string">&quot;(v,i) of students&quot;</span> :key=<span class="string">&quot;i&quot;</span>&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;v.name&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;i&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;v.age&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure></li>
@@ -238,7 +260,7 @@
 </li>
 <li><p>子级向父级传值: 父级在app.vue内的子级的调用标签,添加自定义事件,比如 @myEvent=”changeData” ,然后在别的html标签内定义要传的值的表达式,比如 <code>&lt;h3&gt;&#123;&#123;childData&#125;&#125;&lt;/h3&gt;</code> ,随后在data内初始化要传的值,为空串!</p>
 </li>
-<li><p>来到子级,先给传参绑定一个click事件,在该事件内,this.$emit(“myEvent”, this.childData) 把数据传到父级<br>即可将子级的数据传到父级内的自定义事件的参数</p>
+<li><p>来到子级,先给传参的按钮绑定一个click事件,在该事件内,this.$emit(“myEvent”, this.childData) 把数据传到父级<br>即可将子级的数据传到父级内的自定义事件的参数</p>
 </li>
 <li><p>最后在父级的自定义事件把参数传到data里</p>
 </li>
@@ -294,7 +316,7 @@
 </ul>
 <hr>
 <h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><ul>
-<li>不应该在模板中放入太多的逻辑,故对于<strong>复杂逻辑</strong>,需要使用计算属性<br>(多个值变化为了得到一个值,此时用计算属性) (为了得到一个值)</li>
+<li>不应该在模板中放入太多的逻辑,故对于<strong>复杂逻辑</strong>,需要使用计算属性,得到的是computed(<strong>一个对象</strong>)中totalPrice函数的返回值<br>(多个值变化为了得到一个值,此时用计算属性) (为了得到一个值)</li>
 <li>计算属性: computed里的函数的返回值</li>
 </ul>
 <hr>
@@ -305,6 +327,21 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">          <span class="string">&#x27;$route.path&#x27;</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="built_in">this</span>.username = <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;usr&quot;</span>);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
 
 <p>即可实现即时切换值</p>
+<hr>
+<h3 id="计算属性computed和侦听器watch对比"><a href="#计算属性computed和侦听器watch对比" class="headerlink" title="计算属性computed和侦听器watch对比"></a>计算属性computed和侦听器watch对比</h3><ul>
+<li><p><strong>一个值得变化会影响多个值</strong>( 或处理多件事 ),使用侦听器<strong>watch</strong></p>
+<ul>
+<li><p>比如 草帽海贼团(变化) +( 影响 )索隆/娜美/乔巴</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    <span class="attr">haiZeiTuan_Name</span>: <span class="function"><span class="keyword">function</span> (<span class="params">newName</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.suoLong = newName + <span class="string">&#x27;索隆&#x27;</span></span><br><span class="line">      <span class="built_in">this</span>.naMei = newName + <span class="string">&#x27;娜美&#x27;</span></span><br><span class="line">      <span class="built_in">this</span>.xiangJiShi = newName + <span class="string">&#x27;香吉士&#x27;</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>.suoLong)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>.naMei)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>.xiangJiShi)</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>多个值的改变,为了得到一个结果</strong>,使用计算属性<strong>computed</strong></p>
+<ul>
+<li><p>比如路飞的全名 : <em>蒙奇·D·路飞</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    <span class="attr">luFei_Name</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>.firstName + <span class="built_in">this</span>.secName + <span class="built_in">this</span>.thirdName</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
 <hr>
 <h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
 <li><p>每个vue实例在被创建时(new Vue)都要经过一系列的初始化过程,<br>也会默认调用一些(vue内置定义的)函数,这些函数就是vue的生命周期函数(钩子)</p>
@@ -369,6 +406,10 @@
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> ElementUI <span class="keyword">from</span> <span class="string">&#x27;element-ui&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  <span class="attr">render</span>: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
+<hr>
+<h3 id="Vue面经"><a href="#Vue面经" class="headerlink" title="Vue面经"></a>Vue面经</h3><ul>
+<li>data为什么是个函数: 防止多组件之间数据污染,写成函数的话,每次调用返回一份写的data,有自己的作用域</li>
+</ul>
 
       </section>
 
