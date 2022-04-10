@@ -139,7 +139,7 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="vue里的傻逼错误"><a href="#vue里的傻逼错误" class="headerlink" title="vue里的傻逼错误"></a>vue里的傻逼错误</h3><ul>
+        <h4 id="vue里的傻逼错误"><a href="#vue里的傻逼错误" class="headerlink" title="vue里的傻逼错误"></a>vue里的傻逼错误</h4><ul>
 <li>new Vue({}) 大括号在小括号里!</li>
 <li>click 不要打错成cilck!!!(离谱)(我是啥b)</li>
 <li>在使用computed时,将price写成prive导致一直报错但找不到错误(乌鱼子)</li>
@@ -150,6 +150,11 @@
 <h3 id="vue引入"><a href="#vue引入" class="headerlink" title="vue引入"></a>vue引入</h3><ol>
 <li>script的src属性引入Vue.js文件  ,   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script></li>
 <li>使用node环境,构建基于Vue的web项目 (一般项目开发采用这种)</li>
+<li>命名 : <ul>
+<li>my-wife.vue</li>
+<li>MyWife.vue ( 常用 )</li>
+</ul>
+</li>
 </ol>
 <hr>
 <h3 id="Vue的特点"><a href="#Vue的特点" class="headerlink" title="Vue的特点"></a>Vue的特点</h3><ol>
@@ -159,106 +164,82 @@
 <li>MVVM框架中Vue作为ViewModel进行<strong>Data bindings</strong>(数据绑定)和<strong>DOM Listener</strong>(DOM监听)( 发生事件时鉴定到且有时会改变相应Data )</li>
 </ol>
 <hr>
-<h3 id="引入Vue-js"><a href="#引入Vue-js" class="headerlink" title="引入Vue.js"></a>引入Vue.js</h3><ul>
-<li><p>把js里的数据添加到DOM里,<strong>之前</strong>是先获取DOM节点(document.querySelector)再操作节点</p>
-</li>
-<li><p>一个vue程序最基本的<strong>结构</strong>：</p>
-</li>
-</ul>
-<p>首先，我们在html中定义了一个id为app的<strong>容器</strong>，然后我们在js创建一个Vue的<strong>实例</strong></p>
-<blockquote>
-<p>①  <strong>el</strong> :   string | HTMLelement     将vue挂载到html ( 决定vue实例管理哪一个DOM ) </p>
-<p>②  <strong>data</strong>  :   Object | Function    Vue实例对应的数据对象</p>
-<p>③  <strong>methods</strong>  :  {[keys : string] : Function }</p>
-</blockquote>
-<p>​        </p>
-<hr>
-<h3 id="vue中的前端依赖"><a href="#vue中的前端依赖" class="headerlink" title="vue中的前端依赖"></a>vue中的前端依赖</h3><ol>
-<li>axios ：  cnpm install –save axios </li>
+<h3 id="MVVM模型"><a href="#MVVM模型" class="headerlink" title="MVVM模型"></a>MVVM模型</h3><ol>
+<li> M : 模型( Model ) : data中的数据</li>
+<li>  V : 视图( View ) : 模板代码</li>
+<li> VM : 视图模型( ViewModel ) : Vue实例  </li>
 </ol>
 <hr>
-<h3 id="绑定文本"><a href="#绑定文本" class="headerlink" title="绑定文本"></a>绑定文本</h3><ul>
-<li><p>data属性: 在Vue的实例之下添加属性</p>
+<h3 id="指令语法"><a href="#指令语法" class="headerlink" title="指令语法"></a>指令语法</h3><ul>
+<li><p>功能：用于解析标签（包括：标签属性、标签体内容、绑定事件…..）。</p>
 </li>
-<li><p><strong>&#123;&#123;&#125;&#125;</strong>: 可以输入一个<strong>表达式</strong>,也可以直接获取Vue实例的值</p>
-</li>
-<li><p>能将vue实例里data中的message属性通过双花括号显示在文本节点之中，</p>
-</li>
-</ul>
-<hr>
-<h3 id="绑定属性"><a href="#绑定属性" class="headerlink" title="绑定属性"></a>绑定属性</h3><ul>
-<li>还能将数据绑定成为一个html属性(vue实例里data中的message属性)，使用【<strong>v-bind</strong>:属性名】和【:属性名】两种方式都可以<strong>绑定属性</strong>，在实际开发中，我们通常使用简写。</li>
-</ul>
-<hr>
-<h3 id="绑定事件"><a href="#绑定事件" class="headerlink" title="绑定事件"></a>绑定事件</h3><ul>
-<li><p>在vue实例中可以设置methods属性为vue的示例添加方法，这些方法我可以直接被调用，也可以绑定为<strong>事件</strong></p>
-</li>
-<li><p>使用【<strong>v-on</strong>:事件类型】和【@事件类型】两种方式都可以为元素绑定事件，在实际开发中，通常使用简写。</p>
-</li>
-<li><p>在methods中通过this.属性 可获取data中设置的属性</p>
-</li>
-</ul>
-<hr>
-<h3 id="组件化开发"><a href="#组件化开发" class="headerlink" title="组件化开发"></a>组件化开发</h3><ul>
-<li><p>传统HTML+CSS+JS 的问题: </p>
-<ul>
-<li>一个界面的功能太复杂,依赖关系混乱,不好维护</li>
-<li>代码复用率不高</li>
-</ul>
-</li>
-<li><p>就产生了组件 – 实现应用中<strong>局部</strong>功能<strong>代码</strong>( HTML,CSS.JS )和<strong>资源</strong>(音视频)的<strong>集合</strong>,提高代码复用率、且让代码更好维护</p>
-</li>
-<li><p>以vue为后缀的文件时vue 的单文件组件</p>
-</li>
-<li><p>组件可以理解为一个 可以自定义的, 有更强大功能的标签</p>
-</li>
-<li><p>开发web项目时,其实就是在编写和组装这些组件</p>
-</li>
-<li><p><strong>模块化</strong> : 当应用中的JS都用不同的模块来编写,那这个应用就是个模块化的应用 ( 比如my.js -&gt;  a.js + b.js +c.js)</p>
-</li>
-<li><p>如何使用组件:</p>
-<ul>
-<li><p>创建组件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Wife = Vue.extend(&#123;</span><br><span class="line">    <span class="attr">template</span>: <span class="string">` &lt;div&gt;6&lt;/div&gt;`</span>,<span class="comment">//配置组件结构</span></span><br><span class="line">      <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;    <span class="comment">//写成函数,避免多组件的数据污染</span></span><br><span class="line">        <span class="keyword">return</span> &#123;&#125;         </span><br><span class="line">&#125;&#125;);</span><br></pre></td></tr></table></figure></li>
-<li><p>注册组件( 局部注册 ),在new Vue实例的component<strong>s</strong>中:{Wife};  </p>
-</li>
-<li><p>全局注册 : Vue.component(‘组件名’, 组件地址); </p>
-</li>
-<li><p>使用组件 ( 编写组件标签 )</p>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ul>
 <li><p>指令(directives)是带有<code>v-</code>前缀的特殊属性,v-bind:(简写:)(绑定属性)和v-on:(简写@)(绑定事件)都是指令</p>
 </li>
+</ul>
+<hr>
+<h4 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h4><ul>
 <li><p>v-if和v-show都能控制元素的显示与隐藏</p>
 </li>
 <li><p>v-if=’false’：<strong>不会渲染DOM</strong>，查看元素不可见。(适用单次变化)</p>
 </li>
-<li><p>v-show=’false’：<strong>会</strong>渲染DOM，查看元素可见，但是样式为<strong>display:none</strong>;  ( 适用多次变化 )</p>
+<li><p>v-show=’false’：<strong>会</strong>渲染DOM，查看元素可见，但是样式为<strong>display:none</strong>;  ( 适用多次变化 )  ( 高频变化 )</p>
 </li>
-<li><p>v-for显示列表: 哪个要循环就把v-for写在哪个标签里</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr v-<span class="keyword">for</span>=<span class="string">&quot;(v,i) of students&quot;</span> :key=<span class="string">&quot;i&quot;</span>&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;v.name&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;i&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;v.age&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>```js</p>
+<div v-if="n===1">Baal</div>
+<div v-else-if="n===1">Yoimiya</div>
+<div v-else-if="n===3">Klee</div>
+<div v-else-if="n===4">Cocomi</div>
+<div v-else>都是我的</div>
+//v-else(-if)配合v-if,需连续使用,4个div紧紧相连
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* template只能配合v-if使用,渲染时会脱去template的外衣</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">### 渲染列表</span><br><span class="line"></span><br><span class="line">* v-for显示列表: 哪个要循环就把v-for写在哪个标签里</span><br><span class="line"></span><br><span class="line">  ```js</span><br><span class="line">  &lt;tr v-for=&quot;(v,i) of students&quot; :key=&quot;i&quot;&gt;  ((vi蔚))</span><br><span class="line">  &lt;td&gt;&#123;&#123;v.name&#125;&#125;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&#123;&#123;i&#125;&#125;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&#123;&#123;v.age&#125;&#125;&lt;/td&gt;</span><br><span class="line">  &lt;/tr&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>可遍历: 数组 (用的多),对象,字符串,指定次数(从1开始)</p>
+</li>
+<li><p>使用for循环就必须使用:key绑定每项的唯一标识</p>
+</li>
+</ul>
+<h4 id="key的作用与原理"><a href="#key的作用与原理" class="headerlink" title="key的作用与原理"></a>key的作用与原理</h4><ul>
+<li><p>虚拟DOM中key的作用:</p>
+<ul>
+<li><p>key是虚拟DOM对象的标识, 当状态中的数据发生变化时, Vue会根据 <strong>新数据</strong> 生成 <strong>新的虚拟DOM</strong> ,       随后Vue进行<strong>新虚拟DOM</strong> 与 <strong>旧虚拟DOM</strong>的差异比较</p>
+</li>
+<li><p>比较规则:</p>
+<ul>
+<li>旧虚拟DOM中找到了与新虚拟DOM相同的key:<ol>
+<li>虚拟DOM中内容没变的节点,直接使用之前的真实DOM!</li>
+<li>虚拟DOM中内容改变了的节点,则生成新的真实DOM,随后替换掉页面中之前的真实DOM</li>
+</ol>
+</li>
+<li>旧虚拟DOM中未找到与新虚拟DOM相同的key:<ul>
+<li>创建新的真实DOM,随后渲染到页面</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>用index作为key可能会引发的问题：</p>
+<ul>
+<li><p>若对数据进行：逆序添加、逆序删除等破坏顺序操作:会产生没有必要的真实DOM更新 ==&gt; 界面效果没问题, 但效率低。</p>
+</li>
+<li><p>如果结构中还包含输入类的DOM：</p>
+<p>会产生错误DOM更新 ==&gt; 界面有问题。</p>
+</li>
+</ul>
+</li>
+<li><p>开发中如何选择key?:</p>
+<ul>
+<li><p>最好使用每条数据的唯一标识作为key, 比如id、手机号、身份证号、学号等唯一值。</p>
+</li>
+<li><p>如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表用于展示，使用index作为key是没有问题的。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <hr>
-<h3 id="组件嵌套"><a href="#组件嵌套" class="headerlink" title="组件嵌套"></a>组件嵌套</h3><ul>
-<li><p>自定义组件一般在components目录中创建，采用<strong>大写字母开头</strong>+驼峰命名法。</p>
+<h4 id="插值语法"><a href="#插值语法" class="headerlink" title="插值语法"></a>插值语法</h4><ul>
+<li><p>data属性: 在Vue的实例之下添加属性</p>
 </li>
-<li><p>注意注册组件时不要把co<strong>m</strong>ponents打错! 使用下面代码可引入当前组件</p>
-</li>
-</ul>
-<blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Genshin <span class="keyword">from</span> <span class="string">&quot;./components/Genshin.vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> Impact <span class="keyword">from</span> <span class="string">&quot;./components/Impact.vue&quot;</span>;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">//注册组件</span></span><br><span class="line">    <span class="attr">components</span>: &#123;</span><br><span class="line">        Genshin,</span><br><span class="line">        Impact,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<hr>
-<h3 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h3><ul>
-<li><p>父级向子级传值: 在app.vue 的data内写一个属性1 meessage,在子级的调用标签,添加 :属性2=”属性1”,在子级组件export内 通过 props: [“属性2”],(注意此处有引号) 之后即可通过&#123;&#123;属性2&#125;&#125;使用该值</p>
-</li>
-<li><p>插槽: (可自定义button等 )在父组件调用子组件的标签里通过template标签的v-slot属性可在定义对应子组件的slot对应name的插槽里自定义html内容</p>
-</li>
-<li><p>子级向父级传值: 父级在app.vue内的子级的调用标签,添加自定义事件,比如 @myEvent=”changeData” ,然后在别的html标签内定义要传的值的表达式,比如 <code>&lt;h3&gt;&#123;&#123;childData&#125;&#125;&lt;/h3&gt;</code> ,随后在data内初始化要传的值,为空串!</p>
+<li><p>&lt;!–swig￼20–&gt;</h3>` ,随后在data内初始化要传的值,为空串!</p>
 </li>
 <li><p>来到子级,先给传参的按钮绑定一个click事件,在该事件内,this.$emit(“myEvent”, this.childData) 把数据传到父级<br>即可将子级的数据传到父级内的自定义事件的参数</p>
 </li>
@@ -275,7 +256,7 @@
 </li>
 </ul>
 <hr>
-<h3 id="非父子级组件传值"><a href="#非父子级组件传值" class="headerlink" title="非父子级组件传值"></a>非父子级组件传值</h3><ul>
+<h4 id="非父子级组件传值"><a href="#非父子级组件传值" class="headerlink" title="非父子级组件传值"></a>非父子级组件传值</h4><ul>
 <li>在src目录中创建一个store.js文件用来统一存储数据</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">      <span class="attr">message</span>: <span class="string">&quot;pray to get Baal&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">setStateMessage</span>(<span class="params">str</span>)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.state.message = str;</span><br><span class="line">    &#125;&#125;</span><br></pre></td></tr></table></figure>
@@ -290,6 +271,17 @@
 <li>通过doc.query..获取真实DOM之后,通过window.getComputedStyle(节点) 可获取节点样式并进行操作</li>
 <li>但vue提供了<strong>新的获取DOM节点的方法</strong> (注意这里是虚拟DOM)<br>(给节点绑定一个属性叫ref,然后通过let box=this.$refs.ref的值,即可获取到节点)</li>
 </ul>
+<hr>
+<h3 id="绑定class样式"><a href="#绑定class样式" class="headerlink" title="绑定class样式"></a>绑定class样式</h3><ol>
+<li><p>字符串写法,   适用于: 样式的<strong>类名不确定</strong>,需要动态指定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;basic&quot;</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;mysty&quot;</span> @click=<span class="string">&quot;changeSty&quot;</span>&gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;</span><br><span class="line"><span class="comment">//methods的chanSty函数中修改属性mysty</span></span><br></pre></td></tr></table></figure></li>
+<li><p>数组写法,适用于 : 要绑定的样式<strong>个数不确定、名字也不确定</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;basic&quot;</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;classArr&quot;</span>&gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;</span><br><span class="line"><span class="comment">//然后在data中添加修改</span></span><br><span class="line"><span class="comment">//classArr: [&quot;mysty1&quot;, &quot;mysty2&quot;, &quot;mysty3&quot;],</span></span><br></pre></td></tr></table></figure></li>
+<li><p>对象写法,用于: 要绑定的样式、名字都确定,要<strong>动态决定用不用</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;basic&quot;</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;classObj&quot;</span>&gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;</span><br><span class="line"><span class="comment">//然后在data中选择用不用</span></span><br><span class="line">classObj: &#123; <span class="attr">mysty1</span>: <span class="literal">false</span>,<span class="attr">mysty2</span>: <span class="literal">true</span>, <span class="attr">mysty3</span>: <span class="literal">true</span>, &#125;,</span><br></pre></td></tr></table></figure></li>
+<li><p>总结: 不变的样式放在class属性里,动态变化的样式通过**:class**绑定到Vue里边</p>
+</li>
+</ol>
 <hr>
 <h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><ul>
 <li><p>通过在export default内的filters:{}, 可自定义过滤器函数,用于一些常见的<strong>文本格式化</strong></p>
@@ -315,30 +307,123 @@
 <li>通过localStorage.clear();可实现将本地存储值清空</li>
 </ul>
 <hr>
-<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><ul>
-<li>不应该在模板中放入太多的逻辑,故对于<strong>复杂逻辑</strong>,需要使用计算属性,得到的是computed(<strong>一个对象</strong>)中totalPrice函数的返回值<br>(多个值变化为了得到一个值,此时用计算属性) (为了得到一个值)</li>
-<li>计算属性: computed里的函数的返回值</li>
+<h3 id="Vue监测数据"><a href="#Vue监测数据" class="headerlink" title="Vue监测数据"></a>Vue监测数据</h3><ul>
+<li><p>Vue会监视data中<strong>所有层次</strong>的数据</p>
+</li>
+<li><p>如何<strong>监测对象</strong>中的数据</p>
+<ul>
+<li>通过setter实现监视,且要在new Vue时就传入要监测的数据<ul>
+<li>对象中后追加的属性, Vue默认不做响应式处理</li>
+<li>如需给对象中后添加的属性做响应式,请使用如下API<ol>
+<li>Vue.set( target, “键名”, 键值 )  </li>
+<li>vm.$set( target, “键名”, 键值 )  </li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何<strong>监测数组</strong>中的数据</p>
+<ul>
+<li>通过包裹数组更新元素的方法实现,本质就是做了两件事<ul>
+<li>调用原生对应的方法对数组进行更新(改变原数组)</li>
+<li>重新解析模板,进而更新页面</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在Vue中修改数组的某个元素( 尤其是对象元素 ) 要用如下方法</p>
+<ul>
+<li>API: push()、shift() 、unshift() 、splice() 、reverse() 、sort()</li>
+<li>Vue.set( ) 或 vm.$set( )</li>
+</ul>
+</li>
+<li><p>注意: Vue.set( ) 及 vm.$set( ) 只能给响应式对象添加属性</p>
+<p>所以不能直接用在vm 或 vm的跟数据对象(vm._data )上</p>
+</li>
 </ul>
 <hr>
-<h3 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h3><ul>
-<li>在watch里写一个变量同名的函数,自带的形参即为变量变化后的值<br>(一个值变化影响多个值,此时用监听器) (为了观察一个值)</li>
+<h4 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h4><ul>
+<li>定义: 需要的属性不在data中,要通过已有的属性计算得来</li>
+<li>原理: 底层借助了Object.defineProperty方法提供的getter和setter    </li>
+<li>computed里的函数(getter)什么时候调用?<ol>
+<li>初次读取该计算属性时</li>
+<li>所依赖的数据发生变化时</li>
+</ol>
+</li>
+<li>优势: 与mothods相比,内部有缓存机制( 复用 ),效率高,方便调试</li>
+<li>不应该在模板中放入太多的逻辑,故对于<strong>复杂逻辑</strong>,需要使用计算属性,得到的是computed(<strong>一个对象</strong>)中totalPrice函数的返回值<br>(多个值变化为了得到一个值,此时用计算属性) (为了得到一个值)</li>
+<li>computed中的属性会被执行后,最终返回结果会出现在vm上,故通过直接读取即可</li>
+<li>备注: <ol>
+<li>computed里的函数的this指向vue实例</li>
+<li>如果要修改计算属性,必去通过set函数去响应修改,且set中要引起计算时依赖的数据发生改动</li>
+<li>不需要setter时简写为totalPrice(){ … }</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h4 id="监视属性watch"><a href="#监视属性watch" class="headerlink" title="监视属性watch"></a>监视属性watch</h4><ul>
+<li>当被监视的属性变化时,回调函数自动调用,进行相关操作</li>
+<li>监视的属性必须存在,才能进行监视! ( 还能监视计算属性 )</li>
+<li>监视的两种写法:<ul>
+<li>new Vue时传入watch配置</li>
+<li>通过vm.$watch监视,(监视对象写在<strong>引号内</strong>)</li>
+</ul>
+</li>
+<li>在watch里写一个变量同名的函数,自带的形参即为变量变化后的值,第二个是变化前的值,(省略了immediate和deep)<br>(一个值变化影响多个值,此时用监听器) (为了观察一个值)</li>
 <li>在路由切换时,会无法立即改变变量值,(因为与a标签的刷新不同)<br>通过 </li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">          <span class="string">&#x27;$route.path&#x27;</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="built_in">this</span>.username = <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;usr&quot;</span>);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
 
 <p>即可实现即时切换值</p>
 <hr>
-<h3 id="计算属性computed和侦听器watch对比"><a href="#计算属性computed和侦听器watch对比" class="headerlink" title="计算属性computed和侦听器watch对比"></a>计算属性computed和侦听器watch对比</h3><ul>
-<li><p><strong>一个值得变化会影响多个值</strong>( 或处理多件事 ),使用侦听器<strong>watch</strong></p>
-<ul>
-<li><p>比如 草帽海贼团(变化) +( 影响 )索隆/娜美/乔巴</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    <span class="attr">haiZeiTuan_Name</span>: <span class="function"><span class="keyword">function</span> (<span class="params">newName</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.suoLong = newName + <span class="string">&#x27;索隆&#x27;</span></span><br><span class="line">      <span class="built_in">this</span>.naMei = newName + <span class="string">&#x27;娜美&#x27;</span></span><br><span class="line">      <span class="built_in">this</span>.xiangJiShi = newName + <span class="string">&#x27;香吉士&#x27;</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>.suoLong)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>.naMei)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>.xiangJiShi)</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<h5 id="深度监视"><a href="#深度监视" class="headerlink" title="深度监视"></a>深度监视</h5><ul>
+<li>Vue中的watch默认不检测对象内部值的改变( 监测的是地址 )</li>
+<li>配置deep:true可以监测对象内部值的改变( 多层 ) </li>
+<li>备注: <ul>
+<li>vue自身可以监测到对象内部值的变化,但Vue提供的watch默认不可以!</li>
+<li>使用watch时根据数据的具体结果,决定是否采用深度监视</li>
+<li>当watch里不需要配置immediate和deep时,可以简写</li>
 </ul>
 </li>
-<li><p><strong>多个值的改变,为了得到一个结果</strong>,使用计算属性<strong>computed</strong></p>
+</ul>
+<hr>
+<h4 id="计算属性computed和侦听器watch对比"><a href="#计算属性computed和侦听器watch对比" class="headerlink" title="计算属性computed和侦听器watch对比"></a>计算属性computed和侦听器watch对比</h4><ul>
+<li><p><strong>多个值的改变,为了得到一个结果</strong>,使用计算属性<strong>computed</strong>        (别人变化影响自己) (由data中的已知值得到一个新的值)</p>
 <ul>
 <li><p>比如路飞的全名 : <em>蒙奇·D·路飞</em></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    <span class="attr">luFei_Name</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>.firstName + <span class="built_in">this</span>.secName + <span class="built_in">this</span>.thirdName</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>要计算的属性会随着其依赖的data中属性变化而变化，只要依赖的属性改变，就会执行computed，若无改变，则直接从缓存中取值</p>
+</li>
+<li><p>支持缓存，只有依赖数据发生改变，才会重新进行计算</p>
+</li>
+<li><p>不支持异步，当computed内有异步操作时无效，无法监听数据的变化</p>
+</li>
+<li><p>computed 属性值会默认走缓存</p>
+</li>
+<li><p>只需要getter时,才可以简写为函数形式</p>
+</li>
+</ul>
+</li>
+<li><p><strong>一个值得变化会影响多个值</strong>( 或处理多件事 ),使用侦听器<strong>watch</strong></p>
+<ul>
+<li><p>比如 草帽海贼团(变化) +( 影响 )索隆/娜美/乔巴</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    <span class="attr">haiZeiTuan_Name</span>: <span class="function"><span class="keyword">function</span> (<span class="params">newName</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.suoLong = newName + <span class="string">&#x27;索隆&#x27;</span></span><br><span class="line">      <span class="built_in">this</span>.naMei = newName + <span class="string">&#x27;娜美&#x27;</span></span><br><span class="line">      <span class="built_in">this</span>.xiangJiShi = newName + <span class="string">&#x27;香吉士&#x27;</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>.suoLong)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>.naMei)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>.xiangJiShi)</span><br><span class="line">    &#125;</span><br><span class="line"> &#125; <span class="comment">//自己变化影响别人</span></span><br></pre></td></tr></table></figure></li>
+<li><p>不支持缓存，数据变，直接会触发相应的操作；</p>
+</li>
+<li><p>watch支持异步；</p>
+</li>
+<li><p>监听的函数接收两个参数，第一个参数是最新的值；第二个参数是输入之前的值；</p>
+</li>
+<li><p>监听的是这个属性自身的变化，且不会操作缓存</p>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>computed能完成的功能,watch都能完成</li>
+<li>watch能完成的,computed不一定能完成,例如异步操作</li>
+<li>注意: 被Vue管理的函数,最好写成普通函数,这样this才指向vm或者组件实例对象</li>
+<li>不被Vue管理的函数( 定时器的回调,ajax的回调函数等 ) ,最好写成箭头函数,这样this的指向又回到vm/组件实例了</li>
 </ul>
 </li>
 </ul>
@@ -410,6 +495,38 @@
 <h3 id="Vue面经"><a href="#Vue面经" class="headerlink" title="Vue面经"></a>Vue面经</h3><ul>
 <li>data为什么是个函数: 防止多组件之间数据污染,写成函数的话,每次调用返回一份写的data,有自己的作用域</li>
 </ul>
+<hr>
+<h3 id="Vue启动"><a href="#Vue启动" class="headerlink" title="Vue启动"></a>Vue启动</h3><ul>
+<li><p>执行完npm run serve 后, 会运行src中的main.js, 该文件是整个项目的入口文件,随后import引入Vue和App组件, </p>
+<ul>
+<li><p>assets文件夹 : 放静态资源( jpg,png,mp4 )</p>
+</li>
+<li><p>components : 放弟弟组件</p>
+</li>
+<li><p>App.vue : 大哥组件, 在外面</p>
+</li>
+<li><p>在index.html中引入public文件夹里的东西时,&lt;%= BASE_URL %&gt;来代替./</p>
+</li>
+<li><p>main.js中的new Vue里的配置项render是一个函数,它会被vue调用,</p>
+</li>
+<li><p>```js<br>render:(createElement)=&gt; {</p>
+<pre><code>return createElement(&#39;h1&#39;, &#39;Baal 来咯&#39;)
+</code></pre>
+<p>}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">* 我们平时使用的Vue包含 [核心](生命周期,处理事件 等) + [模板解析器](template) </span><br><span class="line"></span><br><span class="line">  * 但是使用webpack打包后,已经不再需要模板解析器,故开发时使用运行时 [Vue.js](不包含模板解析器) + [render](能创建具体元素)</span><br><span class="line"></span><br><span class="line">    * .vue.js是完整版的Vue,包含 核心功能+模板解析器</span><br><span class="line">    * .vue.runtime.xxx.js是运行版的Vue,只包含核心功能,所以在main.js中不能使用template配置项,需要使用**render函数接收到指定的createElement函数去指定具体内容**</span><br><span class="line">    * 组件中的template标签通过引入的&quot;vue-template-compiler&quot;来解析即可</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">### vue.config.js配置文件</span><br><span class="line"></span><br><span class="line">1. 使用vue inspect &gt; output.js可以查看到Vue脚手架的默认配置。</span><br><span class="line">2. 使用vue.config.js可以对脚手架进行个性化定制，详情见：https://cli.vuejs.org/zh</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  pages: &#123;</span><br><span class="line">    index: &#123;</span><br><span class="line">      // page 的入口</span><br><span class="line">      entry: &#x27;src/index/main.js&#x27;,</span><br><span class="line">      // 模板来源</span><br><span class="line">      template: &#x27;public/index.html&#x27;,</span><br><span class="line">      // 在 dist里的输出</span><br><span class="line">      filename: &#x27;index.html&#x27;,</span><br><span class="line">      // 当使用 title 选项时，</span><br><span class="line">      // template 中的 title 标签需要是 &lt;title&gt;&lt;%= htmlWebpackPlugin.options.title %&gt;&lt;/title&gt;</span><br><span class="line">      title: &#x27;Index Page&#x27;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="ref属性"><a href="#ref属性" class="headerlink" title="ref属性"></a>ref属性</h3><ol>
+<li>被用来给元素或子组件 注册引用信息（id的替代者）</li>
+<li>应用在html标签上获取的是真实DOM元素，应用在组件标签上是组件实例对象（vc）</li>
+<li>使用方式：<ol>
+<li>打标识：<code>&lt;h1 ref=&quot;xxx&quot;&gt;.....&lt;/h1&gt;</code> 或 <code>&lt;School ref=&quot;xxx&quot;&gt;&lt;/School&gt;</code></li>
+<li>获取：<code>this.$refs.xxx</code> </li>
+</ol>
+</li>
+</ol>
 
       </section>
 

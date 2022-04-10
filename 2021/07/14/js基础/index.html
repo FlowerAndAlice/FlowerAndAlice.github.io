@@ -233,8 +233,7 @@
 <p>声明本身会被提升，而包括函数表达式的赋值在内的赋值操作并不会提升。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="number">1</span> ); </span><br><span class="line">&#125;</span><br><span class="line">foo(); <span class="comment">// 1 </span></span><br><span class="line">foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="number">2</span> ); </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>注意，var foo 尽管出现在 function foo()… 的声明之前，但它是重复的声明（因此被忽 </p>
-<p>略了），因为函数声明会被提升到普通变量之前。</p>
+<p>注意，var foo 尽管出现在 function foo()… 的声明之前，但它是重复的声明（因此被忽略了），因为函数声明会被提升到普通变量之前。</p>
 <p>尽管重复的 var 声明会被忽略掉，但出现在后面的函数声明还是可以覆盖前面的。(但还是不安全)</p>
 <hr>
 <h3 id="作用域-闭包"><a href="#作用域-闭包" class="headerlink" title="作用域 (闭包)"></a>作用域 (闭包)</h3><ul>
@@ -606,7 +605,7 @@
 <li> join( )          :  把数组中的所有元素通过指定的分隔符进行分隔后,放入一个字符串。</li>
 <li> forEach( ) （ES5）: 让数组中的每一项执行匿名函数,理论上不返回</li>
 <li> map( ) （ES5）      : 让数组中的每一项执行匿名函数, 返回到新数组</li>
-<li> filter( ) （ES5）      : ,传入筛选函数,且需将当前项作为参数传进去,筛选出数组中符合条件的每一项,组成新数组并返回</li>
+<li> filter( ) （ES5）      :  传入筛选函数,且需将当前项作为参数传进这个筛选函数,筛选出数组中符合条件(返回true)的每一项,组成新数组并返回</li>
 <li> includes( )  :  查询数组中是否含有某项( 需要遍历,即O(n) )</li>
 </ol>
 <ul>
@@ -637,7 +636,7 @@
 </ul>
 <hr>
 <h3 id="数组的方法-mutable-methods-spsspURF"><a href="#数组的方法-mutable-methods-spsspURF" class="headerlink" title="数组的方法(mutable methods)(spsspURF)"></a>数组的方法(mutable methods)(spsspURF)</h3><ol>
-<li>sort( )  :     unicode升序排序,传入函数可指定排序方法( <strong>a-b为升序</strong>)且返回排序后的数组</li>
+<li>sort( )  :     unicode升序排序,传入函数可指定排序方法( <strong>a-b为升序</strong>)且 </li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">13</span>, <span class="number">24</span>, <span class="number">51</span>, <span class="number">3</span>];<span class="built_in">console</span>.log(arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> a-b;&#125;));</span><br></pre></td></tr></table></figure>
 
@@ -844,8 +843,8 @@
 <ul>
 <li><p>对象的方法  ( 和属性不同 )</p>
 <p>Object.assign( )  : 用于对象的合并,将第一个参数后面的对象参数上的所有可枚举属性复制到第一个参数上</p>
-<p>Object.defineproperty(obj,’属性名’,{value,enumerable,writable,configurable,get(),set()} ) : 给对象添加属性并设置能否被枚举,修改,删除,</p>
-<p>//当有人读取该属性时,getter函数就会被调用,且返回值就是属性值(代替value,每次都是现取)</p>
+<p>Object.defineproperty(obj,’属性名’,{value,enumerable,writable,configurable,get(),set()} ) : 给对象添加属性并设置能否被枚举,修改,删除,其中<strong>默认值皆为false</strong></p>
+<p>//当有人读取该属性时,getter函数就会被调用,且返回值就是属性值(代替value,每次都是现取),不能与writeable共存</p>
 <p>//当有人修改该属性,setter函数就被调用,且会受到修改的值</p>
 </li>
 <li><p>解构</p>
