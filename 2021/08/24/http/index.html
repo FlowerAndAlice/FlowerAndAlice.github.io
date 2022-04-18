@@ -142,7 +142,7 @@
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
         <h3 id="Cookie的存活时间"><a href="#Cookie的存活时间" class="headerlink" title="Cookie的存活时间"></a>Cookie的存活时间</h3><ul>
-<li><p>**浏览器端： **cookie(小,设置过期时间来间接清除) ,WebStorage(localStorage(大,方便,内容不会随请求发给服务器)、sessionStorage),  userData(IE) ,  indexedDB</p>
+<li><p><strong>浏览器端</strong>：cookie(小,设置过期时间来间接清除) ,WebStorage(localStorage(大,方便,内容不会随请求发给服务器)、sessionStorage),  userData(IE) ,  indexedDB                                          </p>
 <p><strong>服务器端：</strong> session</p>
 </li>
 <li><p>默认情况下,cookie数据保存到内存里,浏览器关闭后,Cookie数据被销毁</p>
@@ -737,9 +737,9 @@
 <li>将渲染树的各个节点绘制到屏幕上，这一步被称为绘制painting。</li>
 </ul>
 <h5 id="5）HTTP-状态码："><a href="#5）HTTP-状态码：" class="headerlink" title="5）HTTP 状态码："></a>5）HTTP 状态码：</h5><ul>
-<li>1xx：表示请求已接收，继续处理</li>
-<li>2xx：表示请求已经成功接收，理解，接受<ul>
-<li>200 OK：请求已正常处理。</li>
+<li>1xx：部分请求已接收，通知客户端继续发送请求的剩余部分</li>
+<li>2xx：表示请求已经成功接收<ul>
+<li>200 OK：响应成功,请求已正常处理。</li>
 <li>204 No Content：请求处理成功，但没有任何资源可以返回给客户端，一般在只需要从客户端往服务器发送信息，而对客户端不需要发送新信息内容的情况下使用。</li>
 <li>206 Partial Content：是对资源某一部分的请求，该状态码表示客户端进行了范围请求，而服务器成功执行了这部分的GET请求。</li>
 </ul>
@@ -748,18 +748,19 @@
 <li>301 Moved Permanently：资源的uri已更新，你也更新下你的书签引用吧。永久性重定向，请求的资源已经被分配了新的URI，以后应使用资源现在所指的URI。</li>
 <li>302 Found：资源的URI已临时定位到其他位置了，姑且算你已经知道了这个情况了。临时性重定向。和301相似，但302代表的资源不是永久性移动，只是临时性性质的。换句话说，已移动的资源对应的URI将来还有可能发生改变。</li>
 <li>303 See Other：资源的URI已更新，你是否能临时按新的URI访问。该状态码表示由于请求对应的资源存在着另一个URL，应使用GET方法定向获取请求的资源。303状态码和302状态码有着相同的功能，但303状态码明确表示客户端应当采用GET方法获取资源，这点与302状态码有区别。</li>
+<li>304 Not Modified  : 客户端有缓存的文档,并发出了一个条件性的请求,服务器告诉客户端,原来有缓存的文档没有改变还可以继续使用( 减小带宽 )( 自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。 )</li>
 </ul>
 </li>
 <li>4xx：请求有语法错误或者请求无法实现<ul>
 <li>400 Bad Request：服务器端无法理解客户端发送的请求，请求报文中可能存在语法错误。</li>
-<li>401 Unauthorized：该状态码表示发送的请求需要有通过HTTP认证（BASIC认证，DIGEST认证）的认证信息。</li>
+<li>401 Unauthorized：该状态码表示发送的请求需要有通过HTTP认证（BASIC认证，DIGEST认证）的认证信息。该状态码必须和WWW-Authenticate报头域一起使用</li>
 <li>403 Forbidden：不允许访问那个资源。该状态码表明对请求资源的访问被服务器拒绝了。（权限，未授权IP等）</li>
 <li>404 Not Found：服务器上没有请求的资源。路径错误等。</li>
 </ul>
 </li>
 <li>5xx：服务器未能实现合法的请求<ul>
 <li>500 Internal Server Error：该状态码表明服务器端在执行请求时发生了错误。也有可能是web应用存在bug或某些临时故障。</li>
-<li>503 Service Unavailable：该状态码表明服务器暂时处于超负载或正在停机维护，现在无法处理请求。</li>
+<li>503 Service Unavailable：该状态码表明服务器暂时处于超负载或正在停机维护，现在无法处理请求。( 请求未完成,服务器临时爆炸 )</li>
 </ul>
 </li>
 </ul>
@@ -879,11 +880,25 @@
 </li>
 </ul>
 <h5 id="15）Session-和-Cookie-的区别："><a href="#15）Session-和-Cookie-的区别：" class="headerlink" title="15）Session 和 Cookie 的区别："></a>15）Session 和 Cookie 的区别：</h5><ul>
-<li><p>cookie数据保存在客户端，session数据保存在服务端。</p>
+<li>cookie数据保存在客户端，session数据保存在服务端。</li>
+<li>session：当你登陆一个网站的时候，如果web服务器端使用的是session，那么所有的数据都保存在服务器上，客户端每次请求服务器的时候会发送当前会话sessionid，服务器根据当前sessionid判断相应的用户数据标志，以确定用户是否登陆或具有某种权限。由于数据是存储在服务器上面，所以你不能伪造。</li>
+<li>sessionid是服务器和客户端连接时候随机分配的，如果浏览器使用的是cookie，那么所有数据都保存在浏览器端，比如你登陆以后，服务器设置了cookie用户名，那么当你再次请求服务器的时候，浏览器会将用户名一块发送给服务器，这些变量有一定的特殊标记。服务器会解释为cookie变量，所以只要不关闭浏览器，那么cookie变量一直是有效的，所以能够保证长时间不掉线。如果你能够截获某个用户的cookie变量，然后伪造一个数据包发送过去，那么服务器还是认为你是合法的。所以，使用cookie被攻击的可能性比较大。</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/625d29e7239250f7c50864d1.jpg"></p>
+<ul>
+<li><strong>cookie原理</strong> : 当客户端访问服务器的时候（服务器运用了cookie），服务器会生成一份cookie传输给客户端，客户端会自动把cookie保存起来，以后客户端每次访问服务器，都会自动的携带着这份cookie。</li>
+<li><strong>session原理</strong>: 当客户端第一次请求服务器的时候，服务器根据客户端信息生成一份session保存在服务端，将该数据(session)的id以cookie的形式传递给客户端；以后的每次请求，浏览器都会自动的携带cookie来访问服务器(session数据id)。直接去对应session查找该客户信息</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/625d2b7c239250f7c50cb477.jpg"></p>
+<ul>
+<li><p>cookie和session都是用来跟踪浏览器用户身份的会话方式。</p>
 </li>
-<li><p>session：当你登陆一个网站的时候，如果web服务器端使用的是session，那么所有的数据都保存在服务器上，客户端每次请求服务器的时候会发送当前会话sessionid，服务器根据当前sessionid判断相应的用户数据标志，以确定用户是否登陆或具有某种权限。由于数据是存储在服务器上面，所以你不能伪造。</p>
-</li>
-<li><p>sessionid是服务器和客户端连接时候随机分配的，如果浏览器使用的是cookie，那么所有数据都保存在浏览器端，比如你登陆以后，服务器设置了cookie用户名，那么当你再次请求服务器的时候，浏览器会将用户名一块发送给服务器，这些变量有一定的特殊标记。服务器会解释为cookie变量，所以只要不关闭浏览器，那么cookie变量一直是有效的，所以能够保证长时间不掉线。如果你能够截获某个用户的cookie变量，然后伪造一个数据包发送过去，那么服务器还是认为你是合法的。所以，使用cookie被攻击的可能性比较大。</p>
+<li><h3 id="cookie和session区别"><a href="#cookie和session区别" class="headerlink" title="cookie和session区别"></a>cookie和session区别</h3><ul>
+<li>cookie是保存在客户端的,容易被篡改</li>
+<li>cookie有大小限制,4KB</li>
+<li>session是保存在服务器端,更加安全</li>
+<li>session会比较占用服务器性能，当访问增多时应用cookie</li>
+</ul>
 </li>
 </ul>
 <p>16）常见的首部：</p>

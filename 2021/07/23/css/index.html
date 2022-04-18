@@ -161,7 +161,7 @@
 <p>6、display: flex; （弹性盒模型）</p>
 <p>7、box-sizing（控制盒模型的组成模式）</p>
 <p>8、rgba（基于rgb设置<strong>颜色</strong>，a是opacity设置<strong>透明度</strong>）</p>
-<p>9、background:linear-gradient（）；（<strong>渐变</strong>）</p>
+<p>9、background:linear-gradient（方向/角度,起止颜色,可用百分比指定分界线,默认从top即180deg均匀渐变）；（<strong>渐变</strong>）</p>
 <p>10、background-size（指定<strong>背景</strong>图片尺寸）</p>
 <p>11、background-origin（指定背景图片从哪里开始显示）</p>
 <p>12、background-clip（指定背景图片从什么位置开始裁剪）</p>
@@ -209,10 +209,16 @@
 <p>①  <strong>px</strong> : 一般指CSS逻辑像素,它是相对于设备像素的单位，像素是相对于屏幕分辨率的，页面按照精确像素展示，不会因为其它元素的尺寸变化而变化，像素仍然是最典型的度量单位，例如：<code>windows</code>的用户所使用的<code>分辨率96像素/英寸</code>，而<code>mac</code>的用户所使用的分辨率一般是<code>72像素/英寸</code>，一般javascript语言里的单位就是使用的像素。</p>
 <p>可以设定固定的布局和元素的大小,但同时缺点为没有弹性</p>
 <p>②  <strong>in</strong>：英寸（inch）是一个物理度量文件，但是在CSS领域，英寸只不过被直接映射成像素罢了。（1in == 2.54cm == 96px）</p>
-<p>③  <strong>em</strong>   :  是<strong>相对于当前父元素</strong>的字体大小为标准</p>
-<p>④  <strong>rem</strong> :  是<strong>相对于 <code>html</code> 元素</strong>的字体大小为标准</p>
+<p>③  <strong>em</strong>   :  子元素字体大小是<strong>相对于当前父元素</strong>的字体大小为标准( 就相当于当前继承的字体大小的多少倍),</p>
+<ul>
+<li>元素的width/height/padding/margin用em的话是相对于<strong>该元素</strong>的font-size</li>
+</ul>
+<p>④  <strong>rem</strong> :  是<strong>相对于 <code>html</code> 元素</strong>的字体大小为标准,(root根节点)</p>
 <p>⑤  <strong>vw</strong>    :   可视宽度单位（视窗宽度），1vw 等于可视区宽度的 1%</p>
-<p>⑥  <strong>vh</strong>     :  相对于可视化区域高度的1%</p>
+<p>⑥  <strong>vh</strong>     :  相对于可视化区域高度的1%,vh就是当前屏幕可见高度的1%，也就是说height:100vh == height:100%;</p>
+<ul>
+<li>但是有个好处是当元素没有内容时候，设置height:100%该元素不会被撑开，但是设置height:100vh，该元素会被撑开屏幕高度一致。</li>
+</ul>
 <blockquote>
 <p>所有的单位都会转为px,所以无论相对还是绝对,都是会变的</p>
 <p>在不同的分辨率下 ，像素点的大小是不同的，所以同一个网页，以 px 作长度单位时，在不同的分辨率下显示的大小是不同的，在低分辨率下，像素点较大，细节不够清晰，虽然显示的页面也大，但模糊不清。</p>
@@ -319,15 +325,16 @@
 </ol>
 </li>
 <li><strong>flex-flow</strong> : flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</li>
-<li><strong>justify-content</strong>  :  justify-content属性定义了项目在主轴上的<strong>对齐方式</strong>。</li>
+<li><strong>justify-content</strong>  :  justify-content属性定义了项目在主轴上的<strong>对齐方式</strong>。值:<code>strecth</code>,<code>baseline</code>,<code>flex-start</code>,<code>flex-end</code>,<code>center</code></li>
 <li><strong>align-items</strong>   :     align-items属性定义项目在交叉轴上的对齐方式。</li>
 </ul>
 </li>
 <li><p>子元素的属性 : </p>
 <ul>
-<li>flex：子项目所占的份数</li>
+<li>flex：子项目所占的份数,可以写成百分比</li>
 <li>align-self：控制子项自己在侧轴的排列方式</li>
 <li>order：定义子项的排列顺序（前后顺序）</li>
+<li>flex-shrink：表示在父元素宽度不够的情况下是否自动收缩<br>0表示不自动收缩,1表示自动收缩</li>
 </ul>
 </li>
 </ul>
