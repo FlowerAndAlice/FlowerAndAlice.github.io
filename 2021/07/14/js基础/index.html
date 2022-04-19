@@ -215,26 +215,33 @@
 <li><code>const</code>——ES6变量声明方式</li>
 </ul>
 <ol>
-<li><p>const为常量声明方式；声明变量时<strong>必须初始化</strong>，在后面出现的代码中不能再修改该常量的值( 一般在声明函数表达式和对象时使用const )</p>
-</li>
-<li><p>const实际上保证的，并不是变量的值不得改动，而是<strong>变量指向的那个内存地址不得改动</strong>,所以想要修改const定义的变量时,可将其定义为对象或数组[ ]  , 通过arr[0]调用/修改。 (对象同理)</p>
-</li>
+<li>const为常量声明方式；声明变量时<strong>必须初始化</strong>，在后面出现的代码中不能再修改该常量的值( 一般在声明函数表达式和对象时使用const )</li>
+<li>const实际上保证的，并不是变量的值不得改动，而是<strong>变量指向的那个内存地址不得改动</strong>,所以想要修改const定义的变量时,可将其定义为对象或数组[ ]  , 通过arr[0]调用/修改。 (对象同理)</li>
+<li>const声明的变量不会挂载到window属性上</li>
 </ol>
 <p><img src="https://pic.imgdb.cn/item/6159973c2ab3f51d912e93b7.jpg"></p>
 <hr>
 <h3 id="提升"><a href="#提升" class="headerlink" title="提升"></a>提升</h3><ul>
-<li><p><strong>函数声明</strong>和**变量声明(var)**都会被提升,函数会首先被提升，然后才是变量。</p>
+<li><p><strong>函数声明</strong>和<strong>变量声明</strong>(<strong>var</strong>)都会被提升,函数会首先被提升，然后才是变量。</p>
 <p>考虑如下代码:</p>
 </li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">foo(); <span class="comment">// 1</span></span><br><span class="line"><span class="keyword">var</span> foo;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log( <span class="number">1</span> ); </span><br><span class="line">&#125;</span><br><span class="line">foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="number">2</span> ); </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>这个代码片段会被引擎理解为如下形式：</p>
-<p>声明本身会被提升，而包括函数表达式的赋值在内的赋值操作并不会提升。</p>
+<ul>
+<li>声明本身会被提升，而包括函数表达式的赋值在内的赋值操作并不会提升。</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="number">1</span> ); </span><br><span class="line">&#125;</span><br><span class="line">foo(); <span class="comment">// 1 </span></span><br><span class="line">foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="number">2</span> ); </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>注意，var foo 尽管出现在 function foo()… 的声明之前，但它是重复的声明（因此被忽略了），因为函数声明会被提升到普通变量之前。</p>
-<p>尽管重复的 var 声明会被忽略掉，但出现在后面的函数声明还是可以覆盖前面的。(但还是不安全)</p>
+<ul>
+<li><p>注意，var foo 尽管出现在 function foo()… 的声明之前，但它是重复的声明（因此被忽略了），因为函数声明会被提升到普通变量之前。</p>
+</li>
+<li><p>尽管重复的 var 声明会被忽略掉，但出现在后面的函数声明还是可以覆盖前面的。(但还是不安全)</p>
+</li>
+<li><p>如果后面的是foo=1,还可以覆盖掉foo函数声明,让foo雀食等于1</p>
+</li>
+</ul>
 <hr>
 <h3 id="作用域-闭包"><a href="#作用域-闭包" class="headerlink" title="作用域 (闭包)"></a>作用域 (闭包)</h3><ul>
 <li><p>作用域 : 一个独立的地盘,让变量不会外泄、暴露出去。不同作用域下同名变量不冲突</p>
@@ -252,7 +259,7 @@
 <li><p>通过<strong>传参</strong>把每次不同的 <strong>i</strong> 传进块级作用域里</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lis = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;li&quot;</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;lis.length;i++)&#123;</span><br><span class="line">  	(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">      	 lis[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">           	  <span class="built_in">console</span>.log(i);</span><br><span class="line">      	 &#125;;</span><br><span class="line">  	&#125;)(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>超难例题</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">4399</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>)</span>&#123;     </span><br><span class="line">        n++;</span><br><span class="line">        <span class="built_in">console</span>.log(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">n</span>:n,<span class="attr">add</span>:add&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = test();       <span class="comment">//新建堆内存1,  然后test执行,新建私有作用域A</span></span><br><span class="line"><span class="keyword">var</span> result2 = test();      <span class="comment">//新建堆内存2,井水不犯河水</span></span><br><span class="line">result.add();              <span class="comment">//新地址1里的add函数内又是一个新的私有作用域,找不到n,到新地址1里找n,另新地址的n++, 4400</span></span><br><span class="line">result.add();              <span class="comment">//新地址1的n++,4401</span></span><br><span class="line"><span class="built_in">console</span>.log(result.n);     <span class="comment">//堆内存里的n=4399</span></span><br><span class="line">result2.add();</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">4399</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>)</span>&#123;     </span><br><span class="line">        n++;</span><br><span class="line">        <span class="built_in">console</span>.log(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">n</span>:n,<span class="attr">add</span>:add&#125;   <span class="comment">//每次都是新对象,n只是继承了值,调用add并不使用这个n</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = test();       <span class="comment">//新建堆内存1,然后test执行,新建私有作用域A</span></span><br><span class="line"><span class="keyword">var</span> result2 = test();      <span class="comment">//新建堆内存2,井水不犯河水</span></span><br><span class="line">result.add();              <span class="comment">//不在result里面找n,而是在res对应那个test作用域A找n</span></span><br><span class="line">result.add();              <span class="comment">//作用域A的n++,4401</span></span><br><span class="line"><span class="built_in">console</span>.log(result.n);     <span class="comment">//堆内存里1的n未使用,值为4399</span></span><br><span class="line">result2.add();</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
 <h3 id="this-与-arguments与严格模式"><a href="#this-与-arguments与严格模式" class="headerlink" title="this 与 arguments与严格模式"></a>this 与 arguments与严格模式</h3><p>  解释器在调用函数每次都会向函数内部传进俩个隐含的参数。</p>
@@ -271,19 +278,22 @@
 <li><p><strong>this指向</strong></p>
 <ul>
 <li>以<strong>函数的形式</strong>调用( 包括立即执行函数、匿名函数 )，this永远都是window  ( window.fun ,函数都是window的对象 ) </li>
-<li>以**方法的形式( 对象的属性 )**调用时，this就是调用方法的那个对象</li>
+<li>以<strong>方法的形式</strong>( <strong>对象的属性</strong> )调用时，this就是调用方法的那个对象<ul>
+<li>a.b.c( )中,this指向直接调用者b</li>
+</ul>
+</li>
 <li>以<strong>构建函数的形式</strong>调用时，this就是新创建的那个( 实例 )对象</li>
 <li>使用<strong>call和apply</strong>调用时，this指向传入的第一个参数</li>
 <li>箭头函数中的this , 指向函数<strong>定义时的上下文</strong>的this( <strong>箭头函数</strong>与普通函数的区别 ),且call()等无法改变this指向,只能传参<ul>
-<li> 箭头函数的this指向，作为对象属性时，没有作用域链的嵌套，与obj同级，外层是window</li>
+<li> 箭头函数的this指向，<strong>作为对象属性时，没有作用域链的嵌套</strong>，与obj同级，外层是window</li>
 <li> 被setTimeOut调用时，有作用域嵌套，外层是obj</li>
 </ul>
 </li>
 <li>可以在上下文中把this传给变量,在函数中使用该变量,也可改变this指向</li>
 <li>函数定义时若处于<strong>严格模式</strong>下,this会指向undefined,箭头函数不受影响<ul>
-<li>“use strict” : 在正常模式中，如果一个变量没有声明就赋值，默认是全局变量。严格模式必须显式声明全局变量,不能使用未声明的变量。<ul>
-<li>将”use strict”放在脚本文件的<strong>第一行</strong>，则整个脚本都将以”严格模式”运行。</li>
-<li>将”use strict”放在函数体的第一行，则整个函数以”严格模式”运行。</li>
+<li>&quot;use strict&quot; : 在正常模式中，如果一个变量没有声明就赋值，默认是全局变量。严格模式必须显式声明全局变量,不能使用未声明的变量。<ul>
+<li>将&quot;use strict&quot;放在脚本文件的<strong>第一行</strong>，则整个脚本都将以”严格模式”运行。</li>
+<li>将&quot;use strict&quot;放在函数体的第一行，则整个函数以”严格模式”运行。</li>
 </ul>
 </li>
 <li><strong>禁止this关键字指向全局对象</strong></li>
@@ -298,9 +308,9 @@
 <ol>
 <li><p>call、apply可以调用函数 </p>
 </li>
-<li><p>call的第一个参数可以改变函数中this指向,后面的**(多个)参数**是传给函数的参数</p>
+<li><p><strong>call</strong>的第一个参数可以改变函数中this指向,后面的(<strong>多个</strong>)<strong>参数</strong>是传给函数的参数</p>
 </li>
-<li><p>apply功能一样,但必须传两个参数,新this对象和<strong>一个参数数组</strong>argArray</p>
+<li><p><strong>apply</strong>功能一样,但必须传两个参数,新this对象和<strong>一个参数数组</strong>argArray</p>
 </li>
 <li><p><strong>bind不能调用函数</strong>，会返回一个函数，执行后得到和call相同的结果,传递值和数组或不传值都可以</p>
 </li>
@@ -338,12 +348,12 @@
 <p>栈空<br>现在执行到一个函数A，函数A入栈<br>函数A又调用了函数B，函数B入栈<br>函数B执行完后出栈    ( 后入先出 )<br>然后继续执行函数A，执行完后A也出栈<br>栈空</p>
 </blockquote>
 </li>
-<li><p><strong>Event Table</strong> 可以理解成一张 <code>事件-&gt;回调函数</code> 对应表</p>
+<li><p><strong>Event Table</strong> 可以理解成一张 [ 事件-&gt;回调函数 ] 对应表</p>
 <blockquote>
 <p>它就是用来存储 JavaScript 中的异步事件 (request, setTimeout, IO等) 及其对应的回调函数的列表</p>
 </blockquote>
 </li>
-<li><p><strong>Event Queue</strong> 简单理解就是 <code>回调函数 队列</code>，所以它也叫 Callback Queue</p>
+<li><p><strong>Event Queue</strong> 简单理解就是 [ 回调函数 队列 ]，所以它也叫 Callback Queue</p>
 <blockquote>
 <p>当 Event Table 中的事件被触发，事件对应的 <strong>回调函数</strong> 就会被 push 进这个 Event Queue，然后等待被执行</p>
 </blockquote>
@@ -389,7 +399,7 @@
 <p> Microtasks 则是为了完成一些更新应用程序状态的较小的任务，如处理 Promise 的回调和 DOM 的修改，以便让这些任务在浏览器重新渲染之前执行。Microtask 应该以异步的方式尽快执行，所以它们的开销比 Macrotask 要小，并且可以使我们在 UI 重新渲染之前执行，避免了不必要的 UI 渲染。</p>
 <p> <strong>常见应用</strong><br> <strong>①process.nextTick      ②Promise.then</strong></p>
 <ul>
-<li><code>process.nextTick(callback)</code>类似node.js版的”setTimeout”，在事件循环的下一次循环中( 整体同步代码执行完后 )调用 callback 回调函数。</li>
+<li><code>process.nextTick(callback)</code>类似node.js版的&quot;setTimeout&quot;，在事件循环的下一次循环中( 整体同步代码执行完后 )调用 callback 回调函数。</li>
 </ul>
 </li>
 <li><p><strong>执行顺序</strong></p>
@@ -453,7 +463,7 @@
 <ul>
 <li><strong>typeof</strong>, 弊端:<strong>对null和引用都是object</strong></li>
 <li><strong>instanceof</strong>,   弊端:   只能判断某个对象是否是右边对象的实例, **无法判断(numer,string,boolean)**简单的let num=1, 只能判断构造出的 let num=new Numer(1)</li>
-<li><strong>constuctor</strong>, 弊端: <strong>无法检测null和undefined</strong>,因为它们没有原生构造函数</li>
+<li><strong>constructor</strong>, 弊端: <strong>无法检测null和undefined</strong>,因为它们没有原生构造函数</li>
 <li><strong>Object.toString.call(  )</strong> ,有些对象重写了toString,所以去原型里用原生的toString(), 无敌的</li>
 </ul>
 </li>
@@ -549,7 +559,7 @@
    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原理</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">new_instance_of</span>(<span class="params">leftValue, rightValue</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">let</span> rightProto = rightValue.prototype; <span class="comment">// 取右表达式的 prototype 值(公用属性对象)</span></span><br><span class="line">    leftValue = leftValue.__proto__; <span class="comment">// 取左表达式的__proto__值</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (leftValue === <span class="literal">null</span>) &#123;        <span class="comment">//一直没找到</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;    </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (leftValue=== rightProto) &#123;      <span class="comment">//找到</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;    </span><br><span class="line">        &#125; </span><br><span class="line">        leftValue = leftValue.__proto__       <span class="comment">//往原型里继续找</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol start="11">
-<li>转换为布尔值 , 只有这几个参数返回false  ( **捕鼠队 **)</li>
+<li>转换为布尔值 , 只有这几个参数返回false  ( <strong>捕鼠队</strong>)</li>
 </ol>
 <blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Boolean</span>( <span class="literal">undefined</span> / <span class="literal">null</span> / <span class="number">0</span> / <span class="literal">NaN</span> / <span class="string">&#x27;&#x27;</span> )       <span class="comment">//false</span></span><br><span class="line"><span class="built_in">Boolean</span>([])       <span class="comment">//true   </span></span><br><span class="line"><span class="built_in">Boolean</span>(&#123;&#125;)       <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
@@ -639,7 +649,7 @@
 <p>map()会跳过空位,但会保留这个值,</p>
 <p>foreach()、filter()、reduce()、every()对空位都跳过不执行回调</p>
 </li>
-<li><p>数组的<strong>ES6方法</strong> （io F4） : includes( ) 、Arrayof( ) 、fill( ) 、  find( ) 、  flat( ) 、  Array.from </p>
+<li><p>数组的<strong>ES6方法</strong> （io F4） : includes( ) 、Array.of( ) 、fill( ) 、  find( ) 、  flat( ) 、  Array.from( ) </p>
 </li>
 </ul>
 <hr>
@@ -667,7 +677,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]], <span class="number">5</span>];</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (arr.some(<span class="function"><span class="params">item</span> =&gt;</span>                           <span class="built_in">Array</span>.isArray(item))) &#123;</span><br><span class="line">        arr = [].concat(...arr); </span><br><span class="line">        <span class="comment">//空数组连接扩展的参数队列(含数组)</span></span><br><span class="line">     &#125;</span><br><span class="line">      <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">console</span>.log(flatten(arr)); <span class="comment">//[1,2,3,4,5]</span></span><br></pre></td></tr></table></figure></li>
 <li><p>toString可以把数组直接转换成逗号分隔的字符串,再用<strong>JSON.parse</strong>转换为数组</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ary = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]], <span class="number">5</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> str = arr.toString();</span><br><span class="line">  str = <span class="string">&#x27;[&#x27;</span> + str + <span class="string">&#x27;]&#x27;</span>; <span class="comment">// 添加外部数组的 [ ]</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">JSON</span>.parse(str);<span class="comment">//再转换为数组</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(flatten(ary)); <span class="comment">// [1,2,3,4,5]</span></span><br></pre></td></tr></table></figure></li>
-<li><p>用JSON.stringify(arr)和replace(/([|])/g, ‘’)来代替toString</p>
+<li><p>用JSON.stringify(arr)和replace(/([|])/g, &#39;&#39;)来代替toString</p>
 </li>
 </ol>
 <hr>
@@ -678,7 +688,7 @@
 <p> 如果 <code>fromIndex</code> 的值小于 <code>0</code>，或者大于 <code>str.length</code> ，那么查找分别从 <code>0</code> 和<code>str.length</code> 开始。（译者 注： <code>fromIndex</code> 的值小于 <code>0</code>，等同于为空情况； <code>fromIndex</code> 的值大于或等于 <code>str.length</code> ，那么结果 会直接返回 <code>-1</code> 。）</p>
 <p>返回值: </p>
 <p>   ① 查找的字符串 <code>searchValue</code> 的<strong>第一次</strong>出现的索引，如果没有找到，则返回 <code>-1</code>。</p>
-<p>​    若被查找的字符串<strong>str</strong>是一个**空字符串 ** :</p>
+<p>​    若被查找的字符串<strong>str</strong>是一个<strong>空字符串</strong> :</p>
 <p>   ② 且<code>fromIndex</code> 值小于字符串的长度,则返回fromIndex </p>
 <p>   ③ 且 <code>fromIndex</code> 值大于等于字符串的长度，则返回字符串的长度（<code>str.length</code>）</p>
 <p>特点：</p>
@@ -1003,8 +1013,8 @@
     
     <div class="card-text">
       
-        <a href="/2021/07/15/DOM%20%20&&%20BOM/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">DOM &amp;&amp; BOM</h2>
+        <a href="/2021/07/15/%E6%B5%8F%E8%A7%88%E5%99%A8/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">浏览器</h2>
         </a>
       
       <div class="card-text--row">Newer</div>

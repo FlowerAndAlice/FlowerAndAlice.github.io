@@ -176,9 +176,17 @@
 </li>
 <li><p>如何跨域</p>
 <ul>
-<li><p>jsonp  ( 网页通过添加一个<code>&lt;script&gt;</code>元素，向跨源网址请求JSON数据，这种做法不受同源政策限制；服务器收到请求后，将数据放在一个指定名字的回调函数里传回来。 )  ( 只能GET, 还有安全性问题,用字符串过滤规避 )</p>
+<li><p>jsonp  </p>
+<ul>
+<li>网页通过添加一个<code>&lt;script&gt;</code>元素，向跨源网址请求JSON数据，这种做法不受同源政策限制；服务器收到请求后，将数据放在一个指定名字的回调函数里传回来。</li>
+<li>只能GET, 还有安全性问题,用字符串过滤规避 </li>
+</ul>
 </li>
-<li><p>CORS（Cross-origin resource sharing） :  设置响应头Access-Control-Allow-Origin</p>
+<li><p>CORS（Cross-origin resource sharing） :  </p>
+<ul>
+<li>CORS请求设置的响应头字段,都以Access-Control开头</li>
+<li>在响应头上添加Access-Control-Allow-Origin属性，指定同源策略的地址。同源策略默认地址是网页的本身。只要浏览器检测到响应头带上了CORS，并且允许的源包括了本网站，那么就不会拦截请求响应。</li>
+</ul>
 </li>
 <li><p>websocket</p>
 </li>

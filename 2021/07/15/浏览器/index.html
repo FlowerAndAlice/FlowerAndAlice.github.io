@@ -28,7 +28,7 @@
 
                                             <title>
                                                 
-                                                    DOM &amp;&amp; BOM |
+                                                    浏览器 |
                                                         
                                                             Flower &amp; Alice
                                             </title>
@@ -106,7 +106,7 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">DOM &amp;&amp; BOM</h1>
+          <h1 class="title-wrap">浏览器</h1>
           <h2 class="title-sub-wrap">
             <strong>广工彭于晏</strong>
             <span>发布于</span>
@@ -518,6 +518,29 @@
 <p><strong>screen ( 显示器对象 )</strong></p>
 <p><img src="https://pic.imgdb.cn/item/618bbbea2ab3f51d9105d554.jpg"></p>
 <hr>
+<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><ul>
+<li>网景公司引入的<strong>针对浏览器</strong>的一种安全策略,如果缺少了同源策略,浏览器很容易受到XSS、CSRF等攻击<ul>
+<li>只有<strong>协议,域名,端口号</strong>都相同才是同源</li>
+<li>http默认端口80,https默认端口443</li>
+</ul>
+</li>
+<li>哪些被限制?<ul>
+<li>无法读取非同源策略下的<strong>cookie、localstorage,indexDB</strong></li>
+<li>无法获得非同源的<strong>dom和js对象</strong></li>
+<li>无法向非同源的地址<strong>发送ajax请求</strong></li>
+</ul>
+</li>
+<li>想要不同源间数据交互时的解决方案: <strong>跨域</strong><ul>
+<li><strong>JSONP</strong>: 利用了js访问不受同源策略限制的特性<ul>
+<li>原理:  利用script元素的这个开放策略，网页可以得到从其他来源动态产生的 JSON 数据。但是JSONP请求一定需要对方的服务器做支持才可以。</li>
+<li>优点: 兼容性好，可用于解决主流浏览器的跨域数据访问的问题。</li>
+<li>缺点: 仅支持get方法具有局限性。</li>
+</ul>
+</li>
+<li><strong>CORS</strong>,跨域资源共享</li>
+</ul>
+</li>
+</ul>
 
       </section>
 

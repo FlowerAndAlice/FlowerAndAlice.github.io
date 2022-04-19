@@ -158,17 +158,39 @@
 </ol>
 <ul>
 <li>XSS分类<ul>
-<li><strong>存储型</strong>XSS (stored XSS) :<br>  &nbsp;&nbsp;&nbsp;&nbsp; 恶意脚本被存在数据库中<br>  &nbsp;&nbsp;&nbsp;&nbsp; 访问页面 =&gt; 读数据 == 被攻击<br>  &nbsp;&nbsp;&nbsp;&nbsp; 危害最大,对全部用户可见</li>
-<li><strong>反射性</strong>XSS (Reflected XSS)<br>  &nbsp;&nbsp;&nbsp; &nbsp;不涉及数据库<br>  &nbsp;&nbsp;&nbsp; &nbsp;从URL上攻击</li>
-<li><strong>基于DOM</strong>的XSS攻击<br> &nbsp;&nbsp;&nbsp; &nbsp;不需要服务器的参与<br> &nbsp;&nbsp;&nbsp; &nbsp;恶意攻击的 发起+执行,全都在浏览器完成</li>
-<li><strong>基于Mutation</strong>的XSS攻击<br>&nbsp;&nbsp;&nbsp; &nbsp;利用了浏览器DOM 的特性(独特优化)<br>&nbsp;&nbsp;&nbsp; &nbsp;不同浏览器,会有区别(俺浏览器进行攻击)</li>
-<li><strong>跨站伪造请求</strong>(Cross-Site request forgery)(CSRF)<br>&nbsp;&nbsp;&nbsp; &nbsp;在用户不知情的情况下<br>&nbsp;&nbsp;&nbsp; &nbsp;利用用户权限(cookie)<br>&nbsp;&nbsp;&nbsp; &nbsp;构造指定HTTP请求,窃取或修改用户敏感信息</li>
+<li><strong>存储型</strong>XSS (stored XSS) :<ul>
+<li>恶意脚本被存在数据库中</li>
+<li>访问页面 =&gt; 读数据 == 被攻击</li>
+<li>危害最大,对全部用户可见</li>
+</ul>
+</li>
+<li><strong>反射性</strong>XSS (Reflected XSS)<ul>
+<li>不涉及数据库</li>
+<li>从URL上攻击</li>
+</ul>
+</li>
+<li><strong>基于DOM</strong>的XSS攻击<ul>
+<li>不需要服务器的参与</li>
+<li>恶意攻击的 发起+执行,全都在浏览器完成</li>
+</ul>
+</li>
+<li><strong>基于Mutation</strong>的XSS攻击<ul>
+<li>利用了浏览器DOM 的特性(独特优化)</li>
+<li>不同浏览器,会有区别(俺浏览器进行攻击)</li>
+</ul>
+</li>
+<li><strong>跨站伪造请求</strong>(Cross-Site request forgery)(CSRF)<ul>
+<li>在用户不知情的情况下</li>
+<li>利用用户权限(cookie)</li>
+<li>构造指定HTTP请求,窃取或修改用户敏感信息</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <hr>
 <h3 id="计入你是一个开发者-–防御"><a href="#计入你是一个开发者-–防御" class="headerlink" title="计入你是一个开发者 –防御"></a>计入你是一个开发者 –防御</h3><ul>
-<li>1</li>
+<li>在cookie的信息里加入http-only,只有在http请求时才传出cookie</li>
 </ul>
 <hr>
 
