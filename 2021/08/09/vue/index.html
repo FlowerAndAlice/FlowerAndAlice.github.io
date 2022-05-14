@@ -139,12 +139,13 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h4 id="vue里的傻逼错误"><a href="#vue里的傻逼错误" class="headerlink" title="vue里的傻逼错误"></a>vue里的傻逼错误</h4><ul>
+        <h3 id="vue里的傻逼错误"><a href="#vue里的傻逼错误" class="headerlink" title="vue里的傻逼错误"></a>vue里的傻逼错误</h3><ul>
 <li>new Vue({}) 大括号在小括号里!</li>
 <li>click 不要打错成cilck!!!(离谱)(我是啥b)</li>
 <li>在使用computed时,将price写成prive导致一直报错但找不到错误(乌鱼子)</li>
 <li>在后台获取index时,把params打成parms !</li>
 <li>有时vue一直报红,将右下角的HTML改为Vue模式即可</li>
+<li>使用插值语法读取name,且在data中将name设置为中文时,VueTools会无法解析出组件,导致看不到data</li>
 </ul>
 <hr>
 <h3 id="vue引入"><a href="#vue引入" class="headerlink" title="vue引入"></a>vue引入</h3><ol>
@@ -170,6 +171,24 @@
 <li> VM : 视图模型( ViewModel ) : Vue实例  </li>
 </ol>
 <hr>
+<h3 id="实例生命周期钩子"><a href="#实例生命周期钩子" class="headerlink" title="实例生命周期钩子"></a>实例生命周期钩子</h3><ul>
+<li>每个Vue实例在被创建时都要经过一系列的初始化过程，例如设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。</li>
+<li>同时在这个过程中也会运行一些叫做生命周期钩子的函数,这给了用户在不同阶段添加自己的代码的机会</li>
+<li>常用的生命周期钩子:<ul>
+<li>mounted  :  发送ajax请求、启动定时器、绑定自定义事件、订阅消息等<u>初始化操作</u></li>
+<li>beforeDestroy : 清除定时器、解绑自定义事件、取消订阅消息等<u>收尾工作</u></li>
+</ul>
+</li>
+<li>关于销毁Vue实例<ul>
+<li>销毁后借助Vue开发者工具看不到任何信息</li>
+<li>销毁后自定义事件会失效，但原生DOM事件依然有效。（比如已经绑定成原生事件）</li>
+<li>一般不会在beforeDestroy操作数据，因为即时操作数据，也不会再触发更新流程了</li>
+</ul>
+</li>
+<li>生命周期钩子中的this指向是vm或者组件实例对象</li>
+<li>不要将生命周期钩子写成箭头函数,可能导致作用域错误</li>
+</ul>
+<hr>
 <h3 id="指令语法"><a href="#指令语法" class="headerlink" title="指令语法"></a>指令语法</h3><ul>
 <li>功能：用于解析标签（包括：标签属性、标签体内容、绑定事件…..）。</li>
 <li>指令(directives)是带有<code>v-</code>前缀的特殊属性,v-bind:(简写:)(绑定属性)和v-on:(简写@)(绑定事件)都是指令</li>
@@ -193,6 +212,31 @@
 <li><strong>v-pre</strong> : 也没有值<ul>
 <li>跳过其所在节点的编译过程 ( Vue不解析啦 )</li>
 <li>可以利用它跳过没有语法指令、没有使用插值语法的节点,会加快编译, ( 跳过了不需要vue编译的普通节点 )</li>
+</ul>
+</li>
+<li><strong>v-model</strong> : 有值,值代表checked</li>
+</ul>
+<hr>
+<h4 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h4><ul>
+<li>定义指令 : <ul>
+<li>局部指令 <ul>
+<li>new Vue({ directive<strong>s</strong>:{指令名:配置对象/简写函数} })</li>
+</ul>
+</li>
+<li>全局指令<ul>
+<li>Vue.<strong>directive</strong>(&quot;指令名&quot;,配置对象/简写函数 )</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一个指令对象可以提供如下几个钩子函数( 均为可选 ) : <ul>
+<li><strong>bind</strong> : 只调用一次,指令第一次绑定到元素时调用</li>
+<li><strong>inserted</strong> : 被绑定元素插入父节点时调用( 插入页面 )</li>
+<li><strong>update</strong> : 所在组件的VNode更新时调用<ul>
+<li>ps : 指令定义时不加v-,但使用时要加v-</li>
+<li>指令名如果是多个单词,要是用kebab-case命名方式,而不能用驼峰,定义时要加引号,如  &quot;big-number&quot;:花括号/fn</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -276,6 +320,7 @@
 </ul>
 <hr>
 <h5 id="收集表单数据"><a href="#收集表单数据" class="headerlink" title="收集表单数据"></a>收集表单数据</h5><ul>
+<li>写法   v-model=”数据”</li>
 <li>&lt;input type=&quot;text&quot;/&gt;, 则v-model收集的是value值( 用户输入 )</li>
 <li>&lt;input type=&quot;radio&quot;/&gt;, value值要配置给标签,v-model的值与value值相等时,该单选框就被选中,选中后v-model的值就等于对应标签中value的值</li>
 <li>&lt;input type=&quot;checkbox&quot;/&gt;, 复选框 :<ul>
@@ -393,8 +438,8 @@
 <li>我们是需要写&lt;wife&gt;&lt;/wife&gt;,Vue解析时会帮我们创建wife组件的实例对象,即 Vue帮我们执行 new Vuecomponent(options)</li>
 <li>每次调用Vue.extend,返回的都是一个全新的Vuecomponent !</li>
 <li>this指向 : <ul>
-<li>组件配置中 : data,methods..中的this都是<a href="%E7%BB%84%E4%BB%B6%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1vc">VueComponent实例对象</a></li>
-<li>new Vue(options)配置中: (data、methods、watch、computed)中this的都是<a href="vm"> Vue实例对象 </a></li>
+<li>组件配置中 : data,methods..中的this都是<u>VueComponent实例</u>(对象组件实例对象vc)</li>
+<li>new Vue(options)配置中: (data、methods、watch、computed)中this的都是<u>Vue实例对象</u> (vm)</li>
 </ul>
 </li>
 <li>一个重要的内置关系：VueComponent.prototype.<strong>proto</strong> === Vue.prototype<ul>
@@ -404,24 +449,87 @@
 </ul>
 <hr>
 <h4 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h4><ul>
-<li><p>父级向子级传值: 在app.vue 的data内写一个属性1 meessage,在子级的调用标签,添加 :属性2=”属性1”,在子级组件export内 通过 props: [“属性2”],(注意此处有引号) 之后即可通过&#123;&#123;属性2&#125;&#125;使用该值</p>
+<li><p><strong>父传子</strong></p>
+<ul>
+<li><p>父传递数据  : &lt;Son  name=”xxx”  /&gt;   </p>
+</li>
+<li><p>子接收数据 :  </p>
+<ol>
+<li><p>props:[‘name’]  (单纯接收) </p>
+</li>
+<li><p>props:{name:Number} (限制类型)</p>
+</li>
+<li><p>```js<br>props:{<br>  name:{ </p>
+<pre><code>type:String, //限制类型
+required:true, //必要性
+default:6  //默认值
+</code></pre>
+<p>  }<br>}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  * 注意: props是只读的,修改props会被Vue监测到并警告,如需修改可赋值data中的值,因为props优先编译</span><br><span class="line"></span><br><span class="line">* **子传父:**  给实例对象**绑定自定义事件**</span><br><span class="line"></span><br><span class="line">  * 第一种**直接绑** :**@**myEvent=\&quot;changeData\&quot; </span><br><span class="line">  * 第二种用**组件实例对象** :this.$refs.wife.**$on**(&quot;myEvent&quot;, this.changeData);</span><br><span class="line">  * 如需只调用一次 ： **@**myEvent.once  或:this.$refs.wife.$once</span><br><span class="line">  * 然后在别的html标签内定义要传的值的表达式,比如 `&lt;h3&gt;&#123;&#123;childData&#125;&#125;&lt;/h3&gt;` ,随后在data内初始化要传的值,为空串!</span><br><span class="line">  * 来到子级,先给传参的按钮绑定一个click事件,在该事件内,`this.$emit(&quot;myEvent&quot;, this.childData) `把数据传到父级</span><br><span class="line">    即可将子级的数据传到父级内的自定义事件的参数</span><br><span class="line">  * 最后在**父级**的自定义事件的**回调函数**中把参数传到data里</span><br><span class="line">  * 解绑: `this.$off(&#x27;myEvent&#x27;)`</span><br><span class="line">  * 如需给组件绑定原生事件,需加`native`修饰符</span><br><span class="line"></span><br><span class="line">&gt;```js</span><br><span class="line">&gt;changeData(childData,...params) &#123;  //params作为arguments传多个参数</span><br><span class="line">&gt;    this.childData = childData;</span><br><span class="line">&gt;    this.dataArr=params;</span><br><span class="line">&gt; &#125;,</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>子传父</strong> :  父先给子<strong>传函数</strong>,子用props接收并调用函数来传实参,父组件通过形参获取数据</p>
+</li>
+<li><p>若是在子级组件里的template标签写div,则引入组件会因为块元素而换行</p>
+</li>
+<li><p><strong>子组件互传</strong> : </p>
+<ul>
+<li>子传父 + 父传子</li>
+<li>全局事件总线</li>
+</ul>
+</li>
+<li><p>只有 v.属性 才能获取对象里的属性</p>
 </li>
 <li><p>插槽: (可自定义button等 )在父组件调用子组件的标签里通过template标签的v-slot属性可在定义对应子组件的slot对应name的插槽里自定义html内容</p>
 </li>
-<li><p>子级向父级传值: 父级在app.vue内的子级的调用标签,添加自定义事件,比如 @myEvent=&quot;changeData&quot; ,然后在别的html标签内定义要传的值的表达式,比如 <code>&lt;h3&gt;&#123;&#123;childData&#125;&#125;&lt;/h3&gt;</code> ,随后在data内初始化要传的值,为空串!</p>
+</ul>
+<hr>
+<h5 id="全局事件总线-GlobalEventBus"><a href="#全局事件总线-GlobalEventBus" class="headerlink" title="全局事件总线( GlobalEventBus )"></a>全局事件总线( GlobalEventBus )</h5><ul>
+<li><p>一种组件件通信的方式,适用于任意组件间通信</p>
 </li>
-<li><p>来到子级,先给传参的按钮绑定一个click事件,在该事件内,this.$emit(“myEvent”, this.childData) 把数据传到父级<br>即可将子级的数据传到父级内的自定义事件的参数</p>
+<li><p>安装全局事件总线 : 在main.js中,new Vue时,的钩子中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  ...</span><br><span class="line">  beforeCreate()&#123;</span><br><span class="line">    Vue.prototype.$bus=this;  //安装全局事件总线,$bus就是当前的vm</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>使用事件总线</p>
+<ul>
+<li>接收数据 : A组件要接收数据,就要给$bus绑定自定义事件,回调留在A自身</li>
+<li>提供数据 : <code>this.$bus.$emit(&#39;xxx&#39;,数据)</code></li>
+</ul>
 </li>
-<li><p>最后在父级的自定义事件把参数传到data里</p>
+<li><p>最好在接收数据的那个组件的beforeDestroy钩子中,用$off来解绑事件</p>
 </li>
 </ul>
-<blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">changeData</span>(<span class="params">childData</span>)</span> &#123;</span><br><span class="line">          <span class="built_in">this</span>.childData = childData;</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>
-</blockquote>
-<ul>
-<li><p>若是在子级组件里的template标签写div,则引入组件会因为块元素而换行</p>
+<hr>
+<h5 id="消息订阅与发布"><a href="#消息订阅与发布" class="headerlink" title="消息订阅与发布"></a>消息订阅与发布</h5><ul>
+<li><p>一种组件间通信的方式，,适用于任意组件间通信</p>
 </li>
-<li><p>只有 v.属性 才能获取对象里的属性</p>
+<li><p>步骤 ： </p>
+<ul>
+<li><p>安装pubsub : <code>npm install pubsub-js</code></p>
+</li>
+<li><p>引入 : <code>import pubsub from &#39;pubsub-js&#39;</code></p>
+</li>
+<li><p>接收数据 : A组件若要接收数据,则在A组件中订阅消息,回调留在A自身</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">mounted</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.pid=pubsub.subscribe(<span class="string">&#x27;xxx&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">数据名,数据</span>)</span>&#123;...&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>提供数据 :  <code>pubsub.publish(&#39;xxx&#39;,数据)</code></p>
+</li>
+<li><p>记得在beforeDestroy钩子中,用<code>pubsub.unsubscribe(pid)</code> 来<strong>取消订阅</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="mixin混入"><a href="#mixin混入" class="headerlink" title="mixin混入"></a>mixin混入</h5><ul>
+<li><p>外部的一个js,能将多个组件公用的配置(函数/数据)提取成一个混入对象</p>
+</li>
+<li><p>第一步,需要定义并暴露,例如 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a=&#123;</span><br><span class="line"> <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>&#123;...&#125;, </span><br><span class="line"> <span class="attr">methods</span>:&#123;..&#125;,</span><br><span class="line"> <span class="function"><span class="title">mounted</span>(<span class="params"></span>)</span>&#123;...&#125;  <span class="comment">//顺序比实例的mounted更前</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>第二步,使用混入,例如</p>
+<ul>
+<li>全局混入(在main.js中) : (import)+ Vue.mixin(xxx)</li>
+<li>局部混入(在组件中) :  (import)+ mixin<strong>s</strong>:[‘xx’,’xxx’]</li>
+</ul>
 </li>
 </ul>
 <hr>
@@ -441,7 +549,12 @@
 <li>但vue提供了<strong>新的获取DOM节点的方法</strong> (注意这里是虚拟DOM)<br>(给节点绑定一个属性叫ref,然后let box=this.$refs.<code>ref的值</code>,即可获取到节点)</li>
 </ul>
 <hr>
-<h3 id="绑定class样式"><a href="#绑定class样式" class="headerlink" title="绑定class样式"></a>绑定class样式</h3><ol>
+<h3 id="Vue中样式"><a href="#Vue中样式" class="headerlink" title="Vue中样式"></a>Vue中样式</h3><ul>
+<li>scoped : 让样式在局部生效,防止冲突</li>
+<li>lang=’css/less’,默认css,如需less,需要安装less-loader,目前安装6比较稳定</li>
+</ul>
+<hr>
+<h4 id="绑定class样式"><a href="#绑定class样式" class="headerlink" title="绑定class样式"></a>绑定class样式</h4><ol>
 <li><p>字符串写法,   适用于: 样式的<strong>类名不确定</strong>,需要动态指定</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;basic&quot;</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;mysty&quot;</span> @click=<span class="string">&quot;changeSty&quot;</span>&gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;</span><br><span class="line"><span class="comment">//methods的chanSty函数中修改属性mysty</span></span><br></pre></td></tr></table></figure></li>
 <li><p>数组写法,适用于 : 要绑定的样式<strong>个数不确定、名字也不确定</strong></p>
@@ -462,6 +575,17 @@
 <li><p>随后在过滤器函数里通过对参数value的处理,返回想要的过滤结果</p>
 </li>
 <li><p>在<strong>字面量里使用data的数据</strong>需要使用${}   比如 `**${year}年**${month}月${d}日`</p>
+</li>
+</ul>
+<hr>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><ul>
+<li><p>外部的一个js,能够增强Vue</p>
+</li>
+<li><p>本质 : 包含install方法的一个对象,install的第一个参数是Vue函数,第二个以后的参数的插件使用者在main.js传递的参数</p>
+</li>
+<li><p>定义插件 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">对象.install=function(Vue,options)&#123;</span><br><span class="line">  Vue.filter(...) //添加全局过滤器</span><br><span class="line">  Vue.directive(...) //添加全局指令</span><br><span class="line">  Vue.mixin(...)  //配置全局混入</span><br><span class="line">  Vue.prototype.$myMethod=function()&#123;..&#125;//全局函数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>使用插件 : Vue.use( )</p>
 </li>
 </ul>
 <hr>
@@ -621,6 +745,25 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (to.path === <span class="string">&quot;/login&quot;</span>) &#123;</span><br><span class="line">        next();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> token =<span class="built_in">localStorage</span>.getItem(<span class="string">&quot;token&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(token)&#123;</span><br><span class="line">            next();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            next(<span class="string">&quot;/login&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>可实现将路由拦截(无法访问内容)</p>
+<hr>
+<h3 id="总结TodoList案例"><a href="#总结TodoList案例" class="headerlink" title="总结TodoList案例"></a>总结TodoList案例</h3><ul>
+<li>组件化编码流程 :<ul>
+<li>拆分静态组件 : 先写好结构样式,组件要按照功能来拆分,命名不要与html元素冲突</li>
+<li>实现动态组件 : 考虑好数据的存放位置,数据是一个组件在用(也就是读写),还是一堆组件再用<ul>
+<li>一个组件在用 : 放在组件自身即可</li>
+<li>一堆组件在用 : 放在他们共同的父组件上( 状态提升 )</li>
+</ul>
+</li>
+<li>实现交互 : 从绑定事件开始</li>
+</ul>
+</li>
+<li>props适用于哪些通信<ul>
+<li>父传子 </li>
+<li>子传父 : (父给子传函数,子通过直接调用this.函数,用实参来传参)</li>
+</ul>
+</li>
+<li>v-model绑定的不能是props的值,因为props是只读的</li>
+</ul>
 <hr>
 <h3 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h3><ul>
 <li>前端8080的变量要用 VUE_APP_变量名 来命名,可实现生产环境和<strong>开发环境</strong>的(ip/变量名)区分</li>

@@ -250,14 +250,11 @@
 </ul>
 <hr>
 <h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><ul>
-<li><p>利用事件冒泡的特性，将本应该注册在子元素上的处理事件注册在父元素上，这样点击子元素时发现其本身没有相应事件就到父元素上寻找作出响应。比如<strong>点击父元素中的子元素,this指向父元素,但e.target指向捕获到底的子元素</strong></p>
-</li>
-<li><p>这样做的<strong>优势</strong>：1.减少DOM操作，提高性能。2.随时可以添加子元素，添加的子元素会自动有相应的处理事件。</p>
-</li>
-<li><p><strong>原因</strong>: 在JavaScript中，添加到页面上的事件处理程序数量将直接关系到页面的整体<strong>运行性能</strong>，因为需要不断的与dom节点进行<strong>交互</strong>，访问dom的次数越多，引起浏览器<strong>重绘</strong>与重排的次数也就越多，就会延长整个页面的交互就绪时间，这就是为什么性能优化的主要思想之一就是减少DOM操作的原因；如果要用事件委托，就会将所有的操作放到js程序里面，与dom的操作就<strong>只需要交互一次</strong>，而且<strong>只需要一个内存空间</strong>,这样就能大大的减少与dom的交互次数，提高性能；</p>
-</li>
-<li><p><strong>原理</strong>:</p>
-</li>
+<li>场景 : 如果我们有一个列表，列表之中有大量的列表项，我们需要在点击列表项的时候响应一个事件,如果给每一个列表项一一都绑定一个函数，那对于内存消耗是非常大的</li>
+<li>利用事件冒泡的特性，将本应该注册在子元素上的处理事件注册在父元素上，这样点击子元素时发现其本身没有相应事件就到父元素上寻找作出响应。比如<strong>点击父元素中的子元素,this指向父元素,但e.target指向捕获到底的子元素</strong></li>
+<li>这样做的<strong>优势</strong>：1.减少DOM操作，提高性能。2.随时可以添加子元素，添加的子元素会自动有相应的处理事件。</li>
+<li><strong>原因</strong>: 在JavaScript中，添加到页面上的事件处理程序数量将直接关系到页面的整体<strong>运行性能</strong>，因为需要不断的与dom节点进行<strong>交互</strong>，访问dom的次数越多，引起浏览器<strong>重绘</strong>与重排的次数也就越多，就会延长整个页面的交互就绪时间，这就是为什么性能优化的主要思想之一就是减少DOM操作的原因；如果要用事件委托，就会将所有的操作放到js程序里面，与dom的操作就<strong>只需要交互一次</strong>，而且<strong>只需要一个内存空间</strong>,这样就能大大的减少与dom的交互次数，提高性能；</li>
+<li><strong>原理</strong>:</li>
 </ul>
 <ol>
 <li>Event对象提供了一个属性叫target，<strong>可以返回事件的目标节点</strong>，成为事件源，也就是说，target就可以表示为当前的事件操作的dom，但是不是真正操作dom;</li>
@@ -517,6 +514,25 @@
 <hr>
 <p><strong>screen ( 显示器对象 )</strong></p>
 <p><img src="https://pic.imgdb.cn/item/618bbbea2ab3f51d9105d554.jpg"></p>
+<hr>
+<h3 id="本地存储"><a href="#本地存储" class="headerlink" title="本地存储"></a>本地存储</h3><ul>
+<li>存储大小一般在支持5MB左右,都是window的方法</li>
+<li>持久级: localStorage, 会话级: sessionStorage</li>
+<li>两者都有四个相关API<ul>
+<li><code>xxxxStorage.setItem(&#39;key&#39;,&#39;value&#39;)</code>  不存在则添加,存在则更新</li>
+<li><code>xxxxStorage.getItem(&#39;key&#39;)</code>  通过键名,获取键值</li>
+<li><code>xxxxStorage.removeItem(&#39;key&#39;)</code> 通过键名,将数据从存储中删除</li>
+<li><code>xxxxStorage.clear()</code> 清空存储中所有数据</li>
+</ul>
+</li>
+<li>注意<ul>
+<li>sessionStorage的内容随着浏览器窗口关闭而消失</li>
+<li>localStorage的内容需手动清除才会消失</li>
+<li><code>xxxxStorage.getItem(&#39;key&#39;)</code> 获取不到值是会返回null</li>
+<li>对象要用JSON.stringfy来存储,用JSON.parse来解析,但无法存储null,依旧是null</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><ul>
 <li>网景公司引入的<strong>针对浏览器</strong>的一种安全策略,如果缺少了同源策略,浏览器很容易受到XSS、CSRF等攻击<ul>

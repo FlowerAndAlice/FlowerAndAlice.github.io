@@ -462,9 +462,9 @@
 <li><p>判断数据类型的方法(4种)</p>
 <ul>
 <li><strong>typeof</strong>, 弊端:<strong>对null和引用都是object</strong></li>
-<li><strong>instanceof</strong>,   弊端:   只能判断某个对象是否是右边对象的实例, **无法判断(numer,string,boolean)**简单的let num=1, 只能判断构造出的 let num=new Numer(1)</li>
+<li><strong>instanceof</strong>,   弊端:   只能判断某个对象是否是右边对象的实例, **无法判断(number,string,boolean)**简单的let num=1, 只能判断构造出的 let num=new Numer(1)</li>
 <li><strong>constructor</strong>, 弊端: <strong>无法检测null和undefined</strong>,因为它们没有原生构造函数</li>
-<li><strong>Object.toString.call(  )</strong> ,有些对象重写了toString,所以去原型里用原生的toString(), 无敌的</li>
+<li><strong>Object.prototype.toString.call(  )</strong> ,有些对象重写了toString,所以去原型里用原生的toString(), 无敌的</li>
 </ul>
 </li>
 </ol>
@@ -789,7 +789,14 @@
 <ol>
 <li>Object.assign会将source里面的可枚举属性复制到target。</li>
 <li>后续的source会覆盖前面的source的同名属性。</li>
-<li>Object.assign复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。( 浅拷贝 )</li>
+<li>Object.assign复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。( 浅拷贝 )<ul>
+<li>深拷贝 : 改变一个不会影响另一个,实现:<ul>
+<li>递归,判断数据类型,给空间</li>
+<li>jQ的extend方法,第一个参数是true</li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
 <ul>
 <li><p>箭头函数与普通函数的区别 :  ( <strong>捡的狗屁股啊</strong> )</p>
@@ -871,6 +878,18 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> wife = &#123;</span><br><span class="line">   <span class="attr">name</span>: <span class="string">&#x27;Yoimiya&#x27;</span>,</span><br><span class="line">   <span class="attr">cat</span>: <span class="string">&#x27;dog&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> &#123; name,cat &#125; = wife;     <span class="comment">//解构声明,拿到值并存储到外部变量中</span></span><br><span class="line"><span class="built_in">console</span>.log(name);      <span class="comment">//Yoimiya</span></span><br><span class="line"><span class="built_in">console</span>.log(cat);       <span class="comment">//dog</span></span><br></pre></td></tr></table></figure></li>
 <li><p>解构赋值</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> wife = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Yoimiya&#x27;</span>,</span><br><span class="line">  <span class="attr">cat</span>: <span class="string">&#x27;dog&#x27;</span></span><br><span class="line">&#125;,</span><br><span class="line">name = <span class="number">1</span>,</span><br><span class="line">cat = <span class="number">2</span>;</span><br><span class="line">(&#123; name,cat &#125; = wife )              <span class="comment">//解构赋值(表达式),语法规定，代码块语句不允许出现在赋值语句左侧，添加小括号后可以将块语句转化为一个表达式，从而实现整个解构赋值过程</span></span><br><span class="line"><span class="built_in">console</span>.log(name);  <span class="comment">//Yoimiya</span></span><br><span class="line"><span class="built_in">console</span>.log(cat);	<span class="comment">//dog</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>判断对象是否为空</p>
+<ul>
+<li><p>JSON.stringfy(obj)  :  将对象强制转换成字符串,与空对象的字符串比较</p>
+</li>
+<li><p>for…in遍历对象,有属性则返回false,反之返回true</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEmptyObject</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>；</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>；</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li><p>Object.keys(obj) : ES5方法,返回的数组包含对象所有的属性名,为0则是空对象</p>
+</li>
+<li><p>Object.getOwnPropertyNames(obj) : 同上</p>
+</li>
 </ul>
 </li>
 </ul>

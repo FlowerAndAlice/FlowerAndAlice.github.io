@@ -185,6 +185,14 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">   arr.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">   <span class="keyword">const</span> res = [];</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">     <span class="keyword">if</span> (res.indexOf(arr[i]) === -<span class="number">1</span>) &#123;</span><br><span class="line">       res.push(arr[i]);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="keyword">return</span> res;   <span class="comment">//区分NaN</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
+<h3 id="两栏布局"><a href="#两栏布局" class="headerlink" title="两栏布局"></a>两栏布局</h3><ul>
+<li>左盒float:left+右盒ml300</li>
+<li>左盒float:left+右盒BFC(不与浮动盒重叠,会收窄)</li>
+<li>父盒por,左盒定位poa,右盒定位poa+left:300px</li>
+<li>左盒定位poa,右盒ml300</li>
+<li>父元素Flex,右盒flex:1;占据剩余空间</li>
+</ul>
+<hr>
 <h3 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h3><ul>
 <li><p>顺序 : 捕获阶段( 从documen到目标 )、目标阶段、冒泡阶段( 从目标到window )。</p>
 <ol>
@@ -353,45 +361,45 @@
 <li><strong>Symbol 值不能与其它类型的值进行运算，否则会报错</strong></li>
 </ol>
 </li>
-<li><pre><code class="js">let s = Symbol(&#39;name&#39;);
-let a = &#123;
-  [s]: &#39;Kobe&#39;,
-&#125;;
-console.log(a) ; // &#123;Symbol(name): &quot;Kobe&quot;&#125;
-</code></pre>
-</li>
+<li><p>```js<br>let s = Symbol(‘name’);<br>let a = {<br>  [s]: ‘Kobe’,<br>};<br>console.log(a) ; // {Symbol(name): “Kobe”}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 元编程 Proxy 和 Reflect</span><br><span class="line"></span><br><span class="line">* 新数据结构 Set 和 Map</span><br><span class="line"></span><br><span class="line">* 异步编程Promise 、Generator 和 Async</span><br><span class="line"></span><br><span class="line">* 语言层面  模块、类的支持 module 、class</span><br><span class="line"></span><br><span class="line">* iterator 遍历器，一种接口，为各种数据结构提供统一的访问机制</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">### 前端性能优化</span><br><span class="line"></span><br><span class="line">* 内容优化</span><br><span class="line">  * 减少DOM数量,否则每次遍历DOM都久</span><br><span class="line">  </span><br><span class="line">  * 减少重排重绘,</span><br><span class="line">  </span><br><span class="line">    * 使用文档碎片</span><br><span class="line">  </span><br><span class="line">      ```js</span><br><span class="line">      frag = document.createDocumentFragment();</span><br><span class="line">      for(...)&#123;</span><br><span class="line">        item = document.createElement(&quot;li&quot;);</span><br><span class="line">        frag.appendChild(item);     item.appendChild(document.createTextNode(&quot;Item &quot; + i));</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>使用InnerHTML</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> html=<span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">for</span>(...)&#123;html+=<span class="string">&#x27;\&lt;li&gt;&#x27;</span>+ i +<span class="string">&#x27;\&lt;/li&gt;&#x27;</span>; &#125;</span><br><span class="line">ul.innerHTML = html</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
+<li><p><strong>懒加载</strong> : 先将img标签的src链接设为同一张图片（比如空白图片），然后给img标签设置自定义属性（比如 data-src）,然后将真正的图片地址存储在data-src中，当JS监听到该图片元素进入可视窗口时，将自定义属性中的地址存储到src属性中。达到懒加载的效果。</p>
+</li>
+<li><p>事件代理/委托</p>
+</li>
+<li><p>减少对象/数组的查找次数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for循环性能优化：缓存数组长度到arr</span></span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><p>元编程 Proxy 和 Reflect</p>
-</li>
-<li><p>新数据结构 Set 和 Map</p>
-</li>
-<li><p>异步编程Promise 、Generator 和 Async</p>
-</li>
-<li><p>语言层面  模块、类的支持 module 、class</p>
-</li>
-<li><p>iterator 遍历器，一种接口，为各种数据结构提供统一的访问机制</p>
-</li>
-</ul>
-<hr>
-<h3 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h3><ul>
-<li>内容优化<ul>
-<li>减少DOM数量,否则每次遍历DOM都久</li>
-<li><strong>懒加载</strong> : 先将img标签的src链接设为同一张图片（比如空白图片），然后给img标签设置自定义属性（比如 data-src）,然后将真正的图片地址存储在data-src中，当JS监听到该图片元素进入可视窗口时，将自定义属性中的地址存储到src属性中。达到懒加载的效果。</li>
-</ul>
-</li>
-<li>CSS优化<ul>
+<li><p>CSS优化</p>
+<ul>
 <li>放body顶部</li>
-<li>合并成一个,减少HTTP请求</li>
+<li>合并成一个,精灵图,**减少HTTP请求,**通过bac-position使用</li>
+<li>最大化JS,CSS文件的合并,多合一</li>
 </ul>
 </li>
-<li>JS优化<ul>
+<li><p>JS优化</p>
+<ul>
 <li>放body底部</li>
+<li>使用局部变量代替全局变量，减少作用域链遍历标识符的时间</li>
+<li>减少对象成员及数组项的查找次数</li>
 </ul>
 </li>
-<li>cookie优化</li>
+<li><p>cookie优化</p>
+<ul>
+<li>压缩HTML,CSS,JS模块</li>
+</ul>
+</li>
+<li><p>其他方面</p>
+<ul>
+<li>使用CDN加载静态资源</li>
+<li>避免URL重定向</li>
+</ul>
+</li>
 </ul>
 
       </section>

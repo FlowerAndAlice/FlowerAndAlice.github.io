@@ -200,10 +200,10 @@
 </ul>
 <hr>
 <h3 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h3><p>（div、article、section）</p>
-<p>  ① <strong>标准盒模型</strong>  box-sizing : content-box  </p>
-<p>  ​     此时盒子的宽和高只决定元素的<strong>content部分</strong>,即 <strong>width = content</strong></p>
+<p>  ① <strong>标准盒模型</strong>  box-sizing : content-box  (默认)</p>
+<p>  ​     此时盒子的宽和高只决定元素的<strong>content部分</strong>,即 <strong>width = content</strong>,加paddding会外撑,即content部分不会变化</p>
 <p>  ② <strong>IE(怪异)盒模型</strong>       box-sizing :  border-box  </p>
-<p>  ​     此时盒子的宽和高决定元素的<strong>border大小</strong>,即 <strong>width = content+padding*2+border*2</strong></p>
+<p>  ​     此时盒子的宽和高决定元素的<strong>border大小</strong>,即 <strong>width = content+padding*2+border*2</strong>,加padding会内缩,即border部分不会变化</p>
 <p> ps: </p>
 <ol>
 <li>scrollHeight=高度height(滚动内容)+上下padding</li>
