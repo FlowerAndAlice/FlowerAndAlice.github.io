@@ -693,16 +693,31 @@
 <p>特点：</p>
 <ol>
 <li><strong>严格区分大小写</strong></li>
-</ol>
-</li>
-<li><p>在使用indexOf检索数组时，如果用‘**===<strong>’去匹配，意味着会</strong>检查数据类型**,<strong>所以要用</strong>‘<strong>==</strong>‘</p>
-<ol start="3">
+<li>在使用indexOf检索数组时，如果用‘**===<strong>’去匹配，意味着会</strong>检查数据类型**,<strong>所以要用</strong>‘<strong>==</strong>‘</li>
 <li>无法检索NaN</li>
 </ol>
 </li>
 <li><p>lastIndexOf：从尾开始</p>
 </li>
 <li><p>模板字符串 : 使用反引号` ` 和 ${ }</p>
+</li>
+<li><p>split(‘,’)  以 **,**为分隔符，分离字符串中的字段，返回包含所有分离完成后的字段的 数组</p>
+</li>
+<li><p>chatAt()  ,返回指定位置的字符</p>
+</li>
+<li><p>concat() 连接两个或多个字符串,不改变原有字符串</p>
+</li>
+<li><p>includes() 判断字符串中是否包含指定的子字符</p>
+</li>
+<li><p>match() 可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配,将结果存入一个数组中</p>
+</li>
+<li><p>repeat()  复制指定次数</p>
+</li>
+<li><p>replace() 用于在字符串中用一些字符替换另一些字符(用后面的换前面的 )，或替换一个与正则表达式匹配的子串。( 只会换一次,replaceAll会替换所有子串 )</p>
+</li>
+<li><p>slice() 提取字符串的某个部分，并以新的字符串返回被提取的部分。</p>
+</li>
+<li><p>trim()  用于删除字符串的头尾空白符</p>
 </li>
 </ol>
 <hr>
@@ -1011,6 +1026,7 @@
 <li>高频点击提交，表单重复提交</li>
 <li>LOL放技能,有CD</li>
 </ul>
+<p><img src="https://pic.imgdb.cn/item/6315a87816f2c2beb153b56c.png"></p>
 </li>
 <li><p><strong>promise对象</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//相当于</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">        resolve(<span class="number">1</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>

@@ -275,12 +275,9 @@
 <li><p><strong>async函数</strong>的用法  :  async function foo() { };      //函数声明</p>
 <p> 无论async函数有无await操作，其总是返回一个Promise。</p>
 <ul>
-<li><p>没有显式return，相当于return Promise.resolve(undefined);</p>
-</li>
-<li><p>return非Promise的数据data，相当于return Promise.resolve(data);</p>
-</li>
-<li><p>return Promise, 会得到Promise对象本身</p>
-</li>
+<li>没有显式return，相当于return Promise.resolve(undefined);</li>
+<li>return非Promise的数据data，相当于return Promise.resolve(data);</li>
+<li>return Promise, 会得到Promise对象本身</li>
 </ul>
 </li>
 <li><p><strong>await操作符</strong>用法  :  let res = await expression;</p>
@@ -288,7 +285,10 @@
 <li>expression是Promise，res等于Promise成功的<strong>值</strong>，若Promise被拒绝，则抛出异常，由try…catch捕获</li>
 <li>expression是非Promise，会被转换为立即resolve的Promise，res等于expression </li>
 <li>await操作只能用在async函数中，否则会报错。</li>
+<li>async 用于申明一个 function 是异步的，而 await 用于等待一个异步方法执行完成。 await 不仅仅用于等 Promise 对象，它可以等任意表达式的结果</li>
 </ul>
+</li>
+<li><p>假设一个业务，分多个步骤完成，每个步骤都是异步的，而且依赖于上一个步骤的结果，此时就要用到 async 和 await ，（ 优化回调地狱 ）</p>
 </li>
 </ul>
 <hr>

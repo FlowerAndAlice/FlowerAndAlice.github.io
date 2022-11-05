@@ -263,6 +263,8 @@
 </li>
 <li><p>使用for循环就必须使用:key绑定每项的唯一标识</p>
 </li>
+<li><p>没拿到需要的数据时,v-for不显示,  拿到数据后,才会渲染并更新视图</p>
+</li>
 </ul>
 <hr>
 <h4 id="key的作用与原理"><a href="#key的作用与原理" class="headerlink" title="key的作用与原理"></a>key的作用与原理</h4><ul>
@@ -396,9 +398,11 @@
 <ul>
 <li>先把静态页面完成</li>
 <li>拆分出静态页面,拆成组件 ( 结构html + 样式css + 图片资源 )</li>
-<li>获取服务器的数据进行展示</li>
+<li>获取服务器的数据进行展示( vuex三连环 ) </li>
 <li>动态业务</li>
 </ul>
+</li>
+<li><p>分页器组件需要的参数: pageNo(当前页码),pageSize(每页多少数据),total(总页数),continues(中间展示几页,一般是5)</p>
 </li>
 <li><p><strong>模块化</strong> : 当应用中的JS都用不同的模块来编写,那这个应用就是个模块化的应用 ( 比如my.js -&gt;  a.js + b.js +c.js)</p>
 </li>
@@ -410,12 +414,14 @@
 <ul>
 <li><p><strong>局部注册</strong> : 在new Vue实例的component<strong>s</strong>中:{Wife};  </p>
 </li>
-<li><p><strong>全局注册</strong> : Vue.component(‘ script中组件名’,import引入名); //入口</p>
+<li><p><strong>全局注册</strong> : <strong>Vue.component</strong>   (‘ script中组件的name(首字母需大写)’, import引入名); //main.js</p>
 </li>
 </ul>
 </li>
 <li><p>使用组件 ( 编写组件标签 ) (body里的),</p>
 <ul>
+<li><p>局部组件要先import引入,全局组件直接用</p>
+</li>
 <li><p>一个单词的组件名:使用组件时首字母大小写应与注册时一致</p>
 </li>
 <li><p>多个单词的组件名,</p>
@@ -462,7 +468,7 @@
 <h4 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h4><ul>
 <li><p><strong>父传子</strong></p>
 <ul>
-<li><p>父传递数据  : &lt;Son  name=”xxx”  /&gt;   </p>
+<li><p>父传递数据  : &lt;Son  name=”xxx”  /&gt;    //此处是字符串,传表达式需v-bind</p>
 </li>
 <li><p>子接收数据 :  </p>
 <ol>
@@ -476,7 +482,7 @@ required:true, //必要性
 default:6  //默认值
 </code></pre>
 <p>  }<br>}</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  * 注意: props是只读的,修改props会被Vue监测到并警告,如需修改可赋值data中的值,因为props优先编译</span><br><span class="line"></span><br><span class="line">* **子传父:**  给实例对象**绑定自定义事件**</span><br><span class="line"></span><br><span class="line">  * 第一种**直接绑** :**@**myEvent=\&quot;changeData\&quot; </span><br><span class="line">  * 第二种用**组件实例对象** :this.$refs.wife.**$on**(&quot;myEvent&quot;, this.changeData);</span><br><span class="line">  * 如需只调用一次 ： **@**myEvent.once  或:this.$refs.wife.$once</span><br><span class="line">  * 然后在别的html标签内定义要传的值的表达式,比如 `&lt;h3&gt;&#123;&#123;childData&#125;&#125;&lt;/h3&gt;` ,随后在data内初始化要传的值,为空串!</span><br><span class="line">  * 来到子级,先给传参的按钮绑定一个click事件,在该事件内,`this.$emit(&quot;myEvent&quot;, this.childData) `把数据传到父级</span><br><span class="line">    即可将子级的数据传到父级内的自定义事件的参数</span><br><span class="line">  * 最后在**父级**的自定义事件的**回调函数**中把参数传到data里</span><br><span class="line">  * 解绑: `this.$off(&#x27;myEvent&#x27;)`</span><br><span class="line">  * 如需给组件绑定原生事件,需加`native`修饰符</span><br><span class="line"></span><br><span class="line">&gt;```js</span><br><span class="line">&gt;changeData(childData,...params) &#123;  //params作为arguments传多个参数</span><br><span class="line">&gt;    this.childData = childData;</span><br><span class="line">&gt;    this.dataArr=params;</span><br><span class="line">&gt; &#125;,</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  * 注意: props是只读的,修改props会被Vue监测到并警告,如需修改可赋值data中的值,因为props优先编译</span><br><span class="line"></span><br><span class="line">* **子传父:**  给实例对象**绑定自定义事件**</span><br><span class="line"></span><br><span class="line">  * 第一种**直接绑** :**@**myEvent=\&quot;changeData\&quot; </span><br><span class="line">  * 第二种用**组件实例对象** :this.$refs.wife.**$on**(&quot;myEvent&quot;, this.changeData);</span><br><span class="line">    * 如需只调用一次 ： **@**myEvent.once  或:this.$refs.wife.$once</span><br><span class="line">  * 随后在data内初始化要传的值,为空串!</span><br><span class="line">  * 来到子级,先给传参的按钮绑定一个click事件,在该事件内,`this.$emit(&quot;myEvent&quot;, this.childData) `把数据传到父级</span><br><span class="line">    即可将子级的数据传到父级内的自定义事件的参数</span><br><span class="line">  * 最后在**父级**的methods中, 自定义事件的**回调函数**中把参数传到data里</span><br><span class="line">  * 子级解绑: `this.$off(&#x27;myEvent&#x27;)`</span><br><span class="line">    * 如需给组件绑定原生事件,需加`native`修饰符</span><br><span class="line"></span><br><span class="line">&gt;```js</span><br><span class="line">&gt;changeData(childData,...params) &#123;  //params作为arguments传多个参数</span><br><span class="line">&gt;    this.childData = childData;</span><br><span class="line">&gt;    this.dataArr=params;</span><br><span class="line">&gt; &#125;,</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
 </ul>
@@ -504,8 +510,10 @@ default:6  //默认值
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  ...</span><br><span class="line">  beforeCreate()&#123;</span><br><span class="line">    Vue.prototype.$bus=this;  //安装全局事件总线,$bus就是当前的vm</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
 <li><p>使用事件总线</p>
 <ul>
-<li>接收数据 : A组件要接收数据,就要给$bus绑定自定义事件,回调留在A自身</li>
-<li>提供数据 : <code>this.$bus.$emit(&#39;xxx&#39;,数据)</code></li>
+<li><p>接收数据 : A组件要接收数据,就要给$bus绑定自定义事件,回调留在A自身</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$bus.$on(<span class="string">&#x27;xxx&#x27;</span>,<span class="function">()=&gt;</span>&#123; ... &#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>提供数据 : <code>this.$bus.$emit(&#39;xxx&#39;,数据)</code></p>
+</li>
 </ul>
 </li>
 <li><p>最好在接收数据的那个组件的beforeDestroy钩子中,用$off来解绑事件</p>
@@ -558,6 +566,12 @@ default:6  //默认值
 <li>Vue中的数据变化,并不是直接改变DOM,而是通过改变<strong>虚拟DOM</strong>,并计算更改差异,进而修改DOM中有变化的内容</li>
 <li>通过doc.query..获取真实DOM之后,通过window.getComputedStyle(节点) 可获取节点样式并进行操作</li>
 <li>但vue提供了<strong>新的获取DOM节点的方法</strong> (注意这里是虚拟DOM)<br>(给节点绑定一个属性叫ref,然后let box=this.$refs.<code>ref的值</code>,即可获取到节点)</li>
+</ul>
+<hr>
+<h3 id="nextTick"><a href="#nextTick" class="headerlink" title="$nextTick"></a>$nextTick</h3><ul>
+<li><p>修改数据后使用, <strong>将回调延迟至下次DOM更新      循环(v-for循环)结束之前</strong>执行, 获取更新后的DOM</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xxx  <span class="comment">//修改数据,或者用watch监测到数据被修改了</span></span><br><span class="line"><span class="built_in">this</span>.$nextTick(<span class="function">()=&gt;</span>&#123;   </span><br><span class="line">  ...   <span class="comment">//回调  </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li></li>
 </ul>
 <hr>
 <h3 id="Vue中样式"><a href="#Vue中样式" class="headerlink" title="Vue中样式"></a>Vue中样式</h3><ul>
@@ -667,7 +681,7 @@ default:6  //默认值
 <li>不应该在模板中放入太多的逻辑,故对于<strong>复杂逻辑</strong>,需要使用计算属性,得到的是computed(<strong>一个对象</strong>)中totalPrice函数的返回值<br>(多个值变化为了得到一个值,此时用计算属性) (为了得到一个值)</li>
 <li>computed中的属性会被执行后,最终返回结果会出现在vm上,故通过直接读取即可</li>
 <li>备注: <ol>
-<li>computed里的函数的this指向vue实例</li>
+<li>computed里的函数的this指向vue实例,即和模板一样,直接用数据</li>
 <li>如果要修改计算属性,必去通过set函数去响应修改,且set中要引起计算时依赖的数据发生改动</li>
 <li>不需要setter时简写为totalPrice(){ … }</li>
 </ol>
@@ -682,7 +696,11 @@ default:6  //默认值
 <li>通过vm.$watch监视,(监视对象写在<strong>引号内</strong>)</li>
 </ul>
 </li>
-<li>在watch里写一个变量同名的函数,自带的形参即为变量变化后的值,第二个是变化前的值,(省略了immediate和deep)<br>(一个值变化影响多个值,此时用监听器) (为了观察一个值)</li>
+<li>在watch里写一个变量同名的函数,自带的形参即为变量变化后的值,第二个是变化前的值,(省略了immediate和deep)<br>(一个值变化影响多个值,此时用监听器) (为了观察一个值)<ul>
+<li><strong>选项：deep</strong>: 监听对象内部值的变化</li>
+<li><strong>选项：immediate</strong> : 立即监听一次,触发回调</li>
+</ul>
+</li>
 <li>在路由切换时,会无法立即改变变量值,(因为与a标签的刷新不同)<br>通过 </li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">          <span class="string">&#x27;$route.path&#x27;</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="built_in">this</span>.username = <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;usr&quot;</span>);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
@@ -691,7 +709,7 @@ default:6  //默认值
 <hr>
 <h5 id="深度监视"><a href="#深度监视" class="headerlink" title="深度监视"></a>深度监视</h5><ul>
 <li>Vue中的watch默认不检测对象内部值的改变( 监测的是地址 )</li>
-<li>配置deep:true可以监测对象内部值的改变( 多层 ) </li>
+<li>配置deep:true可以监测对象内部值的改变( <strong>多层</strong> ) </li>
 <li>备注: <ul>
 <li>vue自身可以监测到对象内部值的变化,但Vue提供的watch默认不可以!</li>
 <li>使用watch时根据数据的具体结果,决定是否采用深度监视</li>
@@ -734,6 +752,7 @@ default:6  //默认值
 <li><ul>
 <li>computed能完成的功能,watch都能完成</li>
 <li>watch能完成的,computed不一定能完成,例如异步操作</li>
+<li>computed和watch都没有this</li>
 <li>注意: 被Vue管理的函数,最好写成普通函数,这样this才指向vm或者组件实例对象</li>
 <li>不被Vue管理的函数( 定时器的回调,ajax的回调函数等 ) ,最好写成箭头函数,这样this的指向又回到vm/组件实例了</li>
 </ul>
@@ -746,6 +765,35 @@ default:6  //默认值
 <li><p>created在页面加载之前执行,mounted则在模板之后<br>(这两者只有调用异步函数之后,在异步函数里修改变量,且之后变量会复原)</p>
 </li>
 <li><p>三个隐藏钩子: <code>newxtTick(DOM更新)</code> ,<code>activated(路由组件激活)</code>,<code>deactivated(路由组件失活)</code></p>
+</li>
+<li><p>视图阶段</p>
+<ul>
+<li><p>beforeCreate实例未生成，访问不到this，一般用于设置title，keywords等；也可以用于路由权限控制拦截；</p>
+</li>
+<li><p>create;组件实例生成，处于未挂载阶段；组件首次访问data，methods等；一般用于数据初始化，ajax请求；</p>
+</li>
+<li><p>beforemount template模板的编译，从而形成相应的render函数在；组件挂载前；这时实例依然未挂载，访问不到dom中的data</p>
+</li>
+<li><p>mounted template模板已经真实的挂载到了页面中，用户已经可以看到渲染好的页面了</p>
+</li>
+</ul>
+</li>
+<li><p>数据更新阶段</p>
+<ul>
+<li><p>beforeUpdate 页面中的显示的数据，还是旧的，此时 data 数据是最新的，页面尚未和最新的数据保持同步</p>
+</li>
+<li><p>updated由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。</p>
+</li>
+</ul>
+</li>
+<li><p>销毁阶段</p>
+<ul>
+<li><p>beforeDestroy实例销毁之前调用。在这一步，实例仍然完全可</p>
+</li>
+<li><p>destroyed:组件的数据绑定、监听…都去掉了,只剩下dom空壳</p>
+</li>
+</ul>
+<p>特殊钩子： activated 与 deactivated— keep-alive包含的组件</p>
 </li>
 </ul>
 <hr>
@@ -824,10 +872,15 @@ default:6  //默认值
 <h3 id="VueX"><a href="#VueX" class="headerlink" title="VueX"></a>VueX</h3><ul>
 <li><p>概念: 专门在Vue中实现集中式状态(数据)管理的一个Vue插件,对vue应用中多个组件间的共享状态进行集中式的管理(读/写),也是一种组件间通信方式</p>
 </li>
+<li><p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式 + 库</strong>。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
+</li>
+<li><p>把组件的共享状态抽取出来，以一个全局单例模式管理, 在这种模式下，我们的组件树构成了一个巨大的“视图”，不管在树的哪个位置，任何组件都能获取状态或者触发行为！</p>
+<p><img src="https://pic.imgdb.cn/item/63203c5216f2c2beb16e1c7d.png"></p>
+</li>
 <li><p>什么时候用VueX: </p>
 <ul>
 <li>多个组件依赖于同一状态,( 项目很大,组件很多,数据很多,维护 )</li>
-<li>来自不同组件的行为</li>
+<li>来自不同视图的行为需要变更同一状态。</li>
 </ul>
 </li>
 <li><p>store组成: Action(发AJAX) + Mutations(处理state的数据) + State(存放状态)</p>
@@ -838,12 +891,14 @@ default:6  //默认值
 <li><p>搭建vuex环境</p>
 <ul>
 <li><p>创建文件 : src/store/index.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入Vue</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span></span><br><span class="line"><span class="comment">// 引入Vuex</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span>  <span class="comment">//注意vuex@4只能用于vue3.vue2可用vuex@3</span></span><br><span class="line"><span class="comment">// 使用vuex</span></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"><span class="comment">//准备actions--用于响应组件中的动作 </span></span><br><span class="line"><span class="keyword">const</span> actions = &#123;&#125;;</span><br><span class="line"><span class="comment">// 准备mutations--用于操作数据(state)</span></span><br><span class="line"><span class="keyword">const</span> mutations = &#123;&#125;;</span><br><span class="line"><span class="comment">// 准备state--用于存储数据</span></span><br><span class="line"><span class="keyword">const</span> state = &#123;&#125;;</span><br><span class="line"><span class="comment">// 创建并导出store</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  actions,</span><br><span class="line">  mutations,</span><br><span class="line">  state</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入Vue</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span></span><br><span class="line"><span class="comment">// 引入Vuex</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span>  <span class="comment">//注意vuex@4只能用于vue3.vue2可用vuex@3</span></span><br><span class="line"><span class="comment">// 使用vuex</span></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"><span class="comment">//准备actions--用于响应组件中的动作,Action 函数接受一个与 store 实例具有相同方法和属性的context对象,commit、dispatch、state、getter，第二个参数是dispatch时传过来的数据</span></span><br><span class="line"><span class="keyword">const</span> actions = &#123;&#125;;</span><br><span class="line"><span class="comment">// 准备mutations--用于操作数据(state)</span></span><br><span class="line"><span class="keyword">const</span> mutations = &#123;&#125;;</span><br><span class="line"><span class="comment">// 准备state--用于存储数据</span></span><br><span class="line"><span class="keyword">const</span> state = &#123;&#125;;</span><br><span class="line"><span class="comment">// 创建并导出store</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  actions,</span><br><span class="line">  mutations,</span><br><span class="line">  state</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
 <li><p>在main.js中创建vm时传入store配置项</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入store</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;./store&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建vm</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="attr">el</span>:<span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  <span class="attr">render</span>:<span class="function"><span class="params">h</span>=&gt;</span>h(App),</span><br><span class="line">  store</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
 <li><p>组件中读取vuex中的数据: <code>$store.state.sum</code></p>
 </li>
-<li><p>组件中修改vuex中的数据: <code>$store.dispatch(&#39;actions中的方法名&#39;,数据)</code>+<code>$store.commit(&#39;mutations中的方法名&#39;,数据)</code>,如果没有网络请求/其他业务逻辑,也可以跳过actions直接用commit</p>
+<li><p>组件中网络请求/<strong>业务逻辑</strong> : <code>$store.dispatch(&#39;actions中的方法名&#39;,数据)</code></p>
+</li>
+<li><p><strong>修改</strong>state中的<strong>数据</strong>: <code>$store.commit(&#39;mutations中的方法名&#39;,数据)</code>,如果没有业务逻辑也可以跳过actions直接用commit</p>
 </li>
 </ul>
 </li>
@@ -852,6 +907,8 @@ default:6  //默认值
 <li><p>概念: 当state中的数据需要经过加工后再使用时,可以使用getters加工</p>
 </li>
 <li><p>方法: 在store.js中追加getters配置</p>
+</li>
+<li><p>读取:<code>this.$store.name.getters.xxx</code></p>
 <p><img src="https://pic.imgdb.cn/item/629ca6c6094754312911714b.png"></p>
 </li>
 <li><p>组件中读取数据: <code>$store.getters.bigSum</code></p>
@@ -861,7 +918,7 @@ default:6  //默认值
 <li><p>四个map方法的使用,  但要先引入到组件中!</p>
 <ul>
 <li><p>**mapState ** : 用于帮助我们批量映射<code>state</code>中的数据为计算属性</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">    <span class="comment">//借助mapState生成计算属性,从state中读取数据(对象写法)</span></span><br><span class="line">    ...mapState(&#123; <span class="attr">sum</span>: <span class="string">&quot;sum&quot;</span>,<span class="attr">address</span>: <span class="string">&quot;address&quot;</span>,<span class="attr">todo</span>: <span class="string">&quot;todo&quot;</span>,&#125;),</span><br><span class="line">    <span class="comment">//借助mapState生成计算属性(计算属性名与s数据同名时,可简写),(数组写法)</span></span><br><span class="line">    ...mapState([<span class="string">&#x27;sum&#x27;</span>,<span class="string">&#x27;address&#x27;</span>,<span class="string">&#x27;todo&#x27;</span>]),</span><br><span class="line">    ...mapState( count: <span class="function"><span class="params">state</span> =&gt;</span> state.count,)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">    <span class="comment">//借助mapState生成计算属性,从state中读取数据(对象写法)</span></span><br><span class="line">    ...mapState(&#123; <span class="attr">sum</span>: <span class="string">&quot;sum&quot;</span>,<span class="attr">address</span>: <span class="string">&quot;address&quot;</span>,<span class="attr">todo</span>: <span class="string">&quot;todo&quot;</span>,&#125;),</span><br><span class="line">    <span class="comment">//借助mapState生成计算属性(计算属性名与s数据同名时,可简写),(数组写法)</span></span><br><span class="line">    ...mapState([<span class="string">&#x27;sum&#x27;</span>,<span class="string">&#x27;address&#x27;</span>,<span class="string">&#x27;todo&#x27;</span>]),</span><br><span class="line">    ...mapState( &#123;<span class="attr">count</span>: <span class="function"><span class="params">state</span> =&gt;</span> state.homeAbout.count&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p><strong>mapGetters</strong>  : 用于批量映射<code>getters</code>中的数据为计算属性</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">    <span class="comment">//借助mapGetters读取getters(类似computed)的数据</span></span><br><span class="line">    ...mapGetters(&#123;<span class="attr">bigSum</span>:<span class="string">&#x27;bigSum&#x27;</span>&#125;),</span><br><span class="line">    <span class="comment">// mapGetters中(计算属性名与getters中读取的数据同名时,可简写)</span></span><br><span class="line">    ...mapGetters([<span class="string">&#x27;bigSum&#x27;</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p><strong>mapMutations</strong>  : 生成与<code>mutations</code>对话的方法,即<code>$store.commit(xxx)</code>函数</p>
@@ -879,8 +936,8 @@ default:6  //默认值
 </li>
 <li><p>修改store.js</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> countAbout=&#123;</span><br><span class="line"> <span class="attr">namespaced</span>:<span class="literal">true</span>, <span class="comment">//开启命名空间,才能分类识别该部分</span></span><br><span class="line"> <span class="attr">state</span>:&#123;...&#125;,</span><br><span class="line"> <span class="attr">actions</span>:&#123;...&#125;,</span><br><span class="line"> <span class="attr">mutations</span>:&#123;...&#125;,</span><br><span class="line"> <span class="attr">getters</span>:&#123;...&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> wifeAbout=&#123;...&#125;</span><br><span class="line"><span class="keyword">const</span> store=<span class="keyword">new</span> Vuex.store(&#123;</span><br><span class="line">   <span class="attr">modules</span>:&#123;</span><br><span class="line">     countAbout,</span><br><span class="line">      wifeAbout</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>开启命名空间后如何读取数据</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//state  1. 自己读</span></span><br><span class="line"> <span class="built_in">this</span>.$store.state.wifeAbout.wifeList;</span><br><span class="line"> <span class="comment">//     2. 用mapState读</span></span><br><span class="line"> ...mapState(<span class="string">&#x27;countAbout&#x27;</span>,[<span class="string">&#x27;sum&#x27;</span>,<span class="string">&#x27;address&#x27;</span>,<span class="string">&#x27;todo&#x27;</span>]) </span><br><span class="line"></span><br><span class="line"> <span class="comment">//getters  1. 自己读</span></span><br><span class="line"> <span class="built_in">this</span>.$store.getters[<span class="string">&#x27;wifeAbout/wifeLsit&#x27;</span>];</span><br><span class="line"> <span class="comment">//     2. 用mapG读</span></span><br><span class="line"> ...mapGetters(<span class="string">&#x27;countAbout&#x27;</span>,[<span class="string">&#x27;bigSum&#x27;</span>]) </span><br><span class="line"></span><br><span class="line"><span class="comment">//调用dispatch联系actions  1. 自己调</span></span><br><span class="line"> <span class="built_in">this</span>.$store.dispatch[<span class="string">&#x27;wifeAbout/addWifeSAO&#x27;</span>];</span><br><span class="line"> <span class="comment">//     2. 用mapActions读</span></span><br><span class="line"> ...mapActions(<span class="string">&#x27;countAbout&#x27;</span>,[<span class="string">&#x27;incrementSix&#x27;</span>,<span class="string">&#x27;incrementWait&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用commit联系mutations  1. 自己调</span></span><br><span class="line"> <span class="built_in">this</span>.$store.commit(<span class="string">&quot;wifeAbout/ADD&quot;</span>, wifeObj);</span><br><span class="line"> <span class="comment">//     2. 用mapMutations读</span></span><br><span class="line">...mapMutations(<span class="string">&#x27;countAbout&#x27;</span>,&#123; <span class="attr">increment</span>: <span class="string">&quot;INCREMENT&quot;</span>, <span class="attr">decrement</span>: <span class="string">&quot;DECREMENT&quot;</span> &#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>开启<strong>命名空间</strong>后如何读取数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//state  1. 自己读</span></span><br><span class="line"> <span class="built_in">this</span>.$store.state.wifeAbout.wifeList;</span><br><span class="line"> <span class="comment">//     2. 用mapState读</span></span><br><span class="line"> ...mapState(<span class="string">&#x27;countAbout&#x27;</span>,[<span class="string">&#x27;sum&#x27;</span>,<span class="string">&#x27;address&#x27;</span>,<span class="string">&#x27;todo&#x27;</span>]) </span><br><span class="line"></span><br><span class="line"> <span class="comment">//getters  1. 自己读</span></span><br><span class="line"> <span class="built_in">this</span>.$store.getters(<span class="string">&#x27;wifeAbout/wifeList&#x27;</span>);</span><br><span class="line"> <span class="comment">//     2. 用mapG读</span></span><br><span class="line"> ...mapGetters(<span class="string">&#x27;countAbout&#x27;</span>,[<span class="string">&#x27;bigSum&#x27;</span>]) </span><br><span class="line"></span><br><span class="line"><span class="comment">//调用dispatch联系actions  1. 自己调</span></span><br><span class="line"> <span class="built_in">this</span>.$store.dispatch(<span class="string">&#x27;wifeAbout/addWifeSAO&#x27;</span>);</span><br><span class="line"> <span class="comment">//     2. 用mapActions读</span></span><br><span class="line"> ...mapActions(<span class="string">&#x27;countAbout&#x27;</span>,[<span class="string">&#x27;incrementSix&#x27;</span>,<span class="string">&#x27;incrementWait&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用commit联系mutations  1. 自己调</span></span><br><span class="line"> <span class="built_in">this</span>.$store.commit(<span class="string">&quot;wifeAbout/ADD&quot;</span>, wifeObj);</span><br><span class="line"> <span class="comment">//     2. 用mapMutations读</span></span><br><span class="line">...mapMutations(<span class="string">&#x27;countAbout&#x27;</span>,&#123; <span class="attr">increment</span>: <span class="string">&quot;INCREMENT&quot;</span>, <span class="attr">decrement</span>: <span class="string">&quot;DECREMENT&quot;</span> &#125;)</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -934,16 +991,18 @@ default:6  //默认值
 <ul>
 <li><p>配置路由规则,使用children配置项:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">routes: [&#123;</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;/about&#x27;</span>,</span><br><span class="line">      <span class="attr">component</span>: About</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">      <span class="attr">component</span>: Home,</span><br><span class="line">      <span class="attr">children</span>: [&#123;  <span class="comment">//通过children配置子级路由</span></span><br><span class="line">          <span class="attr">path</span>: <span class="string">&#x27;news&#x27;</span>, <span class="comment">//底层已经自动添加了&#x27;/&#x27;,无需再加</span></span><br><span class="line">          <span class="attr">component</span>: News,</span><br><span class="line">      &#125;, &#123;</span><br><span class="line">          <span class="attr">path</span>: <span class="string">&#x27;message&#x27;</span>, <span class="comment">///底层已经自动添加了&#x27;/&#x27;,无需再加</span></span><br><span class="line">          <span class="attr">component</span>: Message,</span><br><span class="line">      &#125;]</span><br><span class="line">  &#125;]</span><br></pre></td></tr></table></figure></li>
-<li><p>跳转 ( 要写完整路径 ) ( <strong>声明式导航</strong> )</p>
+<li><p>path路径跳转 ( 要写完整路径 ) ( <strong>声明式导航</strong> )</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link to=<span class="string">&quot;/home/news&quot;</span>&gt;News&lt;/router-link&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>命名式路由跳转(name)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link :to=&#123;<span class="attr">name</span>:<span class="string">&quot;news&quot;</span>,query...&#125;&gt;News&lt;/router-link&gt;</span><br></pre></td></tr></table></figure></li>
 <li><p><strong>编程式导航</strong> : 除了路由跳转,还能添加业务逻辑</p>
 </li>
 <li><p><strong>query</strong>传参 ( 用问号 )</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 跳转路由并携带query参数,to的字符串写法 --&gt;</span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;`/home/message/detail?id=$&#123;item.id&#125;&amp;title=$&#123;item.title&#125;`&quot;</span>&gt;</span>&#123;&#123; item.title &#125;&#125;<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></span><br><span class="line">        &lt;!-- 跳转路由并携带query参数,to的对象写法 --&gt;</span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="name">router-link</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">          <span class="attr">:to</span>=<span class="string">&quot;&#123;</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">            path: &#x27;/home/message/detail&#x27;,</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">            query: &#123; id: item.id, title: item.title &#125;,</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">          &#125;&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">          &gt;</span>&#123;&#123; item.title &#125;&#125;&lt;/router-link</span></span><br><span class="line"><span class="xml">        &gt;</span></span><br><span class="line"><span class="xml">//router-link跳转在浏览器历史记录中有两种写入方式,默认push,可设置replace,跳转时就会替换当前记录</span></span><br></pre></td></tr></table></figure></li>
 <li><p>接收参数: <code>route.query.id</code>,<code>route.query.title</code></p>
 </li>
-<li><p><strong>params</strong>传参+接收参数 :  ( <strong>用斜杠</strong> )</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在index.js中的接收路径处,声明接收</span></span><br><span class="line"><span class="attr">path</span>: <span class="string">&#x27;detail/:id/:title&#x27;</span>,  <span class="comment">//使用占位符接收params参数</span></span><br><span class="line">&lt;!-- 跳转路由并携带params参数,to的字符串写法 --&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;`/home/message/detail/66/扣你鸡娃`&quot;</span>&gt;</span>跳转<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></span><br><span class="line">&lt;!-- 跳转路由并携带params参数,to的对象写法 --&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;&#123;</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">     name: &#x27;xiangqing&#x27;,</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">     params: &#123; </span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">         id: 66,</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">         title: &#x27;扣你鸡娃&#x27; </span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">     &#125;,</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">  &#125;&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">&gt;</span>跳转<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>params</strong>传参+接收参数 :  ( <strong>用斜杠</strong> )  ( 问号代表可传可不传 )</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在index.js中的接收路径处,声明接收</span></span><br><span class="line"><span class="attr">path</span>: <span class="string">&#x27;detail/:id/:title?&#x27;</span>,  <span class="comment">//使用占位符接收params参数</span></span><br><span class="line">&lt;!-- 跳转路由并携带params参数,to的字符串写法 --&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;`/home/message/detail/66/扣你鸡娃`&quot;</span>&gt;</span>跳转<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></span><br><span class="line">&lt;!-- 跳转路由并携带params参数,to的对象写法 --&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;&#123;</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">     name: &#x27;xiangqing&#x27;,</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">     params: &#123; </span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">         id: 66,</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">         title: &#x27;扣你鸡娃&#x27; </span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">     &#125;,</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="xml">  &#125;&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">&gt;</span>跳转<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
 <li><p>注意: 路由携带params且使用对象写法时,不能使用path配置项,必须使用name配置项</p>
 </li>
 <li><p>读取参数 : <code>$route.params.id</code>, <code>$route.params.title</code></p>
@@ -964,10 +1023,10 @@ default:6  //默认值
 </li>
 </ul>
 </li>
-<li><p>路由的props配置项 </p>
+<li><p>路由的props配置项  ( <strong>只能传params参数</strong> )</p>
 <ul>
 <li><p>作用 : 让路由组件更方便的收到参数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="attr">name</span>: <span class="string">&#x27;xiangqing&#x27;</span>,</span><br><span class="line">   <span class="attr">path</span>: <span class="string">&#x27;detail&#x27;</span>, <span class="comment">//检测到children数组,底层添加了&#x27;/&#x27;</span></span><br><span class="line">   <span class="attr">component</span>: Detail,</span><br><span class="line">       </span><br><span class="line"><span class="comment">// props的第一种写法,该对象中的所有key-value都会以props形式传给Detail组件</span></span><br><span class="line"> <span class="comment">// props: &#123; a: 1, b: &#x27;SAO&#x27; &#125;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// props的第二种写法,值为布尔值,若为真,会把该路由组件中的params参数以props形式传给Detail组件</span></span><br><span class="line"><span class="comment">//  props: true,</span></span><br><span class="line">         </span><br><span class="line"><span class="comment">// props的第三种写法,值为函数,</span></span><br><span class="line">    <span class="function"><span class="title">props</span>(<span class="params">$route</span>)</span> &#123;  <span class="comment">//可以收到$route,</span></span><br><span class="line">      <span class="keyword">return</span> &#123; <span class="attr">id</span>: $route.query.id, <span class="attr">title</span>: $route.query.title &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//用结构赋值简写第三种</span></span><br><span class="line">    <span class="function"><span class="title">props</span>(<span class="params">&#123; query: &#123; id, title &#125; &#125;</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123; id, title &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="attr">name</span>: <span class="string">&#x27;xiangqing&#x27;</span>,</span><br><span class="line">   <span class="attr">path</span>: <span class="string">&#x27;detail&#x27;</span>, <span class="comment">//检测到children数组,底层添加了&#x27;/&#x27;</span></span><br><span class="line">   <span class="attr">component</span>: Detail,</span><br><span class="line">       </span><br><span class="line"><span class="comment">// props的第一种写法,该对象中的所有key-value都会以props形式传给Detail组件</span></span><br><span class="line"> <span class="comment">// props: &#123; a: 1, b: &#x27;SAO&#x27; &#125;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// props的第二种写法,值为布尔值,若为真,会把该路由组件中的params参数以props形式传给Detail组件</span></span><br><span class="line"><span class="comment">//  props: true,</span></span><br><span class="line">         </span><br><span class="line"><span class="comment">// props的第三种写法,值为函数,</span></span><br><span class="line">    <span class="function"><span class="title">props</span>(<span class="params">$route</span>)</span> &#123;  <span class="comment">//可以收到$route,</span></span><br><span class="line">      <span class="keyword">return</span> (&#123; <span class="attr">id</span>: $route.query.id, <span class="attr">title</span>: $route.query.title &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//用结构赋值简写第三种</span></span><br><span class="line">    <span class="function"><span class="title">props</span>(<span class="params">&#123; query: &#123; id, title &#125; &#125;</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (&#123; id, title &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>编程式路由导航</p>
